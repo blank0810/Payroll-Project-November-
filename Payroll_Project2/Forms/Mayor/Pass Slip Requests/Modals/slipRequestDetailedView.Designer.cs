@@ -33,16 +33,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.content = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.mayorJobDescription = new System.Windows.Forms.Label();
-            this.mayor = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.customPanel6 = new Payroll_Project2.Custom.customPanel();
-            this.label10 = new System.Windows.Forms.Label();
+            this.dateNoted = new System.Windows.Forms.Label();
             this.customPanel5 = new Payroll_Project2.Custom.customPanel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.notedBy = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -74,9 +69,32 @@
             this.controlNum = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.slipHoursTable = new System.Windows.Forms.TableLayoutPanel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.panel29 = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.panel30 = new System.Windows.Forms.Panel();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.remainingHour = new System.Windows.Forms.Label();
+            this.panel31 = new System.Windows.Forms.Panel();
+            this.usedHour = new System.Windows.Forms.Label();
+            this.panel27 = new System.Windows.Forms.Panel();
+            this.monthName = new System.Windows.Forms.Label();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.balanceHour = new System.Windows.Forms.Label();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.mayorJobDescription = new System.Windows.Forms.Label();
+            this.mayor = new System.Windows.Forms.Label();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
             this.content.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel5.SuspendLayout();
             this.customPanel6.SuspendLayout();
             this.customPanel5.SuspendLayout();
@@ -93,13 +111,26 @@
             this.panel12.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.panel9.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.slipHoursTable.SuspendLayout();
+            this.panel21.SuspendLayout();
+            this.panel29.SuspendLayout();
+            this.panel30.SuspendLayout();
+            this.panel31.SuspendLayout();
+            this.panel27.SuspendLayout();
+            this.panel23.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.panel16.SuspendLayout();
+            this.panel17.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(10, 559);
+            this.panel2.Location = new System.Drawing.Point(10, 576);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(716, 10);
             this.panel2.TabIndex = 14;
@@ -119,7 +150,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(10, 569);
+            this.panel4.Size = new System.Drawing.Size(10, 586);
             this.panel4.TabIndex = 12;
             // 
             // panel3
@@ -128,13 +159,15 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(726, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(10, 569);
+            this.panel3.Size = new System.Drawing.Size(10, 586);
             this.panel3.TabIndex = 11;
             // 
             // content
             // 
             this.content.AutoScroll = true;
             this.content.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.content.Controls.Add(this.panel16);
+            this.content.Controls.Add(this.panel17);
             this.content.Controls.Add(this.panel13);
             this.content.Controls.Add(this.panel9);
             this.content.Controls.Add(this.panel5);
@@ -149,65 +182,8 @@
             this.content.Dock = System.Windows.Forms.DockStyle.Fill;
             this.content.Location = new System.Drawing.Point(10, 10);
             this.content.Name = "content";
-            this.content.Size = new System.Drawing.Size(716, 549);
+            this.content.Size = new System.Drawing.Size(716, 566);
             this.content.TabIndex = 15;
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.mayorJobDescription);
-            this.panel13.Controls.Add(this.mayor);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(0, 344);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(714, 82);
-            this.panel13.TabIndex = 53;
-            // 
-            // mayorJobDescription
-            // 
-            this.mayorJobDescription.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mayorJobDescription.AutoSize = true;
-            this.mayorJobDescription.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
-            this.mayorJobDescription.ForeColor = System.Drawing.Color.DimGray;
-            this.mayorJobDescription.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mayorJobDescription.Location = new System.Drawing.Point(301, 34);
-            this.mayorJobDescription.Name = "mayorJobDescription";
-            this.mayorJobDescription.Size = new System.Drawing.Size(113, 18);
-            this.mayorJobDescription.TabIndex = 50;
-            this.mayorJobDescription.Text = "Municipal Mayor";
-            this.mayorJobDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mayor
-            // 
-            this.mayor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mayor.AutoSize = true;
-            this.mayor.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.mayor.ForeColor = System.Drawing.Color.Black;
-            this.mayor.Location = new System.Drawing.Point(278, 10);
-            this.mayor.Name = "mayor";
-            this.mayor.Size = new System.Drawing.Size(158, 22);
-            this.mayor.TabIndex = 49;
-            this.mayor.Text = "Leonides B. Baluran";
-            this.mayor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // panel9
-            // 
-            this.panel9.AutoSize = true;
-            this.panel9.Controls.Add(this.label11);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 317);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(714, 27);
-            this.panel9.TabIndex = 52;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(10, 5);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(175, 22);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Approval Information";
             // 
             // panel5
             // 
@@ -226,7 +202,7 @@
             this.customPanel6.BackColor = System.Drawing.Color.White;
             this.customPanel6.BorderRadius = 0;
             this.customPanel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel6.Controls.Add(this.label10);
+            this.customPanel6.Controls.Add(this.dateNoted);
             this.customPanel6.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customPanel6.ForeColor = System.Drawing.Color.Black;
             this.customPanel6.GradientAngle = 90F;
@@ -237,17 +213,17 @@
             this.customPanel6.Size = new System.Drawing.Size(175, 32);
             this.customPanel6.TabIndex = 5;
             // 
-            // label10
+            // dateNoted
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(4, 6);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(88, 19);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "{Date noted}";
+            this.dateNoted.AutoSize = true;
+            this.dateNoted.BackColor = System.Drawing.Color.Transparent;
+            this.dateNoted.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.dateNoted.ForeColor = System.Drawing.Color.Black;
+            this.dateNoted.Location = new System.Drawing.Point(4, 6);
+            this.dateNoted.Name = "dateNoted";
+            this.dateNoted.Size = new System.Drawing.Size(88, 19);
+            this.dateNoted.TabIndex = 2;
+            this.dateNoted.Text = "{Date noted}";
             // 
             // customPanel5
             // 
@@ -255,7 +231,7 @@
             this.customPanel5.BackColor = System.Drawing.Color.White;
             this.customPanel5.BorderRadius = 0;
             this.customPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel5.Controls.Add(this.label4);
+            this.customPanel5.Controls.Add(this.notedBy);
             this.customPanel5.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customPanel5.ForeColor = System.Drawing.Color.Black;
             this.customPanel5.GradientAngle = 90F;
@@ -266,17 +242,17 @@
             this.customPanel5.Size = new System.Drawing.Size(175, 32);
             this.customPanel5.TabIndex = 5;
             // 
-            // label4
+            // notedBy
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(4, 6);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 19);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "{Noted by}";
+            this.notedBy.AutoSize = true;
+            this.notedBy.BackColor = System.Drawing.Color.Transparent;
+            this.notedBy.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.notedBy.ForeColor = System.Drawing.Color.Black;
+            this.notedBy.Location = new System.Drawing.Point(4, 6);
+            this.notedBy.Name = "notedBy";
+            this.notedBy.Size = new System.Drawing.Size(77, 19);
+            this.notedBy.TabIndex = 2;
+            this.notedBy.Text = "{Noted by}";
             // 
             // panel8
             // 
@@ -317,7 +293,7 @@
             // 
             this.buttonsPanel.Controls.Add(this.approveBtn);
             this.buttonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonsPanel.Location = new System.Drawing.Point(0, 504);
+            this.buttonsPanel.Location = new System.Drawing.Point(0, 521);
             this.buttonsPanel.Name = "buttonsPanel";
             this.buttonsPanel.Size = new System.Drawing.Size(714, 43);
             this.buttonsPanel.TabIndex = 49;
@@ -655,12 +631,303 @@
             this.infoLabel.TabIndex = 1;
             this.infoLabel.Text = "PASS SLIP";
             // 
+            // panel9
+            // 
+            this.panel9.AutoSize = true;
+            this.panel9.Controls.Add(this.label12);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 317);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(714, 25);
+            this.panel9.TabIndex = 52;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label12.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label12.Location = new System.Drawing.Point(10, 6);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(161, 19);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Pass Slip Hours Details";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.slipHoursTable);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(0, 342);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(714, 92);
+            this.panel13.TabIndex = 53;
+            // 
+            // slipHoursTable
+            // 
+            this.slipHoursTable.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.slipHoursTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.slipHoursTable.ColumnCount = 4;
+            this.slipHoursTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.slipHoursTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.slipHoursTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.slipHoursTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.slipHoursTable.Controls.Add(this.panel14, 0, 1);
+            this.slipHoursTable.Controls.Add(this.panel21, 0, 0);
+            this.slipHoursTable.Controls.Add(this.panel23, 0, 1);
+            this.slipHoursTable.Controls.Add(this.panel27, 1, 1);
+            this.slipHoursTable.Controls.Add(this.panel29, 1, 0);
+            this.slipHoursTable.Controls.Add(this.panel30, 2, 0);
+            this.slipHoursTable.Controls.Add(this.panel31, 2, 1);
+            this.slipHoursTable.Controls.Add(this.panel15, 3, 0);
+            this.slipHoursTable.Location = new System.Drawing.Point(24, 7);
+            this.slipHoursTable.Name = "slipHoursTable";
+            this.slipHoursTable.RowCount = 2;
+            this.slipHoursTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.slipHoursTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.slipHoursTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.slipHoursTable.Size = new System.Drawing.Size(644, 78);
+            this.slipHoursTable.TabIndex = 32;
+            // 
+            // panel21
+            // 
+            this.panel21.Controls.Add(this.label11);
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel21.Location = new System.Drawing.Point(4, 4);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(249, 31);
+            this.panel21.TabIndex = 0;
+            // 
+            // panel29
+            // 
+            this.panel29.Controls.Add(this.label30);
+            this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel29.Location = new System.Drawing.Point(260, 4);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(121, 31);
+            this.panel29.TabIndex = 0;
+            // 
+            // label30
+            // 
+            this.label30.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.label30.ForeColor = System.Drawing.Color.DimGray;
+            this.label30.Location = new System.Drawing.Point(33, 6);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(56, 18);
+            this.label30.TabIndex = 31;
+            this.label30.Text = "Balance";
+            // 
+            // panel30
+            // 
+            this.panel30.Controls.Add(this.label31);
+            this.panel30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel30.Location = new System.Drawing.Point(388, 4);
+            this.panel30.Name = "panel30";
+            this.panel30.Size = new System.Drawing.Size(121, 31);
+            this.panel30.TabIndex = 0;
+            // 
+            // label31
+            // 
+            this.label31.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.label31.ForeColor = System.Drawing.Color.DimGray;
+            this.label31.Location = new System.Drawing.Point(43, 6);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(40, 18);
+            this.label31.TabIndex = 31;
+            this.label31.Text = "Used";
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.DimGray;
+            this.label11.Location = new System.Drawing.Point(103, 6);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(50, 18);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Month";
+            // 
+            // remainingHour
+            // 
+            this.remainingHour.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.remainingHour.AutoSize = true;
+            this.remainingHour.BackColor = System.Drawing.Color.Transparent;
+            this.remainingHour.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.remainingHour.ForeColor = System.Drawing.Color.Black;
+            this.remainingHour.Location = new System.Drawing.Point(52, 7);
+            this.remainingHour.Name = "remainingHour";
+            this.remainingHour.Size = new System.Drawing.Size(15, 17);
+            this.remainingHour.TabIndex = 31;
+            this.remainingHour.Text = "0";
+            this.remainingHour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel31
+            // 
+            this.panel31.Controls.Add(this.remainingHour);
+            this.panel31.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel31.Location = new System.Drawing.Point(516, 42);
+            this.panel31.Name = "panel31";
+            this.panel31.Size = new System.Drawing.Size(124, 32);
+            this.panel31.TabIndex = 0;
+            // 
+            // usedHour
+            // 
+            this.usedHour.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.usedHour.AutoSize = true;
+            this.usedHour.BackColor = System.Drawing.Color.Transparent;
+            this.usedHour.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.usedHour.ForeColor = System.Drawing.Color.Black;
+            this.usedHour.Location = new System.Drawing.Point(55, 7);
+            this.usedHour.Name = "usedHour";
+            this.usedHour.Size = new System.Drawing.Size(15, 17);
+            this.usedHour.TabIndex = 31;
+            this.usedHour.Text = "0";
+            this.usedHour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel27
+            // 
+            this.panel27.Controls.Add(this.usedHour);
+            this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel27.Location = new System.Drawing.Point(388, 42);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(121, 32);
+            this.panel27.TabIndex = 0;
+            // 
+            // monthName
+            // 
+            this.monthName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.monthName.AutoSize = true;
+            this.monthName.BackColor = System.Drawing.Color.Transparent;
+            this.monthName.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.monthName.ForeColor = System.Drawing.Color.Black;
+            this.monthName.Location = new System.Drawing.Point(79, 6);
+            this.monthName.Name = "monthName";
+            this.monthName.Size = new System.Drawing.Size(99, 19);
+            this.monthName.TabIndex = 30;
+            this.monthName.Text = "{Month name}";
+            // 
+            // panel23
+            // 
+            this.panel23.Controls.Add(this.monthName);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel23.Location = new System.Drawing.Point(4, 42);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(249, 32);
+            this.panel23.TabIndex = 0;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.balanceHour);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel14.Location = new System.Drawing.Point(260, 42);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(121, 32);
+            this.panel14.TabIndex = 1;
+            // 
+            // balanceHour
+            // 
+            this.balanceHour.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.balanceHour.AutoSize = true;
+            this.balanceHour.BackColor = System.Drawing.Color.Transparent;
+            this.balanceHour.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.balanceHour.ForeColor = System.Drawing.Color.Black;
+            this.balanceHour.Location = new System.Drawing.Point(54, 8);
+            this.balanceHour.Name = "balanceHour";
+            this.balanceHour.Size = new System.Drawing.Size(15, 17);
+            this.balanceHour.TabIndex = 31;
+            this.balanceHour.Text = "0";
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.label14);
+            this.panel15.Location = new System.Drawing.Point(516, 4);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(121, 31);
+            this.panel15.TabIndex = 0;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.label14.ForeColor = System.Drawing.Color.DimGray;
+            this.label14.Location = new System.Drawing.Point(23, 6);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(74, 18);
+            this.label14.TabIndex = 31;
+            this.label14.Text = "Remaining";
+            // 
+            // panel16
+            // 
+            this.panel16.Controls.Add(this.mayorJobDescription);
+            this.panel16.Controls.Add(this.mayor);
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel16.Location = new System.Drawing.Point(0, 461);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(714, 59);
+            this.panel16.TabIndex = 57;
+            // 
+            // mayorJobDescription
+            // 
+            this.mayorJobDescription.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mayorJobDescription.AutoSize = true;
+            this.mayorJobDescription.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.mayorJobDescription.ForeColor = System.Drawing.Color.DimGray;
+            this.mayorJobDescription.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mayorJobDescription.Location = new System.Drawing.Point(301, 32);
+            this.mayorJobDescription.Name = "mayorJobDescription";
+            this.mayorJobDescription.Size = new System.Drawing.Size(113, 18);
+            this.mayorJobDescription.TabIndex = 50;
+            this.mayorJobDescription.Text = "Municipal Mayor";
+            this.mayorJobDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mayor
+            // 
+            this.mayor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mayor.AutoSize = true;
+            this.mayor.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
+            this.mayor.ForeColor = System.Drawing.Color.Black;
+            this.mayor.Location = new System.Drawing.Point(278, 8);
+            this.mayor.Name = "mayor";
+            this.mayor.Size = new System.Drawing.Size(158, 22);
+            this.mayor.TabIndex = 49;
+            this.mayor.Text = "Leonides B. Baluran";
+            this.mayor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panel17
+            // 
+            this.panel17.AutoSize = true;
+            this.panel17.Controls.Add(this.label15);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel17.Location = new System.Drawing.Point(0, 434);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(714, 27);
+            this.panel17.TabIndex = 56;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
+            this.label15.Location = new System.Drawing.Point(10, 5);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(175, 22);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Approval Information";
+            // 
             // slipRequestDetailedView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(736, 569);
+            this.ClientSize = new System.Drawing.Size(736, 586);
             this.Controls.Add(this.content);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -673,10 +940,6 @@
             this.Text = "Pass Slip Details";
             this.content.ResumeLayout(false);
             this.content.PerformLayout();
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.customPanel6.ResumeLayout(false);
@@ -707,6 +970,30 @@
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.slipHoursTable.ResumeLayout(false);
+            this.panel21.ResumeLayout(false);
+            this.panel21.PerformLayout();
+            this.panel29.ResumeLayout(false);
+            this.panel29.PerformLayout();
+            this.panel30.ResumeLayout(false);
+            this.panel30.PerformLayout();
+            this.panel31.ResumeLayout(false);
+            this.panel31.PerformLayout();
+            this.panel27.ResumeLayout(false);
+            this.panel27.PerformLayout();
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -748,16 +1035,36 @@
         private System.Windows.Forms.Label infoLabel;
         private System.Windows.Forms.Panel panel5;
         private Custom.customPanel customPanel6;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label dateNoted;
         private Custom.customPanel customPanel5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label notedBy;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.TableLayoutPanel slipHoursTable;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel23;
+        private System.Windows.Forms.Label monthName;
+        private System.Windows.Forms.Panel panel27;
+        private System.Windows.Forms.Label usedHour;
+        private System.Windows.Forms.Panel panel29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Panel panel30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Panel panel31;
+        private System.Windows.Forms.Label remainingHour;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Label balanceHour;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Label mayorJobDescription;
         private System.Windows.Forms.Label mayor;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Label label15;
     }
 }

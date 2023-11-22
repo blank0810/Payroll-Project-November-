@@ -1,0 +1,2313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E7493BB6-5DD9-42AC-ACE7-633AB17C8511}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Payroll_Project2</RootNamespace>
+    <AssemblyName>Payroll_Project2</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CircularProgressBar, Version=2.8.0.16, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CircularProgressBar.2.8.0.16\lib\net40\CircularProgressBar.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.6.3.0\lib\net48\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Geocoding, Version=3.6.0.0, Culture=neutral, PublicKeyToken=7c714700b88674c7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Geocoding.net.3.6.1\lib\net40\Geocoding.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp, Version=110.2.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.110.2.0\lib\net471\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Console, Version=4.0.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.1\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.5, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.5\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.3.1\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.4.3.0\lib\net463\System.Runtime.InteropServices.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.7.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WinFormAnimation, Version=1.6.0.4, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinFormAnimation.1.6.0.4\lib\net40\WinFormAnimation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API Used\AutoCompleteResponse.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Department Head Function\dashboardClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Department Head Function\dtrClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Department Head Function\formManagementClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Department Head Function\subordinateManagementClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\General Functions\generalFunctions.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Mayor Functions\formRequestClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Mayor Functions\mayorDashboard.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Personnel\calendarClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Personnel\dtrClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Personnel\employeeClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Personnel\formClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Personnel\personnelDashboard.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Personnel\personnelProfile.cs" />
+    <Compile Include="Classes and SQL Connection\logInClass.cs" />
+    <Compile Include="Classes and SQL Connection\Custom\customColorTable.cs" />
+    <Compile Include="Classes and SQL Connection\Custom\customDateTime.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes and SQL Connection\Custom\customDropDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes and SQL Connection\Custom\customMenuRenderer.cs" />
+    <Compile Include="Classes and SQL Connection\Custom\customPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes and SQL Connection\Custom\customPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes and SQL Connection\Custom\customRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes and SQL Connection\Custom\customTextBox2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes and SQL Connection\Custom\customTextBox2.Designer.cs">
+      <DependentUpon>customTextBox2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes and SQL Connection\Custom\loginButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Dashboard\DepartmentHeadDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Dashboard\DepartmentHeadDashboard.Designer.cs">
+      <DependentUpon>DepartmentHeadDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\benefitInformationUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\benefitInformationUC.Designer.cs">
+      <DependentUpon>benefitInformationUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\deductionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\deductionsUC.Designer.cs">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\earningsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\earningsUC.Designer.cs">
+      <DependentUpon>earningsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Modals\employeeSignatureModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Modals\employeeSignatureModal.Designer.cs">
+      <DependentUpon>employeeSignatureModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Modals\payslipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Modals\payslipDetailedView.Designer.cs">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Modals\updateModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Modals\updateModal.Designer.cs">
+      <DependentUpon>updateModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Dashboard\User Control\dashboardUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Dashboard\User Control\dashboardUC.Designer.cs">
+      <DependentUpon>dashboardUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Electronic DTR\DTR Sub User Control\dtrDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Electronic DTR\DTR Sub User Control\dtrDataUC.Designer.cs">
+      <DependentUpon>dtrDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Electronic DTR\DTR Sub User Control\dtrSubUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Electronic DTR\DTR Sub User Control\dtrSubUC.Designer.cs">
+      <DependentUpon>dtrSubUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Electronic DTR\dtrUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Electronic DTR\dtrUC.Designer.cs">
+      <DependentUpon>dtrUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Electronic DTR\Modals\dtrModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Electronic DTR\Modals\dtrModal.Designer.cs">
+      <DependentUpon>dtrModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Leave list sub user control\leaveListDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Leave list sub user control\leaveListDataUC.Designer.cs">
+      <DependentUpon>leaveListDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Leave list sub user control\leaveListEmployeeDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Leave list sub user control\leaveListEmployeeDataUC.Designer.cs">
+      <DependentUpon>leaveListEmployeeDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Leave Request Sub User Control\leaveDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Leave Request Sub User Control\leaveDataUC.Designer.cs">
+      <DependentUpon>leaveDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\leaveListsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\leaveListsUC.Designer.cs">
+      <DependentUpon>leaveListsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\leaveRequestsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\leaveRequestsUC.Designer.cs">
+      <DependentUpon>leaveRequestsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Modals\leaveDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Modals\leaveDetailedView.Designer.cs">
+      <DependentUpon>leaveDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Modals\leaveRequestDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Leave Management\Modals\leaveRequestDetailedView.Designer.cs">
+      <DependentUpon>leaveRequestDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Modals\slipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Modals\slipDetailedView.Designer.cs">
+      <DependentUpon>slipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Modals\slipRequestView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Modals\slipRequestView.Designer.cs">
+      <DependentUpon>slipRequestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Pass Slip List sub user control\employeeListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Pass Slip List sub user control\employeeListUC.Designer.cs">
+      <DependentUpon>employeeListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Pass Slip List sub user control\slipListDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Pass Slip List sub user control\slipListDataUC.Designer.cs">
+      <DependentUpon>slipListDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Pass Slip Request sub user control\slipRequestDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\Pass Slip Request sub user control\slipRequestDataUC.Designer.cs">
+      <DependentUpon>slipRequestDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\passSlipRequestUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\passSlipRequestUC.Designer.cs">
+      <DependentUpon>passSlipRequestUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\slipListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Pass Slip\slipListUC.Designer.cs">
+      <DependentUpon>slipListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Modals\payslipRequestDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Modals\payslipRequestDetailedView.Designer.cs">
+      <DependentUpon>payslipRequestDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\deductionDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\deductionDataUC.Designer.cs">
+      <DependentUpon>deductionDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\earningsDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\earningsDataUC.Designer.cs">
+      <DependentUpon>earningsDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\employeeDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\employeeDataUC.Designer.cs">
+      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\payslipUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\payslipUC.Designer.cs">
+      <DependentUpon>payslipUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Subordinate Management\subodinateManagementUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Subordinate Management\subodinateManagementUC.Designer.cs">
+      <DependentUpon>subodinateManagementUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Subordinate Management\User Controls\employeeDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Subordinate Management\User Controls\employeeDataUC.Designer.cs">
+      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Modals\travelOrderDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Modals\travelOrderDetailedView.Designer.cs">
+      <DependentUpon>travelOrderDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Modals\travelOrderRequestDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Modals\travelOrderRequestDetailedView.Designer.cs">
+      <DependentUpon>travelOrderRequestDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Travel Order list sub user control\employeeListTravelOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Travel Order list sub user control\employeeListTravelOrder.Designer.cs">
+      <DependentUpon>employeeListTravelOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Travel Order list sub user control\travelOrderDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Travel Order list sub user control\travelOrderDataUC.Designer.cs">
+      <DependentUpon>travelOrderDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Travel order request sub user control\requestDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\Travel order request sub user control\requestDataUC.Designer.cs">
+      <DependentUpon>requestDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\travelOrderListsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\travelOrderListsUC.Designer.cs">
+      <DependentUpon>travelOrderListsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\travelOrderRequestUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Travel Order\travelOrderRequestUC.Designer.cs">
+      <DependentUpon>travelOrderRequestUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\benefitDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\benefitDataUC.Designer.cs">
+      <DependentUpon>benefitDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\leaveDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\leaveDataUC.Designer.cs">
+      <DependentUpon>leaveDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\passSlipUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\passSlipUC.Designer.cs">
+      <DependentUpon>passSlipUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\travelUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\travelUC.Designer.cs">
+      <DependentUpon>travelUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\personalProfileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\personalProfileUC.Designer.cs">
+      <DependentUpon>personalProfileUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File leave\File leave sub user control\leaveCreditsDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File leave\File leave sub user control\leaveCreditsDataUC.Designer.cs">
+      <DependentUpon>leaveCreditsDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File leave\fileLeaveModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File leave\fileLeaveModal.Designer.cs">
+      <DependentUpon>fileLeaveModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File leave\fileLeaveUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File leave\fileLeaveUC.Designer.cs">
+      <DependentUpon>fileLeaveUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Pass Slip\File Pass Slip sub user control\passSlipDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Pass Slip\File Pass Slip sub user control\passSlipDataUC.Designer.cs">
+      <DependentUpon>passSlipDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Pass Slip\filePassSlipModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Pass Slip\filePassSlipModal.Designer.cs">
+      <DependentUpon>filePassSlipModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Pass Slip\filePassSlipUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Pass Slip\filePassSlipUC.Designer.cs">
+      <DependentUpon>filePassSlipUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Travel Order\File Travel Order sub user control\travelOrderDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Travel Order\File Travel Order sub user control\travelOrderDataUC.Designer.cs">
+      <DependentUpon>travelOrderDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Travel Order\fileTravelOrderModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Travel Order\fileTravelOrderModal.Designer.cs">
+      <DependentUpon>fileTravelOrderModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Travel Order\fileTravelOrderUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\File Travel Order\fileTravelOrderUC.Designer.cs">
+      <DependentUpon>fileTravelOrderUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Leave Logs\Leave logs sub user control\leaveLogsDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Leave Logs\Leave logs sub user control\leaveLogsDataUC.Designer.cs">
+      <DependentUpon>leaveLogsDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Leave Logs\leaveLogsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Leave Logs\leaveLogsUC.Designer.cs">
+      <DependentUpon>leaveLogsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Leave Logs\Modals\personalLeaveDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Leave Logs\Modals\personalLeaveDetailedView.Designer.cs">
+      <DependentUpon>personalLeaveDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Pass Slip Logs\Modals\personalSlipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Pass Slip Logs\Modals\personalSlipDetailedView.Designer.cs">
+      <DependentUpon>personalSlipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Pass Slip Logs\Pass slip log sub user control\slipLogDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Pass Slip Logs\Pass slip log sub user control\slipLogDataUC.Designer.cs">
+      <DependentUpon>slipLogDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Pass Slip Logs\slipLogsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Pass Slip Logs\slipLogsUC.Designer.cs">
+      <DependentUpon>slipLogsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\Modal\personalPayslipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\Modal\personalPayslipDetailedView.Designer.cs">
+      <DependentUpon>personalPayslipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipDeductionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipDeductionsUC.Designer.cs">
+      <DependentUpon>payslipDeductionsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipEarningsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipEarningsUC.Designer.cs">
+      <DependentUpon>payslipEarningsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipLogDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipLogDataUC.Designer.cs">
+      <DependentUpon>payslipLogDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\payslipLogsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Payslip Logs\payslipLogsUC.Designer.cs">
+      <DependentUpon>payslipLogsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Personal DTR\DTR sub user control\dtrDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Personal DTR\DTR sub user control\dtrDataUC.Designer.cs">
+      <DependentUpon>dtrDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Personal DTR\personalDTR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Personal DTR\personalDTR.Designer.cs">
+      <DependentUpon>personalDTR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Travel Order Logs\Modals\personalTravelOrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Travel Order Logs\Modals\personalTravelOrderDetails.Designer.cs">
+      <DependentUpon>personalTravelOrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Travel Order Logs\Travel order log sub user control\travelOrderLogDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Travel Order Logs\Travel order log sub user control\travelOrderLogDataUC.Designer.cs">
+      <DependentUpon>travelOrderLogDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Travel Order Logs\travelOrderLogUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Personal Portal\Travel Order Logs\travelOrderLogUC.Designer.cs">
+      <DependentUpon>travelOrderLogUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\benefitDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\benefitDataUC.Designer.cs">
+      <DependentUpon>benefitDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\benefitInformationUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\benefitInformationUC.Designer.cs">
+      <DependentUpon>benefitInformationUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\deductionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\deductionsUC.Designer.cs">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\earningsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\earningsUC.Designer.cs">
+      <DependentUpon>earningsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\leaveDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\leaveDataUC.Designer.cs">
+      <DependentUpon>leaveDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\passSlipUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\passSlipUC.Designer.cs">
+      <DependentUpon>passSlipUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\travelUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Dashboard User Control\travelUC.Designer.cs">
+      <DependentUpon>travelUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\employeeDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\employeeDashboard.Designer.cs">
+      <DependentUpon>employeeDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Modals\payslipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Modals\payslipDetailedView.Designer.cs">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Modals\updateModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Modals\updateModal.Designer.cs">
+      <DependentUpon>updateModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\File leave\File leave sub user control\leaveCreditsDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\File leave\File leave sub user control\leaveCreditsDataUC.Designer.cs">
+      <DependentUpon>leaveCreditsDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\File leave\fileLeaveUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\File leave\fileLeaveUC.Designer.cs">
+      <DependentUpon>fileLeaveUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\File Pass Slip\File Pass Slip sub user control\passSlipDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\File Pass Slip\File Pass Slip sub user control\passSlipDataUC.Designer.cs">
+      <DependentUpon>passSlipDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\File Pass Slip\filePassSlipUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\File Pass Slip\filePassSlipUC.Designer.cs">
+      <DependentUpon>filePassSlipUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\File Travel Order\File Travel Order sub user control\travelOrderDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\File Travel Order\File Travel Order sub user control\travelOrderDataUC.Designer.cs">
+      <DependentUpon>travelOrderDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\File Travel Order\fileTravelOrderUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\File Travel Order\fileTravelOrderUC.Designer.cs">
+      <DependentUpon>fileTravelOrderUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Leave Logs\Leave logs sub user control\leaveLogsDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Leave Logs\Leave logs sub user control\leaveLogsDataUC.Designer.cs">
+      <DependentUpon>leaveLogsDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Leave Logs\leaveLogsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Leave Logs\leaveLogsUC.Designer.cs">
+      <DependentUpon>leaveLogsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Leave Logs\Modals\personalLeaveDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Leave Logs\Modals\personalLeaveDetailedView.Designer.cs">
+      <DependentUpon>personalLeaveDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Pass Slip Logs\Modals\personalSlipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Pass Slip Logs\Modals\personalSlipDetailedView.Designer.cs">
+      <DependentUpon>personalSlipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Pass Slip Logs\Pass slip log sub user control\slipLogDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Pass Slip Logs\Pass slip log sub user control\slipLogDataUC.Designer.cs">
+      <DependentUpon>slipLogDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Pass Slip Logs\slipLogsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Pass Slip Logs\slipLogsUC.Designer.cs">
+      <DependentUpon>slipLogsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Personal DTR\DTR sub user control\dtrDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Personal DTR\DTR sub user control\dtrDataUC.Designer.cs">
+      <DependentUpon>dtrDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\Personal DTR\personalDTR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Personal DTR\personalDTR.Designer.cs">
+      <DependentUpon>personalDTR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Dashboard\Dashboard User Control\departmentDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Dashboard\Dashboard User Control\departmentDataUC.Designer.cs">
+      <DependentUpon>departmentDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Dashboard\Dashboard User Control\employeeDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Dashboard\Dashboard User Control\employeeDataUC.Designer.cs">
+      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Dashboard\MayorDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Dashboard\MayorDashboard.Designer.cs">
+      <DependentUpon>MayorDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Dashboard\Modals\departmentDetailsModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Dashboard\Modals\departmentDetailsModal.Designer.cs">
+      <DependentUpon>departmentDetailsModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Leave Requests\Leave Request Sub User Control\requestDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Leave Requests\Leave Request Sub User Control\requestDataUC.Designer.cs">
+      <DependentUpon>requestDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Leave Requests\leaveRequestsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Leave Requests\leaveRequestsUC.Designer.cs">
+      <DependentUpon>leaveRequestsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Leave Requests\Modal\leaveRequestDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Leave Requests\Modal\leaveRequestDetailedView.Designer.cs">
+      <DependentUpon>leaveRequestDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pass Slip Requests\Modals\slipRequestDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pass Slip Requests\Modals\slipRequestDetailedView.Designer.cs">
+      <DependentUpon>slipRequestDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pass Slip Requests\Pass Slip Request sub user control\slipRequestDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pass Slip Requests\Pass Slip Request sub user control\slipRequestDataUC.Designer.cs">
+      <DependentUpon>slipRequestDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pass Slip Requests\passSlipRequestsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pass Slip Requests\passSlipRequestsUC.Designer.cs">
+      <DependentUpon>passSlipRequestsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Modals\payslipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Modals\payslipDetailedView.Designer.cs">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\deductionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\deductionsUC.Designer.cs">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\earningsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\earningsUC.Designer.cs">
+      <DependentUpon>earningsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\payslipRequestDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\payslipRequestDataUC.Designer.cs">
+      <DependentUpon>payslipRequestDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\payslipRequestsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\payslipRequestsUC.Designer.cs">
+      <DependentUpon>payslipRequestsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Travel Order Requests\Modal\travelDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Travel Order Requests\Modal\travelDetailedView.Designer.cs">
+      <DependentUpon>travelDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Travel Order Requests\Travel Order Requests sub user control\requestDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Travel Order Requests\Travel Order Requests sub user control\requestDataUC.Designer.cs">
+      <DependentUpon>requestDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Travel Order Requests\travelRequestsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Travel Order Requests\travelRequestsUC.Designer.cs">
+      <DependentUpon>travelRequestsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\Dashboard User Control\departmentCardUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\Dashboard User Control\departmentCardUC.Designer.cs">
+      <DependentUpon>departmentCardUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\Dashboard User Control\Modal\analyticsButtonModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\Dashboard User Control\Modal\analyticsButtonModal.Designer.cs">
+      <DependentUpon>analyticsButtonModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\Dashboard User Control\Modal\User Controls\employeeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\Dashboard User Control\Modal\User Controls\employeeUC.Designer.cs">
+      <DependentUpon>employeeUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\Modal\addDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\Modal\addDepartment.Designer.cs">
+      <DependentUpon>addDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\newDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Dashboard\newDashboard.Designer.cs">
+      <DependentUpon>newDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\DTR\DTR User Controls\employeeDTRUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\DTR\DTR User Controls\employeeDTRUC.Designer.cs">
+      <DependentUpon>employeeDTRUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\DTR\dtrMainUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\DTR\dtrMainUC.Designer.cs">
+      <DependentUpon>dtrMainUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\DTR\Modal\dtrDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\DTR\Modal\dtrDetails.Designer.cs">
+      <DependentUpon>dtrDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\DTR\Modal\Modal User Control\employeeLogUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\DTR\Modal\Modal User Control\employeeLogUC.Designer.cs">
+      <DependentUpon>employeeLogUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\benefitContributionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\benefitContributionsUC.Designer.cs">
+      <DependentUpon>benefitContributionsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\employeeDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\employeeDataUC.Designer.cs">
+      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\employeeDetailsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\employeeDetailsUserControl.Designer.cs">
+      <DependentUpon>employeeDetailsUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\benefitsContribution.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\benefitsContribution.Designer.cs">
+      <DependentUpon>benefitsContribution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\employeeSignatureModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\employeeSignatureModal.Designer.cs">
+      <DependentUpon>employeeSignatureModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\addEmployeeModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\addEmployeeModal.Designer.cs">
+      <DependentUpon>addEmployeeModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\benefitsDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\benefitsDetailsUC.Designer.cs">
+      <DependentUpon>benefitsDetailsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\addBenefitModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\addBenefitModal.Designer.cs">
+      <DependentUpon>addBenefitModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\leaveUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\leaveUC.Designer.cs">
+      <DependentUpon>leaveUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\leaveDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\leaveDetailedView.Designer.cs">
+      <DependentUpon>leaveDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\modificationEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\modificationEmployeeForm.Designer.cs">
+      <DependentUpon>modificationEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\modifyBenefits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\modifyBenefits.Designer.cs">
+      <DependentUpon>modifyBenefits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\passSlipUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\passSlipUC.Designer.cs">
+      <DependentUpon>passSlipUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\travelOrderUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\travelOrderUC.Designer.cs">
+      <DependentUpon>travelOrderUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\employeeUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\employeeUserControl.Designer.cs">
+      <DependentUpon>employeeUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\mandateDeductionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\mandateDeductionsUC.Designer.cs">
+      <DependentUpon>mandateDeductionsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\slipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\slipDetailedView.Designer.cs">
+      <DependentUpon>slipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\travelOrderDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Employee\Modal\travelOrderDetailedView.Designer.cs">
+      <DependentUpon>travelOrderDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\Modals\viewLeaveModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\Modals\viewLeaveModal.Designer.cs">
+      <DependentUpon>viewLeaveModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\Modal\viewSlipModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\Modal\viewSlipModal.Designer.cs">
+      <DependentUpon>viewSlipModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\Modal\viewTravelModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\Modal\viewTravelModal.Designer.cs">
+      <DependentUpon>viewTravelModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\Pass Slip Management sub user control\passSlipData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\Pass Slip Management sub user control\passSlipData.Designer.cs">
+      <DependentUpon>passSlipData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\Leave Management sub user control\applicationForLeaveData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\Leave Management sub user control\applicationForLeaveData.Designer.cs">
+      <DependentUpon>applicationForLeaveData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\leaveApproveUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\leaveApproveUC.Designer.cs">
+      <DependentUpon>leaveApproveUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\appForLeave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\appForLeave.Designer.cs">
+      <DependentUpon>appForLeave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Modal\Sub user control\employeeListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Modal\Sub user control\employeeListUC.Designer.cs">
+      <DependentUpon>employeeListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Modal\employeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Modal\employeeList.Designer.cs">
+      <DependentUpon>employeeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\passSlip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\passSlip.Designer.cs">
+      <DependentUpon>passSlip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\slipApproveUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\slipApproveUC.Designer.cs">
+      <DependentUpon>slipApproveUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\Travel Management sub user control\travelDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\Travel Management sub user control\travelDataUC.Designer.cs">
+      <DependentUpon>travelDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\travelApproveUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\travelApproveUC.Designer.cs">
+      <DependentUpon>travelApproveUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\travelOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\travelOrder.Designer.cs">
+      <DependentUpon>travelOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Calendar Sub User Control\blankDaysUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Calendar Sub User Control\blankDaysUC.Designer.cs">
+      <DependentUpon>blankDaysUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Calendar Sub User Control\daysUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Calendar Sub User Control\daysUC.Designer.cs">
+      <DependentUpon>daysUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\calendarUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\calendarUC.Designer.cs">
+      <DependentUpon>calendarUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Modal\detailsEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Modal\detailsEvent.Designer.cs">
+      <DependentUpon>detailsEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Modal\eventAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Modal\eventAdd.Designer.cs">
+      <DependentUpon>eventAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\modifyModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\modifyModal.Designer.cs">
+      <DependentUpon>modifyModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\payslip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\payslip.Designer.cs">
+      <DependentUpon>payslip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\payslipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\payslipDetailedView.Designer.cs">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\payslipListModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\payslipListModal.Designer.cs">
+      <DependentUpon>payslipListModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\deductionsModify.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\deductionsModify.Designer.cs">
+      <DependentUpon>deductionsModify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\deductionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\deductionsUC.Designer.cs">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\earningsModify.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\earningsModify.Designer.cs">
+      <DependentUpon>earningsModify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\earningsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\earningsUC.Designer.cs">
+      <DependentUpon>earningsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\payroll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\payroll.Designer.cs">
+      <DependentUpon>payroll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\payrollList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\payrollList.Designer.cs">
+      <DependentUpon>payrollList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\detailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\detailsUC.Designer.cs">
+      <DependentUpon>detailsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\employeeList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\employeeList.Designer.cs">
+      <DependentUpon>employeeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\payrollListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\payrollListUC.Designer.cs">
+      <DependentUpon>payrollListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Leave\File leave sub user control\leaveCreditsDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Leave\File leave sub user control\leaveCreditsDataUC.Designer.cs">
+      <DependentUpon>leaveCreditsDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Leave\fileLeaveModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Leave\fileLeaveModal.Designer.cs">
+      <DependentUpon>fileLeaveModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Leave\fileLeaveUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Leave\fileLeaveUC.Designer.cs">
+      <DependentUpon>fileLeaveUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Pass Slip\File Pass Slip sub user control\passSlipDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Pass Slip\File Pass Slip sub user control\passSlipDataUC.Designer.cs">
+      <DependentUpon>passSlipDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Pass Slip\filePassSlipModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Pass Slip\filePassSlipModal.Designer.cs">
+      <DependentUpon>filePassSlipModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Pass Slip\filePassSlipUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Pass Slip\filePassSlipUC.Designer.cs">
+      <DependentUpon>filePassSlipUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Travel Order\File Travel Order sub user control\travelOrderDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Travel Order\File Travel Order sub user control\travelOrderDataUC.Designer.cs">
+      <DependentUpon>travelOrderDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Travel Order\fileTravelOrderModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Travel Order\fileTravelOrderModal.Designer.cs">
+      <DependentUpon>fileTravelOrderModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Travel Order\fileTravelOrderUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\File Travel Order\fileTravelOrderUC.Designer.cs">
+      <DependentUpon>fileTravelOrderUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Leave Logs\Leave logs sub user control\leaveLogsDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Leave Logs\Leave logs sub user control\leaveLogsDataUC.Designer.cs">
+      <DependentUpon>leaveLogsDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Leave Logs\leaveLogsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Leave Logs\leaveLogsUC.Designer.cs">
+      <DependentUpon>leaveLogsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Leave Logs\Modals\personalLeaveDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Leave Logs\Modals\personalLeaveDetailedView.Designer.cs">
+      <DependentUpon>personalLeaveDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Modals\employeeSignatureModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Modals\employeeSignatureModal.Designer.cs">
+      <DependentUpon>employeeSignatureModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Modals\payslipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Modals\payslipDetailedView.Designer.cs">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Modals\updateModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Modals\updateModal.Designer.cs">
+      <DependentUpon>updateModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\benefitDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\benefitDataUC.Designer.cs">
+      <DependentUpon>benefitDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\benefitInformationUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\benefitInformationUC.Designer.cs">
+      <DependentUpon>benefitInformationUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\deductionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\deductionsUC.Designer.cs">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\earningsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\earningsUC.Designer.cs">
+      <DependentUpon>earningsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\personalProfileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\My Profile\personalProfileUC.Designer.cs">
+      <DependentUpon>personalProfileUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Pass Slip Logs\Modals\personalSlipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Pass Slip Logs\Modals\personalSlipDetailedView.Designer.cs">
+      <DependentUpon>personalSlipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Pass Slip Logs\Pass slip log sub user control\slipLogDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Pass Slip Logs\Pass slip log sub user control\slipLogDataUC.Designer.cs">
+      <DependentUpon>slipLogDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Pass Slip Logs\slipLogsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Pass Slip Logs\slipLogsUC.Designer.cs">
+      <DependentUpon>slipLogsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\Modal\personalPayslipDetailedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\Modal\personalPayslipDetailedView.Designer.cs">
+      <DependentUpon>personalPayslipDetailedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipDeductionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipDeductionsUC.Designer.cs">
+      <DependentUpon>payslipDeductionsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipEarningsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipEarningsUC.Designer.cs">
+      <DependentUpon>payslipEarningsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipLogDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipLogDataUC.Designer.cs">
+      <DependentUpon>payslipLogDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\payslipLogsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Payslip Logs\payslipLogsUC.Designer.cs">
+      <DependentUpon>payslipLogsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Personal DTR\DTR sub user control\dtrDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Personal DTR\DTR sub user control\dtrDataUC.Designer.cs">
+      <DependentUpon>dtrDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Personal DTR\personalDTR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Personal DTR\personalDTR.Designer.cs">
+      <DependentUpon>personalDTR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Travel Order Logs\Modals\personalTravelOrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Travel Order Logs\Modals\personalTravelOrderDetails.Designer.cs">
+      <DependentUpon>personalTravelOrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Travel Order Logs\Travel order log sub user control\travelOrderLogDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Travel Order Logs\Travel order log sub user control\travelOrderLogDataUC.Designer.cs">
+      <DependentUpon>travelOrderLogDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Travel Order Logs\travelOrderLogUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Personal Portal\Travel Order Logs\travelOrderLogUC.Designer.cs">
+      <DependentUpon>travelOrderLogUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Dashboard\dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Dashboard\dashboard.Designer.cs">
+      <DependentUpon>dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Dashboard\Modal\modifyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Dashboard\Modal\modifyForm.Designer.cs">
+      <DependentUpon>modifyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Department User Control\departmentCardUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Department User Control\departmentCardUC.Designer.cs">
+      <DependentUpon>departmentCardUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\departmentManagementUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\departmentManagementUC.Designer.cs">
+      <DependentUpon>departmentManagementUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Modal\addDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Modal\addDepartment.Designer.cs">
+      <DependentUpon>addDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Modal\departmentInformationModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Modal\departmentInformationModal.Designer.cs">
+      <DependentUpon>departmentInformationModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Department User Control\personnelDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Department User Control\personnelDataUC.Designer.cs">
+      <DependentUpon>personnelDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Modal\modifyDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Department Management\Modal\modifyDepartment.Designer.cs">
+      <DependentUpon>modifyDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\appointmentUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\appointmentUC.Designer.cs">
+      <DependentUpon>appointmentUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management Modal\employeeSignatureModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management Modal\employeeSignatureModal.Designer.cs">
+      <DependentUpon>employeeSignatureModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\benefitsDetailsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\benefitsDetailsUC.Designer.cs">
+      <DependentUpon>benefitsDetailsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDataUC.Designer.cs">
+      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDetailsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDetailsUserControl.Designer.cs">
+      <DependentUpon>employeeDetailsUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\leaveUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\leaveUC.Designer.cs">
+      <DependentUpon>leaveUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\passSlipUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\passSlipUC.Designer.cs">
+      <DependentUpon>passSlipUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\travelOrderUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\travelOrderUC.Designer.cs">
+      <DependentUpon>travelOrderUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\employeeListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\employeeListUC.Designer.cs">
+      <DependentUpon>employeeListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Classes and SQL Connection\Custom\customTextBox2.resx">
+      <DependentUpon>customTextBox2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes and SQL Connection\Custom\loginButton.resx">
+      <DependentUpon>loginButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Dashboard\DepartmentHeadDashboard.resx">
+      <DependentUpon>DepartmentHeadDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Electronic DTR\DTR Sub User Control\dtrDataUC.resx">
+      <DependentUpon>dtrDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Electronic DTR\DTR Sub User Control\dtrSubUC.resx">
+      <DependentUpon>dtrSubUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Electronic DTR\dtrUC.resx">
+      <DependentUpon>dtrUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Leave Management\Leave list sub user control\leaveListDataUC.resx">
+      <DependentUpon>leaveListDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Leave Management\Leave list sub user control\leaveListEmployeeDataUC.resx">
+      <DependentUpon>leaveListEmployeeDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Leave Management\Leave Request Sub User Control\leaveDataUC.resx">
+      <DependentUpon>leaveDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Leave Management\leaveListsUC.resx">
+      <DependentUpon>leaveListsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Leave Management\leaveRequestsUC.resx">
+      <DependentUpon>leaveRequestsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Leave Management\Modals\leaveDetailedView.resx">
+      <DependentUpon>leaveDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Pass Slip\Modals\slipDetailedView.resx">
+      <DependentUpon>slipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Pass Slip\Modals\slipRequestView.resx">
+      <DependentUpon>slipRequestView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Pass Slip\Pass Slip List sub user control\slipListDataUC.resx">
+      <DependentUpon>slipListDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Pass Slip\Pass Slip Request sub user control\slipRequestDataUC.resx">
+      <DependentUpon>slipRequestDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Pass Slip\slipListUC.resx">
+      <DependentUpon>slipListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Subordinate Management\subodinateManagementUC.resx">
+      <DependentUpon>subodinateManagementUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Subordinate Management\User Controls\employeeDataUC.resx">
+      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Travel Order\Modals\travelOrderDetailedView.resx">
+      <DependentUpon>travelOrderDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Travel Order\Modals\travelOrderRequestDetailedView.resx">
+      <DependentUpon>travelOrderRequestDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Travel Order\Travel Order list sub user control\travelOrderDataUC.resx">
+      <DependentUpon>travelOrderDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Travel Order\Travel order request sub user control\requestDataUC.resx">
+      <DependentUpon>requestDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Travel Order\travelOrderListsUC.resx">
+      <DependentUpon>travelOrderListsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\benefitInformationUC.resx">
+      <DependentUpon>benefitInformationUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\deductionsUC.resx">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\earningsUC.resx">
+      <DependentUpon>earningsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\Modals\payslipDetailedView.resx">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\Modals\updateModal.resx">
+      <DependentUpon>updateModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Electronic DTR\Modals\dtrModal.resx">
+      <DependentUpon>dtrModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Leave Management\Modals\leaveRequestDetailedView.resx">
+      <DependentUpon>leaveRequestDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Payroll Requests\Modals\payslipRequestDetailedView.resx">
+      <DependentUpon>payslipRequestDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\deductionDataUC.resx">
+      <DependentUpon>deductionDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\earningsDataUC.resx">
+      <DependentUpon>earningsDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\benefitDataUC.resx">
+      <DependentUpon>benefitDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\leaveDataUC.resx">
+      <DependentUpon>leaveDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\passSlipUC.resx">
+      <DependentUpon>passSlipUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\travelUC.resx">
+      <DependentUpon>travelUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Department Head Profile\personalProfileUC.resx">
+      <DependentUpon>personalProfileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\File leave\fileLeaveModal.resx">
+      <DependentUpon>fileLeaveModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\File Pass Slip\filePassSlipModal.resx">
+      <DependentUpon>filePassSlipModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\File Pass Slip\filePassSlipUC.resx">
+      <DependentUpon>filePassSlipUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\File Travel Order\fileTravelOrderModal.resx">
+      <DependentUpon>fileTravelOrderModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Leave Logs\Leave logs sub user control\leaveLogsDataUC.resx">
+      <DependentUpon>leaveLogsDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Leave Logs\leaveLogsUC.resx">
+      <DependentUpon>leaveLogsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Leave Logs\Modals\personalLeaveDetailedView.resx">
+      <DependentUpon>personalLeaveDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Pass Slip Logs\Modals\personalSlipDetailedView.resx">
+      <DependentUpon>personalSlipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Pass Slip Logs\Pass slip log sub user control\slipLogDataUC.resx">
+      <DependentUpon>slipLogDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Pass Slip Logs\slipLogsUC.resx">
+      <DependentUpon>slipLogsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Payslip Logs\Modal\personalPayslipDetailedView.resx">
+      <DependentUpon>personalPayslipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipDeductionsUC.resx">
+      <DependentUpon>payslipDeductionsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipEarningsUC.resx">
+      <DependentUpon>payslipEarningsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipLogDataUC.resx">
+      <DependentUpon>payslipLogDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Payslip Logs\payslipLogsUC.resx">
+      <DependentUpon>payslipLogsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Personal DTR\DTR sub user control\dtrDataUC.resx">
+      <DependentUpon>dtrDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Personal DTR\personalDTR.resx">
+      <DependentUpon>personalDTR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Travel Order Logs\Modals\personalTravelOrderDetails.resx">
+      <DependentUpon>personalTravelOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Travel Order Logs\Travel order log sub user control\travelOrderLogDataUC.resx">
+      <DependentUpon>travelOrderLogDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\Travel Order Logs\travelOrderLogUC.resx">
+      <DependentUpon>travelOrderLogUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee\Dashboard\employeeDashboard.resx">
+      <DependentUpon>employeeDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee\Dashboard\Modals\payslipDetailedView.resx">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Dashboard\Dashboard User Control\departmentDataUC.resx">
+      <DependentUpon>departmentDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Dashboard\Dashboard User Control\employeeDataUC.resx">
+      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Dashboard\MayorDashboard.resx">
+      <DependentUpon>MayorDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Dashboard\Modals\departmentDetailsModal.resx">
+      <DependentUpon>departmentDetailsModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Leave Requests\Leave Request Sub User Control\requestDataUC.resx">
+      <DependentUpon>requestDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Leave Requests\leaveRequestsUC.resx">
+      <DependentUpon>leaveRequestsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Leave Requests\Modal\leaveRequestDetailedView.resx">
+      <DependentUpon>leaveRequestDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pass Slip Requests\Modals\slipRequestDetailedView.resx">
+      <DependentUpon>slipRequestDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pass Slip Requests\Pass Slip Request sub user control\slipRequestDataUC.resx">
+      <DependentUpon>slipRequestDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pass Slip Requests\passSlipRequestsUC.resx">
+      <DependentUpon>passSlipRequestsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\Modals\payslipDetailedView.resx">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\deductionsUC.resx">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\earningsUC.resx">
+      <DependentUpon>earningsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\payslipRequestDataUC.resx">
+      <DependentUpon>payslipRequestDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\payslipRequestsUC.resx">
+      <DependentUpon>payslipRequestsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Travel Order Requests\Modal\travelDetailedView.resx">
+      <DependentUpon>travelDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Travel Order Requests\Travel Order Requests sub user control\requestDataUC.resx">
+      <DependentUpon>requestDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Travel Order Requests\travelRequestsUC.resx">
+      <DependentUpon>travelRequestsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Dashboard\Dashboard User Control\departmentCardUC.resx">
+      <DependentUpon>departmentCardUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Dashboard\Dashboard User Control\Modal\analyticsButtonModal.resx">
+      <DependentUpon>analyticsButtonModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Dashboard\Dashboard User Control\Modal\User Controls\employeeUC.resx">
+      <DependentUpon>employeeUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Dashboard\Modal\addDepartment.resx">
+      <DependentUpon>addDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Dashboard\newDashboard.resx">
+      <DependentUpon>newDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\DTR\DTR User Controls\employeeDTRUC.resx">
+      <DependentUpon>employeeDTRUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\DTR\dtrMainUC.resx">
+      <DependentUpon>dtrMainUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\DTR\Modal\dtrDetails.resx">
+      <DependentUpon>dtrDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\DTR\Modal\Modal User Control\employeeLogUC.resx">
+      <DependentUpon>employeeLogUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\benefitContributionsUC.resx">
+      <DependentUpon>benefitContributionsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\employeeDataUC.resx">
+      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\employeeDetailsUserControl.resx">
+      <DependentUpon>employeeDetailsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Modal\benefitsContribution.resx">
+      <DependentUpon>benefitsContribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Modal\employeeSignatureModal.resx">
+      <DependentUpon>employeeSignatureModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Modal\addEmployeeModal.resx">
+      <DependentUpon>addEmployeeModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\benefitsDetailsUC.resx">
+      <DependentUpon>benefitsDetailsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Modal\addBenefitModal.resx">
+      <DependentUpon>addBenefitModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\leaveUC.resx">
+      <DependentUpon>leaveUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Modal\leaveDetailedView.resx">
+      <DependentUpon>leaveDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Modal\modificationEmployeeForm.resx">
+      <DependentUpon>modificationEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Modal\modifyBenefits.resx">
+      <DependentUpon>modifyBenefits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\passSlipUC.resx">
+      <DependentUpon>passSlipUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\travelOrderUC.resx">
+      <DependentUpon>travelOrderUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\employeeUserControl.resx">
+      <DependentUpon>employeeUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Employee Sub-user Control\mandateDeductionsUC.resx">
+      <DependentUpon>mandateDeductionsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Modal\slipDetailedView.resx">
+      <DependentUpon>slipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Employee\Modal\travelOrderDetailedView.resx">
+      <DependentUpon>travelOrderDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\Modals\viewLeaveModal.resx">
+      <DependentUpon>viewLeaveModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\Modal\viewSlipModal.resx">
+      <DependentUpon>viewSlipModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\Modal\viewTravelModal.resx">
+      <DependentUpon>viewTravelModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\Pass Slip Management sub user control\passSlipData.resx">
+      <DependentUpon>passSlipData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\Leave Management sub user control\applicationForLeaveData.resx">
+      <DependentUpon>applicationForLeaveData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\leaveApproveUC.resx">
+      <DependentUpon>leaveApproveUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Leave Management\appForLeave.resx">
+      <DependentUpon>appForLeave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Modal\Sub user control\employeeListUC.resx">
+      <DependentUpon>employeeListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Modal\employeeList.resx">
+      <DependentUpon>employeeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\passSlip.resx">
+      <DependentUpon>passSlip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Pass Slip Management\slipApproveUC.resx">
+      <DependentUpon>slipApproveUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\Travel Management sub user control\travelDataUC.resx">
+      <DependentUpon>travelDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\travelApproveUC.resx">
+      <DependentUpon>travelApproveUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Forms\Travel Order Management\travelOrder.resx">
+      <DependentUpon>travelOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Calendar Sub User Control\blankDaysUC.resx">
+      <DependentUpon>blankDaysUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Calendar Sub User Control\daysUC.resx">
+      <DependentUpon>daysUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Municipal Calendar\calendarUC.resx">
+      <DependentUpon>calendarUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Modal\detailsEvent.resx">
+      <DependentUpon>detailsEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Municipal Calendar\Modal\eventAdd.resx">
+      <DependentUpon>eventAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\Modal\modifyModal.resx">
+      <DependentUpon>modifyModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\Modal\payslip.resx">
+      <DependentUpon>payslip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\Modal\payslipDetailedView.resx">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\Modal\payslipListModal.resx">
+      <DependentUpon>payslipListModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\deductionsModify.resx">
+      <DependentUpon>deductionsModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\deductionsUC.resx">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\earningsModify.resx">
+      <DependentUpon>earningsModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\Modal\User Controls\earningsUC.resx">
+      <DependentUpon>earningsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\payroll.resx">
+      <DependentUpon>payroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\payrollList.resx">
+      <DependentUpon>payrollList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\detailsUC.resx">
+      <DependentUpon>detailsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\employeeList.resx">
+      <DependentUpon>employeeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\payrollListUC.resx">
+      <DependentUpon>payrollListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\File Leave\File leave sub user control\leaveCreditsDataUC.resx">
+      <DependentUpon>leaveCreditsDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\File Leave\fileLeaveModal.resx">
+      <DependentUpon>fileLeaveModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\File Leave\fileLeaveUC.resx">
+      <DependentUpon>fileLeaveUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\File Pass Slip\File Pass Slip sub user control\passSlipDataUC.resx">
+      <DependentUpon>passSlipDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\File Pass Slip\filePassSlipUC.resx">
+      <DependentUpon>filePassSlipUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\File Travel Order\File Travel Order sub user control\travelOrderDataUC.resx">
+      <DependentUpon>travelOrderDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\File Travel Order\fileTravelOrderModal.resx">
+      <DependentUpon>fileTravelOrderModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\File Travel Order\fileTravelOrderUC.resx">
+      <DependentUpon>fileTravelOrderUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Leave Logs\Leave logs sub user control\leaveLogsDataUC.resx">
+      <DependentUpon>leaveLogsDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Leave Logs\leaveLogsUC.resx">
+      <DependentUpon>leaveLogsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Leave Logs\Modals\personalLeaveDetailedView.resx">
+      <DependentUpon>personalLeaveDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\My Profile\Modals\payslipDetailedView.resx">
+      <DependentUpon>payslipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\My Profile\Modals\updateModal.resx">
+      <DependentUpon>updateModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\benefitDataUC.resx">
+      <DependentUpon>benefitDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\benefitInformationUC.resx">
+      <DependentUpon>benefitInformationUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\deductionsUC.resx">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\My Profile\Personal Profile sub user control\earningsUC.resx">
+      <DependentUpon>earningsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\My Profile\personalProfileUC.resx">
+      <DependentUpon>personalProfileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Pass Slip Logs\Modals\personalSlipDetailedView.resx">
+      <DependentUpon>personalSlipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Pass Slip Logs\slipLogsUC.resx">
+      <DependentUpon>slipLogsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Travel Order Logs\Modals\personalTravelOrderDetails.resx">
+      <DependentUpon>personalTravelOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Dashboard\dashboard.resx">
+      <DependentUpon>dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Dashboard\Modal\modifyForm.resx">
+      <DependentUpon>modifyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Department Management\Department User Control\departmentCardUC.resx">
+      <DependentUpon>departmentCardUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Department Management\departmentManagementUC.resx">
+      <DependentUpon>departmentManagementUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Department Management\Modal\addDepartment.resx">
+      <DependentUpon>addDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Department Management\Modal\departmentInformationModal.resx">
+      <DependentUpon>departmentInformationModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Department Management\Department User Control\personnelDataUC.resx">
+      <DependentUpon>personnelDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Department Management\Modal\modifyDepartment.resx">
+      <DependentUpon>modifyDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\appointmentUC.resx">
+      <DependentUpon>appointmentUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management Modal\employeeSignatureModal.resx">
+      <DependentUpon>employeeSignatureModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\benefitsDetailsUC.resx">
+      <DependentUpon>benefitsDetailsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDataUC.resx">
+      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDetailsUserControl.resx">
+      <DependentUpon>employeeDetailsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\leaveUC.resx">
+      <DependentUpon>leaveUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\passSlipUC.resx">
+      <DependentUpon>passSlipUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\travelOrderUC.resx">
+      <DependentUpon>travelOrderUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\employeeListUC.resx">
+      <DependentUpon>employeeListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot_112.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\initao-logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\government icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgbin-government-civil-service-egyps-national-security-government-50iEjqq6ake4FbVRTg5bUeMaS.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Government-PNG-File.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\black-48dp\2x\outline_badge_black_48dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2640095.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-finish-icon-png-image_4761772.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hr logo-PhotoRoom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sign out.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sign out-PhotoRoom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\153-1539051_payroll-tax-icon-payroll-icon-transparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\payroll icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forms icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hr icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_FILL0_wght400_GRAD0_opsz48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_FILL0_wght400_GRAD0_opsz48 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\30 x 30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\25 x 25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asterisk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asterisk 29x29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asterisk new.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar colored 16 x 16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar black 16 x 16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3114834-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\late icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\late.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\analytics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\absent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\287175651_760620278474712_3211574282913446525_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sample signature.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Image\User Images\" />
+    <Folder Include="Image\User Signatures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Image\Department Logo\hr icon.png" />
+    <None Include="Resources\clock_icon_512x512_dvqqyo4f.png" />
+    <None Include="Resources\leave-request-2.png" />
+    <None Include="Resources\istockphoto-1363356134-612x612.jpg" />
+    <None Include="Resources\131-1319878_employee-self-serve-portal-people-icon-png.png" />
+    <None Include="Resources\multiply.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\confirm.png" />
+    <None Include="Resources\pen.png" />
+    <None Include="Resources\deactivate.png" />
+    <None Include="Resources\active.png" />
+    <None Include="Resources\Image1.png" />
+    <None Include="Resources\Image1.bmp" />
+    <None Include="Resources\notification.jpg" />
+    <None Include="Resources\notification.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+  </Target>
+</Project>

@@ -103,7 +103,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select concat(employeeFname, ' ', employeeLname) as employeeName, dateFile, slipControlNumber, isNoted " +
+                    string command = "select concat(employeeFname, ' ', employeeLname) as employeeName, dateFile, slipControlNumber, " +
+                        "isNoted " +
                         "from tbl_passSlip " +
                         "join tbl_employee on tbl_passSlip.employeeId = tbl_employee.employeeId " +
                         "join tbl_department on tbl_department.departmentId = tbl_employee.departmentId " +
@@ -179,7 +180,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                     "isApproved = @isApproved, " +
                     "approvedBy = @approvedBy, " +
                     "approvedDate = @approvedDate, " +
-                    "statusId = (select statusId from tbl_status where statusDescription = @status)" +
+                    "statusId = (select statusId from tbl_status where statusDescription = @status) " +
                     "where orderControlNumber = @controlNumber";
 
                 using (cmd = new SqlCommand(command, conn))
@@ -198,7 +199,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
         }
 
         // This function is responsible for approving pass slip request
-        public async Task<bool> ApproveSlipRequest(int controlNumber, bool isApproved, string approvedBy, DateTime approvedDate)
+        public async Task<bool> ApproveSlipRequest(int controlNumber, bool isApproved, string approvedBy, DateTime approvedDate,
+            string status)
         {
             try
             {
@@ -208,7 +210,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                     string command = "update tbl_passSlip set " +
                         "isApproved = @isApproved, " +
                         "approvedBy = @approvedBy, " +
-                        "approvedDate = @approvedDate " +
+                        "approvedDate = @approvedDate, " +
+                        "statusId = (select statusId from tbl_status where statusDescription = @status) " +
                         "where slipControlNumber = @controlNumber";
 
                     using (cmd = new SqlCommand(command, conn))
@@ -217,6 +220,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                         cmd.Parameters.AddWithValue("@isApproved", isApproved);
                         cmd.Parameters.AddWithValue("@approvedBy", approvedBy);
                         cmd.Parameters.AddWithValue("@approvedDate", approvedDate);
+                        cmd.Parameters.AddWithValue("@status", status);
 
                         int result = await cmd.ExecuteNonQueryAsync();
                         return result > 0;
@@ -251,6 +255,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex;}
         }
+
+        // This function is responsible for deducting the employee pass slip hours
 
         // This function is responsible for adding the leave into employee DTR
         public async Task<bool> AddDTRLog(int employeeId, DateTime dateLog, string status, int totalHours)

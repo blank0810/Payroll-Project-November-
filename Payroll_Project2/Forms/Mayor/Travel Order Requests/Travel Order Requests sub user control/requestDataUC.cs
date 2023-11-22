@@ -22,7 +22,9 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
         private static string _userDepartment;
         private static bool IsNote = true;
         private static bool IsApprove = true;
+        private static readonly int TotalHours = 8;
         private static readonly string FormStatus = ConfigurationManager.AppSettings.Get("ApproveStatus");
+        private static readonly string TravelStatus = ConfigurationManager.AppSettings.Get("DefaultTravelStatus");
         private static readonly generalFunctions generalFunctions = new generalFunctions();
         private static readonly formRequestClass formRequestClass = new formRequestClass();
 
@@ -96,6 +98,17 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
                 return approve;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertDTRLog(int employeeId, DateTime logDate, string status, int totalHours)
+        {
+            try
+            {
+                bool insertDtr = await formRequestClass.AddDTRLog(employeeId, logDate, status, totalHours);
+                return insertDtr;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
         }
 
         // This function serves as an indicator if the logs are recorded or not this for the form logs
@@ -313,6 +326,29 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
             catch (Exception ex) { throw ex; }
         }
 
+        private async Task<bool> SubmitDTRLog(int employeeId, string status, DateTime logDate, int totalHours)
+        {
+            try
+            {
+                bool insertDtr = await InsertDTRLog(employeeId, logDate, status, totalHours);
+
+                if (insertDtr)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages($"An error occurred while integrating the travel order request into the Daily Time Record (DTR) on " +
+                        $"{logDate: MMM dd, yyyy}. " +
+                        $"The process has been terminated. Please contact the system administrator for prompt resolution.",
+                        "Integration Error: Daily Time Record Log");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         private async Task<bool> SubmitTravelFormLog(DateTime logDate, int travelControlNumber, string name, int userId, int employeeID,
             string employeeName)
         {
@@ -379,6 +415,10 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
 
                 bool approve = await SubmitApprovalTravelRequest(ControlNumber, IsApprove, name, DateTime.Today, FormStatus);
                 if (!approve)
+                    return;
+
+                bool dtr = await SubmitDTRLog(EmployeeId, TravelStatus, DateTime.Today, TotalHours);
+                if (!dtr)
                     return;
 
                 bool formLog = await SubmitTravelFormLog(DateTime.Today, ControlNumber, name, _userId, EmployeeId, EmployeeName);

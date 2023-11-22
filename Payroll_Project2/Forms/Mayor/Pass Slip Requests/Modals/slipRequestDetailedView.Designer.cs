@@ -33,8 +33,21 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.content = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.mayorJobDescription = new System.Windows.Forms.Label();
+            this.mayor = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.customPanel6 = new Payroll_Project2.Custom.customPanel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.customPanel5 = new Payroll_Project2.Custom.customPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.buttonsPanel = new System.Windows.Forms.Panel();
-            this.endorseBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.approveBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel11 = new System.Windows.Forms.Panel();
             this.customPanel2 = new Payroll_Project2.Custom.customPanel();
             this.destination = new System.Windows.Forms.Label();
@@ -61,21 +74,13 @@
             this.controlNum = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.customPanel5 = new Payroll_Project2.Custom.customPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.customPanel6 = new Payroll_Project2.Custom.customPanel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.departmentHeadCheck = new System.Windows.Forms.CheckBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.departmentHead = new System.Windows.Forms.Label();
             this.content.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.customPanel6.SuspendLayout();
+            this.customPanel5.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.buttonsPanel.SuspendLayout();
             this.panel11.SuspendLayout();
             this.customPanel2.SuspendLayout();
@@ -88,19 +93,13 @@
             this.panel12.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            this.panel5.SuspendLayout();
-            this.customPanel5.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.customPanel6.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel13.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(10, 483);
+            this.panel2.Location = new System.Drawing.Point(10, 559);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(716, 10);
             this.panel2.TabIndex = 14;
@@ -120,7 +119,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(10, 493);
+            this.panel4.Size = new System.Drawing.Size(10, 569);
             this.panel4.TabIndex = 12;
             // 
             // panel3
@@ -129,7 +128,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(726, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(10, 493);
+            this.panel3.Size = new System.Drawing.Size(10, 569);
             this.panel3.TabIndex = 11;
             // 
             // content
@@ -150,36 +149,197 @@
             this.content.Dock = System.Windows.Forms.DockStyle.Fill;
             this.content.Location = new System.Drawing.Point(10, 10);
             this.content.Name = "content";
-            this.content.Size = new System.Drawing.Size(716, 473);
+            this.content.Size = new System.Drawing.Size(716, 549);
             this.content.TabIndex = 15;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.mayorJobDescription);
+            this.panel13.Controls.Add(this.mayor);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(0, 344);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(714, 82);
+            this.panel13.TabIndex = 53;
+            // 
+            // mayorJobDescription
+            // 
+            this.mayorJobDescription.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mayorJobDescription.AutoSize = true;
+            this.mayorJobDescription.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.mayorJobDescription.ForeColor = System.Drawing.Color.DimGray;
+            this.mayorJobDescription.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mayorJobDescription.Location = new System.Drawing.Point(301, 34);
+            this.mayorJobDescription.Name = "mayorJobDescription";
+            this.mayorJobDescription.Size = new System.Drawing.Size(113, 18);
+            this.mayorJobDescription.TabIndex = 50;
+            this.mayorJobDescription.Text = "Municipal Mayor";
+            this.mayorJobDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mayor
+            // 
+            this.mayor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mayor.AutoSize = true;
+            this.mayor.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
+            this.mayor.ForeColor = System.Drawing.Color.Black;
+            this.mayor.Location = new System.Drawing.Point(278, 10);
+            this.mayor.Name = "mayor";
+            this.mayor.Size = new System.Drawing.Size(158, 22);
+            this.mayor.TabIndex = 49;
+            this.mayor.Text = "Leonides B. Baluran";
+            this.mayor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panel9
+            // 
+            this.panel9.AutoSize = true;
+            this.panel9.Controls.Add(this.label11);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 317);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(714, 27);
+            this.panel9.TabIndex = 52;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(10, 5);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(175, 22);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Approval Information";
+            // 
+            // panel5
+            // 
+            this.panel5.AutoSize = true;
+            this.panel5.Controls.Add(this.customPanel6);
+            this.panel5.Controls.Add(this.customPanel5);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 278);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(714, 39);
+            this.panel5.TabIndex = 51;
+            // 
+            // customPanel6
+            // 
+            this.customPanel6.AutoSize = true;
+            this.customPanel6.BackColor = System.Drawing.Color.White;
+            this.customPanel6.BorderRadius = 0;
+            this.customPanel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel6.Controls.Add(this.label10);
+            this.customPanel6.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customPanel6.ForeColor = System.Drawing.Color.Black;
+            this.customPanel6.GradientAngle = 90F;
+            this.customPanel6.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel6.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel6.Location = new System.Drawing.Point(226, 4);
+            this.customPanel6.Name = "customPanel6";
+            this.customPanel6.Size = new System.Drawing.Size(175, 32);
+            this.customPanel6.TabIndex = 5;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(4, 6);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(88, 19);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "{Date noted}";
+            // 
+            // customPanel5
+            // 
+            this.customPanel5.AutoSize = true;
+            this.customPanel5.BackColor = System.Drawing.Color.White;
+            this.customPanel5.BorderRadius = 0;
+            this.customPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel5.Controls.Add(this.label4);
+            this.customPanel5.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customPanel5.ForeColor = System.Drawing.Color.Black;
+            this.customPanel5.GradientAngle = 90F;
+            this.customPanel5.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel5.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel5.Location = new System.Drawing.Point(10, 4);
+            this.customPanel5.Name = "customPanel5";
+            this.customPanel5.Size = new System.Drawing.Size(175, 32);
+            this.customPanel5.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(4, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 19);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "{Noted by}";
+            // 
+            // panel8
+            // 
+            this.panel8.AutoSize = true;
+            this.panel8.Controls.Add(this.label9);
+            this.panel8.Controls.Add(this.label7);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 253);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(714, 25);
+            this.panel8.TabIndex = 50;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label9.Location = new System.Drawing.Point(226, 6);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 19);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Date noted:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label7.Location = new System.Drawing.Point(10, 6);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 19);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Noted by:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // buttonsPanel
             // 
-            this.buttonsPanel.Controls.Add(this.endorseBtn);
+            this.buttonsPanel.Controls.Add(this.approveBtn);
             this.buttonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonsPanel.Location = new System.Drawing.Point(0, 428);
+            this.buttonsPanel.Location = new System.Drawing.Point(0, 504);
             this.buttonsPanel.Name = "buttonsPanel";
             this.buttonsPanel.Size = new System.Drawing.Size(714, 43);
             this.buttonsPanel.TabIndex = 49;
             // 
-            // endorseBtn
+            // approveBtn
             // 
-            this.endorseBtn.BackColor = System.Drawing.Color.Green;
-            this.endorseBtn.BackgroundColor = System.Drawing.Color.Green;
-            this.endorseBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.endorseBtn.BorderRadius = 5;
-            this.endorseBtn.BorderSize = 0;
-            this.endorseBtn.FlatAppearance.BorderSize = 0;
-            this.endorseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.endorseBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endorseBtn.ForeColor = System.Drawing.Color.White;
-            this.endorseBtn.Location = new System.Drawing.Point(638, 6);
-            this.endorseBtn.Name = "endorseBtn";
-            this.endorseBtn.Size = new System.Drawing.Size(71, 32);
-            this.endorseBtn.TabIndex = 33;
-            this.endorseBtn.Text = "Endorse";
-            this.endorseBtn.TextColor = System.Drawing.Color.White;
-            this.endorseBtn.UseVisualStyleBackColor = false;
+            this.approveBtn.BackColor = System.Drawing.Color.Green;
+            this.approveBtn.BackgroundColor = System.Drawing.Color.Green;
+            this.approveBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.approveBtn.BorderRadius = 5;
+            this.approveBtn.BorderSize = 0;
+            this.approveBtn.FlatAppearance.BorderSize = 0;
+            this.approveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.approveBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.approveBtn.ForeColor = System.Drawing.Color.White;
+            this.approveBtn.Location = new System.Drawing.Point(638, 6);
+            this.approveBtn.Name = "approveBtn";
+            this.approveBtn.Size = new System.Drawing.Size(71, 32);
+            this.approveBtn.TabIndex = 33;
+            this.approveBtn.Text = "Approve";
+            this.approveBtn.TextColor = System.Drawing.Color.White;
+            this.approveBtn.UseVisualStyleBackColor = false;
             // 
             // panel11
             // 
@@ -495,187 +655,12 @@
             this.infoLabel.TabIndex = 1;
             this.infoLabel.Text = "PASS SLIP";
             // 
-            // panel5
-            // 
-            this.panel5.AutoSize = true;
-            this.panel5.Controls.Add(this.customPanel6);
-            this.panel5.Controls.Add(this.customPanel5);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 278);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(714, 39);
-            this.panel5.TabIndex = 51;
-            // 
-            // customPanel5
-            // 
-            this.customPanel5.AutoSize = true;
-            this.customPanel5.BackColor = System.Drawing.Color.White;
-            this.customPanel5.BorderRadius = 0;
-            this.customPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel5.Controls.Add(this.label4);
-            this.customPanel5.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customPanel5.ForeColor = System.Drawing.Color.Black;
-            this.customPanel5.GradientAngle = 90F;
-            this.customPanel5.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel5.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel5.Location = new System.Drawing.Point(10, 4);
-            this.customPanel5.Name = "customPanel5";
-            this.customPanel5.Size = new System.Drawing.Size(175, 32);
-            this.customPanel5.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(4, 6);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 19);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "{Noted by}";
-            // 
-            // panel8
-            // 
-            this.panel8.AutoSize = true;
-            this.panel8.Controls.Add(this.label9);
-            this.panel8.Controls.Add(this.label7);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 253);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(714, 25);
-            this.panel8.TabIndex = 50;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label7.Location = new System.Drawing.Point(10, 6);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 19);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Noted by:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label9.Location = new System.Drawing.Point(226, 6);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 19);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Date noted:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // customPanel6
-            // 
-            this.customPanel6.AutoSize = true;
-            this.customPanel6.BackColor = System.Drawing.Color.White;
-            this.customPanel6.BorderRadius = 0;
-            this.customPanel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel6.Controls.Add(this.label10);
-            this.customPanel6.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customPanel6.ForeColor = System.Drawing.Color.Black;
-            this.customPanel6.GradientAngle = 90F;
-            this.customPanel6.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel6.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel6.Location = new System.Drawing.Point(226, 4);
-            this.customPanel6.Name = "customPanel6";
-            this.customPanel6.Size = new System.Drawing.Size(175, 32);
-            this.customPanel6.TabIndex = 5;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(4, 6);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(88, 19);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "{Date noted}";
-            // 
-            // panel9
-            // 
-            this.panel9.AutoSize = true;
-            this.panel9.Controls.Add(this.label11);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 317);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(714, 27);
-            this.panel9.TabIndex = 52;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(10, 5);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(175, 22);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Approval Information";
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.departmentHeadCheck);
-            this.panel13.Controls.Add(this.label18);
-            this.panel13.Controls.Add(this.departmentHead);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(0, 344);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(714, 82);
-            this.panel13.TabIndex = 53;
-            // 
-            // departmentHeadCheck
-            // 
-            this.departmentHeadCheck.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.departmentHeadCheck.AutoSize = true;
-            this.departmentHeadCheck.Font = new System.Drawing.Font("Calibri", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.departmentHeadCheck.ForeColor = System.Drawing.Color.DimGray;
-            this.departmentHeadCheck.Location = new System.Drawing.Point(279, 57);
-            this.departmentHeadCheck.Name = "departmentHeadCheck";
-            this.departmentHeadCheck.Size = new System.Drawing.Size(156, 18);
-            this.departmentHeadCheck.TabIndex = 51;
-            this.departmentHeadCheck.Text = "Check to proceed approval";
-            this.departmentHeadCheck.UseVisualStyleBackColor = true;
-            // 
-            // label18
-            // 
-            this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
-            this.label18.ForeColor = System.Drawing.Color.DimGray;
-            this.label18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label18.Location = new System.Drawing.Point(301, 34);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(113, 18);
-            this.label18.TabIndex = 50;
-            this.label18.Text = "Municipal Mayor";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // departmentHead
-            // 
-            this.departmentHead.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.departmentHead.AutoSize = true;
-            this.departmentHead.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.departmentHead.ForeColor = System.Drawing.Color.Black;
-            this.departmentHead.Location = new System.Drawing.Point(278, 10);
-            this.departmentHead.Name = "departmentHead";
-            this.departmentHead.Size = new System.Drawing.Size(158, 22);
-            this.departmentHead.TabIndex = 49;
-            this.departmentHead.Text = "Leonides B. Baluran";
-            this.departmentHead.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // slipRequestDetailedView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(736, 493);
+            this.ClientSize = new System.Drawing.Size(736, 569);
             this.Controls.Add(this.content);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -688,6 +673,18 @@
             this.Text = "Pass Slip Details";
             this.content.ResumeLayout(false);
             this.content.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.customPanel6.ResumeLayout(false);
+            this.customPanel6.PerformLayout();
+            this.customPanel5.ResumeLayout(false);
+            this.customPanel5.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.buttonsPanel.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
@@ -710,18 +707,6 @@
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.customPanel5.ResumeLayout(false);
-            this.customPanel5.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.customPanel6.ResumeLayout(false);
-            this.customPanel6.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -734,7 +719,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel content;
         private System.Windows.Forms.Panel buttonsPanel;
-        private Custom.buttonDesign endorseBtn;
+        private Custom.buttonDesign approveBtn;
         private System.Windows.Forms.Panel panel11;
         private Custom.customPanel customPanel2;
         private System.Windows.Forms.Label destination;
@@ -772,8 +757,7 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.CheckBox departmentHeadCheck;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label departmentHead;
+        private System.Windows.Forms.Label mayorJobDescription;
+        private System.Windows.Forms.Label mayor;
     }
 }

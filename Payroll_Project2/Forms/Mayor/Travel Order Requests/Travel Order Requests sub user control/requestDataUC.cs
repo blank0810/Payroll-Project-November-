@@ -1,8 +1,10 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Functions;
+using Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Modal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -20,6 +22,7 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
         private static string _userDepartment;
         private static bool IsNote = true;
         private static bool IsApprove = true;
+        private static readonly string FormStatus = ConfigurationManager.AppSettings.Get("ApproveStatus");
         private static readonly generalFunctions generalFunctions = new generalFunctions();
         private static readonly formRequestClass formRequestClass = new formRequestClass();
 
@@ -84,11 +87,12 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
         
-        private async Task<bool> ApproveTravelRequest(int controlNumber, bool isApprove, string approvedBy, DateTime approvedDate)
+        private async Task<bool> ApproveTravelRequest(int controlNumber, bool isApprove, string approvedBy, DateTime approvedDate, 
+            string status)
         {
             try
             {
-                bool approve = await formRequestClass.ApproveTravelRequest(controlNumber, isApprove, approvedBy, approvedDate);
+                bool approve = await formRequestClass.ApproveTravelRequest(controlNumber, isApprove, approvedBy, approvedDate, status);
                 return approve;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
@@ -141,7 +145,34 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
 
         private void AssignValueIfNotEmpty(DataRow row, string columnName, Action<string> assignAction, string defaultValue)
         {
+            string value = row[columnName]?.ToString();
+            assignAction(!string.IsNullOrEmpty(value) ? value : defaultValue);
+        }
 
+        private void ParseAndAssignDateTime(DataRow row, string columnName, Action<string> assignAction, string defaultValue)
+        {
+            if (!string.IsNullOrEmpty(row[columnName]?.ToString()) && DateTime.TryParse(row[columnName]?.ToString(), 
+                out DateTime parsedDate))
+            {
+                assignAction($"{parsedDate: MMM dd, yyyy}");
+            }
+            else
+            {
+                assignAction(defaultValue);
+            }
+        }
+
+        private void ParseAndAssignTime(DataRow row, string columnName, Action<string> assignAction, string defaultValue)
+        {
+            if (!string.IsNullOrEmpty(row[columnName]?.ToString()) && DateTime.TryParse(row[columnName]?.ToString(), out
+                DateTime parsedTime))
+            {
+                assignAction($"{parsedTime: hh:mm tt}");
+            }
+            else
+            {
+                assignAction(defaultValue);
+            }
         }
 
         private void requestDataUC_Load(object sender, EventArgs e)
@@ -150,11 +181,34 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
         }
 
         private async Task DisplayTravelDetails(int employeeId, int controlNumber, string dateFiled, string dateDeparture, int userId,
-            bool isNoteNull)
+            string department, bool isNoteNull)
         {
             try
             {
+                DataTable details = await GetTravelDetails(controlNumber);
+                string name = await GetMayorName(userId);
 
+                if(details != null && details.Rows.Count > 0)
+                {
+                    foreach (DataRow row in details.Rows)
+                    {
+                        travelDetailedView travelDetails = TravelDetails(controlNumber, dateFiled, dateDeparture, isNoteNull, userId,
+                            department, name, employeeId);
+
+                        AssignValueIfNotEmpty(row, "employeeFname", value => travelDetails.FirstName = value, "---------");
+                        AssignValueIfNotEmpty(row, "employeeLname", value => travelDetails.LastName = value, "---------");
+                        AssignValueIfNotEmpty(row, "employeeMname", value => travelDetails.MiddleName = value, "---------");
+                        ParseAndAssignTime(row, "departureTime", value => travelDetails.DepartureTime = value, "---------");
+                        ParseAndAssignTime(row, "returnTime", value => travelDetails.ReturnTime = value, "--------");
+                        AssignValueIfNotEmpty(row, "purpose", value => travelDetails.Purpose = value, "--------");
+                        AssignValueIfNotEmpty(row, "destination", value => travelDetails.Destination = value, "---------");
+                        AssignValueIfNotEmpty(row, "remarks", value => travelDetails.Remarks = value, "---------");
+                        AssignValueIfNotEmpty(row, "notedBy", value => travelDetails.NotedBy = value, "--------");
+                        ParseAndAssignDateTime(row, "notedDate", value => travelDetails.NotedDate = value, "-------");
+
+                        travelDetails.ShowDialog();
+                    }
+                }
             }
             catch (SqlException sql)
             {
@@ -166,12 +220,27 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
             }
         }
 
-        private void viewBtn_Click(object sender, EventArgs e)
+        private travelDetailedView TravelDetails(int controlNumber, string dateFiled, string dateDeparture, bool isNoteNull, int userId, 
+            string department, string mayorName, int employeeId)
         {
-
+            return new travelDetailedView(userId, this, department)
+            {
+                ControlNumber = controlNumber,
+                DateFiled = dateFiled,
+                DepartureDate = dateDeparture,
+                IsNoteNull = isNoteNull,
+                MayorName = mayorName,
+                EmployeeId = employeeId
+            };
         }
 
-        private async Task<string> RetrievePersonnelName(int userId)
+        private async void viewBtn_Click(object sender, EventArgs e)
+        {
+            await DisplayTravelDetails(EmployeeId, ControlNumber, DateFiled, DateDeparture, _userId, _userDepartment, IsNoteNull);
+            await _parent.DisplayRequest(_userId, _userDepartment);
+        }
+
+        private async Task<string> RetrieveMayorName(int userId)
         {
             try
             {
@@ -222,11 +291,12 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> SubmitApprovalTravelRequest(int controlNumber, bool isApproved, string approvedBy, DateTime approvedDate)
+        private async Task<bool> SubmitApprovalTravelRequest(int controlNumber, bool isApproved, string approvedBy, 
+            DateTime approvedDate, string status)
         {
             try
             {
-                bool submitApproval = await ApproveTravelRequest(controlNumber, isApproved, approvedBy, approvedDate);
+                bool submitApproval = await ApproveTravelRequest(controlNumber, isApproved, approvedBy, approvedDate, status);
 
                 if (submitApproval)
                 {
@@ -299,7 +369,7 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
         {
             try
             {
-                string name = await RetrievePersonnelName(_userId);
+                string name = await RetrieveMayorName(_userId);
                 if (name == null)
                     return;
 
@@ -307,7 +377,7 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
                 if (!note)
                     return;
 
-                bool approve = await SubmitApprovalTravelRequest(ControlNumber, IsApprove, name, DateTime.Today);
+                bool approve = await SubmitApprovalTravelRequest(ControlNumber, IsApprove, name, DateTime.Today, FormStatus);
                 if (!approve)
                     return;
 

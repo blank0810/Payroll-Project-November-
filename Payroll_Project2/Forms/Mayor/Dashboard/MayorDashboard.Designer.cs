@@ -55,46 +55,46 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.content = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.leaveRequestCount = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.travelRequestCount = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.panel19 = new System.Windows.Forms.Panel();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.slipRequestCount = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.payrollRequestCount = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.dashboardPanel = new System.Windows.Forms.Panel();
+            this.departmentListPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel16 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.departmentListPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.dashboardPanel = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.payrollRequestCount = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.slipRequestCount = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.travelRequestCount = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.leaveRequestCount = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel25 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.sidePanel.SuspendLayout();
             this.panel22.SuspendLayout();
             this.panel21.SuspendLayout();
@@ -106,19 +106,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.aboveContent.SuspendLayout();
             this.content.SuspendLayout();
+            this.dashboardPanel.SuspendLayout();
+            this.panel23.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel25.SuspendLayout();
-            this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            this.panel17.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            this.panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel15.SuspendLayout();
-            this.panel23.SuspendLayout();
-            this.dashboardPanel.SuspendLayout();
+            this.panel19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            this.panel17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.panel25.SuspendLayout();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -228,6 +228,7 @@
             this.travelBtn.Text = "Travel Order Requests";
             this.travelBtn.TextColor = System.Drawing.Color.White;
             this.travelBtn.UseVisualStyleBackColor = false;
+            this.travelBtn.Click += new System.EventHandler(this.travelBtn_Click);
             // 
             // leavePanel
             // 
@@ -464,347 +465,130 @@
             this.content.Size = new System.Drawing.Size(1319, 777);
             this.content.TabIndex = 23;
             // 
-            // panel6
+            // dashboardPanel
             // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Controls.Add(this.panel7);
-            this.panel6.Controls.Add(this.panel12);
-            this.panel6.Controls.Add(this.panel19);
-            this.panel6.Controls.Add(this.panel18);
-            this.panel6.Controls.Add(this.panel17);
-            this.panel6.Controls.Add(this.panel14);
-            this.panel6.Controls.Add(this.panel11);
-            this.panel6.Controls.Add(this.panel9);
-            this.panel6.Controls.Add(this.panel25);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(412, 777);
-            this.panel6.TabIndex = 2;
+            this.dashboardPanel.Controls.Add(this.departmentListPanel);
+            this.dashboardPanel.Controls.Add(this.panel24);
+            this.dashboardPanel.Controls.Add(this.panel23);
+            this.dashboardPanel.Controls.Add(this.panel16);
+            this.dashboardPanel.Controls.Add(this.panel15);
+            this.dashboardPanel.Controls.Add(this.panel10);
+            this.dashboardPanel.Controls.Add(this.panel6);
+            this.dashboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dashboardPanel.Location = new System.Drawing.Point(0, 0);
+            this.dashboardPanel.Name = "dashboardPanel";
+            this.dashboardPanel.Size = new System.Drawing.Size(1319, 777);
+            this.dashboardPanel.TabIndex = 1;
             // 
-            // panel25
+            // departmentListPanel
             // 
-            this.panel25.Controls.Add(this.label5);
-            this.panel25.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel25.Location = new System.Drawing.Point(0, 0);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(412, 42);
-            this.panel25.TabIndex = 0;
+            this.departmentListPanel.AutoScroll = true;
+            this.departmentListPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.departmentListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.departmentListPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.departmentListPanel.Location = new System.Drawing.Point(422, 98);
+            this.departmentListPanel.Name = "departmentListPanel";
+            this.departmentListPanel.Size = new System.Drawing.Size(897, 679);
+            this.departmentListPanel.TabIndex = 14;
             // 
-            // label5
+            // panel24
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(5, 10);
-            this.label5.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(144, 22);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Pending Requests";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.panel24.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel24.Location = new System.Drawing.Point(422, 93);
+            this.panel24.Name = "panel24";
+            this.panel24.Size = new System.Drawing.Size(897, 5);
+            this.panel24.TabIndex = 13;
             // 
-            // panel9
+            // panel23
             // 
-            this.panel9.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 42);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(412, 3);
-            this.panel9.TabIndex = 1;
+            this.panel23.BackColor = System.Drawing.Color.White;
+            this.panel23.Controls.Add(this.label14);
+            this.panel23.Controls.Add(this.label12);
+            this.panel23.Controls.Add(this.label11);
+            this.panel23.Controls.Add(this.label6);
+            this.panel23.Controls.Add(this.label9);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel23.Location = new System.Drawing.Point(422, 49);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(897, 44);
+            this.panel23.TabIndex = 12;
             // 
-            // panel11
+            // label14
             // 
-            this.panel11.Controls.Add(this.label10);
-            this.panel11.Controls.Add(this.leaveRequestCount);
-            this.panel11.Controls.Add(this.label13);
-            this.panel11.Controls.Add(this.pictureBox7);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 45);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(412, 56);
-            this.panel11.TabIndex = 6;
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.White;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label14.ForeColor = System.Drawing.Color.DimGray;
+            this.label14.Location = new System.Drawing.Point(791, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(56, 19);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Actions";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pictureBox7
+            // label12
             // 
-            this.pictureBox7.BackColor = System.Drawing.Color.White;
-            this.pictureBox7.Image = global::Payroll_Project2.Properties.Resources.leave_request_2;
-            this.pictureBox7.Location = new System.Drawing.Point(8, 10);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(41, 35);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 4;
-            this.pictureBox7.TabStop = false;
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.White;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label12.ForeColor = System.Drawing.Color.DimGray;
+            this.label12.Location = new System.Drawing.Point(630, 12);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(104, 19);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Total Employee";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label13
+            // label11
             // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.White;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(55, 7);
-            this.label13.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(44, 19);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "Leave";
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.White;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.DimGray;
+            this.label11.Location = new System.Drawing.Point(480, 12);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(135, 19);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Job Order Employee";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // leaveRequestCount
+            // label6
             // 
-            this.leaveRequestCount.AutoSize = true;
-            this.leaveRequestCount.BackColor = System.Drawing.Color.White;
-            this.leaveRequestCount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.leaveRequestCount.ForeColor = System.Drawing.Color.Black;
-            this.leaveRequestCount.Location = new System.Drawing.Point(379, 17);
-            this.leaveRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
-            this.leaveRequestCount.Name = "leaveRequestCount";
-            this.leaveRequestCount.Size = new System.Drawing.Size(25, 21);
-            this.leaveRequestCount.TabIndex = 5;
-            this.leaveRequestCount.Text = "10";
-            this.leaveRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.DimGray;
+            this.label6.Location = new System.Drawing.Point(323, 12);
+            this.label6.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(121, 19);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Regular Employee";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label10
+            // label9
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.White;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.label10.ForeColor = System.Drawing.Color.DimGray;
-            this.label10.Location = new System.Drawing.Point(55, 33);
-            this.label10.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(134, 15);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "Pending Leave Requests";
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.White;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.DimGray;
+            this.label9.Location = new System.Drawing.Point(7, 12);
+            this.label9.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(121, 19);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Department name";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel14
+            // panel16
             // 
-            this.panel14.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(0, 101);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(412, 3);
-            this.panel14.TabIndex = 7;
-            // 
-            // panel17
-            // 
-            this.panel17.Controls.Add(this.label15);
-            this.panel17.Controls.Add(this.travelRequestCount);
-            this.panel17.Controls.Add(this.label22);
-            this.panel17.Controls.Add(this.pictureBox8);
-            this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel17.Location = new System.Drawing.Point(0, 104);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(412, 56);
-            this.panel17.TabIndex = 8;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BackColor = System.Drawing.Color.White;
-            this.pictureBox8.Image = global::Payroll_Project2.Properties.Resources.leave_request_2;
-            this.pictureBox8.Location = new System.Drawing.Point(8, 10);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(41, 35);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 4;
-            this.pictureBox8.TabStop = false;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.White;
-            this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(55, 7);
-            this.label22.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(86, 19);
-            this.label22.TabIndex = 5;
-            this.label22.Text = "Travel Order";
-            // 
-            // travelRequestCount
-            // 
-            this.travelRequestCount.AutoSize = true;
-            this.travelRequestCount.BackColor = System.Drawing.Color.White;
-            this.travelRequestCount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.travelRequestCount.ForeColor = System.Drawing.Color.Black;
-            this.travelRequestCount.Location = new System.Drawing.Point(379, 18);
-            this.travelRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
-            this.travelRequestCount.Name = "travelRequestCount";
-            this.travelRequestCount.Size = new System.Drawing.Size(25, 21);
-            this.travelRequestCount.TabIndex = 5;
-            this.travelRequestCount.Text = "10";
-            this.travelRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.White;
-            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.label15.ForeColor = System.Drawing.Color.DimGray;
-            this.label15.Location = new System.Drawing.Point(55, 33);
-            this.label15.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(168, 15);
-            this.label15.TabIndex = 6;
-            this.label15.Text = "Pending Travel Order Requests";
-            // 
-            // panel18
-            // 
-            this.panel18.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel18.Location = new System.Drawing.Point(0, 160);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(412, 3);
-            this.panel18.TabIndex = 9;
-            // 
-            // panel19
-            // 
-            this.panel19.Controls.Add(this.label23);
-            this.panel19.Controls.Add(this.slipRequestCount);
-            this.panel19.Controls.Add(this.label25);
-            this.panel19.Controls.Add(this.pictureBox11);
-            this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel19.Location = new System.Drawing.Point(0, 163);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(412, 56);
-            this.panel19.TabIndex = 10;
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.BackColor = System.Drawing.Color.White;
-            this.pictureBox11.Image = global::Payroll_Project2.Properties.Resources.leave_request_2;
-            this.pictureBox11.Location = new System.Drawing.Point(8, 9);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(41, 35);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox11.TabIndex = 4;
-            this.pictureBox11.TabStop = false;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.White;
-            this.label25.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(55, 7);
-            this.label25.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(64, 19);
-            this.label25.TabIndex = 5;
-            this.label25.Text = "Pass Slip";
-            // 
-            // slipRequestCount
-            // 
-            this.slipRequestCount.AutoSize = true;
-            this.slipRequestCount.BackColor = System.Drawing.Color.White;
-            this.slipRequestCount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.slipRequestCount.ForeColor = System.Drawing.Color.Black;
-            this.slipRequestCount.Location = new System.Drawing.Point(379, 18);
-            this.slipRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
-            this.slipRequestCount.Name = "slipRequestCount";
-            this.slipRequestCount.Size = new System.Drawing.Size(25, 21);
-            this.slipRequestCount.TabIndex = 5;
-            this.slipRequestCount.Text = "10";
-            this.slipRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.White;
-            this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.label23.ForeColor = System.Drawing.Color.DimGray;
-            this.label23.Location = new System.Drawing.Point(55, 33);
-            this.label23.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(150, 15);
-            this.label23.TabIndex = 6;
-            this.label23.Text = "Pending Pass Slip Requests";
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(0, 219);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(412, 3);
-            this.panel12.TabIndex = 11;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label4);
-            this.panel7.Controls.Add(this.payrollRequestCount);
-            this.panel7.Controls.Add(this.label8);
-            this.panel7.Controls.Add(this.pictureBox2);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 222);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(412, 56);
-            this.panel7.TabIndex = 12;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.Image = global::Payroll_Project2.Properties.Resources.leave_request_2;
-            this.pictureBox2.Location = new System.Drawing.Point(8, 9);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(41, 35);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.White;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(55, 7);
-            this.label8.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 19);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Payroll";
-            // 
-            // payrollRequestCount
-            // 
-            this.payrollRequestCount.AutoSize = true;
-            this.payrollRequestCount.BackColor = System.Drawing.Color.White;
-            this.payrollRequestCount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.payrollRequestCount.ForeColor = System.Drawing.Color.Black;
-            this.payrollRequestCount.Location = new System.Drawing.Point(379, 18);
-            this.payrollRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
-            this.payrollRequestCount.Name = "payrollRequestCount";
-            this.payrollRequestCount.Size = new System.Drawing.Size(25, 21);
-            this.payrollRequestCount.TabIndex = 5;
-            this.payrollRequestCount.Text = "10";
-            this.payrollRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.DimGray;
-            this.label4.Location = new System.Drawing.Point(55, 33);
-            this.label4.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(146, 15);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Pending Pay Slip Requests";
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel10.Location = new System.Drawing.Point(412, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(10, 777);
-            this.panel10.TabIndex = 3;
+            this.panel16.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel16.Location = new System.Drawing.Point(422, 44);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(897, 5);
+            this.panel16.TabIndex = 11;
             // 
             // panel15
             // 
@@ -828,130 +612,347 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "LGU - Initao Department List";
             // 
-            // panel16
+            // panel10
             // 
-            this.panel16.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel16.Location = new System.Drawing.Point(422, 44);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(897, 5);
-            this.panel16.TabIndex = 11;
+            this.panel10.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(412, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(10, 777);
+            this.panel10.TabIndex = 3;
             // 
-            // panel23
+            // panel6
             // 
-            this.panel23.BackColor = System.Drawing.Color.White;
-            this.panel23.Controls.Add(this.label14);
-            this.panel23.Controls.Add(this.label12);
-            this.panel23.Controls.Add(this.label11);
-            this.panel23.Controls.Add(this.label6);
-            this.panel23.Controls.Add(this.label9);
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel23.Location = new System.Drawing.Point(422, 49);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(897, 44);
-            this.panel23.TabIndex = 12;
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.panel7);
+            this.panel6.Controls.Add(this.panel12);
+            this.panel6.Controls.Add(this.panel19);
+            this.panel6.Controls.Add(this.panel18);
+            this.panel6.Controls.Add(this.panel17);
+            this.panel6.Controls.Add(this.panel14);
+            this.panel6.Controls.Add(this.panel11);
+            this.panel6.Controls.Add(this.panel9);
+            this.panel6.Controls.Add(this.panel25);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(412, 777);
+            this.panel6.TabIndex = 2;
             // 
-            // label9
+            // panel7
             // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.White;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label9.ForeColor = System.Drawing.Color.DimGray;
-            this.label9.Location = new System.Drawing.Point(7, 12);
-            this.label9.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(121, 19);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Department name";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.panel7.Controls.Add(this.label4);
+            this.panel7.Controls.Add(this.payrollRequestCount);
+            this.panel7.Controls.Add(this.label8);
+            this.panel7.Controls.Add(this.pictureBox2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 222);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(412, 56);
+            this.panel7.TabIndex = 12;
             // 
-            // label6
+            // label4
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.DimGray;
-            this.label6.Location = new System.Drawing.Point(323, 12);
-            this.label6.MaximumSize = new System.Drawing.Size(177, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(121, 19);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Regular Employee";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.DimGray;
+            this.label4.Location = new System.Drawing.Point(55, 33);
+            this.label4.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(146, 15);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Pending Pay Slip Requests";
             // 
-            // label11
+            // payrollRequestCount
             // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.White;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(480, 12);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(135, 19);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Job Order Employee";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.payrollRequestCount.AutoSize = true;
+            this.payrollRequestCount.BackColor = System.Drawing.Color.White;
+            this.payrollRequestCount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.payrollRequestCount.ForeColor = System.Drawing.Color.Black;
+            this.payrollRequestCount.Location = new System.Drawing.Point(379, 18);
+            this.payrollRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
+            this.payrollRequestCount.Name = "payrollRequestCount";
+            this.payrollRequestCount.Size = new System.Drawing.Size(25, 21);
+            this.payrollRequestCount.TabIndex = 5;
+            this.payrollRequestCount.Text = "10";
+            this.payrollRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label12
+            // label8
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.White;
-            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label12.ForeColor = System.Drawing.Color.DimGray;
-            this.label12.Location = new System.Drawing.Point(630, 12);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(104, 19);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Total Employee";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.White;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(55, 7);
+            this.label8.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(52, 19);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Payroll";
             // 
-            // label14
+            // pictureBox2
             // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.White;
-            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label14.ForeColor = System.Drawing.Color.DimGray;
-            this.label14.Location = new System.Drawing.Point(791, 12);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(56, 19);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "Actions";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
+            this.pictureBox2.Image = global::Payroll_Project2.Properties.Resources.leave_request_2;
+            this.pictureBox2.Location = new System.Drawing.Point(8, 9);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(41, 35);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
             // 
-            // panel24
+            // panel12
             // 
-            this.panel24.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel24.Location = new System.Drawing.Point(422, 93);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(897, 5);
-            this.panel24.TabIndex = 13;
+            this.panel12.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(0, 219);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(412, 3);
+            this.panel12.TabIndex = 11;
             // 
-            // departmentListPanel
+            // panel19
             // 
-            this.departmentListPanel.AutoScroll = true;
-            this.departmentListPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.departmentListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.departmentListPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.departmentListPanel.Location = new System.Drawing.Point(422, 98);
-            this.departmentListPanel.Name = "departmentListPanel";
-            this.departmentListPanel.Size = new System.Drawing.Size(897, 679);
-            this.departmentListPanel.TabIndex = 14;
+            this.panel19.Controls.Add(this.label23);
+            this.panel19.Controls.Add(this.slipRequestCount);
+            this.panel19.Controls.Add(this.label25);
+            this.panel19.Controls.Add(this.pictureBox11);
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel19.Location = new System.Drawing.Point(0, 163);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(412, 56);
+            this.panel19.TabIndex = 10;
             // 
-            // dashboardPanel
+            // label23
             // 
-            this.dashboardPanel.Controls.Add(this.departmentListPanel);
-            this.dashboardPanel.Controls.Add(this.panel24);
-            this.dashboardPanel.Controls.Add(this.panel23);
-            this.dashboardPanel.Controls.Add(this.panel16);
-            this.dashboardPanel.Controls.Add(this.panel15);
-            this.dashboardPanel.Controls.Add(this.panel10);
-            this.dashboardPanel.Controls.Add(this.panel6);
-            this.dashboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dashboardPanel.Location = new System.Drawing.Point(0, 0);
-            this.dashboardPanel.Name = "dashboardPanel";
-            this.dashboardPanel.Size = new System.Drawing.Size(1319, 777);
-            this.dashboardPanel.TabIndex = 1;
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.White;
+            this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label23.ForeColor = System.Drawing.Color.DimGray;
+            this.label23.Location = new System.Drawing.Point(55, 33);
+            this.label23.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(150, 15);
+            this.label23.TabIndex = 6;
+            this.label23.Text = "Pending Pass Slip Requests";
+            // 
+            // slipRequestCount
+            // 
+            this.slipRequestCount.AutoSize = true;
+            this.slipRequestCount.BackColor = System.Drawing.Color.White;
+            this.slipRequestCount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.slipRequestCount.ForeColor = System.Drawing.Color.Black;
+            this.slipRequestCount.Location = new System.Drawing.Point(379, 18);
+            this.slipRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
+            this.slipRequestCount.Name = "slipRequestCount";
+            this.slipRequestCount.Size = new System.Drawing.Size(25, 21);
+            this.slipRequestCount.TabIndex = 5;
+            this.slipRequestCount.Text = "10";
+            this.slipRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.White;
+            this.label25.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label25.ForeColor = System.Drawing.Color.Black;
+            this.label25.Location = new System.Drawing.Point(55, 7);
+            this.label25.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(64, 19);
+            this.label25.TabIndex = 5;
+            this.label25.Text = "Pass Slip";
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.BackColor = System.Drawing.Color.White;
+            this.pictureBox11.Image = global::Payroll_Project2.Properties.Resources.leave_request_2;
+            this.pictureBox11.Location = new System.Drawing.Point(8, 9);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(41, 35);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 4;
+            this.pictureBox11.TabStop = false;
+            // 
+            // panel18
+            // 
+            this.panel18.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel18.Location = new System.Drawing.Point(0, 160);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(412, 3);
+            this.panel18.TabIndex = 9;
+            // 
+            // panel17
+            // 
+            this.panel17.Controls.Add(this.label15);
+            this.panel17.Controls.Add(this.travelRequestCount);
+            this.panel17.Controls.Add(this.label22);
+            this.panel17.Controls.Add(this.pictureBox8);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel17.Location = new System.Drawing.Point(0, 104);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(412, 56);
+            this.panel17.TabIndex = 8;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.White;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label15.ForeColor = System.Drawing.Color.DimGray;
+            this.label15.Location = new System.Drawing.Point(55, 33);
+            this.label15.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(168, 15);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "Pending Travel Order Requests";
+            // 
+            // travelRequestCount
+            // 
+            this.travelRequestCount.AutoSize = true;
+            this.travelRequestCount.BackColor = System.Drawing.Color.White;
+            this.travelRequestCount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.travelRequestCount.ForeColor = System.Drawing.Color.Black;
+            this.travelRequestCount.Location = new System.Drawing.Point(379, 18);
+            this.travelRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
+            this.travelRequestCount.Name = "travelRequestCount";
+            this.travelRequestCount.Size = new System.Drawing.Size(25, 21);
+            this.travelRequestCount.TabIndex = 5;
+            this.travelRequestCount.Text = "10";
+            this.travelRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.White;
+            this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(55, 7);
+            this.label22.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(86, 19);
+            this.label22.TabIndex = 5;
+            this.label22.Text = "Travel Order";
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackColor = System.Drawing.Color.White;
+            this.pictureBox8.Image = global::Payroll_Project2.Properties.Resources.leave_request_2;
+            this.pictureBox8.Location = new System.Drawing.Point(8, 10);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(41, 35);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 4;
+            this.pictureBox8.TabStop = false;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel14.Location = new System.Drawing.Point(0, 101);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(412, 3);
+            this.panel14.TabIndex = 7;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.label10);
+            this.panel11.Controls.Add(this.leaveRequestCount);
+            this.panel11.Controls.Add(this.label13);
+            this.panel11.Controls.Add(this.pictureBox7);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 45);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(412, 56);
+            this.panel11.TabIndex = 6;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.DimGray;
+            this.label10.Location = new System.Drawing.Point(55, 33);
+            this.label10.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(134, 15);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Pending Leave Requests";
+            // 
+            // leaveRequestCount
+            // 
+            this.leaveRequestCount.AutoSize = true;
+            this.leaveRequestCount.BackColor = System.Drawing.Color.White;
+            this.leaveRequestCount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.leaveRequestCount.ForeColor = System.Drawing.Color.Black;
+            this.leaveRequestCount.Location = new System.Drawing.Point(379, 17);
+            this.leaveRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
+            this.leaveRequestCount.Name = "leaveRequestCount";
+            this.leaveRequestCount.Size = new System.Drawing.Size(25, 21);
+            this.leaveRequestCount.TabIndex = 5;
+            this.leaveRequestCount.Text = "10";
+            this.leaveRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.White;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(55, 7);
+            this.label13.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(44, 19);
+            this.label13.TabIndex = 5;
+            this.label13.Text = "Leave";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackColor = System.Drawing.Color.White;
+            this.pictureBox7.Image = global::Payroll_Project2.Properties.Resources.leave_request_2;
+            this.pictureBox7.Location = new System.Drawing.Point(8, 10);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(41, 35);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 4;
+            this.pictureBox7.TabStop = false;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 42);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(412, 3);
+            this.panel9.TabIndex = 1;
+            // 
+            // panel25
+            // 
+            this.panel25.Controls.Add(this.label5);
+            this.panel25.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel25.Location = new System.Drawing.Point(0, 0);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(412, 42);
+            this.panel25.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(5, 10);
+            this.label5.MaximumSize = new System.Drawing.Size(177, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(144, 22);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Pending Requests";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MayorDashboard
             // 
@@ -988,26 +989,26 @@
             this.aboveContent.ResumeLayout(false);
             this.aboveContent.PerformLayout();
             this.content.ResumeLayout(false);
+            this.dashboardPanel.ResumeLayout(false);
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
             this.panel6.ResumeLayout(false);
-            this.panel25.ResumeLayout(false);
-            this.panel25.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            this.panel17.ResumeLayout(false);
-            this.panel17.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            this.panel19.ResumeLayout(false);
-            this.panel19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel15.ResumeLayout(false);
-            this.panel15.PerformLayout();
-            this.panel23.ResumeLayout(false);
-            this.panel23.PerformLayout();
-            this.dashboardPanel.ResumeLayout(false);
+            this.panel19.ResumeLayout(false);
+            this.panel19.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.panel25.ResumeLayout(false);
+            this.panel25.PerformLayout();
             this.ResumeLayout(false);
 
         }

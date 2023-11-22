@@ -68,8 +68,9 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                 using(SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select concat(employeeFname, ' ', employeeLname) as employeeName, dateFiled, orderControlNumber, dateDeparture, " +
-                        "isNoted, from tbl_travelOrder " +
+                    string command = "select concat(employeeFname, ' ', employeeLname) as employeeName, dateFiled, orderControlNumber, " +
+                        "dateDeparture, tbl_employee.employeeId, " +
+                        "isNoted from tbl_travelOrder " +
                         "join tbl_employee on tbl_travelOrder.employeeId = tbl_employee.employeeId " +
                         "join tbl_department on tbl_department.departmentId = tbl_employee.departmentId " +
                         "where (departmentName = @department and isNoted is null and isApproved is null) " +
@@ -168,7 +169,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
         }
 
         // This function is responsible for approving the travel order request
-        public async Task<bool> ApproveTravelRequest(int controlNumber, bool isApproved, string approvedBy, DateTime approvedDate)
+        public async Task<bool> ApproveTravelRequest(int controlNumber, bool isApproved, string approvedBy, DateTime approvedDate, 
+            string status)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -176,7 +178,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                 string command = "update tbl_travelOrder set " +
                     "isApproved = @isApproved, " +
                     "approvedBy = @approvedBy, " +
-                    "approvedDate = @approvedDate " +
+                    "approvedDate = @approvedDate, " +
+                    "statusId = (select statusId from tbl_status where statusDescription = @status)" +
                     "where orderControlNumber = @controlNumber";
 
                 using (cmd = new SqlCommand(command, conn))
@@ -185,6 +188,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                     cmd.Parameters.AddWithValue("@isApproved", isApproved);
                     cmd.Parameters.AddWithValue("@approvedBy", approvedBy);
                     cmd.Parameters.AddWithValue("@approvedDate", approvedDate);
+                    cmd.Parameters.AddWithValue("@status", status);
 
 
                     int result = await cmd.ExecuteNonQueryAsync();

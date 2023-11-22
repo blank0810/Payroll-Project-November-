@@ -246,6 +246,7 @@ namespace Payroll_Project2.Forms.Mayor.Leave_Requests.Modal
                 IsApproved = false;
                 IsWithPay = false;
                 FormStatus = DeniedStatus;
+                deniedReasonBox.Focus();
             }
         }
 

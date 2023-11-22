@@ -2,6 +2,7 @@
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Functions;
 using Payroll_Project2.Forms.Mayor.Dashboard.Dashboard_User_Control;
 using Payroll_Project2.Forms.Mayor.Leave_Requests;
+using Payroll_Project2.Forms.Mayor.Travel_Order_Requests;
 using System;
 using System.Configuration;
 using System.Data;
@@ -222,7 +223,7 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard
             }
         }
 
-        public async Task DisplayLeaveRequests(int userId)
+        private async Task DisplayLeaveRequests(int userId)
         {
             try
             {
@@ -239,6 +240,35 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard
                 else
                 {
                     leaveRequest.BringToFront();
+                }
+            }
+            catch (SqlException sql)
+            {
+                ErrorMessage(sql.Message, "SQL Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage(ex.Message, "Exception Error");
+            }
+        }
+
+        private async Task DisplayTravelRequest(int userId)
+        {
+            try
+            {
+                string department = await GetDepartment(userId);
+                content.Controls.Clear();
+                travelRequestsUC travelRequest = new travelRequestsUC(userId, this, department);
+
+                if(!content.Controls.Contains(travelRequest))
+                {
+                    content.Controls.Add(travelRequest);
+                    travelRequest.Dock = DockStyle.Fill;
+                    travelRequest.BringToFront();
+                }
+                else
+                {
+                    travelRequest.BringToFront();
                 }
             }
             catch (SqlException sql)
@@ -280,6 +310,12 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard
         {
             titleLabel.Text = leaveBtn.Text;
             await DisplayLeaveRequests(_userId);
+        }
+
+        private async void travelBtn_Click(object sender, EventArgs e)
+        {
+            titleLabel.Text = travelBtn.Text;
+            await DisplayTravelRequest(_userId);
         }
     }
 }

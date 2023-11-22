@@ -57,6 +57,7 @@
             this.previousBtn = new Payroll_Project2.Custom.buttonDesign();
             this.nextBtn = new Payroll_Project2.Custom.buttonDesign();
             this.pageLabel = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.requestListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -454,16 +455,24 @@
             this.pageLabel.TabIndex = 1;
             this.pageLabel.Text = "Page 1 of 1";
             // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel12.Location = new System.Drawing.Point(10, 750);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(1411, 5);
+            this.panel12.TabIndex = 18;
+            // 
             // requestListPanel
             // 
             this.requestListPanel.AutoScroll = true;
             this.requestListPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.requestListPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.requestListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.requestListPanel.Location = new System.Drawing.Point(10, 144);
             this.requestListPanel.Name = "requestListPanel";
-            this.requestListPanel.Size = new System.Drawing.Size(1411, 611);
-            this.requestListPanel.TabIndex = 18;
+            this.requestListPanel.Size = new System.Drawing.Size(1411, 606);
+            this.requestListPanel.TabIndex = 19;
             // 
             // leaveRequestsUC
             // 
@@ -471,6 +480,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.requestListPanel);
+            this.Controls.Add(this.panel12);
             this.Controls.Add(this.panel11);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.panel9);
@@ -525,9 +535,10 @@
         private Custom.buttonDesign previousBtn;
         private Custom.buttonDesign nextBtn;
         private System.Windows.Forms.Label pageLabel;
-        private System.Windows.Forms.FlowLayoutPanel requestListPanel;
         private System.Windows.Forms.ComboBox departmentName;
         private System.Windows.Forms.ComboBox employmentStatus;
         private Custom.buttonDesign filterBtn;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.FlowLayoutPanel requestListPanel;
     }
 }

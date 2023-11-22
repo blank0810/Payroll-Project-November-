@@ -40,9 +40,9 @@
             this.label16 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
             this.customPanel12 = new Payroll_Project2.Custom.customPanel();
-            this.label13 = new System.Windows.Forms.Label();
+            this.notedDate = new System.Windows.Forms.Label();
             this.customPanel11 = new Payroll_Project2.Custom.customPanel();
-            this.label10 = new System.Windows.Forms.Label();
+            this.notedBy = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.buttonsPanel = new System.Windows.Forms.Panel();
-            this.endorseBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.approveBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel13 = new System.Windows.Forms.Panel();
             this.customPanel5 = new Payroll_Project2.Custom.customPanel();
             this.purpose = new System.Windows.Forms.Label();
@@ -96,7 +96,6 @@
             this.controlNum = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
-            this.disapproveBtn = new Payroll_Project2.Custom.buttonDesign();
             this.content.SuspendLayout();
             this.panel19.SuspendLayout();
             this.panel18.SuspendLayout();
@@ -266,7 +265,7 @@
             this.customPanel12.BackColor = System.Drawing.Color.White;
             this.customPanel12.BorderRadius = 0;
             this.customPanel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel12.Controls.Add(this.label13);
+            this.customPanel12.Controls.Add(this.notedDate);
             this.customPanel12.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customPanel12.ForeColor = System.Drawing.Color.Black;
             this.customPanel12.GradientAngle = 90F;
@@ -277,17 +276,17 @@
             this.customPanel12.Size = new System.Drawing.Size(175, 32);
             this.customPanel12.TabIndex = 5;
             // 
-            // label13
+            // notedDate
             // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(4, 6);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(89, 19);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "{Noted date}";
+            this.notedDate.AutoSize = true;
+            this.notedDate.BackColor = System.Drawing.Color.Transparent;
+            this.notedDate.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.notedDate.ForeColor = System.Drawing.Color.Black;
+            this.notedDate.Location = new System.Drawing.Point(4, 6);
+            this.notedDate.Name = "notedDate";
+            this.notedDate.Size = new System.Drawing.Size(89, 19);
+            this.notedDate.TabIndex = 2;
+            this.notedDate.Text = "{Noted date}";
             // 
             // customPanel11
             // 
@@ -295,7 +294,7 @@
             this.customPanel11.BackColor = System.Drawing.Color.White;
             this.customPanel11.BorderRadius = 0;
             this.customPanel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel11.Controls.Add(this.label10);
+            this.customPanel11.Controls.Add(this.notedBy);
             this.customPanel11.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customPanel11.ForeColor = System.Drawing.Color.Black;
             this.customPanel11.GradientAngle = 90F;
@@ -306,17 +305,17 @@
             this.customPanel11.Size = new System.Drawing.Size(175, 32);
             this.customPanel11.TabIndex = 5;
             // 
-            // label10
+            // notedBy
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(4, 6);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 19);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "{Noted by}";
+            this.notedBy.AutoSize = true;
+            this.notedBy.BackColor = System.Drawing.Color.Transparent;
+            this.notedBy.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.notedBy.ForeColor = System.Drawing.Color.Black;
+            this.notedBy.Location = new System.Drawing.Point(4, 6);
+            this.notedBy.Name = "notedBy";
+            this.notedBy.Size = new System.Drawing.Size(77, 19);
+            this.notedBy.TabIndex = 2;
+            this.notedBy.Text = "{Noted by}";
             // 
             // panel5
             // 
@@ -414,32 +413,32 @@
             // 
             // buttonsPanel
             // 
-            this.buttonsPanel.Controls.Add(this.disapproveBtn);
-            this.buttonsPanel.Controls.Add(this.endorseBtn);
+            this.buttonsPanel.Controls.Add(this.approveBtn);
             this.buttonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buttonsPanel.Location = new System.Drawing.Point(0, 638);
             this.buttonsPanel.Name = "buttonsPanel";
             this.buttonsPanel.Size = new System.Drawing.Size(715, 43);
             this.buttonsPanel.TabIndex = 42;
             // 
-            // endorseBtn
+            // approveBtn
             // 
-            this.endorseBtn.BackColor = System.Drawing.Color.Green;
-            this.endorseBtn.BackgroundColor = System.Drawing.Color.Green;
-            this.endorseBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.endorseBtn.BorderRadius = 5;
-            this.endorseBtn.BorderSize = 0;
-            this.endorseBtn.FlatAppearance.BorderSize = 0;
-            this.endorseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.endorseBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endorseBtn.ForeColor = System.Drawing.Color.White;
-            this.endorseBtn.Location = new System.Drawing.Point(640, 6);
-            this.endorseBtn.Name = "endorseBtn";
-            this.endorseBtn.Size = new System.Drawing.Size(71, 32);
-            this.endorseBtn.TabIndex = 33;
-            this.endorseBtn.Text = "Approve";
-            this.endorseBtn.TextColor = System.Drawing.Color.White;
-            this.endorseBtn.UseVisualStyleBackColor = false;
+            this.approveBtn.BackColor = System.Drawing.Color.Green;
+            this.approveBtn.BackgroundColor = System.Drawing.Color.Green;
+            this.approveBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.approveBtn.BorderRadius = 5;
+            this.approveBtn.BorderSize = 0;
+            this.approveBtn.FlatAppearance.BorderSize = 0;
+            this.approveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.approveBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.approveBtn.ForeColor = System.Drawing.Color.White;
+            this.approveBtn.Location = new System.Drawing.Point(640, 6);
+            this.approveBtn.Name = "approveBtn";
+            this.approveBtn.Size = new System.Drawing.Size(71, 32);
+            this.approveBtn.TabIndex = 33;
+            this.approveBtn.Text = "Approve";
+            this.approveBtn.TextColor = System.Drawing.Color.White;
+            this.approveBtn.UseVisualStyleBackColor = false;
+            this.approveBtn.Click += new System.EventHandler(this.approveBtn_Click);
             // 
             // panel13
             // 
@@ -973,26 +972,6 @@
             this.infoLabel.TabIndex = 1;
             this.infoLabel.Text = "TRAVEL ORDER";
             // 
-            // disapproveBtn
-            // 
-            this.disapproveBtn.AutoSize = true;
-            this.disapproveBtn.BackColor = System.Drawing.Color.Maroon;
-            this.disapproveBtn.BackgroundColor = System.Drawing.Color.Maroon;
-            this.disapproveBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.disapproveBtn.BorderRadius = 5;
-            this.disapproveBtn.BorderSize = 0;
-            this.disapproveBtn.FlatAppearance.BorderSize = 0;
-            this.disapproveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.disapproveBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.disapproveBtn.ForeColor = System.Drawing.Color.White;
-            this.disapproveBtn.Location = new System.Drawing.Point(550, 6);
-            this.disapproveBtn.Name = "disapproveBtn";
-            this.disapproveBtn.Size = new System.Drawing.Size(88, 32);
-            this.disapproveBtn.TabIndex = 33;
-            this.disapproveBtn.Text = "Disapprove";
-            this.disapproveBtn.TextColor = System.Drawing.Color.White;
-            this.disapproveBtn.UseVisualStyleBackColor = false;
-            // 
             // travelDetailedView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1005,10 +984,13 @@
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "travelDetailedView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Travel Order Details";
+            this.Load += new System.EventHandler(this.travelDetailedView_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.travelDetailedView_KeyPress);
             this.content.ResumeLayout(false);
             this.content.PerformLayout();
             this.panel19.ResumeLayout(false);
@@ -1030,7 +1012,6 @@
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
             this.buttonsPanel.ResumeLayout(false);
-            this.buttonsPanel.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
             this.customPanel5.ResumeLayout(false);
@@ -1087,7 +1068,7 @@
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel buttonsPanel;
-        private Custom.buttonDesign endorseBtn;
+        private Custom.buttonDesign approveBtn;
         private System.Windows.Forms.Panel panel13;
         private Custom.customPanel customPanel5;
         private System.Windows.Forms.Label purpose;
@@ -1133,9 +1114,9 @@
         private System.Windows.Forms.Label infoLabel;
         private System.Windows.Forms.Panel panel17;
         private Custom.customPanel customPanel12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label notedDate;
         private Custom.customPanel customPanel11;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label notedBy;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label9;
@@ -1144,6 +1125,5 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label mayorJobDescription;
         private System.Windows.Forms.Label mayor;
-        private Custom.buttonDesign disapproveBtn;
     }
 }

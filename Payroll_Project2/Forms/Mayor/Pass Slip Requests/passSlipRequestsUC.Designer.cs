@@ -43,9 +43,21 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.recordNumber = new Payroll_Project2.Custom.customTextBox2();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.previousBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.nextBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.pageLabel = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.requestListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel4
@@ -230,16 +242,157 @@
             this.panel8.Size = new System.Drawing.Size(1411, 5);
             this.panel8.TabIndex = 16;
             // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.recordNumber);
+            this.panel9.Controls.Add(this.label6);
+            this.panel9.Controls.Add(this.label8);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(10, 98);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1411, 41);
+            this.panel9.TabIndex = 17;
+            // 
+            // recordNumber
+            // 
+            this.recordNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.recordNumber.AutoSize = true;
+            this.recordNumber.BackColor = System.Drawing.Color.White;
+            this.recordNumber.BorderColor = System.Drawing.Color.Gray;
+            this.recordNumber.BorderFocusColor = System.Drawing.Color.Black;
+            this.recordNumber.BorderRadius = 5;
+            this.recordNumber.BorderSize = 1;
+            this.recordNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold);
+            this.recordNumber.ForeColor = System.Drawing.Color.Black;
+            this.recordNumber.Location = new System.Drawing.Point(69, 8);
+            this.recordNumber.Multiline = false;
+            this.recordNumber.Name = "recordNumber";
+            this.recordNumber.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.recordNumber.PasswordChar = false;
+            this.recordNumber.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.recordNumber.PlaceholderText = "";
+            this.recordNumber.Size = new System.Drawing.Size(40, 29);
+            this.recordNumber.TabIndex = 2;
+            this.recordNumber.Texts = "";
+            this.recordNumber.UnderlinedStyle = false;
+            this.recordNumber._TextChanged += new System.EventHandler(this.recordNumber__TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(3, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 19);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Showing";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(115, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(113, 19);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "records per page";
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(10, 139);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1411, 5);
+            this.panel10.TabIndex = 18;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.previousBtn);
+            this.panel11.Controls.Add(this.nextBtn);
+            this.panel11.Controls.Add(this.pageLabel);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel11.Location = new System.Drawing.Point(10, 755);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1411, 32);
+            this.panel11.TabIndex = 19;
+            // 
+            // previousBtn
+            // 
+            this.previousBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.previousBtn.AutoSize = true;
+            this.previousBtn.BackColor = System.Drawing.Color.White;
+            this.previousBtn.BackgroundColor = System.Drawing.Color.White;
+            this.previousBtn.BorderColor = System.Drawing.Color.Red;
+            this.previousBtn.BorderRadius = 5;
+            this.previousBtn.BorderSize = 1;
+            this.previousBtn.FlatAppearance.BorderSize = 0;
+            this.previousBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.previousBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previousBtn.ForeColor = System.Drawing.Color.Black;
+            this.previousBtn.Location = new System.Drawing.Point(1282, 3);
+            this.previousBtn.Name = "previousBtn";
+            this.previousBtn.Size = new System.Drawing.Size(64, 25);
+            this.previousBtn.TabIndex = 6;
+            this.previousBtn.Text = "Previous";
+            this.previousBtn.TextColor = System.Drawing.Color.Black;
+            this.previousBtn.UseVisualStyleBackColor = false;
+            this.previousBtn.Click += new System.EventHandler(this.previousBtn_Click);
+            // 
+            // nextBtn
+            // 
+            this.nextBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextBtn.AutoSize = true;
+            this.nextBtn.BackColor = System.Drawing.Color.White;
+            this.nextBtn.BackgroundColor = System.Drawing.Color.White;
+            this.nextBtn.BorderColor = System.Drawing.Color.Green;
+            this.nextBtn.BorderRadius = 5;
+            this.nextBtn.BorderSize = 1;
+            this.nextBtn.FlatAppearance.BorderSize = 0;
+            this.nextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nextBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextBtn.ForeColor = System.Drawing.Color.Black;
+            this.nextBtn.Location = new System.Drawing.Point(1347, 3);
+            this.nextBtn.Name = "nextBtn";
+            this.nextBtn.Size = new System.Drawing.Size(59, 25);
+            this.nextBtn.TabIndex = 6;
+            this.nextBtn.Text = "Next";
+            this.nextBtn.TextColor = System.Drawing.Color.Black;
+            this.nextBtn.UseVisualStyleBackColor = false;
+            this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
+            // 
+            // pageLabel
+            // 
+            this.pageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pageLabel.AutoSize = true;
+            this.pageLabel.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.pageLabel.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.pageLabel.Location = new System.Drawing.Point(6, 8);
+            this.pageLabel.Name = "pageLabel";
+            this.pageLabel.Size = new System.Drawing.Size(70, 17);
+            this.pageLabel.TabIndex = 1;
+            this.pageLabel.Text = "Page 1 of 1";
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel12.Location = new System.Drawing.Point(10, 750);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(1411, 5);
+            this.panel12.TabIndex = 20;
+            // 
             // requestListPanel
             // 
             this.requestListPanel.AutoScroll = true;
             this.requestListPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.requestListPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.requestListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.requestListPanel.Location = new System.Drawing.Point(10, 98);
+            this.requestListPanel.Location = new System.Drawing.Point(10, 144);
             this.requestListPanel.Name = "requestListPanel";
-            this.requestListPanel.Size = new System.Drawing.Size(1411, 689);
-            this.requestListPanel.TabIndex = 17;
+            this.requestListPanel.Size = new System.Drawing.Size(1411, 606);
+            this.requestListPanel.TabIndex = 22;
             // 
             // passSlipRequestsUC
             // 
@@ -247,6 +400,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.requestListPanel);
+            this.Controls.Add(this.panel12);
+            this.Controls.Add(this.panel11);
+            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
@@ -257,10 +414,15 @@
             this.Controls.Add(this.panel1);
             this.Name = "passSlipRequestsUC";
             this.Size = new System.Drawing.Size(1431, 797);
+            this.Load += new System.EventHandler(this.passSlipRequestsUC_Load);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -282,6 +444,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
+        private Custom.customTextBox2 recordNumber;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel11;
+        private Custom.buttonDesign previousBtn;
+        private Custom.buttonDesign nextBtn;
+        private System.Windows.Forms.Label pageLabel;
+        private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.FlowLayoutPanel requestListPanel;
     }
 }

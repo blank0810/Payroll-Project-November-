@@ -166,10 +166,6 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
             // Calculate the center positions of departmentName label
             int mayorLabelX = mayorLabel.Left + (mayorLabel.Width - mayor.Width) / 2;
             mayor.Location = new Point(mayorLabelX, mayor.Top);
-
-
-            // Set the new position for departmentHead label
-            mayor.Location = new Point(mayorLabelX, mayor.Location.Y);
         }
 
         private void CenterDepartmentHead()
@@ -228,6 +224,9 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
             controlNum.DataBindings.Add("Text", this, "ControlNumber");
             dateFiled.DataBindings.Add("Value", this, "DateFiled");
             mayor.DataBindings.Add("Text", this, "MayorName");
+            slipStartingTime.Value = DateTime.Now;
+            slipDate.Value = DateTime.Now;
+            CenterLabel();
         }
 
         private void personnelPassSlipUC_Load(object sender, EventArgs e)
@@ -252,11 +251,6 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
             travelOrder = new travelOrder(_parent, _userId);
             employeeList employeeList = new employeeList(appForLeave, this, travelOrder);
             employeeList.ShowDialog();
-        }
-
-        private void mayor_TextChanged(object sender, EventArgs e)
-        {
-            CenterLabel();
         }
 
         private void departmentHead_TextChanged(object sender, EventArgs e)
@@ -376,7 +370,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
                 ErrorMessages("Please provide the complete name of the employee.", "Incomplete Name");
                 return false;
             }
-            else if (slipDate.Value <= DateTime.Now)
+            else if (slipDate.Value <= DateTime.Today)
             {
                 ErrorMessages("The slip date must be a future date.", "Invalid Slip Date");
                 return false;

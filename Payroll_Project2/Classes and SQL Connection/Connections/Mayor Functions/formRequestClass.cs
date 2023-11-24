@@ -104,7 +104,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                 {
                     await conn.OpenAsync();
                     string command = "select concat(employeeFname, ' ', employeeLname) as employeeName, dateFile, slipControlNumber, " +
-                        "isNoted " +
+                        "isNoted, cast(slipEndingTime - slipStartingTime as time) as timeUsed " +
                         "from tbl_passSlip " +
                         "join tbl_employee on tbl_passSlip.employeeId = tbl_employee.employeeId " +
                         "join tbl_department on tbl_department.departmentId = tbl_employee.departmentId " +
@@ -256,7 +256,35 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex;}
         }
 
-        // This function is responsible for deducting the employee pass slip hours
+        // This function is responsible for deducting employee's slip hours if employee pass slip is approved
+        public async Task<bool> UpdateEmployeeSlipHours(int employeeId, int month, int year, TimeSpan newHours)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "update tbl_employeePassSlipHours " +
+                        "set " +
+                        "numberOfHours = @newHours " +
+                        "where employeeId = @employeeId " +
+                        "and month = @month " +
+                        "and year = @year";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@newHours", newHours);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@year", year);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
 
         // This function is responsible for adding the leave into employee DTR
         public async Task<bool> AddDTRLog(int employeeId, DateTime dateLog, string status, int totalHours)

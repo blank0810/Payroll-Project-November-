@@ -808,7 +808,6 @@
             this.mayor.TabIndex = 39;
             this.mayor.Text = "------";
             this.mayor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mayor.TextChanged += new System.EventHandler(this.mayor_TextChanged);
             // 
             // personnelPassSlipUC
             // 

@@ -35,6 +35,9 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.departmentName = new System.Windows.Forms.ComboBox();
             this.employmentStatus = new System.Windows.Forms.ComboBox();
+            this.filterBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.searchBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.searchEmployee = new Payroll_Project2.Custom.customTextBox2();
             this.titleLabel = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -45,17 +48,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.recordNumber = new Payroll_Project2.Custom.customTextBox2();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.pageLabel = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
             this.previousBtn = new Payroll_Project2.Custom.buttonDesign();
             this.nextBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.recordNumber = new Payroll_Project2.Custom.customTextBox2();
-            this.filterBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.searchBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.searchEmployee = new Payroll_Project2.Custom.customTextBox2();
+            this.pageLabel = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.requestListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel5.SuspendLayout();
@@ -137,6 +137,72 @@
             this.employmentStatus.Name = "employmentStatus";
             this.employmentStatus.Size = new System.Drawing.Size(181, 25);
             this.employmentStatus.TabIndex = 11;
+            // 
+            // filterBtn
+            // 
+            this.filterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.filterBtn.AutoSize = true;
+            this.filterBtn.BackColor = System.Drawing.Color.ForestGreen;
+            this.filterBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
+            this.filterBtn.BorderColor = System.Drawing.Color.Navy;
+            this.filterBtn.BorderRadius = 5;
+            this.filterBtn.BorderSize = 0;
+            this.filterBtn.FlatAppearance.BorderSize = 0;
+            this.filterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.filterBtn.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.filterBtn.ForeColor = System.Drawing.Color.White;
+            this.filterBtn.Location = new System.Drawing.Point(934, 7);
+            this.filterBtn.Name = "filterBtn";
+            this.filterBtn.Size = new System.Drawing.Size(85, 23);
+            this.filterBtn.TabIndex = 13;
+            this.filterBtn.Text = "+Apply Filter";
+            this.filterBtn.TextColor = System.Drawing.Color.White;
+            this.filterBtn.UseVisualStyleBackColor = false;
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.searchBtn.BackColor = System.Drawing.Color.ForestGreen;
+            this.searchBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
+            this.searchBtn.BorderColor = System.Drawing.Color.Navy;
+            this.searchBtn.BorderRadius = 10;
+            this.searchBtn.BorderSize = 0;
+            this.searchBtn.FlatAppearance.BorderSize = 0;
+            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.searchBtn.ForeColor = System.Drawing.Color.White;
+            this.searchBtn.Location = new System.Drawing.Point(443, 4);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(73, 30);
+            this.searchBtn.TabIndex = 10;
+            this.searchBtn.Text = "Search";
+            this.searchBtn.TextColor = System.Drawing.Color.White;
+            this.searchBtn.UseVisualStyleBackColor = false;
+            // 
+            // searchEmployee
+            // 
+            this.searchEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.searchEmployee.BackColor = System.Drawing.Color.White;
+            this.searchEmployee.BorderColor = System.Drawing.Color.Gray;
+            this.searchEmployee.BorderFocusColor = System.Drawing.Color.Black;
+            this.searchEmployee.BorderRadius = 10;
+            this.searchEmployee.BorderSize = 1;
+            this.searchEmployee.Font = new System.Drawing.Font("Segoe UI Semibold", 8.75F, System.Drawing.FontStyle.Bold);
+            this.searchEmployee.ForeColor = System.Drawing.Color.Black;
+            this.searchEmployee.Location = new System.Drawing.Point(194, 4);
+            this.searchEmployee.Multiline = false;
+            this.searchEmployee.Name = "searchEmployee";
+            this.searchEmployee.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.searchEmployee.PasswordChar = false;
+            this.searchEmployee.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.searchEmployee.PlaceholderText = "Search employee name or id";
+            this.searchEmployee.Size = new System.Drawing.Size(248, 30);
+            this.searchEmployee.TabIndex = 9;
+            this.searchEmployee.Texts = "";
+            this.searchEmployee.UnderlinedStyle = false;
             // 
             // titleLabel
             // 
@@ -253,6 +319,30 @@
             this.panel9.Size = new System.Drawing.Size(1411, 41);
             this.panel9.TabIndex = 15;
             // 
+            // recordNumber
+            // 
+            this.recordNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.recordNumber.AutoSize = true;
+            this.recordNumber.BackColor = System.Drawing.Color.White;
+            this.recordNumber.BorderColor = System.Drawing.Color.Gray;
+            this.recordNumber.BorderFocusColor = System.Drawing.Color.Black;
+            this.recordNumber.BorderRadius = 5;
+            this.recordNumber.BorderSize = 1;
+            this.recordNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold);
+            this.recordNumber.ForeColor = System.Drawing.Color.Black;
+            this.recordNumber.Location = new System.Drawing.Point(69, 8);
+            this.recordNumber.Multiline = false;
+            this.recordNumber.Name = "recordNumber";
+            this.recordNumber.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.recordNumber.PasswordChar = false;
+            this.recordNumber.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.recordNumber.PlaceholderText = "";
+            this.recordNumber.Size = new System.Drawing.Size(40, 29);
+            this.recordNumber.TabIndex = 2;
+            this.recordNumber.Texts = "";
+            this.recordNumber.UnderlinedStyle = false;
+            this.recordNumber._TextChanged += new System.EventHandler(this.recordNumber__TextChanged);
+            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -285,27 +375,6 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(1411, 32);
             this.panel11.TabIndex = 18;
-            // 
-            // pageLabel
-            // 
-            this.pageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pageLabel.AutoSize = true;
-            this.pageLabel.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.pageLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.pageLabel.Location = new System.Drawing.Point(6, 8);
-            this.pageLabel.Name = "pageLabel";
-            this.pageLabel.Size = new System.Drawing.Size(70, 17);
-            this.pageLabel.TabIndex = 1;
-            this.pageLabel.Text = "Page 1 of 1";
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(10, 139);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1411, 5);
-            this.panel10.TabIndex = 19;
             // 
             // previousBtn
             // 
@@ -351,95 +420,26 @@
             this.nextBtn.UseVisualStyleBackColor = false;
             this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
             // 
-            // recordNumber
+            // pageLabel
             // 
-            this.recordNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.recordNumber.AutoSize = true;
-            this.recordNumber.BackColor = System.Drawing.Color.White;
-            this.recordNumber.BorderColor = System.Drawing.Color.Gray;
-            this.recordNumber.BorderFocusColor = System.Drawing.Color.Black;
-            this.recordNumber.BorderRadius = 5;
-            this.recordNumber.BorderSize = 1;
-            this.recordNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold);
-            this.recordNumber.ForeColor = System.Drawing.Color.Black;
-            this.recordNumber.Location = new System.Drawing.Point(69, 8);
-            this.recordNumber.Multiline = false;
-            this.recordNumber.Name = "recordNumber";
-            this.recordNumber.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.recordNumber.PasswordChar = false;
-            this.recordNumber.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.recordNumber.PlaceholderText = "";
-            this.recordNumber.Size = new System.Drawing.Size(40, 29);
-            this.recordNumber.TabIndex = 2;
-            this.recordNumber.Texts = "";
-            this.recordNumber.UnderlinedStyle = false;
-            this.recordNumber._TextChanged += new System.EventHandler(this.recordNumber__TextChanged);
+            this.pageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pageLabel.AutoSize = true;
+            this.pageLabel.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.pageLabel.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.pageLabel.Location = new System.Drawing.Point(6, 8);
+            this.pageLabel.Name = "pageLabel";
+            this.pageLabel.Size = new System.Drawing.Size(70, 17);
+            this.pageLabel.TabIndex = 1;
+            this.pageLabel.Text = "Page 1 of 1";
             // 
-            // filterBtn
+            // panel10
             // 
-            this.filterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.filterBtn.AutoSize = true;
-            this.filterBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.filterBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.filterBtn.BorderColor = System.Drawing.Color.Navy;
-            this.filterBtn.BorderRadius = 5;
-            this.filterBtn.BorderSize = 0;
-            this.filterBtn.FlatAppearance.BorderSize = 0;
-            this.filterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.filterBtn.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.filterBtn.ForeColor = System.Drawing.Color.White;
-            this.filterBtn.Location = new System.Drawing.Point(934, 7);
-            this.filterBtn.Name = "filterBtn";
-            this.filterBtn.Size = new System.Drawing.Size(85, 23);
-            this.filterBtn.TabIndex = 13;
-            this.filterBtn.Text = "+Apply Filter";
-            this.filterBtn.TextColor = System.Drawing.Color.White;
-            this.filterBtn.UseVisualStyleBackColor = false;
-            // 
-            // searchBtn
-            // 
-            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.searchBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.searchBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.searchBtn.BorderColor = System.Drawing.Color.Navy;
-            this.searchBtn.BorderRadius = 10;
-            this.searchBtn.BorderSize = 0;
-            this.searchBtn.FlatAppearance.BorderSize = 0;
-            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.searchBtn.ForeColor = System.Drawing.Color.White;
-            this.searchBtn.Location = new System.Drawing.Point(443, 4);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(73, 30);
-            this.searchBtn.TabIndex = 10;
-            this.searchBtn.Text = "Search";
-            this.searchBtn.TextColor = System.Drawing.Color.White;
-            this.searchBtn.UseVisualStyleBackColor = false;
-            // 
-            // searchEmployee
-            // 
-            this.searchEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.searchEmployee.BackColor = System.Drawing.Color.White;
-            this.searchEmployee.BorderColor = System.Drawing.Color.Gray;
-            this.searchEmployee.BorderFocusColor = System.Drawing.Color.Black;
-            this.searchEmployee.BorderRadius = 10;
-            this.searchEmployee.BorderSize = 1;
-            this.searchEmployee.Font = new System.Drawing.Font("Segoe UI Semibold", 8.75F, System.Drawing.FontStyle.Bold);
-            this.searchEmployee.ForeColor = System.Drawing.Color.Black;
-            this.searchEmployee.Location = new System.Drawing.Point(194, 4);
-            this.searchEmployee.Multiline = false;
-            this.searchEmployee.Name = "searchEmployee";
-            this.searchEmployee.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.searchEmployee.PasswordChar = false;
-            this.searchEmployee.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.searchEmployee.PlaceholderText = "Search employee name or id";
-            this.searchEmployee.Size = new System.Drawing.Size(248, 30);
-            this.searchEmployee.TabIndex = 9;
-            this.searchEmployee.Texts = "";
-            this.searchEmployee.UnderlinedStyle = false;
+            this.panel10.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(10, 139);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1411, 5);
+            this.panel10.TabIndex = 19;
             // 
             // panel12
             // 

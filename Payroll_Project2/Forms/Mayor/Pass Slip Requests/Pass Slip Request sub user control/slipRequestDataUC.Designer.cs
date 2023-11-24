@@ -57,6 +57,7 @@
             this.viewBtn.Text = "Review";
             this.viewBtn.TextColor = System.Drawing.Color.Black;
             this.viewBtn.UseVisualStyleBackColor = false;
+            this.viewBtn.Click += new System.EventHandler(this.viewBtn_Click);
             // 
             // approveBtn
             // 
@@ -141,6 +142,7 @@
             this.Controls.Add(this.employeeName);
             this.Name = "slipRequestDataUC";
             this.Size = new System.Drawing.Size(1037, 45);
+            this.Load += new System.EventHandler(this.slipRequestDataUC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -2,6 +2,7 @@
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Functions;
 using Payroll_Project2.Forms.Mayor.Dashboard.Dashboard_User_Control;
 using Payroll_Project2.Forms.Mayor.Leave_Requests;
+using Payroll_Project2.Forms.Mayor.Pass_Slip_Requests;
 using Payroll_Project2.Forms.Mayor.Travel_Order_Requests;
 using System;
 using System.Configuration;
@@ -281,6 +282,35 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard
             }
         }
 
+        private async Task DisplaySlipRequest(int userId)
+        {
+            try
+            {
+                string department = await GetDepartment(userId);
+                content.Controls.Clear();
+                passSlipRequestsUC slipRequest = new passSlipRequestsUC(userId, this, department);
+
+                if (!content.Controls.Contains(slipRequest))
+                {
+                    content.Controls.Add(slipRequest);
+                    slipRequest.Dock = DockStyle.Fill;
+                    slipRequest.BringToFront();
+                }
+                else
+                {
+                    slipRequest.BringToFront();
+                }
+            }
+            catch (SqlException sql)
+            {
+                ErrorMessage(sql.Message, "SQL Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage(ex.Message, "Exception Error");
+            }
+        }
+
         private async void MayorDashboard_Load(object sender, EventArgs e)
         {
             await DataBinding(_userId);
@@ -316,6 +346,12 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard
         {
             titleLabel.Text = travelBtn.Text;
             await DisplayTravelRequest(_userId);
+        }
+
+        private async void slipBtn_Click(object sender, EventArgs e)
+        {
+            titleLabel.Text = slipBtn.Text;
+            await DisplaySlipRequest(_userId);
         }
     }
 }

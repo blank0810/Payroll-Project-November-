@@ -103,14 +103,14 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select concat(employeeFname, ' ', employeeLname) as employeeName, dateFile, slipControlNumber, " +
-                        "isNoted, cast(slipEndingTime - slipStartingTime as time) as timeUsed " +
-                        "from tbl_passSlip " +
-                        "join tbl_employee on tbl_passSlip.employeeId = tbl_employee.employeeId " +
-                        "join tbl_department on tbl_department.departmentId = tbl_employee.departmentId " +
-                        "where (departmentName = @department and isNoted is null and isApproved is null) " +
-                        "or (isApproved is null and isNoted is not null) " +
-                        "order by slipControlNumber offset @offset rows fetch next @recordPerPage rows only";
+                    string command = "SELECT CONCAT(employeeFname, ' ', employeeLname) AS employeeName, dateFile, slipControlNumber, " +
+                        "isNoted, CAST(slipEndingTime - slipStartingTime AS TIME) AS timeUsed, tbl_employee.employeeId " +
+                        "FROM tbl_passSlip " +
+                        "JOIN tbl_employee ON tbl_passSlip.employeeId = tbl_employee.employeeId " +
+                        "JOIN tbl_department ON tbl_department.departmentId = tbl_employee.departmentId " +
+                        "WHERE (departmentName = @department AND isNoted IS NULL AND isApproved IS NULL) " +
+                        "OR (isApproved IS NULL AND isNoted IS NOT NULL) " +
+                        "ORDER BY slipControlNumber OFFSET @offset ROWS FETCH NEXT @recordPerPage ROWS ONLY";
 
                     using (cmd = new SqlCommand(command, conn))
                     {

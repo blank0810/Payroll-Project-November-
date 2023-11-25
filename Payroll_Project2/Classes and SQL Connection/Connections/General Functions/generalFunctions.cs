@@ -1112,7 +1112,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 {
                     await conn.OpenAsync();
                     string command = "select slipControlNumber, isNoted, slipNotedBy,slipNotedDate, dateFile, slipDate, isApproved, approvedBy, " +
-                        "approvedDate, " +
+                        "approvedDate,  cast(slipEndingTime - slipStartingTime as time) as timeUsed, " +
                         "statusDescription, employeeFname, employeeLname, employeeMname, slipStartingTime, slipEndingTime, " +
                         "slipDestination, deniedReason from tbl_passSlip join tbl_employee on tbl_employee.employeeId = tbl_passSlip.employeeId " +
                         "join tbl_status on tbl_passSlip.statusId = tbl_status.statusId where slipControlNumber = @controlNumber";

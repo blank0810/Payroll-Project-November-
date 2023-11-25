@@ -198,6 +198,7 @@
             this.slipBtn.Text = "Pass Slip Requests";
             this.slipBtn.TextColor = System.Drawing.Color.White;
             this.slipBtn.UseVisualStyleBackColor = false;
+            this.slipBtn.Click += new System.EventHandler(this.slipBtn_Click);
             // 
             // panel20
             // 

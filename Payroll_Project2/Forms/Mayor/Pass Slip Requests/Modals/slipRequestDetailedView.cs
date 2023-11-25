@@ -44,9 +44,12 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Modals
         public string MayorName { get; set; }
         public bool IsNoteNull { get; set; }
 
-        public slipRequestDetailedView()
+        public slipRequestDetailedView(int userId, slipRequestDataUC parent, string userDepartment)
         {
             InitializeComponent();
+            _userId = userId;
+            _parent = parent;
+            _userDepartment = userDepartment;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Functions;
+using Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Modals;
 using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -209,14 +211,71 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
             }
         }
 
-        private async Task DisplaySlipDetails(int userId, string userDepartment, bool isNoteNull, string employeeName, string dateFiled, int employeeId, 
+        private async Task DisplaySlipDetails(int userId, string userDepartment, string dateFile, bool isNoteNull, string employeeName, int employeeId, 
             int controlNumber, TimeSpan hoursUsed)
         {
             try
             {
+                DataTable details = await GetSlipDetails(controlNumber);
+                string name = await GetMayorName(userId);
 
+                if (details != null && details.Rows.Count > 0)
+                {
+                    foreach (DataRow row in details.Rows)
+                    {
+                        slipRequestDetailedView slipDetails = SlipRequest(controlNumber, name, employeeName, employeeId, isNoteNull, userId,
+                            userDepartment);
+
+                        ParseAndAssignDateTime(row, "slipDate", value => slipDetails.SlipDate = value, "---------");
+                        ParseAndAssignTime(row, "slipStartingTime", value => slipDetails.StartingTime = value, "----------");
+                        ParseAndAssignTime(row, "slipEndingTime", value => slipDetails.EndingTime = value, "------------");
+                        AssignValueIfNotEmpty(row, "slipDestination", value => slipDetails.Destination = value, "----------");
+                        AssignValueIfNotEmpty(row, "slipNotedBy", value => slipDetails.NotedBy = value, "----------");
+                        ParseAndAssignDateTime(row, "slipNotedDate", value => slipDetails.NotedDate = value, "---------");
+                        ParseAndAssignTime(row, "timeUsed", value => slipDetails.HoursUsed = value, "---------");
+
+                        if (!string.IsNullOrEmpty(dateFile) && DateTime.TryParseExact(dateFile, "MMM dd, yyyy", CultureInfo.InvariantCulture, 
+                            DateTimeStyles.None, out DateTime parsedDate))
+                        {
+                            TimeSpan balanceHour = await GetEmployeeSlipHours(employeeId, parsedDate.Month, parsedDate.Year);
+
+                            if (balanceHour != TimeSpan.Zero)
+                            {
+                                slipDetails.BalanceHours = $"{balanceHour: hh:mm:ss}";
+                            }
+                            else
+                            {
+                                slipDetails.BalanceHours = "00:00:00";
+                            }
+
+                            slipDetails.RemainingHours = $"{(balanceHour - hoursUsed <= TimeSpan.Zero ? TimeSpan.Zero : balanceHour - hoursUsed):hh:mm:ss}";
+                        }
+
+                        slipDetails.ShowDialog();
+                    }
+                }
             }
-            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+            catch (SqlException sql) 
+            {
+                ErrorMessages(sql.Message, "SQL Error"); 
+            } 
+            catch (Exception ex) 
+            {
+                ErrorMessages(ex.Message, "Exception Error");
+            }
+        }
+
+        private slipRequestDetailedView SlipRequest(int controlNumber, string mayorName, string employeeName, int employeeId, bool isNoteNull, 
+            int userId, string userDepartment)
+        {
+            return new slipRequestDetailedView(userId, this, userDepartment)
+            {
+                ControlNumber = controlNumber,
+                EmployeeId = employeeId,
+                EmployeeName = employeeName,
+                MayorName = mayorName,
+                IsNoteNull = isNoteNull,
+            };
         }
 
         private void slipRequestDataUC_Load(object sender, EventArgs e)
@@ -224,9 +283,9 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
             DataBinding();
         }
 
-        private void viewBtn_Click(object sender, EventArgs e)
+        private async void viewBtn_Click(object sender, EventArgs e)
         {
-
+            await DisplaySlipDetails(_userId, _userDepartment, DateFiled, IsNoteNull, EmployeeName, EmployeeId, ControlNumber, TimeUsed);
         }
 
         private async Task<string> RetrieveMayorName(int userId)
@@ -294,7 +353,8 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
         {
             try
             {
-                if(!string.IsNullOrEmpty(dateFiled) && DateTime.TryParse(dateFiled, out DateTime parsedDate))
+                if(!string.IsNullOrEmpty(dateFiled) && DateTime.TryParseExact(dateFiled, "MMM dd, yyyy", CultureInfo.InvariantCulture, 
+                    DateTimeStyles.None, out DateTime parsedDate))
                 {
                     TimeSpan balanceHour = await GetEmployeeSlipHours(employeeId, parsedDate.Month, parsedDate.Year);
 
@@ -339,7 +399,8 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
         {
             try
             {
-                if (!string.IsNullOrEmpty(logDate) && DateTime.TryParse(logDate, out DateTime parsedDate))
+                if (!string.IsNullOrEmpty(logDate) && DateTime.TryParseExact(logDate, "MMM dd, yyyy", CultureInfo.InvariantCulture,
+                    DateTimeStyles.None, out DateTime parsedDate))
                 {
                     bool insertDtr = await InsertDTRLog(employeeId, parsedDate, status, totalHours);
 
@@ -423,7 +484,7 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
         {
             try
             {
-                string name = await GetMayorName(_userId);
+                string name = await RetrieveMayorName(_userId);
                 if (name == null)
                     return;
 

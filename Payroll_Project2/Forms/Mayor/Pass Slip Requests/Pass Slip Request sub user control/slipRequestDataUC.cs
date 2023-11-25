@@ -177,6 +177,48 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
             MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void AssignValueIfNotEmpty(DataRow row, string columnName, Action<string> assignAction, string defaultValue)
+        {
+            string value = row[columnName]?.ToString();
+            assignAction(!string.IsNullOrEmpty(value) ? value : defaultValue);
+        }
+
+        private void ParseAndAssignDateTime(DataRow row, string columnName, Action<string> assignAction, string defaultValue)
+        {
+            if (!string.IsNullOrEmpty(row[columnName]?.ToString()) && DateTime.TryParse(row[columnName]?.ToString(),
+                out DateTime parsedDate))
+            {
+                assignAction($"{parsedDate: MMM dd, yyyy}");
+            }
+            else
+            {
+                assignAction(defaultValue);
+            }
+        }
+
+        private void ParseAndAssignTime(DataRow row, string columnName, Action<string> assignAction, string defaultValue)
+        {
+            if (!string.IsNullOrEmpty(row[columnName]?.ToString()) && DateTime.TryParse(row[columnName]?.ToString(), out
+                DateTime parsedTime))
+            {
+                assignAction($"{parsedTime: hh:mm tt}");
+            }
+            else
+            {
+                assignAction(defaultValue);
+            }
+        }
+
+        private async Task DisplaySlipDetails(int userId, string userDepartment, bool isNoteNull, string employeeName, string dateFiled, int employeeId, 
+            int controlNumber, TimeSpan hoursUsed)
+        {
+            try
+            {
+
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         private void slipRequestDataUC_Load(object sender, EventArgs e)
         {
             DataBinding();

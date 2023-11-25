@@ -1,5 +1,6 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Functions;
+using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,8 +10,10 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_user_control
 {
@@ -290,14 +293,130 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
             catch (SqlException sql) { throw sql;} catch (Exception ex) { throw ex; }
         }
 
+        private async Task<bool> SubmitDTRLog(int employeeId, string status, string logDate, int totalHours)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(logDate) && DateTime.TryParse(logDate, out DateTime parsedDate))
+                {
+                    bool insertDtr = await InsertDTRLog(employeeId, parsedDate, status, totalHours);
+
+                    if (insertDtr)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        ErrorMessages($"An error occurred while integrating the travel order request into the Daily Time Record (DTR) on " +
+                            $"{logDate: MMM dd, yyyy}. " +
+                            $"The process has been terminated. Please contact the system administrator for prompt resolution.",
+                            "Integration Error: Daily Time Record Log");
+                        return false;
+                    }
+                }
+                else
+                {
+                    ErrorMessages($"An error occurred while integrating the travel order request into the Daily Time Record (DTR) on " +
+                        $"{logDate: MMM dd, yyyy}. " +
+                        $"The process has been terminated. Please contact the system administrator for prompt resolution.",
+                        "Integration Error: Daily Time Record Log");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         private async Task<bool> SubmitSlipFormLog(int controlNumber, int employeeId, int userId, DateTime logDate, string employeeName, 
             string mayorName)
         {
             try
             {
+                string formLogDescription = "Pass Slip Request Notation and Approval:" +
+                    "||Approval and Notation done by Municipal Mayor: " + mayorName + "( ID: " + userId.ToString() + " )" +
+                    "||Employee in Request: " + employeeName + " (Employee ID: " + employeeId.ToString() + " )" +
+                    "||Date and Time: " + DateTime.Now.ToString("f");
+                string formLogCaption = "Pass Slip Request Notation and Approval";
 
+                bool addTravelFormLog = await AddSlipFormLog(logDate, formLogDescription, controlNumber, formLogCaption);
+
+                if (addTravelFormLog)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages("Failed to update form logs due to technical difficulties. Notify the employee of the approval status. " +
+                        "Contact System Administrator for assistance. Thank you.", "Technical Difficulty");
+                    return false;
+                }
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> SubmitSystemLog(DateTime logDate, string mayorName, string employeeName, int userId, int employeeId)
+        {
+            try
+            {
+                string systemLog = "Pass Slip Request Notation and Approval:" +
+                        "||Done By Municipal Mayor: " + mayorName + "( ID: " + userId.ToString() + " )" +
+                        "||Employee in Request: " + employeeName + " (Employee ID: " + employeeId.ToString() + " )" +
+                        "||Date and Time: " + DateTime.Now.ToString("f");
+                string systemLogCaption = "Pass Slip Request Notation and Approval";
+
+                bool addSystemLog = await AddSystemLogs(logDate, systemLog, systemLogCaption);
+
+                if (addSystemLog) { return true; }
+                else
+                {
+                    ErrorMessages("Failed to update system logs due to technical difficulties. Notify the employee of the approval status. " +
+                        "Contact System Administrator for assistance. Thank you.", "Technical Difficulty");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async void approveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string name = await GetMayorName(_userId);
+                if (name == null)
+                    return;
+
+                bool noteRequest = await SubmitNoteSlipRequest(ControlNumber, IsNote, name, DateTime.Now, IsNoteNull);
+                if (!noteRequest)
+                    return;
+
+                bool approveRequest = await SubmitApprovalSlipRequest(ControlNumber, IsApprove, name, DateTime.Now, FormStatus);
+                if(!approveRequest) 
+                    return;
+
+                bool deduct = await SubmitDeductionSlipHours(EmployeeId, DateFiled, TimeUsed);
+                if (!deduct)
+                    return;
+
+                bool dtr = await SubmitDTRLog(EmployeeId, SlipStatus, DateFiled, TotalHours);
+                if (!dtr)
+                    return;
+
+                bool formLog = await SubmitSlipFormLog(ControlNumber, EmployeeId, _userId, DateTime.Now, EmployeeName, name);
+                if (!formLog)
+                    return;
+
+                bool systemLog = await SubmitSystemLog(DateTime.Now, name, EmployeeName, _userId, EmployeeId);
+                if (!systemLog)
+                    return;
+            }
+            catch (SqlException sql)
+            {
+                ErrorMessages(sql.Message, "SQL Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessages(ex.Message, "Exception Error");
+            }
         }
     }
 }

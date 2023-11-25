@@ -326,15 +326,26 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> SubmitDTRLog(int employeeId, string status, DateTime logDate, int totalHours)
+        private async Task<bool> SubmitDTRLog(int employeeId, string status, string logDate, int totalHours)
         {
             try
             {
-                bool insertDtr = await InsertDTRLog(employeeId, logDate, status, totalHours);
-
-                if (insertDtr)
+                if(!string.IsNullOrEmpty(logDate) && DateTime.TryParse(logDate, out DateTime parsedDate))
                 {
-                    return true;
+                    bool insertDtr = await InsertDTRLog(employeeId, parsedDate, status, totalHours);
+
+                    if (insertDtr)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        ErrorMessages($"An error occurred while integrating the travel order request into the Daily Time Record (DTR) on " +
+                            $"{logDate: MMM dd, yyyy}. " +
+                            $"The process has been terminated. Please contact the system administrator for prompt resolution.",
+                            "Integration Error: Daily Time Record Log");
+                        return false;
+                    }
                 }
                 else
                 {
@@ -417,7 +428,7 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
                 if (!approve)
                     return;
 
-                bool dtr = await SubmitDTRLog(EmployeeId, TravelStatus, DateTime.Today, TotalHours);
+                bool dtr = await SubmitDTRLog(EmployeeId, TravelStatus, DateFiled, TotalHours);
                 if (!dtr)
                     return;
 

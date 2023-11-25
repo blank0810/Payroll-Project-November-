@@ -80,6 +80,7 @@
             this.approveBtn.Text = "Approve";
             this.approveBtn.TextColor = System.Drawing.Color.Black;
             this.approveBtn.UseVisualStyleBackColor = false;
+            this.approveBtn.Click += new System.EventHandler(this.approveBtn_Click);
             // 
             // dateFiled
             // 

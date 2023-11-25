@@ -335,11 +335,11 @@
             this.monthName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.monthName.AutoSize = true;
             this.monthName.BackColor = System.Drawing.Color.Transparent;
-            this.monthName.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.monthName.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.monthName.ForeColor = System.Drawing.Color.Black;
             this.monthName.Location = new System.Drawing.Point(79, 6);
             this.monthName.Name = "monthName";
-            this.monthName.Size = new System.Drawing.Size(99, 19);
+            this.monthName.Size = new System.Drawing.Size(95, 17);
             this.monthName.TabIndex = 30;
             this.monthName.Text = "{Month name}";
             // 
@@ -938,6 +938,7 @@
             this.Name = "slipRequestDetailedView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pass Slip Details";
+            this.Load += new System.EventHandler(this.slipRequestDetailedView_Load);
             this.content.ResumeLayout(false);
             this.content.PerformLayout();
             this.panel16.ResumeLayout(false);

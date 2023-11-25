@@ -218,6 +218,8 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
             {
                 DataTable details = await GetSlipDetails(controlNumber);
                 string name = await GetMayorName(userId);
+                DateTime parsedDate = DateTime.Parse(dateFile);
+                TimeSpan balanceHour = await GetEmployeeSlipHours(employeeId, parsedDate.Month, parsedDate.Year);
 
                 if (details != null && details.Rows.Count > 0)
                 {
@@ -232,24 +234,10 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
                         AssignValueIfNotEmpty(row, "slipDestination", value => slipDetails.Destination = value, "----------");
                         AssignValueIfNotEmpty(row, "slipNotedBy", value => slipDetails.NotedBy = value, "----------");
                         ParseAndAssignDateTime(row, "slipNotedDate", value => slipDetails.NotedDate = value, "---------");
-                        ParseAndAssignTime(row, "timeUsed", value => slipDetails.HoursUsed = value, "---------");
-
-                        if (!string.IsNullOrEmpty(dateFile) && DateTime.TryParseExact(dateFile, "MMM dd, yyyy", CultureInfo.InvariantCulture, 
-                            DateTimeStyles.None, out DateTime parsedDate))
-                        {
-                            TimeSpan balanceHour = await GetEmployeeSlipHours(employeeId, parsedDate.Month, parsedDate.Year);
-
-                            if (balanceHour != TimeSpan.Zero)
-                            {
-                                slipDetails.BalanceHours = $"{balanceHour: hh:mm:ss}";
-                            }
-                            else
-                            {
-                                slipDetails.BalanceHours = "00:00:00";
-                            }
-
-                            slipDetails.RemainingHours = $"{(balanceHour - hoursUsed <= TimeSpan.Zero ? TimeSpan.Zero : balanceHour - hoursUsed):hh:mm:ss}";
-                        }
+                        slipDetails.MonthName = $"{parsedDate: MMMM}";
+                        slipDetails.BalanceHours = $"{(balanceHour == TimeSpan.Zero ? TimeSpan.Zero : balanceHour)}";
+                        slipDetails.HoursUsed = $"{(hoursUsed == TimeSpan.Zero? TimeSpan.Zero : hoursUsed)}";
+                        slipDetails.RemainingHours = $"{(balanceHour - hoursUsed <= TimeSpan.Zero ? TimeSpan.Zero : balanceHour - hoursUsed)}";
 
                         slipDetails.ShowDialog();
                     }

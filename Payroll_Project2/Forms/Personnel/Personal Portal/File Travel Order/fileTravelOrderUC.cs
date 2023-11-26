@@ -170,9 +170,9 @@ namespace Payroll_Project2.Forms.Personnel.Personal_Portal.File_Travel_Order
                             travel[i].DepartureDate = "--------";
                         }
 
-                        if (!string.IsNullOrEmpty(row["reason"].ToString()))
+                        if (!string.IsNullOrEmpty(row["purpose"].ToString()))
                         {
-                            travel[i].Purpose = $"{row["reason"]}";
+                            travel[i].Purpose = $"{row["purpose"]}";
                         }
                         else
                         {

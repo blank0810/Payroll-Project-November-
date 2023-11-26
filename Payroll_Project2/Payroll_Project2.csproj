@@ -1750,6 +1750,9 @@
     <EmbeddedResource Include="Forms\Department Head\Personal Portal\File Travel Order\fileTravelOrderModal.resx">
       <DependentUpon>fileTravelOrderModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Personal Portal\File Travel Order\fileTravelOrderUC.resx">
+      <DependentUpon>fileTravelOrderUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Department Head\Personal Portal\Leave Logs\Leave logs sub user control\leaveLogsDataUC.resx">
       <DependentUpon>leaveLogsDataUC.cs</DependentUpon>
     </EmbeddedResource>

@@ -1397,18 +1397,19 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         //This function will be responsible for retrieving the count of an employee's number of Leave
-        public async Task<int> GetleaveCount(int employeeId)
+        public async Task<int> GetleaveCount(int employeeId, string status)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Leave' or afternoonStatus = " +
-                        "'Leave') and employeeId = @employeeId";
+                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = @status or afternoonStatus = " +
+                        "@status) and employeeId = @employeeId";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@status", status);
 
                         object result = await cmd.ExecuteScalarAsync();
 
@@ -1428,18 +1429,19 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         //This function will be responsible for retrieving the count of an employee's number of Travel Order
-        public async Task<int> GetTravelOrderCount(int employeeId)
+        public async Task<int> GetTravelOrderCount(int employeeId, string status)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Travel Order' or afternoonStatus = " +
-                        "'Travel Order') and employeeId = @employeeId";
+                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = @status or afternoonStatus = " +
+                        "@status) and employeeId = @employeeId";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@status", status);
 
                         object result = await cmd.ExecuteScalarAsync();
 
@@ -1459,18 +1461,19 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         //This function will be responsible for retrieving the count of an employee's number of Pass Slip
-        public async Task<int> GetPassSlipCount(int employeeId)
+        public async Task<int> GetPassSlipCount(int employeeId, string status)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Pass Slip' or afternoonStatus = " +
-                        "'Pass Slip') and employeeId = @employeeId";
+                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = @status or afternoonStatus = " +
+                        "@status) and employeeId = @employeeId";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@status", status);
 
                         object result = await cmd.ExecuteScalarAsync();
 

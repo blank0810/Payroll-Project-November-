@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,6 +37,7 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
         public string EmployeeName { get; set; }
         public int ControlNumber { get; set; }
         public string DateFiled { get; set; }
+        public string SlipDate { get; set; }
         public TimeSpan TimeUsed { get; set; }
         public bool IsNoteNull { get; set; }
 
@@ -212,7 +214,7 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
         }
 
         private async Task DisplaySlipDetails(int userId, string userDepartment, string dateFile, bool isNoteNull, string employeeName, int employeeId, 
-            int controlNumber, TimeSpan hoursUsed)
+            int controlNumber, TimeSpan hoursUsed, string slipDate)
         {
             try
             {
@@ -226,9 +228,8 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
                     foreach (DataRow row in details.Rows)
                     {
                         slipRequestDetailedView slipDetails = SlipRequest(controlNumber, name, employeeName, employeeId, isNoteNull, userId,
-                            userDepartment);
+                            userDepartment, dateFile, slipDate);
 
-                        ParseAndAssignDateTime(row, "slipDate", value => slipDetails.SlipDate = value, "---------");
                         ParseAndAssignTime(row, "slipStartingTime", value => slipDetails.StartingTime = value, "----------");
                         ParseAndAssignTime(row, "slipEndingTime", value => slipDetails.EndingTime = value, "------------");
                         AssignValueIfNotEmpty(row, "slipDestination", value => slipDetails.Destination = value, "----------");
@@ -254,7 +255,7 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
         }
 
         private slipRequestDetailedView SlipRequest(int controlNumber, string mayorName, string employeeName, int employeeId, bool isNoteNull, 
-            int userId, string userDepartment)
+            int userId, string userDepartment, string dateFiled, string slipDate)
         {
             return new slipRequestDetailedView(userId, this, userDepartment)
             {
@@ -263,6 +264,8 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
                 EmployeeName = employeeName,
                 MayorName = mayorName,
                 IsNoteNull = isNoteNull,
+                DateFiled = dateFiled,
+                SlipDate = slipDate
             };
         }
 
@@ -273,7 +276,8 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
 
         private async void viewBtn_Click(object sender, EventArgs e)
         {
-            await DisplaySlipDetails(_userId, _userDepartment, DateFiled, IsNoteNull, EmployeeName, EmployeeId, ControlNumber, TimeUsed);
+            await DisplaySlipDetails(_userId, _userDepartment, DateFiled, IsNoteNull, EmployeeName, EmployeeId, ControlNumber, TimeUsed, SlipDate);
+            await _parent.DisplayRequest(_userId, _userDepartment);
         }
 
         private async Task<string> RetrieveMayorName(int userId)
@@ -282,7 +286,16 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
             {
                 string name = await GetMayorName(userId);
 
-                return string.IsNullOrEmpty(name) ? name : null;
+                if(name != null)
+                {
+                    return name;
+                }
+                else
+                {
+                    ErrorMessages("There is an error retrieving the Mayor's Name. The approval is temporarily terminated please try again later and " +
+                        "if error persists please contact the system administrator for quick resolution", "Mayor Name Retrieval Error");
+                    return null;
+                }
             }
             catch (SqlException sql) { throw sql;} catch (Exception ex) { throw ex; }
         }
@@ -337,18 +350,19 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> SubmitDeductionSlipHours(int employeeId, string dateFiled, TimeSpan hoursUsed)
+        private async Task<bool> SubmitDeductionSlipHours(int employeeId, string slipDate, TimeSpan hoursUsed)
         {
             try
             {
-                if(!string.IsNullOrEmpty(dateFiled) && DateTime.TryParseExact(dateFiled, "MMM dd, yyyy", CultureInfo.InvariantCulture, 
-                    DateTimeStyles.None, out DateTime parsedDate))
+                if(!string.IsNullOrEmpty(slipDate))
                 {
+                    DateTime parsedDate = DateTime.Parse(slipDate);
                     TimeSpan balanceHour = await GetEmployeeSlipHours(employeeId, parsedDate.Month, parsedDate.Year);
 
                     if (balanceHour !=  TimeSpan.Zero)
                     {
                         TimeSpan newHour = balanceHour - hoursUsed;
+                        MessageBox.Show($"Hour used: {hoursUsed} Balance: {balanceHour} New Hour: {newHour}");
 
                         bool updateHour = await DeductSlipHous(employeeId, parsedDate.Month, parsedDate.Year, newHour);
 
@@ -363,13 +377,14 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
                                 "Pass Slip Hours Deduction " +
                                 "Error");
                             return false;
-                        }
-                            
+                        }   
                     }
-
-                    ErrorMessages("There is an error in retrieving the Employee's Pass Slip hours. Please notify the system administrator for this " +
+                    else
+                    {
+                        ErrorMessages("There is an error in retrieving the Employee's Pass Slip hours. Please notify the system administrator for this " +
                         "error for quick resolution", "Employee Slip Hours Balance Retrieval Error");
-                    return false;
+                        return false;
+                    }
                 }
                 else
                 {
@@ -387,9 +402,9 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
         {
             try
             {
-                if (!string.IsNullOrEmpty(logDate) && DateTime.TryParseExact(logDate, "MMM dd, yyyy", CultureInfo.InvariantCulture,
-                    DateTimeStyles.None, out DateTime parsedDate))
+                if (!string.IsNullOrEmpty(logDate))
                 {
+                    DateTime parsedDate = DateTime.Parse(logDate);
                     bool insertDtr = await InsertDTRLog(employeeId, parsedDate, status, totalHours);
 
                     if (insertDtr)
@@ -484,11 +499,11 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
                 if(!approveRequest) 
                     return;
 
-                bool deduct = await SubmitDeductionSlipHours(EmployeeId, DateFiled, TimeUsed);
+                bool deduct = await SubmitDeductionSlipHours(EmployeeId, SlipDate, TimeUsed);
                 if (!deduct)
                     return;
 
-                bool dtr = await SubmitDTRLog(EmployeeId, SlipStatus, DateFiled, TotalHours);
+                bool dtr = await SubmitDTRLog(EmployeeId, SlipStatus, SlipDate, TotalHours);
                 if (!dtr)
                     return;
 
@@ -499,6 +514,12 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Pass_Slip_Request_sub_
                 bool systemLog = await SubmitSystemLog(DateTime.Now, name, EmployeeName, _userId, EmployeeId);
                 if (!systemLog)
                     return;
+
+                SuccessMessage($"Approval Successful: The pass slip request with " +
+                    $"control number {ControlNumber} has been successfully approved. Please await further review and approval. " +
+                    $"Thank you for your cooperation.", "Pass Slip Request Approval");
+
+                await _parent.DisplayRequest(_userId, _userDepartment);
             }
             catch (SqlException sql)
             {

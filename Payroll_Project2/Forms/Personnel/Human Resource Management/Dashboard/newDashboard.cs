@@ -975,10 +975,13 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
         {
             employeePanel.Visible = false;
             leaveManagementPanel.Visible = false;
+            leaveManagementSubPanel.Visible = false;
             payrollPanel.Visible = false;
             dtrPanel.Visible = false;
             travelOrderManagementPanel.Visible = false;
+            travelOrderSubPanel.Visible = false;
             passSlipManagementPanel.Visible = false;
+            passSlipSubPanel.Visible = false;
         }
 
         private void ShowPersonal()

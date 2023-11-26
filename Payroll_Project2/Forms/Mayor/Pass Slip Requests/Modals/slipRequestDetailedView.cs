@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -33,6 +34,7 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Modals
         public int ControlNumber { get; set; }
         public string EmployeeName { get; set; }
         public int EmployeeId { get; set; }
+        public string DateFiled {  get; set; }
         public string SlipDate { get; set; }
         public string StartingTime { get; set; }
         public string EndingTime { get; set; }
@@ -179,9 +181,254 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Modals
             remainingHour.Location = new Point(remainingHourX, remainingHour.Top);
         }
 
+        private void ErrorMessages(string message, string caption)
+        {
+            MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void SuccessMessage(string message, string caption)
+        {
+            MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void slipRequestDetailedView_Load(object sender, EventArgs e)
         {
             DataBinding();
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private async Task<bool> SubmitNoteSlipRequest(int controlNumber, bool isNote, string notedBy, DateTime notedDate, bool isNoteNull)
+        {
+            try
+            {
+                if (!isNoteNull)
+                {
+                    SuccessMessage("Since the notation of this request is already done by the respective office head it will automatically proceed to " +
+                        "approve the Pass Slip Request.", "Pass Slip Request Notation Notice");
+                    return true;
+                }
+                else
+                {
+                    bool submitNote = await NoteSlipRequest(controlNumber, isNote, notedBy, notedDate);
+
+                    if (submitNote)
+                    {
+                        return true;
+                    }
+
+                    ErrorMessages("There is an error encountered during the notation of pass slip request. The process is temporarily terminated " +
+                        "please try again later and if the error persists please contact the system administrator for resolution", "Pass Slip Notation " +
+                        "Error");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> SubmitApprovalSlipRequest(int controlNumber, bool isApproved, string approvedBy, DateTime approvedDate,
+            string status)
+        {
+            try
+            {
+                bool approve = await ApproveSlipRequest(controlNumber, isApproved, approvedBy, approvedDate, status);
+
+                if (approve)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages($"There is an error encoutered approving the payslip request with control number: {controlNumber}. Please " +
+                        $"try again later and if error persists please contact the system administrator for resolution", "Pass Slip Request Approval " +
+                        "Error");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> SubmitDeductionSlipHours(int employeeId, string dateFiled, string hoursUsed)  
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(dateFiled) && !string.IsNullOrEmpty(hoursUsed))
+                {
+                    DateTime parsedDate = DateTime.Parse(dateFiled);
+                    TimeSpan parsedTime = TimeSpan.Parse(hoursUsed);
+                    TimeSpan balanceHour = await GetEmployeeSlipHours(employeeId, parsedDate.Month, parsedDate.Year);
+
+                    if (balanceHour != TimeSpan.Zero)
+                    {
+                        TimeSpan newHour = balanceHour - parsedTime;
+
+                        bool updateHour = await DeductSlipHous(employeeId, parsedDate.Month, parsedDate.Year, newHour);
+
+                        if (updateHour)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            ErrorMessages("There is an error encountered during the deduction of the employee's Pass Slip Hour balance. " +
+                                "Please contact the system administrator to deduct the employee's slip hours and resolution",
+                                "Pass Slip Hours Deduction " +
+                                "Error");
+                            return false;
+                        }
+
+                    }
+
+                    ErrorMessages("There is an error in retrieving the Employee's Pass Slip hours. Please notify the system administrator for this " +
+                        "error for quick resolution", "Employee Slip Hours Balance Retrieval Error");
+                    return false;
+                }
+                else
+                {
+                    ErrorMessages("The chosen date filed is cannot be converted results into not be able to update the Employee's Slip Hours. " +
+                        "Please contact the system administrator to deduct the employee's slip hours and resolution", "Pass Slip Hours Deduction " +
+                        "Error");
+                    return false;
+                }
+
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> SubmitDTRLog(int employeeId, string status, string logDate, int totalHours)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(logDate))
+                {
+                    DateTime parsedDate = DateTime.Parse(logDate);
+                    bool insertDtr = await InsertDTRLog(employeeId, parsedDate, status, totalHours);
+
+                    if (insertDtr)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        ErrorMessages($"An error occurred while integrating the travel order request into the Daily Time Record (DTR) on " +
+                            $"{logDate: MMM dd, yyyy}. " +
+                            $"The process has been terminated. Please contact the system administrator for prompt resolution.",
+                            "Integration Error: Daily Time Record Log");
+                        return false;
+                    }
+                }
+                else
+                {
+                    ErrorMessages($"An error occurred while integrating the travel order request into the Daily Time Record (DTR) on " +
+                        $"{logDate: MMM dd, yyyy}. " +
+                        $"The process has been terminated. Please contact the system administrator for prompt resolution.",
+                        "Integration Error: Daily Time Record Log");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> SubmitSlipFormLog(int controlNumber, int employeeId, int userId, DateTime logDate, string employeeName,
+            string mayorName)
+        {
+            try
+            {
+                string formLogDescription = "Pass Slip Request Notation and Approval:" +
+                    "||Approval and Notation done by Municipal Mayor: " + mayorName + "( ID: " + userId.ToString() + " )" +
+                    "||Employee in Request: " + employeeName + " (Employee ID: " + employeeId.ToString() + " )" +
+                    "||Date and Time: " + DateTime.Now.ToString("f");
+                string formLogCaption = "Pass Slip Request Notation and Approval";
+
+                bool addTravelFormLog = await AddSlipFormLog(logDate, formLogDescription, controlNumber, formLogCaption);
+
+                if (addTravelFormLog)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages("Failed to update form logs due to technical difficulties. Notify the employee of the approval status. " +
+                        "Contact System Administrator for assistance. Thank you.", "Technical Difficulty");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> SubmitSystemLog(DateTime logDate, string mayorName, string employeeName, int userId, int employeeId)
+        {
+            try
+            {
+                string systemLog = "Pass Slip Request Notation and Approval:" +
+                        "||Done By Municipal Mayor: " + mayorName + "( ID: " + userId.ToString() + " )" +
+                        "||Employee in Request: " + employeeName + " (Employee ID: " + employeeId.ToString() + " )" +
+                        "||Date and Time: " + DateTime.Now.ToString("f");
+                string systemLogCaption = "Pass Slip Request Notation and Approval";
+
+                bool addSystemLog = await AddSystemLogs(logDate, systemLog, systemLogCaption);
+
+                if (addSystemLog) { return true; }
+                else
+                {
+                    ErrorMessages("Failed to update system logs due to technical difficulties. Notify the employee of the approval status. " +
+                        "Contact System Administrator for assistance. Thank you.", "Technical Difficulty");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async void approveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool noteRequest = await SubmitNoteSlipRequest(ControlNumber, IsNote, MayorName, DateTime.Now, IsNoteNull);
+                if (!noteRequest)
+                    return;
+
+                bool approveRequest = await SubmitApprovalSlipRequest(ControlNumber, IsApprove, MayorName, DateTime.Now, FormStatus);
+                if (!approveRequest)
+                    return;
+
+                bool deduct = await SubmitDeductionSlipHours(EmployeeId, DateFiled, HoursUsed);
+                if (!deduct)
+                    return;
+
+                bool dtr = await SubmitDTRLog(EmployeeId, SlipStatus, SlipDate, TotalHours);
+                if (!dtr)
+                    return;
+
+                bool formLog = await SubmitSlipFormLog(ControlNumber, EmployeeId, _userId, DateTime.Now, EmployeeName, MayorName);
+                if (!formLog)
+                    return;
+
+                bool systemLog = await SubmitSystemLog(DateTime.Now, MayorName, EmployeeName, _userId, EmployeeId);
+                if (!systemLog)
+                    return;
+
+                SuccessMessage($"Approval Successful: The pass slip request with " +
+                    $"control number {ControlNumber} has been successfully approved. Please await further review and approval. " +
+                    $"Thank you for your cooperation.", "Pass Slip Request Approval");
+                this.Close();
+            }
+            catch (SqlException sql)
+            {
+                ErrorMessages(sql.Message, "SQL Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessages(ex.Message, "Exception Error");
+            }
         }
     }
 }

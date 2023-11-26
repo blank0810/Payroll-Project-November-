@@ -715,9 +715,9 @@
             this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label9.Location = new System.Drawing.Point(391, 9);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 19);
+            this.label9.Size = new System.Drawing.Size(59, 19);
             this.label9.TabIndex = 91;
-            this.label9.Text = "Reason";
+            this.label9.Text = "Purpose";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11

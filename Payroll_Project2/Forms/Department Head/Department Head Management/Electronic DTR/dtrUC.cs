@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Payroll_Project2.Forms.Personnel.DTR.DTR_User_Controls;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
 {
@@ -20,6 +21,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         private static dtrClass dtrClass = new dtrClass();
         private static dashboardClass dashboardClass = new dashboardClass();
         private static generalFunctions generalFunctions = new generalFunctions();
+        private static readonly string LeaveStatus = ConfigurationManager.AppSettings.Get("DefaultLeaveStatus");
+        private static readonly string SlipStatus = ConfigurationManager.AppSettings.Get("DefaultSlipStatus");
+        private static readonly string TravelStatus = ConfigurationManager.AppSettings.Get("DefaultTravelStatus");
 
         private static int currentPage = 1;
         private static int recordPerPage = 10;
@@ -124,11 +128,11 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         }
 
         // This function is responsible for retrieving the count of the employee's Leave
-        private async Task<int> GetLeaveCount(int employeeId)
+        private async Task<int> GetLeaveCount(int employeeId,string status)
         {
             try
             {
-                int count = await generalFunctions.GetleaveCount(employeeId);
+                int count = await generalFunctions.GetleaveCount(employeeId, status);
 
                 return count;
             }
@@ -137,11 +141,11 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         }
 
         // This function is responsible for retrieving the count of the employee's Travel Order
-        private async Task<int> GetTravelOrderCount(int employeeId)
+        private async Task<int> GetTravelOrderCount(int employeeId, string status)
         {
             try
             {
-                int count = await generalFunctions.GetTravelOrderCount(employeeId);
+                int count = await generalFunctions.GetTravelOrderCount(employeeId, status);
 
                 return count;
             }
@@ -150,11 +154,11 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         }
 
         // This function is responsible for retrieving the count of the employee's Pass Slip
-        private async Task<int> GetPassSlipCount(int employeeId)
+        private async Task<int> GetPassSlipCount(int employeeId, string status)
         {
             try
             {
-                int count = await generalFunctions.GetPassSlipCount(employeeId);
+                int count = await generalFunctions.GetPassSlipCount(employeeId, status);
 
                 return count;
             }
@@ -274,9 +278,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
                         employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
                         employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
                         employee[i].DaysWorkedCount = await GetOnTimeCount((int)row["employeeId"]);
-                        employee[i].LeaveCount = await GetLeaveCount((int)row["employeeId"]);
-                        employee[i].TravelOrderCount = await GetTravelOrderCount((int)row["employeeId"]);
-                        employee[i].PassSlipCount = await GetPassSlipCount((int)row["employeeId"]);
+                        employee[i].LeaveCount = await GetLeaveCount((int)row["employeeId"], LeaveStatus);
+                        employee[i].TravelOrderCount = await GetTravelOrderCount((int)row["employeeId"], TravelStatus);
+                        employee[i].PassSlipCount = await GetPassSlipCount((int)row["employeeId"], SlipStatus);
                         employee[i].LateCount = await GetLateCount((int)row["employeeId"]);
                         employee[i].UndertimeCount = await GetUndertimeCount((int)row["employeeId"]);
                         employee[i].OvertimeCount = await GetOvertimeCount((int)row["employeeId"]);
@@ -337,9 +341,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
                                 employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
                                 employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
                                 employee[i].DaysWorkedCount = await GetOnTimeCount((int)row["employeeId"]);
-                                employee[i].LeaveCount = await GetLeaveCount((int)row["employeeId"]);
-                                employee[i].TravelOrderCount = await GetTravelOrderCount((int)row["employeeId"]);
-                                employee[i].PassSlipCount = await GetPassSlipCount((int)row["employeeId"]);
+                                employee[i].LeaveCount = await GetLeaveCount((int)row["employeeId"], LeaveStatus);
+                                employee[i].TravelOrderCount = await GetTravelOrderCount((int)row["employeeId"], TravelStatus);
+                                employee[i].PassSlipCount = await GetPassSlipCount((int)row["employeeId"], SlipStatus);
                                 employee[i].LateCount = await GetLateCount((int)row["employeeId"]);
                                 employee[i].UndertimeCount = await GetUndertimeCount((int)row["employeeId"]);
                                 employee[i].OvertimeCount = await GetOvertimeCount((int)row["employeeId"]);

@@ -223,11 +223,12 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Modal
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> SubmitDTRLog(int employeeId, string status, DateTime logDate, int totalHours)
+        private async Task<bool> SubmitDTRLog(int employeeId, string status, string logDate, int totalHours)
         {
             try
             {
-                bool insertDtr = await InsertDTRLog(employeeId, logDate, status, totalHours);
+                DateTime parsedDate = DateTime.Parse(logDate);
+                bool insertDtr = await InsertDTRLog(employeeId, parsedDate, status, totalHours);
 
                 if (insertDtr)
                 {
@@ -310,7 +311,7 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Modal
                 if (!approve)
                     return;
 
-                bool dtr = await SubmitDTRLog(EmployeeId, TravelStatus, DateTime.Today, TotalHours);
+                bool dtr = await SubmitDTRLog(EmployeeId, TravelStatus, DepartureDate, TotalHours);
                 if (!dtr)
                     return;
 

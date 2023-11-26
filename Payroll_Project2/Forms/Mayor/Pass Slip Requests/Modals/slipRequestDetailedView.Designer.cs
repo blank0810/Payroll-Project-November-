@@ -59,14 +59,28 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.customPanel6 = new Payroll_Project2.Custom.customPanel();
+            this.dateNoted = new System.Windows.Forms.Label();
+            this.customPanel5 = new Payroll_Project2.Custom.customPanel();
+            this.notedBy = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.buttonsPanel = new System.Windows.Forms.Panel();
+            this.closeBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.approveBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.customPanel2 = new Payroll_Project2.Custom.customPanel();
+            this.destination = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.customPanel4 = new Payroll_Project2.Custom.customPanel();
+            this.slipEndingTime = new System.Windows.Forms.Label();
+            this.customPanel3 = new Payroll_Project2.Custom.customPanel();
+            this.slipStartingTime = new System.Windows.Forms.Label();
+            this.customPanel1 = new Payroll_Project2.Custom.customPanel();
+            this.slipDate = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -81,19 +95,6 @@
             this.controlNum = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
-            this.customPanel6 = new Payroll_Project2.Custom.customPanel();
-            this.dateNoted = new System.Windows.Forms.Label();
-            this.customPanel5 = new Payroll_Project2.Custom.customPanel();
-            this.notedBy = new System.Windows.Forms.Label();
-            this.approveBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.customPanel2 = new Payroll_Project2.Custom.customPanel();
-            this.destination = new System.Windows.Forms.Label();
-            this.customPanel4 = new Payroll_Project2.Custom.customPanel();
-            this.slipEndingTime = new System.Windows.Forms.Label();
-            this.customPanel3 = new Payroll_Project2.Custom.customPanel();
-            this.slipStartingTime = new System.Windows.Forms.Label();
-            this.customPanel1 = new Payroll_Project2.Custom.customPanel();
-            this.slipDate = new System.Windows.Forms.Label();
             this.content.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel17.SuspendLayout();
@@ -109,21 +110,21 @@
             this.panel15.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.customPanel6.SuspendLayout();
+            this.customPanel5.SuspendLayout();
             this.panel8.SuspendLayout();
             this.buttonsPanel.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.customPanel2.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.customPanel4.SuspendLayout();
+            this.customPanel3.SuspendLayout();
+            this.customPanel1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            this.customPanel6.SuspendLayout();
-            this.customPanel5.SuspendLayout();
-            this.customPanel2.SuspendLayout();
-            this.customPanel4.SuspendLayout();
-            this.customPanel3.SuspendLayout();
-            this.customPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -487,6 +488,64 @@
             this.panel5.Size = new System.Drawing.Size(714, 39);
             this.panel5.TabIndex = 51;
             // 
+            // customPanel6
+            // 
+            this.customPanel6.AutoSize = true;
+            this.customPanel6.BackColor = System.Drawing.Color.White;
+            this.customPanel6.BorderRadius = 0;
+            this.customPanel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel6.Controls.Add(this.dateNoted);
+            this.customPanel6.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customPanel6.ForeColor = System.Drawing.Color.Black;
+            this.customPanel6.GradientAngle = 90F;
+            this.customPanel6.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel6.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel6.Location = new System.Drawing.Point(226, 4);
+            this.customPanel6.Name = "customPanel6";
+            this.customPanel6.Size = new System.Drawing.Size(175, 32);
+            this.customPanel6.TabIndex = 5;
+            // 
+            // dateNoted
+            // 
+            this.dateNoted.AutoSize = true;
+            this.dateNoted.BackColor = System.Drawing.Color.Transparent;
+            this.dateNoted.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.dateNoted.ForeColor = System.Drawing.Color.Black;
+            this.dateNoted.Location = new System.Drawing.Point(4, 6);
+            this.dateNoted.Name = "dateNoted";
+            this.dateNoted.Size = new System.Drawing.Size(88, 19);
+            this.dateNoted.TabIndex = 2;
+            this.dateNoted.Text = "{Date noted}";
+            // 
+            // customPanel5
+            // 
+            this.customPanel5.AutoSize = true;
+            this.customPanel5.BackColor = System.Drawing.Color.White;
+            this.customPanel5.BorderRadius = 0;
+            this.customPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel5.Controls.Add(this.notedBy);
+            this.customPanel5.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customPanel5.ForeColor = System.Drawing.Color.Black;
+            this.customPanel5.GradientAngle = 90F;
+            this.customPanel5.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel5.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel5.Location = new System.Drawing.Point(10, 4);
+            this.customPanel5.Name = "customPanel5";
+            this.customPanel5.Size = new System.Drawing.Size(175, 32);
+            this.customPanel5.TabIndex = 5;
+            // 
+            // notedBy
+            // 
+            this.notedBy.AutoSize = true;
+            this.notedBy.BackColor = System.Drawing.Color.Transparent;
+            this.notedBy.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.notedBy.ForeColor = System.Drawing.Color.Black;
+            this.notedBy.Location = new System.Drawing.Point(4, 6);
+            this.notedBy.Name = "notedBy";
+            this.notedBy.Size = new System.Drawing.Size(77, 19);
+            this.notedBy.TabIndex = 2;
+            this.notedBy.Text = "{Noted by}";
+            // 
             // panel8
             // 
             this.panel8.AutoSize = true;
@@ -524,12 +583,54 @@
             // 
             // buttonsPanel
             // 
+            this.buttonsPanel.Controls.Add(this.closeBtn);
             this.buttonsPanel.Controls.Add(this.approveBtn);
             this.buttonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buttonsPanel.Location = new System.Drawing.Point(0, 521);
             this.buttonsPanel.Name = "buttonsPanel";
             this.buttonsPanel.Size = new System.Drawing.Size(714, 43);
             this.buttonsPanel.TabIndex = 49;
+            // 
+            // closeBtn
+            // 
+            this.closeBtn.BackColor = System.Drawing.Color.Maroon;
+            this.closeBtn.BackgroundColor = System.Drawing.Color.Maroon;
+            this.closeBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.closeBtn.BorderRadius = 5;
+            this.closeBtn.BorderSize = 0;
+            this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.closeBtn.FlatAppearance.BorderSize = 0;
+            this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeBtn.ForeColor = System.Drawing.Color.White;
+            this.closeBtn.Location = new System.Drawing.Point(566, 6);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(71, 32);
+            this.closeBtn.TabIndex = 33;
+            this.closeBtn.Text = "Close";
+            this.closeBtn.TextColor = System.Drawing.Color.White;
+            this.closeBtn.UseVisualStyleBackColor = false;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
+            // 
+            // approveBtn
+            // 
+            this.approveBtn.BackColor = System.Drawing.Color.Green;
+            this.approveBtn.BackgroundColor = System.Drawing.Color.Green;
+            this.approveBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.approveBtn.BorderRadius = 5;
+            this.approveBtn.BorderSize = 0;
+            this.approveBtn.FlatAppearance.BorderSize = 0;
+            this.approveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.approveBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.approveBtn.ForeColor = System.Drawing.Color.White;
+            this.approveBtn.Location = new System.Drawing.Point(638, 6);
+            this.approveBtn.Name = "approveBtn";
+            this.approveBtn.Size = new System.Drawing.Size(71, 32);
+            this.approveBtn.TabIndex = 33;
+            this.approveBtn.Text = "Approve";
+            this.approveBtn.TextColor = System.Drawing.Color.White;
+            this.approveBtn.UseVisualStyleBackColor = false;
+            this.approveBtn.Click += new System.EventHandler(this.approveBtn_Click);
             // 
             // panel11
             // 
@@ -540,6 +641,35 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(714, 39);
             this.panel11.TabIndex = 22;
+            // 
+            // customPanel2
+            // 
+            this.customPanel2.AutoSize = true;
+            this.customPanel2.BackColor = System.Drawing.Color.White;
+            this.customPanel2.BorderRadius = 0;
+            this.customPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel2.Controls.Add(this.destination);
+            this.customPanel2.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customPanel2.ForeColor = System.Drawing.Color.Black;
+            this.customPanel2.GradientAngle = 90F;
+            this.customPanel2.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel2.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel2.Location = new System.Drawing.Point(10, 4);
+            this.customPanel2.Name = "customPanel2";
+            this.customPanel2.Size = new System.Drawing.Size(175, 32);
+            this.customPanel2.TabIndex = 5;
+            // 
+            // destination
+            // 
+            this.destination.AutoSize = true;
+            this.destination.BackColor = System.Drawing.Color.Transparent;
+            this.destination.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.destination.ForeColor = System.Drawing.Color.Black;
+            this.destination.Location = new System.Drawing.Point(4, 6);
+            this.destination.Name = "destination";
+            this.destination.Size = new System.Drawing.Size(64, 19);
+            this.destination.TabIndex = 2;
+            this.destination.Text = "Leonides";
             // 
             // panel10
             // 
@@ -574,6 +704,93 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(714, 41);
             this.panel7.TabIndex = 18;
+            // 
+            // customPanel4
+            // 
+            this.customPanel4.AutoSize = true;
+            this.customPanel4.BackColor = System.Drawing.Color.White;
+            this.customPanel4.BorderRadius = 0;
+            this.customPanel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel4.Controls.Add(this.slipEndingTime);
+            this.customPanel4.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customPanel4.ForeColor = System.Drawing.Color.Black;
+            this.customPanel4.GradientAngle = 90F;
+            this.customPanel4.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel4.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel4.Location = new System.Drawing.Point(453, 6);
+            this.customPanel4.Name = "customPanel4";
+            this.customPanel4.Size = new System.Drawing.Size(175, 32);
+            this.customPanel4.TabIndex = 6;
+            // 
+            // slipEndingTime
+            // 
+            this.slipEndingTime.AutoSize = true;
+            this.slipEndingTime.BackColor = System.Drawing.Color.Transparent;
+            this.slipEndingTime.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.slipEndingTime.ForeColor = System.Drawing.Color.Black;
+            this.slipEndingTime.Location = new System.Drawing.Point(4, 6);
+            this.slipEndingTime.Name = "slipEndingTime";
+            this.slipEndingTime.Size = new System.Drawing.Size(66, 19);
+            this.slipEndingTime.TabIndex = 2;
+            this.slipEndingTime.Text = "11:00 AM";
+            // 
+            // customPanel3
+            // 
+            this.customPanel3.AutoSize = true;
+            this.customPanel3.BackColor = System.Drawing.Color.White;
+            this.customPanel3.BorderRadius = 0;
+            this.customPanel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel3.Controls.Add(this.slipStartingTime);
+            this.customPanel3.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customPanel3.ForeColor = System.Drawing.Color.Black;
+            this.customPanel3.GradientAngle = 90F;
+            this.customPanel3.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel3.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel3.Location = new System.Drawing.Point(226, 5);
+            this.customPanel3.Name = "customPanel3";
+            this.customPanel3.Size = new System.Drawing.Size(175, 32);
+            this.customPanel3.TabIndex = 7;
+            // 
+            // slipStartingTime
+            // 
+            this.slipStartingTime.AutoSize = true;
+            this.slipStartingTime.BackColor = System.Drawing.Color.Transparent;
+            this.slipStartingTime.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.slipStartingTime.ForeColor = System.Drawing.Color.Black;
+            this.slipStartingTime.Location = new System.Drawing.Point(4, 6);
+            this.slipStartingTime.Name = "slipStartingTime";
+            this.slipStartingTime.Size = new System.Drawing.Size(68, 19);
+            this.slipStartingTime.TabIndex = 2;
+            this.slipStartingTime.Text = "10:00 AM";
+            // 
+            // customPanel1
+            // 
+            this.customPanel1.AutoSize = true;
+            this.customPanel1.BackColor = System.Drawing.Color.White;
+            this.customPanel1.BorderRadius = 0;
+            this.customPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel1.Controls.Add(this.slipDate);
+            this.customPanel1.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customPanel1.ForeColor = System.Drawing.Color.Black;
+            this.customPanel1.GradientAngle = 90F;
+            this.customPanel1.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel1.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel1.Location = new System.Drawing.Point(10, 5);
+            this.customPanel1.Name = "customPanel1";
+            this.customPanel1.Size = new System.Drawing.Size(175, 32);
+            this.customPanel1.TabIndex = 8;
+            // 
+            // slipDate
+            // 
+            this.slipDate.AutoSize = true;
+            this.slipDate.BackColor = System.Drawing.Color.Transparent;
+            this.slipDate.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.slipDate.ForeColor = System.Drawing.Color.Black;
+            this.slipDate.Location = new System.Drawing.Point(4, 6);
+            this.slipDate.Name = "slipDate";
+            this.slipDate.Size = new System.Drawing.Size(94, 19);
+            this.slipDate.TabIndex = 2;
+            this.slipDate.Text = "Nov 28, 2023";
             // 
             // panel6
             // 
@@ -729,204 +946,13 @@
             this.infoLabel.TabIndex = 1;
             this.infoLabel.Text = "PASS SLIP";
             // 
-            // customPanel6
-            // 
-            this.customPanel6.AutoSize = true;
-            this.customPanel6.BackColor = System.Drawing.Color.White;
-            this.customPanel6.BorderRadius = 0;
-            this.customPanel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel6.Controls.Add(this.dateNoted);
-            this.customPanel6.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customPanel6.ForeColor = System.Drawing.Color.Black;
-            this.customPanel6.GradientAngle = 90F;
-            this.customPanel6.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel6.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel6.Location = new System.Drawing.Point(226, 4);
-            this.customPanel6.Name = "customPanel6";
-            this.customPanel6.Size = new System.Drawing.Size(175, 32);
-            this.customPanel6.TabIndex = 5;
-            // 
-            // dateNoted
-            // 
-            this.dateNoted.AutoSize = true;
-            this.dateNoted.BackColor = System.Drawing.Color.Transparent;
-            this.dateNoted.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.dateNoted.ForeColor = System.Drawing.Color.Black;
-            this.dateNoted.Location = new System.Drawing.Point(4, 6);
-            this.dateNoted.Name = "dateNoted";
-            this.dateNoted.Size = new System.Drawing.Size(88, 19);
-            this.dateNoted.TabIndex = 2;
-            this.dateNoted.Text = "{Date noted}";
-            // 
-            // customPanel5
-            // 
-            this.customPanel5.AutoSize = true;
-            this.customPanel5.BackColor = System.Drawing.Color.White;
-            this.customPanel5.BorderRadius = 0;
-            this.customPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel5.Controls.Add(this.notedBy);
-            this.customPanel5.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customPanel5.ForeColor = System.Drawing.Color.Black;
-            this.customPanel5.GradientAngle = 90F;
-            this.customPanel5.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel5.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel5.Location = new System.Drawing.Point(10, 4);
-            this.customPanel5.Name = "customPanel5";
-            this.customPanel5.Size = new System.Drawing.Size(175, 32);
-            this.customPanel5.TabIndex = 5;
-            // 
-            // notedBy
-            // 
-            this.notedBy.AutoSize = true;
-            this.notedBy.BackColor = System.Drawing.Color.Transparent;
-            this.notedBy.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.notedBy.ForeColor = System.Drawing.Color.Black;
-            this.notedBy.Location = new System.Drawing.Point(4, 6);
-            this.notedBy.Name = "notedBy";
-            this.notedBy.Size = new System.Drawing.Size(77, 19);
-            this.notedBy.TabIndex = 2;
-            this.notedBy.Text = "{Noted by}";
-            // 
-            // approveBtn
-            // 
-            this.approveBtn.BackColor = System.Drawing.Color.Green;
-            this.approveBtn.BackgroundColor = System.Drawing.Color.Green;
-            this.approveBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.approveBtn.BorderRadius = 5;
-            this.approveBtn.BorderSize = 0;
-            this.approveBtn.FlatAppearance.BorderSize = 0;
-            this.approveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.approveBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.approveBtn.ForeColor = System.Drawing.Color.White;
-            this.approveBtn.Location = new System.Drawing.Point(638, 6);
-            this.approveBtn.Name = "approveBtn";
-            this.approveBtn.Size = new System.Drawing.Size(71, 32);
-            this.approveBtn.TabIndex = 33;
-            this.approveBtn.Text = "Approve";
-            this.approveBtn.TextColor = System.Drawing.Color.White;
-            this.approveBtn.UseVisualStyleBackColor = false;
-            // 
-            // customPanel2
-            // 
-            this.customPanel2.AutoSize = true;
-            this.customPanel2.BackColor = System.Drawing.Color.White;
-            this.customPanel2.BorderRadius = 0;
-            this.customPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel2.Controls.Add(this.destination);
-            this.customPanel2.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customPanel2.ForeColor = System.Drawing.Color.Black;
-            this.customPanel2.GradientAngle = 90F;
-            this.customPanel2.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel2.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel2.Location = new System.Drawing.Point(10, 4);
-            this.customPanel2.Name = "customPanel2";
-            this.customPanel2.Size = new System.Drawing.Size(175, 32);
-            this.customPanel2.TabIndex = 5;
-            // 
-            // destination
-            // 
-            this.destination.AutoSize = true;
-            this.destination.BackColor = System.Drawing.Color.Transparent;
-            this.destination.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.destination.ForeColor = System.Drawing.Color.Black;
-            this.destination.Location = new System.Drawing.Point(4, 6);
-            this.destination.Name = "destination";
-            this.destination.Size = new System.Drawing.Size(64, 19);
-            this.destination.TabIndex = 2;
-            this.destination.Text = "Leonides";
-            // 
-            // customPanel4
-            // 
-            this.customPanel4.AutoSize = true;
-            this.customPanel4.BackColor = System.Drawing.Color.White;
-            this.customPanel4.BorderRadius = 0;
-            this.customPanel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel4.Controls.Add(this.slipEndingTime);
-            this.customPanel4.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customPanel4.ForeColor = System.Drawing.Color.Black;
-            this.customPanel4.GradientAngle = 90F;
-            this.customPanel4.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel4.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel4.Location = new System.Drawing.Point(453, 6);
-            this.customPanel4.Name = "customPanel4";
-            this.customPanel4.Size = new System.Drawing.Size(175, 32);
-            this.customPanel4.TabIndex = 6;
-            // 
-            // slipEndingTime
-            // 
-            this.slipEndingTime.AutoSize = true;
-            this.slipEndingTime.BackColor = System.Drawing.Color.Transparent;
-            this.slipEndingTime.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.slipEndingTime.ForeColor = System.Drawing.Color.Black;
-            this.slipEndingTime.Location = new System.Drawing.Point(4, 6);
-            this.slipEndingTime.Name = "slipEndingTime";
-            this.slipEndingTime.Size = new System.Drawing.Size(66, 19);
-            this.slipEndingTime.TabIndex = 2;
-            this.slipEndingTime.Text = "11:00 AM";
-            // 
-            // customPanel3
-            // 
-            this.customPanel3.AutoSize = true;
-            this.customPanel3.BackColor = System.Drawing.Color.White;
-            this.customPanel3.BorderRadius = 0;
-            this.customPanel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel3.Controls.Add(this.slipStartingTime);
-            this.customPanel3.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customPanel3.ForeColor = System.Drawing.Color.Black;
-            this.customPanel3.GradientAngle = 90F;
-            this.customPanel3.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel3.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel3.Location = new System.Drawing.Point(226, 5);
-            this.customPanel3.Name = "customPanel3";
-            this.customPanel3.Size = new System.Drawing.Size(175, 32);
-            this.customPanel3.TabIndex = 7;
-            // 
-            // slipStartingTime
-            // 
-            this.slipStartingTime.AutoSize = true;
-            this.slipStartingTime.BackColor = System.Drawing.Color.Transparent;
-            this.slipStartingTime.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.slipStartingTime.ForeColor = System.Drawing.Color.Black;
-            this.slipStartingTime.Location = new System.Drawing.Point(4, 6);
-            this.slipStartingTime.Name = "slipStartingTime";
-            this.slipStartingTime.Size = new System.Drawing.Size(68, 19);
-            this.slipStartingTime.TabIndex = 2;
-            this.slipStartingTime.Text = "10:00 AM";
-            // 
-            // customPanel1
-            // 
-            this.customPanel1.AutoSize = true;
-            this.customPanel1.BackColor = System.Drawing.Color.White;
-            this.customPanel1.BorderRadius = 0;
-            this.customPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel1.Controls.Add(this.slipDate);
-            this.customPanel1.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customPanel1.ForeColor = System.Drawing.Color.Black;
-            this.customPanel1.GradientAngle = 90F;
-            this.customPanel1.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel1.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel1.Location = new System.Drawing.Point(10, 5);
-            this.customPanel1.Name = "customPanel1";
-            this.customPanel1.Size = new System.Drawing.Size(175, 32);
-            this.customPanel1.TabIndex = 8;
-            // 
-            // slipDate
-            // 
-            this.slipDate.AutoSize = true;
-            this.slipDate.BackColor = System.Drawing.Color.Transparent;
-            this.slipDate.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.slipDate.ForeColor = System.Drawing.Color.Black;
-            this.slipDate.Location = new System.Drawing.Point(4, 6);
-            this.slipDate.Name = "slipDate";
-            this.slipDate.Size = new System.Drawing.Size(94, 19);
-            this.slipDate.TabIndex = 2;
-            this.slipDate.Text = "Nov 28, 2023";
-            // 
             // slipRequestDetailedView
             // 
+            this.AcceptButton = this.approveBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.closeBtn;
             this.ClientSize = new System.Drawing.Size(736, 586);
             this.Controls.Add(this.content);
             this.Controls.Add(this.panel2);
@@ -967,15 +993,27 @@
             this.panel9.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.customPanel6.ResumeLayout(false);
+            this.customPanel6.PerformLayout();
+            this.customPanel5.ResumeLayout(false);
+            this.customPanel5.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.buttonsPanel.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.customPanel2.ResumeLayout(false);
+            this.customPanel2.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            this.customPanel4.ResumeLayout(false);
+            this.customPanel4.PerformLayout();
+            this.customPanel3.ResumeLayout(false);
+            this.customPanel3.PerformLayout();
+            this.customPanel1.ResumeLayout(false);
+            this.customPanel1.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel12.ResumeLayout(false);
@@ -983,18 +1021,6 @@
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            this.customPanel6.ResumeLayout(false);
-            this.customPanel6.PerformLayout();
-            this.customPanel5.ResumeLayout(false);
-            this.customPanel5.PerformLayout();
-            this.customPanel2.ResumeLayout(false);
-            this.customPanel2.PerformLayout();
-            this.customPanel4.ResumeLayout(false);
-            this.customPanel4.PerformLayout();
-            this.customPanel3.ResumeLayout(false);
-            this.customPanel3.PerformLayout();
-            this.customPanel1.ResumeLayout(false);
-            this.customPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1067,5 +1093,6 @@
         private System.Windows.Forms.Label mayor;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Label label15;
+        private Custom.buttonDesign closeBtn;
     }
 }

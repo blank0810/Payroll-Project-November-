@@ -153,6 +153,7 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests
                         AssignValueIfNotEmpty(row, "employeeName", value => slipList[i].EmployeeName = value, "---------");
                         ParseAndAssignInt(row, "slipControlNumber", value => slipList[i].ControlNumber = value, 0);
                         ParseAndAssignDateTime(row, "dateFile", value => slipList[i].DateFiled = value, "---------");
+                        ParseAndAssignDateTime(row, "slipDate", value => slipList[i].SlipDate = value, "---------");
 
                         if (!string.IsNullOrEmpty(row["timeUsed"]?.ToString()) && TimeSpan.TryParse(row["timeUsed"]?.ToString(), 
                             out TimeSpan timeUsed))

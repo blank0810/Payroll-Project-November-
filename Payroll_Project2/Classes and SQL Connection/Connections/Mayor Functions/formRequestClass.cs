@@ -104,7 +104,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                 {
                     await conn.OpenAsync();
                     string command = "SELECT CONCAT(employeeFname, ' ', employeeLname) AS employeeName, dateFile, slipControlNumber, " +
-                        "isNoted, CAST(slipEndingTime - slipStartingTime AS TIME) AS timeUsed, tbl_employee.employeeId " +
+                        "isNoted, CAST(slipEndingTime - slipStartingTime AS TIME) AS timeUsed, tbl_employee.employeeId, slipDate " +
                         "FROM tbl_passSlip " +
                         "JOIN tbl_employee ON tbl_passSlip.employeeId = tbl_employee.employeeId " +
                         "JOIN tbl_department ON tbl_department.departmentId = tbl_employee.departmentId " +

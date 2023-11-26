@@ -428,7 +428,7 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
                 if (!approve)
                     return;
 
-                bool dtr = await SubmitDTRLog(EmployeeId, TravelStatus, DateFiled, TotalHours);
+                bool dtr = await SubmitDTRLog(EmployeeId, TravelStatus, DateDeparture, TotalHours);
                 if (!dtr)
                     return;
 

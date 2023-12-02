@@ -38,7 +38,8 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
         private static personnelDashboard personnelClass = new personnelDashboard();
         private static generalFunctions generalFunctions = new generalFunctions();
         private static formClass formClass = new formClass();
-        private static readonly string defaultEmployeeImage = ConfigurationManager.AppSettings["DefaultLogo"];
+        private static readonly string defaultEmployeeImage = ConfigurationManager.AppSettings.Get("DefaultLogo");
+        private static readonly string departmentLogoPath = ConfigurationManager.AppSettings.Get("DestinationDepartmentImagePath");
 
         public newDashboard(int id)
         {
@@ -291,7 +292,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
 
                         if (!string.IsNullOrEmpty(row["departmentLogo"].ToString()))
                         {
-                            departmentCardUC[i].DepartmentLogo = $"{row["departmentLogo"]}";
+                            departmentCardUC[i].DepartmentLogo = $"{departmentLogoPath}{row["departmentLogo"]}";
                         }
                         else
                         {

@@ -26,6 +26,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
         public string AfternoonIn { get; set; }
         public string AfternoonOut { get; set; }
         public string AfternoonStatus { get; set; }
+        public string SpecialPrivilege { get; set; }
         public int TotalHours { get; set; }
 
         private DateTime UpdateMorningIn { get; set; }
@@ -522,7 +523,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
         // Event handler responsible if the total hours text change
         private void total_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(this.total.Text, out int total))
+            if (int.TryParse(this.specialPrivilege.Text, out int total))
             {
                 TotalHours = total;
             }
@@ -580,7 +581,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
                 double timeDiff = ((morningOutUpdate.Value.TimeOfDay - morningInUpdate.Value.TimeOfDay).TotalHours 
                     + (afternoonOutUpdate.Value.TimeOfDay - afternoonInUpdate.Value.TimeOfDay).TotalHours);
                 int time = (int)Math.Floor(timeDiff);
-                total.Text = time.ToString();
+                specialPrivilege.Text = time.ToString();
             }
             else if (morningInUpdate.Value.TimeOfDay != TimeSpan.Zero && morningOutUpdate.Value.TimeOfDay != TimeSpan.Zero && 
                 afternoonInUpdate.Value.TimeOfDay == TimeSpan.Zero && afternoonOutUpdate.Value.TimeOfDay == TimeSpan.Zero)
@@ -588,7 +589,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
                 double timeDiff = ((morningOutUpdate.Value.TimeOfDay - morningInUpdate.Value.TimeOfDay).TotalHours
                     + (afternoonOutUpdate.Value.TimeOfDay - afternoonInUpdate.Value.TimeOfDay).TotalHours);
                 int time = (int)Math.Floor(timeDiff);
-                total.Text = time.ToString();
+                specialPrivilege.Text = time.ToString();
             }
             else if (morningInUpdate.Value.TimeOfDay == TimeSpan.Zero && morningOutUpdate.Value.TimeOfDay == TimeSpan.Zero &&
                 afternoonInUpdate.Value.TimeOfDay != TimeSpan.Zero && afternoonOutUpdate.Value.TimeOfDay != TimeSpan.Zero)
@@ -596,7 +597,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
                 double timeDiff = ((morningOutUpdate.Value.TimeOfDay - morningInUpdate.Value.TimeOfDay).TotalHours
                     + (afternoonOutUpdate.Value.TimeOfDay - afternoonInUpdate.Value.TimeOfDay).TotalHours);
                 int time = (int)Math.Floor(timeDiff);
-                total.Text = time.ToString();
+                specialPrivilege.Text = time.ToString();
             }
         }
 
@@ -609,6 +610,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
             morningOut.DataBindings.Add("Text", this, "MorningOut");
             afternoonIn.DataBindings.Add("Text", this, "AfternoonIn");
             afternoonOut.DataBindings.Add("Text", this, "AfternoonOut");
+            specialPrivilege.DataBindings.Add("Text", this, "SpecialPrivilege");
             total.DataBindings.Add("Text", this, "TotalHours");
 
             Binding morningStatusBinding = new Binding("Text", this, "MorningStatus");
@@ -627,7 +629,8 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
             afternoonIn.Location = new Point((afternoonInPanel.Width - afternoonIn.Width) / 2, (afternoonInPanel.Height - afternoonIn.Height) / 2);
             afternoonOut.Location = new Point((afternoonOutPanel.Width - afternoonOut.Width) / 2, (afternoonOutPanel.Height - afternoonOut.Height) / 2);
             afternoonStatus.Location = new Point((afternoonStatusPanel.Width - afternoonStatus.Width) / 2, (afternoonStatusPanel.Height - afternoonStatus.Height) / 2);
-            total.Location = new Point((totalPanel.Width - total.Width) / 2, (totalPanel.Height - total.Height) / 2);
+            specialPrivilege.Location = new Point((totalPanel.Width - specialPrivilege.Width) / 2, (totalPanel.Height - specialPrivilege.Height) / 2);
+            total.Location = new Point((panel1.Width - total.Width) / 2, (panel1.Height - total.Height) / 2);
         }
 
         private void MorningStatus_Format(object sender, ConvertEventArgs e)

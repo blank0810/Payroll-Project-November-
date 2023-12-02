@@ -121,7 +121,85 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Modal
 
         #endregion
 
+        #region All event handlers that handles user interaction with the UI
+
+        private void addDepartment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the pressed key is the Escape key
+            if (e.KeyChar == (char)27) // 27 is the ASCII code for the Escape key
+            {
+                // Close the form
+                this.Close();
+            }
+        }
+
+        // This is an event handler that handles if the department name box value / text changes
+        private void departmentName__TextChanged(object sender, EventArgs e)
+        {
+           if (!string.IsNullOrWhiteSpace(departmentName.Text))
+            {
+                TextBox textBox = (TextBox)sender;
+                string text = textBox.Text;
+                string capitalizedText = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLower());
+                textBox.Text = capitalizedText;
+                textBox.SelectionStart = textBox.Text.Length; // Place cursor at the end
+
+                DepartmentName = capitalizedText;
+            }
+        }
+
+        // This is an event handler that handles if the departmente initials text box changes
+        private void abbreviation__TextChanged(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrWhiteSpace(abbreviation.Texts))
+            {
+                TextBox textBox = (TextBox)sender;
+                textBox.Text = textBox.Text.ToUpper();
+                textBox.SelectionStart = textBox.Text.Length; // Place cursor at the end
+
+                DepartmentInitials = textBox.Text;
+            }
+            else
+            {
+                DepartmentInitials = "Not Applicable";
+            }
+        }
+
+        // This is the picture box that stores the department image/logo
+        private void departmentImageBox__TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(departmentImageBox.Texts))
+            {
+                departmentImageBox.Texts = defaulDepartmentLogo;
+            }
+        }
+
+        // This is the upload button where specifically its event handler that handles if the upload button is being clicked
+        private void uploadBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog departmentFile = new OpenFileDialog();
+            departmentFile.Filter = "Image Files (*.jpg; *jpeg; *.png;) | *.jpg; *jpeg; *.png;";
+            departmentFile.Title = "Select an Image";
+
+            if (departmentFile.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap originalImage = new Bitmap(departmentFile.FileName);
+
+                float resolution = originalImage.HorizontalResolution;
+
+                int newHeight = 500;
+                int newWidth = 500;
+                Bitmap newImage = new Bitmap(originalImage, newWidth, newHeight);
+                departmentImageBox.Texts = departmentFile.FileName;
+                departmentLogo.Image = newImage;
+                originalImage.Dispose();
+            }
+        }
+
+        #endregion
+
         #region Custom functions that is responsible for every logic conditions
+
         // Custom functions that check if the user input is valid or not
         private bool IsValidated()
         {
@@ -164,8 +242,8 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Modal
         {
             try
             {
-                DepartmentImage = Path.Combine(departmentImageDestination, DepartmentName + Path.GetExtension(departmentImage));
-                File.Copy(departmentImage, DepartmentImage, true);
+                File.Copy(departmentImage, Path.Combine(departmentImageDestination, DepartmentName + Path.GetExtension(departmentImage)), true);
+                DepartmentImage = DepartmentName + Path.GetExtension(departmentImage);
                 return true;
             }
             catch (Exception ex)
@@ -274,81 +352,6 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Modal
 
         #endregion
 
-        #region All event handlers that handles user interaction with the UI
-
-        private void addDepartment_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Check if the pressed key is the Escape key
-            if (e.KeyChar == (char)27) // 27 is the ASCII code for the Escape key
-            {
-                // Close the form
-                this.Close();
-            }
-        }
-
-        // This is an event handler that handles if the department name box value / text changes
-        private void departmentName__TextChanged(object sender, EventArgs e)
-        {
-           if (!string.IsNullOrWhiteSpace(departmentName.Text))
-            {
-                TextBox textBox = (TextBox)sender;
-                string text = textBox.Text;
-                string capitalizedText = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLower());
-                textBox.Text = capitalizedText;
-                textBox.SelectionStart = textBox.Text.Length; // Place cursor at the end
-
-                DepartmentName = capitalizedText;
-            }
-        }
-
-        // This is an event handler that handles if the departmente initials text box changes
-        private void abbreviation__TextChanged(object sender, EventArgs e)
-        {
-            if(!string.IsNullOrWhiteSpace(abbreviation.Texts))
-            {
-                TextBox textBox = (TextBox)sender;
-                textBox.Text = textBox.Text.ToUpper();
-                textBox.SelectionStart = textBox.Text.Length; // Place cursor at the end
-
-                DepartmentInitials = textBox.Text;
-            }
-            else
-            {
-                DepartmentInitials = "Not Applicable";
-            }
-        }
-
-        // This is the picture box that stores the department image/logo
-        private void departmentImageBox__TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(departmentImageBox.Texts))
-            {
-                departmentImageBox.Texts = defaulDepartmentLogo;
-            }
-        }
-
-        // This is the upload button where specifically its event handler that handles if the upload button is being clicked
-        private void uploadBtn_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog departmentFile = new OpenFileDialog();
-            departmentFile.Filter = "Image Files (*.jpg; *jpeg; *.png;) | *.jpg; *jpeg; *.png;";
-            departmentFile.Title = "Select an Image";
-
-            if (departmentFile.ShowDialog() == DialogResult.OK)
-            {
-                Bitmap originalImage = new Bitmap(departmentFile.FileName);
-
-                float resolution = originalImage.HorizontalResolution;
-
-                int newHeight = 500;
-                int newWidth = 500;
-                Bitmap newImage = new Bitmap(originalImage, newWidth, newHeight);
-                departmentImageBox.Texts = departmentFile.FileName;
-                departmentLogo.Image = newImage;
-                originalImage.Dispose();
-            }
-        }
-
         // Event handlers that handles if the submit button is being clicked
         private async void submitBtn_Click(object sender, EventArgs e)
         {
@@ -390,7 +393,5 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Modal
         {
             this.Close();
         }
-
-        #endregion
     }
 }

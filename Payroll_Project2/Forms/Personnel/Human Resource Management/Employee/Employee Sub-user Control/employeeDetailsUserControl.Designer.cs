@@ -37,6 +37,60 @@
             this.employmentBtn = new Payroll_Project2.Custom.buttonDesign();
             this.generalBtn = new Payroll_Project2.Custom.buttonDesign();
             this.content = new System.Windows.Forms.Panel();
+            this.generalPanel = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.educationalAttainment = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.schoolName = new System.Windows.Forms.Label();
+            this.schoolAddress = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.course = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.zipCode = new System.Windows.Forms.Label();
+            this.province = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.contactNumber = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.municipality = new System.Windows.Forms.Label();
+            this.civilStatus = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.barangay = new System.Windows.Forms.Label();
+            this.nationality = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.sex = new System.Windows.Forms.Label();
+            this.birthday = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.uploadBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.empAccountStatus = new System.Windows.Forms.Label();
+            this.empImage = new System.Windows.Forms.PictureBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.empFirstName = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.empMiddleName = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.empLastName = new System.Windows.Forms.Label();
+            this.empUserRole = new System.Windows.Forms.Label();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.emailAddress = new System.Windows.Forms.Label();
+            this.accessLabel = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.infoLabel = new System.Windows.Forms.Label();
             this.formPanel = new System.Windows.Forms.Panel();
             this.formContent = new System.Windows.Forms.Panel();
             this.slipPanel = new System.Windows.Forms.Panel();
@@ -103,63 +157,17 @@
             this.salaryRateValue = new System.Windows.Forms.Label();
             this.panel24 = new System.Windows.Forms.Panel();
             this.label65 = new System.Windows.Forms.Label();
-            this.generalPanel = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.educationalAttainment = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.schoolName = new System.Windows.Forms.Label();
-            this.schoolAddress = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.course = new System.Windows.Forms.Label();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.zipCode = new System.Windows.Forms.Label();
-            this.province = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.contactNumber = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.municipality = new System.Windows.Forms.Label();
-            this.civilStatus = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.barangay = new System.Windows.Forms.Label();
-            this.nationality = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.sex = new System.Windows.Forms.Label();
-            this.birthday = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.uploadBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.empAccountStatus = new System.Windows.Forms.Label();
-            this.empImage = new System.Windows.Forms.PictureBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.empFirstName = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.empMiddleName = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.empLastName = new System.Windows.Forms.Label();
-            this.empUserRole = new System.Windows.Forms.Label();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.emailAddress = new System.Windows.Forms.Label();
-            this.accessLabel = new System.Windows.Forms.Label();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.infoLabel = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5.SuspendLayout();
             this.content.SuspendLayout();
+            this.generalPanel.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.empImage)).BeginInit();
+            this.panel12.SuspendLayout();
             this.formPanel.SuspendLayout();
             this.formContent.SuspendLayout();
             this.slipPanel.SuspendLayout();
@@ -177,14 +185,6 @@
             this.panel17.SuspendLayout();
             this.panel23.SuspendLayout();
             this.panel24.SuspendLayout();
-            this.generalPanel.SuspendLayout();
-            this.panel14.SuspendLayout();
-            this.panel15.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.empImage)).BeginInit();
-            this.panel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -306,6 +306,743 @@
             this.content.Name = "content";
             this.content.Size = new System.Drawing.Size(1141, 723);
             this.content.TabIndex = 10;
+            // 
+            // generalPanel
+            // 
+            this.generalPanel.AutoScroll = true;
+            this.generalPanel.Controls.Add(this.panel14);
+            this.generalPanel.Controls.Add(this.panel13);
+            this.generalPanel.Controls.Add(this.panel10);
+            this.generalPanel.Controls.Add(this.panel9);
+            this.generalPanel.Controls.Add(this.panel7);
+            this.generalPanel.Controls.Add(this.panel12);
+            this.generalPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.generalPanel.Location = new System.Drawing.Point(0, 0);
+            this.generalPanel.Name = "generalPanel";
+            this.generalPanel.Size = new System.Drawing.Size(1141, 723);
+            this.generalPanel.TabIndex = 0;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.panel15);
+            this.panel14.Controls.Add(this.label57);
+            this.panel14.Controls.Add(this.label16);
+            this.panel14.Controls.Add(this.label61);
+            this.panel14.Controls.Add(this.educationalAttainment);
+            this.panel14.Controls.Add(this.label14);
+            this.panel14.Controls.Add(this.schoolName);
+            this.panel14.Controls.Add(this.schoolAddress);
+            this.panel14.Controls.Add(this.label13);
+            this.panel14.Controls.Add(this.label15);
+            this.panel14.Controls.Add(this.course);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel14.Location = new System.Drawing.Point(0, 465);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(1141, 255);
+            this.panel14.TabIndex = 51;
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Controls.Add(this.label2);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(1141, 44);
+            this.panel15.TabIndex = 80;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(7, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(198, 25);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Education Information";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label57
+            // 
+            this.label57.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label57.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label57.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label57.Location = new System.Drawing.Point(205, 270);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(153, 19);
+            this.label57.TabIndex = 66;
+            this.label57.Text = "{Employee Nationality}";
+            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label16.Location = new System.Drawing.Point(228, 58);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(180, 21);
+            this.label16.TabIndex = 9;
+            this.label16.Text = "Educational Attainment";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label61
+            // 
+            this.label61.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label61.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label61.Location = new System.Drawing.Point(102, 270);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(79, 19);
+            this.label61.TabIndex = 68;
+            this.label61.Text = "Nationality";
+            this.label61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // educationalAttainment
+            // 
+            this.educationalAttainment.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.educationalAttainment.AutoSize = true;
+            this.educationalAttainment.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.educationalAttainment.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.educationalAttainment.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.educationalAttainment.Location = new System.Drawing.Point(420, 58);
+            this.educationalAttainment.Name = "educationalAttainment";
+            this.educationalAttainment.Size = new System.Drawing.Size(266, 21);
+            this.educationalAttainment.TabIndex = 9;
+            this.educationalAttainment.Text = "{Employee Educational Attainment}";
+            this.educationalAttainment.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label14.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label14.Location = new System.Drawing.Point(279, 145);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(124, 21);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "School Address";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // schoolName
+            // 
+            this.schoolName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.schoolName.AutoSize = true;
+            this.schoolName.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.schoolName.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.schoolName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.schoolName.Location = new System.Drawing.Point(420, 87);
+            this.schoolName.Name = "schoolName";
+            this.schoolName.Size = new System.Drawing.Size(193, 21);
+            this.schoolName.TabIndex = 8;
+            this.schoolName.Text = "{Employee School Name}";
+            this.schoolName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // schoolAddress
+            // 
+            this.schoolAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.schoolAddress.AutoSize = true;
+            this.schoolAddress.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.schoolAddress.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.schoolAddress.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.schoolAddress.Location = new System.Drawing.Point(420, 145);
+            this.schoolAddress.Name = "schoolAddress";
+            this.schoolAddress.Size = new System.Drawing.Size(210, 21);
+            this.schoolAddress.TabIndex = 6;
+            this.schoolAddress.Text = "{Employee School Address}";
+            this.schoolAddress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label13.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label13.Location = new System.Drawing.Point(269, 116);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(134, 21);
+            this.label13.TabIndex = 7;
+            this.label13.Text = "Course/Specialty";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label15.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label15.Location = new System.Drawing.Point(291, 87);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(107, 21);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "School Name";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // course
+            // 
+            this.course.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.course.AutoSize = true;
+            this.course.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.course.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.course.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.course.Location = new System.Drawing.Point(420, 116);
+            this.course.Name = "course";
+            this.course.Size = new System.Drawing.Size(147, 21);
+            this.course.TabIndex = 7;
+            this.course.Text = "{Employee Course}";
+            this.course.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(0, 462);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(1141, 3);
+            this.panel13.TabIndex = 50;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Controls.Add(this.zipCode);
+            this.panel10.Controls.Add(this.province);
+            this.panel10.Controls.Add(this.label32);
+            this.panel10.Controls.Add(this.contactNumber);
+            this.panel10.Controls.Add(this.label30);
+            this.panel10.Controls.Add(this.label7);
+            this.panel10.Controls.Add(this.municipality);
+            this.panel10.Controls.Add(this.civilStatus);
+            this.panel10.Controls.Add(this.label3);
+            this.panel10.Controls.Add(this.label4);
+            this.panel10.Controls.Add(this.barangay);
+            this.panel10.Controls.Add(this.nationality);
+            this.panel10.Controls.Add(this.label24);
+            this.panel10.Controls.Add(this.label6);
+            this.panel10.Controls.Add(this.label23);
+            this.panel10.Controls.Add(this.label5);
+            this.panel10.Controls.Add(this.sex);
+            this.panel10.Controls.Add(this.birthday);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(0, 229);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1141, 233);
+            this.panel10.TabIndex = 49;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.White;
+            this.panel11.Controls.Add(this.label1);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1141, 44);
+            this.panel11.TabIndex = 80;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(7, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(181, 25);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Primary Information";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // zipCode
+            // 
+            this.zipCode.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.zipCode.AutoSize = true;
+            this.zipCode.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.zipCode.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.zipCode.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.zipCode.Location = new System.Drawing.Point(813, 145);
+            this.zipCode.Name = "zipCode";
+            this.zipCode.Size = new System.Drawing.Size(162, 21);
+            this.zipCode.TabIndex = 52;
+            this.zipCode.Text = "{Employee Zip Code}";
+            this.zipCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // province
+            // 
+            this.province.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.province.AutoSize = true;
+            this.province.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.province.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.province.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.province.Location = new System.Drawing.Point(813, 117);
+            this.province.Name = "province";
+            this.province.Size = new System.Drawing.Size(223, 21);
+            this.province.TabIndex = 53;
+            this.province.Text = "{Employee Province Address}";
+            this.province.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label32
+            // 
+            this.label32.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label32.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label32.Location = new System.Drawing.Point(715, 145);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(76, 21);
+            this.label32.TabIndex = 54;
+            this.label32.Text = "Zip Code";
+            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // contactNumber
+            // 
+            this.contactNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.contactNumber.AutoSize = true;
+            this.contactNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.contactNumber.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.contactNumber.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.contactNumber.Location = new System.Drawing.Point(420, 169);
+            this.contactNumber.Name = "contactNumber";
+            this.contactNumber.Size = new System.Drawing.Size(206, 21);
+            this.contactNumber.TabIndex = 55;
+            this.contactNumber.Text = "{Employee Phone Number}";
+            this.contactNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label30
+            // 
+            this.label30.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label30.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label30.Location = new System.Drawing.Point(717, 117);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(73, 21);
+            this.label30.TabIndex = 56;
+            this.label30.Text = "Province";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label7.Location = new System.Drawing.Point(281, 169);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(120, 21);
+            this.label7.TabIndex = 58;
+            this.label7.Text = "Phone Number";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // municipality
+            // 
+            this.municipality.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.municipality.AutoSize = true;
+            this.municipality.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.municipality.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.municipality.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.municipality.Location = new System.Drawing.Point(813, 89);
+            this.municipality.Name = "municipality";
+            this.municipality.Size = new System.Drawing.Size(266, 21);
+            this.municipality.TabIndex = 60;
+            this.municipality.Text = "{Employee Municipal/City Address}";
+            this.municipality.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // civilStatus
+            // 
+            this.civilStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.civilStatus.AutoSize = true;
+            this.civilStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.civilStatus.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.civilStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.civilStatus.Location = new System.Drawing.Point(420, 142);
+            this.civilStatus.Name = "civilStatus";
+            this.civilStatus.Size = new System.Drawing.Size(175, 21);
+            this.civilStatus.TabIndex = 62;
+            this.civilStatus.Text = "{Employee Civil Status}";
+            this.civilStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label3.Location = new System.Drawing.Point(295, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 21);
+            this.label3.TabIndex = 78;
+            this.label3.Text = "Date of Birth";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label4.Location = new System.Drawing.Point(330, 88);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 21);
+            this.label4.TabIndex = 74;
+            this.label4.Text = "Gender";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // barangay
+            // 
+            this.barangay.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.barangay.AutoSize = true;
+            this.barangay.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.barangay.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.barangay.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.barangay.Location = new System.Drawing.Point(813, 61);
+            this.barangay.Name = "barangay";
+            this.barangay.Size = new System.Drawing.Size(227, 21);
+            this.barangay.TabIndex = 70;
+            this.barangay.Text = "{Employee Barangay Address}";
+            this.barangay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // nationality
+            // 
+            this.nationality.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.nationality.AutoSize = true;
+            this.nationality.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.nationality.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.nationality.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.nationality.Location = new System.Drawing.Point(420, 115);
+            this.nationality.Name = "nationality";
+            this.nationality.Size = new System.Drawing.Size(175, 21);
+            this.nationality.TabIndex = 66;
+            this.nationality.Text = "{Employee Nationality}";
+            this.nationality.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label24
+            // 
+            this.label24.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label24.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label24.Location = new System.Drawing.Point(661, 89);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(134, 21);
+            this.label24.TabIndex = 63;
+            this.label24.Text = "Municipality/City";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label6.Location = new System.Drawing.Point(304, 142);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 21);
+            this.label6.TabIndex = 61;
+            this.label6.Text = "Civil Status";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label23
+            // 
+            this.label23.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label23.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label23.Location = new System.Drawing.Point(714, 61);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(77, 21);
+            this.label23.TabIndex = 69;
+            this.label23.Text = "Barangay";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label5.Location = new System.Drawing.Point(305, 115);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 21);
+            this.label5.TabIndex = 68;
+            this.label5.Text = "Nationality";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // sex
+            // 
+            this.sex.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.sex.AutoSize = true;
+            this.sex.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.sex.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.sex.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.sex.Location = new System.Drawing.Point(420, 88);
+            this.sex.Name = "sex";
+            this.sex.Size = new System.Drawing.Size(150, 21);
+            this.sex.TabIndex = 72;
+            this.sex.Text = "{Employee Gender}";
+            this.sex.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // birthday
+            // 
+            this.birthday.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.birthday.AutoSize = true;
+            this.birthday.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.birthday.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.birthday.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.birthday.Location = new System.Drawing.Point(420, 61);
+            this.birthday.Name = "birthday";
+            this.birthday.Size = new System.Drawing.Size(189, 21);
+            this.birthday.TabIndex = 76;
+            this.birthday.Text = "{Employee Date of Birth}";
+            this.birthday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 226);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1141, 3);
+            this.panel9.TabIndex = 48;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.uploadBtn);
+            this.panel7.Controls.Add(this.empAccountStatus);
+            this.panel7.Controls.Add(this.empImage);
+            this.panel7.Controls.Add(this.label18);
+            this.panel7.Controls.Add(this.empFirstName);
+            this.panel7.Controls.Add(this.label29);
+            this.panel7.Controls.Add(this.label28);
+            this.panel7.Controls.Add(this.empMiddleName);
+            this.panel7.Controls.Add(this.label27);
+            this.panel7.Controls.Add(this.empLastName);
+            this.panel7.Controls.Add(this.empUserRole);
+            this.panel7.Controls.Add(this.emailLabel);
+            this.panel7.Controls.Add(this.emailAddress);
+            this.panel7.Controls.Add(this.accessLabel);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 44);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1141, 182);
+            this.panel7.TabIndex = 47;
+            // 
+            // uploadBtn
+            // 
+            this.uploadBtn.BackColor = System.Drawing.Color.SteelBlue;
+            this.uploadBtn.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.uploadBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.uploadBtn.BorderRadius = 5;
+            this.uploadBtn.BorderSize = 0;
+            this.uploadBtn.FlatAppearance.BorderSize = 0;
+            this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uploadBtn.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.uploadBtn.ForeColor = System.Drawing.Color.White;
+            this.uploadBtn.Location = new System.Drawing.Point(144, 145);
+            this.uploadBtn.Name = "uploadBtn";
+            this.uploadBtn.Size = new System.Drawing.Size(106, 31);
+            this.uploadBtn.TabIndex = 4;
+            this.uploadBtn.Text = "Upload Image";
+            this.uploadBtn.TextColor = System.Drawing.Color.White;
+            this.uploadBtn.UseVisualStyleBackColor = false;
+            this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
+            // 
+            // empAccountStatus
+            // 
+            this.empAccountStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.empAccountStatus.AutoSize = true;
+            this.empAccountStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.empAccountStatus.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.empAccountStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.empAccountStatus.Location = new System.Drawing.Point(813, 109);
+            this.empAccountStatus.Name = "empAccountStatus";
+            this.empAccountStatus.Size = new System.Drawing.Size(206, 21);
+            this.empAccountStatus.TabIndex = 50;
+            this.empAccountStatus.Text = "{Employee Account Status}";
+            this.empAccountStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // empImage
+            // 
+            this.empImage.Image = global::Payroll_Project2.Properties.Resources._2640095;
+            this.empImage.Location = new System.Drawing.Point(120, 6);
+            this.empImage.Name = "empImage";
+            this.empImage.Size = new System.Drawing.Size(155, 134);
+            this.empImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.empImage.TabIndex = 1;
+            this.empImage.TabStop = false;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label18.Location = new System.Drawing.Point(676, 109);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(120, 21);
+            this.label18.TabIndex = 51;
+            this.label18.Text = "Account Status";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // empFirstName
+            // 
+            this.empFirstName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.empFirstName.AutoSize = true;
+            this.empFirstName.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.empFirstName.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.empFirstName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.empFirstName.Location = new System.Drawing.Point(420, 53);
+            this.empFirstName.Name = "empFirstName";
+            this.empFirstName.Size = new System.Drawing.Size(174, 21);
+            this.empFirstName.TabIndex = 77;
+            this.empFirstName.Text = "{Employee First Name}";
+            this.empFirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label29
+            // 
+            this.label29.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label29.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label29.Location = new System.Drawing.Point(310, 53);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(85, 21);
+            this.label29.TabIndex = 79;
+            this.label29.Text = "First name";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label28
+            // 
+            this.label28.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label28.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label28.Location = new System.Drawing.Point(293, 81);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(106, 21);
+            this.label28.TabIndex = 75;
+            this.label28.Text = "Middle name";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // empMiddleName
+            // 
+            this.empMiddleName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.empMiddleName.AutoSize = true;
+            this.empMiddleName.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.empMiddleName.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.empMiddleName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.empMiddleName.Location = new System.Drawing.Point(420, 81);
+            this.empMiddleName.Name = "empMiddleName";
+            this.empMiddleName.Size = new System.Drawing.Size(195, 21);
+            this.empMiddleName.TabIndex = 73;
+            this.empMiddleName.Text = "{Employee Middle Name}";
+            this.empMiddleName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label27
+            // 
+            this.label27.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label27.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label27.Location = new System.Drawing.Point(312, 109);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(83, 21);
+            this.label27.TabIndex = 67;
+            this.label27.Text = "Last name";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // empLastName
+            // 
+            this.empLastName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.empLastName.AutoSize = true;
+            this.empLastName.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.empLastName.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.empLastName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.empLastName.Location = new System.Drawing.Point(420, 109);
+            this.empLastName.Name = "empLastName";
+            this.empLastName.Size = new System.Drawing.Size(172, 21);
+            this.empLastName.TabIndex = 71;
+            this.empLastName.Text = "{Employee Last Name}";
+            this.empLastName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // empUserRole
+            // 
+            this.empUserRole.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.empUserRole.AutoSize = true;
+            this.empUserRole.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.empUserRole.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.empUserRole.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.empUserRole.Location = new System.Drawing.Point(813, 81);
+            this.empUserRole.Name = "empUserRole";
+            this.empUserRole.Size = new System.Drawing.Size(162, 21);
+            this.empUserRole.TabIndex = 57;
+            this.empUserRole.Text = "{Employee User role}";
+            this.empUserRole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // emailLabel
+            // 
+            this.emailLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.emailLabel.AutoSize = true;
+            this.emailLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.emailLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.emailLabel.Location = new System.Drawing.Point(684, 53);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(112, 21);
+            this.emailLabel.TabIndex = 65;
+            this.emailLabel.Text = "Email Address";
+            this.emailLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // emailAddress
+            // 
+            this.emailAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.emailAddress.AutoSize = true;
+            this.emailAddress.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.emailAddress.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.emailAddress.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.emailAddress.Location = new System.Drawing.Point(813, 53);
+            this.emailAddress.Name = "emailAddress";
+            this.emailAddress.Size = new System.Drawing.Size(134, 21);
+            this.emailAddress.TabIndex = 64;
+            this.emailAddress.Text = "{Employee Email}";
+            this.emailAddress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // accessLabel
+            // 
+            this.accessLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.accessLabel.AutoSize = true;
+            this.accessLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.accessLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.accessLabel.Location = new System.Drawing.Point(693, 81);
+            this.accessLabel.Name = "accessLabel";
+            this.accessLabel.Size = new System.Drawing.Size(102, 21);
+            this.accessLabel.TabIndex = 59;
+            this.accessLabel.Text = "Access Level";
+            this.accessLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Controls.Add(this.infoLabel);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(1141, 44);
+            this.panel12.TabIndex = 46;
+            // 
+            // infoLabel
+            // 
+            this.infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.infoLabel.Location = new System.Drawing.Point(7, 10);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(184, 25);
+            this.infoLabel.TabIndex = 2;
+            this.infoLabel.Text = "Account Information";
+            this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // formPanel
             // 
@@ -1168,743 +1905,6 @@
             this.label65.Text = "Employment Information";
             this.label65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // generalPanel
-            // 
-            this.generalPanel.AutoScroll = true;
-            this.generalPanel.Controls.Add(this.panel14);
-            this.generalPanel.Controls.Add(this.panel13);
-            this.generalPanel.Controls.Add(this.panel10);
-            this.generalPanel.Controls.Add(this.panel9);
-            this.generalPanel.Controls.Add(this.panel7);
-            this.generalPanel.Controls.Add(this.panel12);
-            this.generalPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.generalPanel.Location = new System.Drawing.Point(0, 0);
-            this.generalPanel.Name = "generalPanel";
-            this.generalPanel.Size = new System.Drawing.Size(1141, 723);
-            this.generalPanel.TabIndex = 0;
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.panel15);
-            this.panel14.Controls.Add(this.label57);
-            this.panel14.Controls.Add(this.label16);
-            this.panel14.Controls.Add(this.label61);
-            this.panel14.Controls.Add(this.educationalAttainment);
-            this.panel14.Controls.Add(this.label14);
-            this.panel14.Controls.Add(this.schoolName);
-            this.panel14.Controls.Add(this.schoolAddress);
-            this.panel14.Controls.Add(this.label13);
-            this.panel14.Controls.Add(this.label15);
-            this.panel14.Controls.Add(this.course);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(0, 465);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(1141, 255);
-            this.panel14.TabIndex = 51;
-            // 
-            // panel15
-            // 
-            this.panel15.BackColor = System.Drawing.Color.White;
-            this.panel15.Controls.Add(this.label2);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel15.Location = new System.Drawing.Point(0, 0);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(1141, 44);
-            this.panel15.TabIndex = 80;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(7, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(198, 25);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Education Information";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label57
-            // 
-            this.label57.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label57.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label57.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label57.Location = new System.Drawing.Point(205, 270);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(153, 19);
-            this.label57.TabIndex = 66;
-            this.label57.Text = "{Employee Nationality}";
-            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label16.Location = new System.Drawing.Point(228, 58);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(180, 21);
-            this.label16.TabIndex = 9;
-            this.label16.Text = "Educational Attainment";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label61
-            // 
-            this.label61.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label61.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label61.Location = new System.Drawing.Point(102, 270);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(79, 19);
-            this.label61.TabIndex = 68;
-            this.label61.Text = "Nationality";
-            this.label61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // educationalAttainment
-            // 
-            this.educationalAttainment.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.educationalAttainment.AutoSize = true;
-            this.educationalAttainment.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.educationalAttainment.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.educationalAttainment.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.educationalAttainment.Location = new System.Drawing.Point(420, 58);
-            this.educationalAttainment.Name = "educationalAttainment";
-            this.educationalAttainment.Size = new System.Drawing.Size(266, 21);
-            this.educationalAttainment.TabIndex = 9;
-            this.educationalAttainment.Text = "{Employee Educational Attainment}";
-            this.educationalAttainment.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label14
-            // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label14.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label14.Location = new System.Drawing.Point(279, 145);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(124, 21);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "School Address";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // schoolName
-            // 
-            this.schoolName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.schoolName.AutoSize = true;
-            this.schoolName.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.schoolName.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.schoolName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.schoolName.Location = new System.Drawing.Point(420, 87);
-            this.schoolName.Name = "schoolName";
-            this.schoolName.Size = new System.Drawing.Size(193, 21);
-            this.schoolName.TabIndex = 8;
-            this.schoolName.Text = "{Employee School Name}";
-            this.schoolName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // schoolAddress
-            // 
-            this.schoolAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.schoolAddress.AutoSize = true;
-            this.schoolAddress.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.schoolAddress.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.schoolAddress.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.schoolAddress.Location = new System.Drawing.Point(420, 145);
-            this.schoolAddress.Name = "schoolAddress";
-            this.schoolAddress.Size = new System.Drawing.Size(210, 21);
-            this.schoolAddress.TabIndex = 6;
-            this.schoolAddress.Text = "{Employee School Address}";
-            this.schoolAddress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label13.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label13.Location = new System.Drawing.Point(269, 116);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(134, 21);
-            this.label13.TabIndex = 7;
-            this.label13.Text = "Course/Specialty";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label15.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label15.Location = new System.Drawing.Point(291, 87);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(107, 21);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "School Name";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // course
-            // 
-            this.course.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.course.AutoSize = true;
-            this.course.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.course.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.course.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.course.Location = new System.Drawing.Point(420, 116);
-            this.course.Name = "course";
-            this.course.Size = new System.Drawing.Size(147, 21);
-            this.course.TabIndex = 7;
-            this.course.Text = "{Employee Course}";
-            this.course.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel13
-            // 
-            this.panel13.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(0, 462);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(1141, 3);
-            this.panel13.TabIndex = 50;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.panel11);
-            this.panel10.Controls.Add(this.zipCode);
-            this.panel10.Controls.Add(this.province);
-            this.panel10.Controls.Add(this.label32);
-            this.panel10.Controls.Add(this.contactNumber);
-            this.panel10.Controls.Add(this.label30);
-            this.panel10.Controls.Add(this.label7);
-            this.panel10.Controls.Add(this.municipality);
-            this.panel10.Controls.Add(this.civilStatus);
-            this.panel10.Controls.Add(this.label3);
-            this.panel10.Controls.Add(this.label4);
-            this.panel10.Controls.Add(this.barangay);
-            this.panel10.Controls.Add(this.nationality);
-            this.panel10.Controls.Add(this.label24);
-            this.panel10.Controls.Add(this.label6);
-            this.panel10.Controls.Add(this.label23);
-            this.panel10.Controls.Add(this.label5);
-            this.panel10.Controls.Add(this.sex);
-            this.panel10.Controls.Add(this.birthday);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(0, 229);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1141, 233);
-            this.panel10.TabIndex = 49;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.White;
-            this.panel11.Controls.Add(this.label1);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1141, 44);
-            this.panel11.TabIndex = 80;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(7, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 25);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Primary Information";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // zipCode
-            // 
-            this.zipCode.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.zipCode.AutoSize = true;
-            this.zipCode.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.zipCode.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.zipCode.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.zipCode.Location = new System.Drawing.Point(813, 145);
-            this.zipCode.Name = "zipCode";
-            this.zipCode.Size = new System.Drawing.Size(162, 21);
-            this.zipCode.TabIndex = 52;
-            this.zipCode.Text = "{Employee Zip Code}";
-            this.zipCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // province
-            // 
-            this.province.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.province.AutoSize = true;
-            this.province.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.province.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.province.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.province.Location = new System.Drawing.Point(813, 117);
-            this.province.Name = "province";
-            this.province.Size = new System.Drawing.Size(223, 21);
-            this.province.TabIndex = 53;
-            this.province.Text = "{Employee Province Address}";
-            this.province.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label32
-            // 
-            this.label32.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label32.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label32.Location = new System.Drawing.Point(715, 145);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(76, 21);
-            this.label32.TabIndex = 54;
-            this.label32.Text = "Zip Code";
-            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // contactNumber
-            // 
-            this.contactNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.contactNumber.AutoSize = true;
-            this.contactNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.contactNumber.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.contactNumber.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.contactNumber.Location = new System.Drawing.Point(420, 169);
-            this.contactNumber.Name = "contactNumber";
-            this.contactNumber.Size = new System.Drawing.Size(206, 21);
-            this.contactNumber.TabIndex = 55;
-            this.contactNumber.Text = "{Employee Phone Number}";
-            this.contactNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label30
-            // 
-            this.label30.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label30.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label30.Location = new System.Drawing.Point(717, 117);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(73, 21);
-            this.label30.TabIndex = 56;
-            this.label30.Text = "Province";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label7.Location = new System.Drawing.Point(281, 169);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(120, 21);
-            this.label7.TabIndex = 58;
-            this.label7.Text = "Phone Number";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // municipality
-            // 
-            this.municipality.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.municipality.AutoSize = true;
-            this.municipality.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.municipality.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.municipality.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.municipality.Location = new System.Drawing.Point(813, 89);
-            this.municipality.Name = "municipality";
-            this.municipality.Size = new System.Drawing.Size(266, 21);
-            this.municipality.TabIndex = 60;
-            this.municipality.Text = "{Employee Municipal/City Address}";
-            this.municipality.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // civilStatus
-            // 
-            this.civilStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.civilStatus.AutoSize = true;
-            this.civilStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.civilStatus.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.civilStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.civilStatus.Location = new System.Drawing.Point(420, 142);
-            this.civilStatus.Name = "civilStatus";
-            this.civilStatus.Size = new System.Drawing.Size(175, 21);
-            this.civilStatus.TabIndex = 62;
-            this.civilStatus.Text = "{Employee Civil Status}";
-            this.civilStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Location = new System.Drawing.Point(295, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 21);
-            this.label3.TabIndex = 78;
-            this.label3.Text = "Date of Birth";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label4.Location = new System.Drawing.Point(330, 88);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 21);
-            this.label4.TabIndex = 74;
-            this.label4.Text = "Gender";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // barangay
-            // 
-            this.barangay.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.barangay.AutoSize = true;
-            this.barangay.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.barangay.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.barangay.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.barangay.Location = new System.Drawing.Point(813, 61);
-            this.barangay.Name = "barangay";
-            this.barangay.Size = new System.Drawing.Size(227, 21);
-            this.barangay.TabIndex = 70;
-            this.barangay.Text = "{Employee Barangay Address}";
-            this.barangay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // nationality
-            // 
-            this.nationality.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.nationality.AutoSize = true;
-            this.nationality.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.nationality.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.nationality.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.nationality.Location = new System.Drawing.Point(420, 115);
-            this.nationality.Name = "nationality";
-            this.nationality.Size = new System.Drawing.Size(175, 21);
-            this.nationality.TabIndex = 66;
-            this.nationality.Text = "{Employee Nationality}";
-            this.nationality.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label24
-            // 
-            this.label24.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label24.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label24.Location = new System.Drawing.Point(661, 89);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(134, 21);
-            this.label24.TabIndex = 63;
-            this.label24.Text = "Municipality/City";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label6.Location = new System.Drawing.Point(304, 142);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 21);
-            this.label6.TabIndex = 61;
-            this.label6.Text = "Civil Status";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label23
-            // 
-            this.label23.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label23.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label23.Location = new System.Drawing.Point(714, 61);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(77, 21);
-            this.label23.TabIndex = 69;
-            this.label23.Text = "Barangay";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label5.Location = new System.Drawing.Point(305, 115);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 21);
-            this.label5.TabIndex = 68;
-            this.label5.Text = "Nationality";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // sex
-            // 
-            this.sex.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.sex.AutoSize = true;
-            this.sex.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.sex.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.sex.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.sex.Location = new System.Drawing.Point(420, 88);
-            this.sex.Name = "sex";
-            this.sex.Size = new System.Drawing.Size(150, 21);
-            this.sex.TabIndex = 72;
-            this.sex.Text = "{Employee Gender}";
-            this.sex.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // birthday
-            // 
-            this.birthday.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.birthday.AutoSize = true;
-            this.birthday.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.birthday.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.birthday.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.birthday.Location = new System.Drawing.Point(420, 61);
-            this.birthday.Name = "birthday";
-            this.birthday.Size = new System.Drawing.Size(189, 21);
-            this.birthday.TabIndex = 76;
-            this.birthday.Text = "{Employee Date of Birth}";
-            this.birthday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 226);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1141, 3);
-            this.panel9.TabIndex = 48;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.uploadBtn);
-            this.panel7.Controls.Add(this.empAccountStatus);
-            this.panel7.Controls.Add(this.empImage);
-            this.panel7.Controls.Add(this.label18);
-            this.panel7.Controls.Add(this.empFirstName);
-            this.panel7.Controls.Add(this.label29);
-            this.panel7.Controls.Add(this.label28);
-            this.panel7.Controls.Add(this.empMiddleName);
-            this.panel7.Controls.Add(this.label27);
-            this.panel7.Controls.Add(this.empLastName);
-            this.panel7.Controls.Add(this.empUserRole);
-            this.panel7.Controls.Add(this.emailLabel);
-            this.panel7.Controls.Add(this.emailAddress);
-            this.panel7.Controls.Add(this.accessLabel);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 44);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1141, 182);
-            this.panel7.TabIndex = 47;
-            // 
-            // uploadBtn
-            // 
-            this.uploadBtn.BackColor = System.Drawing.Color.SteelBlue;
-            this.uploadBtn.BackgroundColor = System.Drawing.Color.SteelBlue;
-            this.uploadBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.uploadBtn.BorderRadius = 5;
-            this.uploadBtn.BorderSize = 0;
-            this.uploadBtn.FlatAppearance.BorderSize = 0;
-            this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uploadBtn.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.uploadBtn.ForeColor = System.Drawing.Color.White;
-            this.uploadBtn.Location = new System.Drawing.Point(144, 145);
-            this.uploadBtn.Name = "uploadBtn";
-            this.uploadBtn.Size = new System.Drawing.Size(106, 31);
-            this.uploadBtn.TabIndex = 4;
-            this.uploadBtn.Text = "Upload Image";
-            this.uploadBtn.TextColor = System.Drawing.Color.White;
-            this.uploadBtn.UseVisualStyleBackColor = false;
-            this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
-            // 
-            // empAccountStatus
-            // 
-            this.empAccountStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.empAccountStatus.AutoSize = true;
-            this.empAccountStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.empAccountStatus.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.empAccountStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.empAccountStatus.Location = new System.Drawing.Point(813, 109);
-            this.empAccountStatus.Name = "empAccountStatus";
-            this.empAccountStatus.Size = new System.Drawing.Size(206, 21);
-            this.empAccountStatus.TabIndex = 50;
-            this.empAccountStatus.Text = "{Employee Account Status}";
-            this.empAccountStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // empImage
-            // 
-            this.empImage.Image = global::Payroll_Project2.Properties.Resources._2640095;
-            this.empImage.Location = new System.Drawing.Point(120, 6);
-            this.empImage.Name = "empImage";
-            this.empImage.Size = new System.Drawing.Size(155, 134);
-            this.empImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.empImage.TabIndex = 1;
-            this.empImage.TabStop = false;
-            // 
-            // label18
-            // 
-            this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label18.Location = new System.Drawing.Point(676, 109);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(120, 21);
-            this.label18.TabIndex = 51;
-            this.label18.Text = "Account Status";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // empFirstName
-            // 
-            this.empFirstName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.empFirstName.AutoSize = true;
-            this.empFirstName.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.empFirstName.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.empFirstName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.empFirstName.Location = new System.Drawing.Point(420, 53);
-            this.empFirstName.Name = "empFirstName";
-            this.empFirstName.Size = new System.Drawing.Size(174, 21);
-            this.empFirstName.TabIndex = 77;
-            this.empFirstName.Text = "{Employee First Name}";
-            this.empFirstName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label29
-            // 
-            this.label29.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label29.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label29.Location = new System.Drawing.Point(310, 53);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(85, 21);
-            this.label29.TabIndex = 79;
-            this.label29.Text = "First name";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label28
-            // 
-            this.label28.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label28.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label28.Location = new System.Drawing.Point(293, 81);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(106, 21);
-            this.label28.TabIndex = 75;
-            this.label28.Text = "Middle name";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // empMiddleName
-            // 
-            this.empMiddleName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.empMiddleName.AutoSize = true;
-            this.empMiddleName.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.empMiddleName.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.empMiddleName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.empMiddleName.Location = new System.Drawing.Point(420, 81);
-            this.empMiddleName.Name = "empMiddleName";
-            this.empMiddleName.Size = new System.Drawing.Size(195, 21);
-            this.empMiddleName.TabIndex = 73;
-            this.empMiddleName.Text = "{Employee Middle Name}";
-            this.empMiddleName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label27
-            // 
-            this.label27.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label27.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label27.Location = new System.Drawing.Point(312, 109);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(83, 21);
-            this.label27.TabIndex = 67;
-            this.label27.Text = "Last name";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // empLastName
-            // 
-            this.empLastName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.empLastName.AutoSize = true;
-            this.empLastName.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.empLastName.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.empLastName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.empLastName.Location = new System.Drawing.Point(420, 109);
-            this.empLastName.Name = "empLastName";
-            this.empLastName.Size = new System.Drawing.Size(172, 21);
-            this.empLastName.TabIndex = 71;
-            this.empLastName.Text = "{Employee Last Name}";
-            this.empLastName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // empUserRole
-            // 
-            this.empUserRole.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.empUserRole.AutoSize = true;
-            this.empUserRole.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.empUserRole.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.empUserRole.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.empUserRole.Location = new System.Drawing.Point(813, 81);
-            this.empUserRole.Name = "empUserRole";
-            this.empUserRole.Size = new System.Drawing.Size(162, 21);
-            this.empUserRole.TabIndex = 57;
-            this.empUserRole.Text = "{Employee User role}";
-            this.empUserRole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.emailLabel.AutoSize = true;
-            this.emailLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.emailLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.emailLabel.Location = new System.Drawing.Point(684, 53);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(112, 21);
-            this.emailLabel.TabIndex = 65;
-            this.emailLabel.Text = "Email Address";
-            this.emailLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // emailAddress
-            // 
-            this.emailAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.emailAddress.AutoSize = true;
-            this.emailAddress.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.emailAddress.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.emailAddress.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.emailAddress.Location = new System.Drawing.Point(813, 53);
-            this.emailAddress.Name = "emailAddress";
-            this.emailAddress.Size = new System.Drawing.Size(134, 21);
-            this.emailAddress.TabIndex = 64;
-            this.emailAddress.Text = "{Employee Email}";
-            this.emailAddress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // accessLabel
-            // 
-            this.accessLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.accessLabel.AutoSize = true;
-            this.accessLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.accessLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.accessLabel.Location = new System.Drawing.Point(693, 81);
-            this.accessLabel.Name = "accessLabel";
-            this.accessLabel.Size = new System.Drawing.Size(102, 21);
-            this.accessLabel.TabIndex = 59;
-            this.accessLabel.Text = "Access Level";
-            this.accessLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.White;
-            this.panel12.Controls.Add(this.infoLabel);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1141, 44);
-            this.panel12.TabIndex = 46;
-            // 
-            // infoLabel
-            // 
-            this.infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.infoLabel.AutoSize = true;
-            this.infoLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
-            this.infoLabel.Location = new System.Drawing.Point(7, 10);
-            this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(184, 25);
-            this.infoLabel.TabIndex = 2;
-            this.infoLabel.Text = "Account Information";
-            this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Gainsboro;
@@ -1932,6 +1932,20 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.content.ResumeLayout(false);
+            this.generalPanel.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.empImage)).EndInit();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             this.formPanel.ResumeLayout(false);
             this.formContent.ResumeLayout(false);
             this.slipPanel.ResumeLayout(false);
@@ -1959,20 +1973,6 @@
             this.panel23.PerformLayout();
             this.panel24.ResumeLayout(false);
             this.panel24.PerformLayout();
-            this.generalPanel.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
-            this.panel15.ResumeLayout(false);
-            this.panel15.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.empImage)).EndInit();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
             this.ResumeLayout(false);
 
         }

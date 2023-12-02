@@ -68,6 +68,8 @@
             this.panel14 = new System.Windows.Forms.Panel();
             this.previousBtn = new Payroll_Project2.Custom.buttonDesign();
             this.nextBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -83,6 +85,7 @@
             this.dtrContent.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel14.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -98,11 +101,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1156, 65);
+            this.panel1.Size = new System.Drawing.Size(1211, 65);
             this.panel1.TabIndex = 0;
             // 
             // yearBox
             // 
+            this.yearBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.yearBox.BackColor = System.Drawing.SystemColors.Window;
             this.yearBox.BorderColor = System.Drawing.Color.DimGray;
             this.yearBox.BorderFocusColor = System.Drawing.Color.Pink;
@@ -110,7 +114,7 @@
             this.yearBox.BorderSize = 2;
             this.yearBox.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yearBox.ForeColor = System.Drawing.Color.DimGray;
-            this.yearBox.Location = new System.Drawing.Point(977, 3);
+            this.yearBox.Location = new System.Drawing.Point(1035, 3);
             this.yearBox.Multiline = false;
             this.yearBox.Name = "yearBox";
             this.yearBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -125,6 +129,7 @@
             // 
             // monthBox
             // 
+            this.monthBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.monthBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.monthBox.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monthBox.FormattingEnabled = true;
@@ -141,13 +146,14 @@
             "October",
             "November",
             "December"});
-            this.monthBox.Location = new System.Drawing.Point(830, 3);
+            this.monthBox.Location = new System.Drawing.Point(888, 3);
             this.monthBox.Name = "monthBox";
             this.monthBox.Size = new System.Drawing.Size(141, 28);
             this.monthBox.TabIndex = 12;
             // 
             // goBtn
             // 
+            this.goBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.goBtn.AutoSize = true;
             this.goBtn.BackColor = System.Drawing.Color.White;
             this.goBtn.BackgroundColor = System.Drawing.Color.White;
@@ -158,7 +164,7 @@
             this.goBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.goBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.goBtn.ForeColor = System.Drawing.Color.Black;
-            this.goBtn.Location = new System.Drawing.Point(1069, 5);
+            this.goBtn.Location = new System.Drawing.Point(1127, 5);
             this.goBtn.Name = "goBtn";
             this.goBtn.Size = new System.Drawing.Size(79, 25);
             this.goBtn.TabIndex = 11;
@@ -172,7 +178,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(703, 7);
+            this.label2.Location = new System.Drawing.Point(753, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(129, 19);
             this.label2.TabIndex = 9;
@@ -219,7 +225,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 65);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1156, 26);
+            this.panel5.Size = new System.Drawing.Size(1211, 26);
             this.panel5.TabIndex = 1;
             // 
             // label10
@@ -227,7 +233,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(902, 6);
+            this.label10.Location = new System.Drawing.Point(957, 6);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(10, 15);
             this.label10.TabIndex = 9;
@@ -238,7 +244,7 @@
             this.afternoonShift.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.afternoonShift.AutoSize = true;
             this.afternoonShift.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.afternoonShift.Location = new System.Drawing.Point(914, 6);
+            this.afternoonShift.Location = new System.Drawing.Point(969, 6);
             this.afternoonShift.Name = "afternoonShift";
             this.afternoonShift.Size = new System.Drawing.Size(132, 15);
             this.afternoonShift.TabIndex = 8;
@@ -249,7 +255,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(701, 6);
+            this.label9.Location = new System.Drawing.Point(756, 6);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 15);
             this.label9.TabIndex = 3;
@@ -260,7 +266,7 @@
             this.morningShift.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.morningShift.AutoSize = true;
             this.morningShift.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.morningShift.Location = new System.Drawing.Point(738, 6);
+            this.morningShift.Location = new System.Drawing.Point(793, 6);
             this.morningShift.Name = "morningShift";
             this.morningShift.Size = new System.Drawing.Size(166, 15);
             this.morningShift.TabIndex = 7;
@@ -269,6 +275,7 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.panel2);
             this.panel6.Controls.Add(this.panel16);
             this.panel6.Controls.Add(this.panel15);
             this.panel6.Controls.Add(this.panel13);
@@ -281,7 +288,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 91);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1156, 62);
+            this.panel6.Size = new System.Drawing.Size(1211, 62);
             this.panel6.TabIndex = 2;
             // 
             // panel16
@@ -299,11 +306,11 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label20.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label20.Location = new System.Drawing.Point(12, 16);
+            this.label20.Location = new System.Drawing.Point(18, 17);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(103, 30);
+            this.label20.Size = new System.Drawing.Size(96, 30);
             this.label20.TabIndex = 1;
-            this.label20.Text = "Total Work Hours \r\nfor the day";
+            this.label20.Text = "Special Privilege \r\nStatus";
             // 
             // panel15
             // 
@@ -482,7 +489,7 @@
             this.dtrContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtrContent.Location = new System.Drawing.Point(0, 153);
             this.dtrContent.Name = "dtrContent";
-            this.dtrContent.Size = new System.Drawing.Size(1156, 627);
+            this.dtrContent.Size = new System.Drawing.Size(1211, 627);
             this.dtrContent.TabIndex = 3;
             // 
             // logContent
@@ -491,7 +498,7 @@
             this.logContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logContent.Location = new System.Drawing.Point(0, 0);
             this.logContent.Name = "logContent";
-            this.logContent.Size = new System.Drawing.Size(1156, 557);
+            this.logContent.Size = new System.Drawing.Size(1211, 557);
             this.logContent.TabIndex = 2;
             // 
             // panel17
@@ -503,15 +510,16 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel17.Location = new System.Drawing.Point(0, 557);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(1156, 34);
+            this.panel17.Size = new System.Drawing.Size(1211, 34);
             this.panel17.TabIndex = 1;
             // 
             // totalWorkedHours
             // 
+            this.totalWorkedHours.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.totalWorkedHours.AutoSize = true;
             this.totalWorkedHours.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalWorkedHours.ForeColor = System.Drawing.Color.White;
-            this.totalWorkedHours.Location = new System.Drawing.Point(995, 5);
+            this.totalWorkedHours.Location = new System.Drawing.Point(1045, 5);
             this.totalWorkedHours.Name = "totalWorkedHours";
             this.totalWorkedHours.Size = new System.Drawing.Size(154, 21);
             this.totalWorkedHours.TabIndex = 2;
@@ -519,10 +527,11 @@
             // 
             // label18
             // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(806, 5);
+            this.label18.Location = new System.Drawing.Point(856, 5);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(192, 21);
             this.label18.TabIndex = 1;
@@ -535,11 +544,13 @@
             this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel14.Location = new System.Drawing.Point(0, 591);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(1156, 36);
+            this.panel14.Size = new System.Drawing.Size(1211, 36);
             this.panel14.TabIndex = 0;
             // 
             // previousBtn
             // 
+            this.previousBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.previousBtn.AutoSize = true;
             this.previousBtn.BackColor = System.Drawing.Color.Red;
             this.previousBtn.BackgroundColor = System.Drawing.Color.Red;
@@ -550,7 +561,7 @@
             this.previousBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.previousBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.previousBtn.ForeColor = System.Drawing.Color.White;
-            this.previousBtn.Location = new System.Drawing.Point(1012, 6);
+            this.previousBtn.Location = new System.Drawing.Point(1060, 6);
             this.previousBtn.Name = "previousBtn";
             this.previousBtn.Size = new System.Drawing.Size(69, 25);
             this.previousBtn.TabIndex = 13;
@@ -561,6 +572,8 @@
             // 
             // nextBtn
             // 
+            this.nextBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.nextBtn.AutoSize = true;
             this.nextBtn.BackColor = System.Drawing.Color.Green;
             this.nextBtn.BackgroundColor = System.Drawing.Color.Green;
@@ -571,7 +584,7 @@
             this.nextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.nextBtn.ForeColor = System.Drawing.Color.White;
-            this.nextBtn.Location = new System.Drawing.Point(1083, 6);
+            this.nextBtn.Location = new System.Drawing.Point(1131, 6);
             this.nextBtn.Name = "nextBtn";
             this.nextBtn.Size = new System.Drawing.Size(69, 25);
             this.nextBtn.TabIndex = 12;
@@ -580,12 +593,33 @@
             this.nextBtn.UseVisualStyleBackColor = false;
             this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(910, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(135, 60);
+            this.panel2.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Location = new System.Drawing.Point(12, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 30);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Total Work Hours \r\nfor the day";
+            // 
             // dtrDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1156, 780);
+            this.ClientSize = new System.Drawing.Size(1211, 780);
             this.Controls.Add(this.dtrContent);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
@@ -624,6 +658,8 @@
             this.panel17.PerformLayout();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -670,5 +706,7 @@
         private Custom.customTextBox2 yearBox;
         private Custom.buttonDesign nextBtn;
         private Custom.buttonDesign previousBtn;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
     }
 }

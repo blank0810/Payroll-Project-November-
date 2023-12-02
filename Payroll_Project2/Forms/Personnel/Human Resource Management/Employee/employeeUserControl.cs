@@ -4,6 +4,7 @@ using Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control;
 using Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Modal;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -18,6 +19,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee
         public static employeeClass employeeClass = new employeeClass();
         private static bool messageBoxShow = false;
         private static generalFunctions generalFunctions = new generalFunctions();
+        private static readonly string employeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
 
         private static int currentPage = 1;
         private static int recordPerPage = 10;
@@ -207,7 +209,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee
                                 employeeDataUC[i].employeeStatus = row["employmentstatus"].ToString();
                                 employeeDataUC[i].employeeId = (int)row["employeeid"];
                                 employeeDataUC[i].jobDescription = row["employeejobdesc"].ToString();
-                                employeeDataUC[i].employeeImage = row["employeepicture"].ToString();
+                                employeeDataUC[i].employeeImage = $"{employeeImagePath}{row["employeepicture"]}";
                                 employeeList.Controls.Add(employeeDataUC[i]);
                                 employeeList.Focus();
                             }
@@ -253,7 +255,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee
                         employeeDataUC[i].employeeStatus = row["employmentstatus"].ToString();
                         employeeDataUC[i].employeeId = (int)row["employeeid"];
                         employeeDataUC[i].jobDescription = row["employeejobdesc"].ToString();
-                        employeeDataUC[i].employeeImage = row["employeepicture"].ToString();
+                        employeeDataUC[i].employeeImage = $"{employeeImagePath}{row["employeepicture"]}";
                         employeeList.Controls.Add(employeeDataUC[i]);
                         employeeList.Focus();
                     }
@@ -368,7 +370,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee
                         employeeDataUC[i].employeeStatus = row["employmentstatus"].ToString();
                         employeeDataUC[i].employeeId = (int)row["employeeid"];
                         employeeDataUC[i].jobDescription = row["employeejobdesc"].ToString();
-                        employeeDataUC[i].employeeImage = row["employeepicture"].ToString();
+                        employeeDataUC[i].employeeImage = $"{employeeImagePath}{row["employeepicture"]}";
 
                         employeeList.Controls.Add(employeeDataUC[i]);
                     }

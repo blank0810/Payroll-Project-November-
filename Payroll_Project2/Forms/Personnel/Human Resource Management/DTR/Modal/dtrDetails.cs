@@ -167,6 +167,15 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal
                             {
                                 logUC.TotalHours = 0;
                             }
+
+                            if (!string.IsNullOrEmpty(row["specialPrivilegeDescription"]?.ToString()))
+                            {
+                                logUC.SpecialPrivilege = $"{row["specialPrivilegeDescription"]}";
+                            }
+                            else
+                            {
+                                logUC.SpecialPrivilege = "";
+                            }
                         }
                     }
                     else

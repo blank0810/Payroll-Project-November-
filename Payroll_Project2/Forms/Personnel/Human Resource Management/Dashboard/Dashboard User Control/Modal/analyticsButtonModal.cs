@@ -15,6 +15,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Moda
         private static int _userId;
         private static departmentCardUC _parent;
         private static readonly string employeeImage = ConfigurationManager.AppSettings["DefaultLogo"];
+        private static readonly string employeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
         private static readonly personnelDashboard personnel = new personnelDashboard();
         private static readonly generalFunctions generalFunctions = new generalFunctions();
 
@@ -84,9 +85,9 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Moda
                             employee[i].DateHired = "Not Set";
                         }
 
-                        if (!string.IsNullOrEmpty(row["employeeFname"].ToString()) || !string.IsNullOrEmpty(row["employeeLname"].ToString()))
+                        if (!string.IsNullOrEmpty(row["employeeName"].ToString()))
                         {
-                            employee[i].EmployeeName = row["employeefname"].ToString() + " " + row["employeelname"].ToString();
+                            employee[i].EmployeeName = row["employeeName"].ToString();
                         }
                         else
                         {
@@ -113,7 +114,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Moda
 
                         if (!string.IsNullOrEmpty(row["employeePicture"].ToString()))
                         {
-                            employee[i].EmployeePicture = row["employeepicture"].ToString();
+                            employee[i].EmployeePicture = $"{employeeImagePath}{row["employeepicture"]}";
                         }
                         else
                         {

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Payroll_Project2.Forms.Personnel.Payroll.User_Controls;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions
 {
@@ -52,6 +54,112 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 Console.WriteLine("Error: " + ex.Message);
                 throw; // Re-throw the exception after logging or handle it appropriately
             }
+        }
+
+        // This function is for retrieving the formula for any general formulas
+        public async Task<string> GetGeneralFormula(string formulaTitle)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select generalFormulaExpression from tbl_generalFormula where generalFormulaTitle = @formulaTitle";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@formulaTitle", formulaTitle);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        return result != null && result != DBNull.Value ? result.ToString() : string.Empty;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // This function is used for retrieving the benefit's formula
+        public async Task<string> GetBenefitsFormula(int benefitsId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select formulaExpression from tbl_benefitsFormula where benefitsId = @benefitsId";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@benefitsId", benefitsId);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        return result != null && result != DBNull.Value ? result.ToString() : string.Empty;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // Function responsible for retrieving the Witholding Tax Rate based off a basic annual salary
+        public async Task<DataTable> GetWitholdingTaxRate(decimal basicAnnualSalary)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "SELECT taxRateDescription, percentageToBeDeducted, amountToBeDeducted, amountExcess FROM tbl_witholdingTaxRates " +
+                        "WHERE " +
+                        "isTaxRateActive = 1 AND @basicAnnualSalary BETWEEN fromAnnualSalaryValue AND COALESCE(toAnnualSalaryValue, 9999999999) " +
+                        "AND taxRateEffectiveFromYear <= 2023 AND (taxRateEffectiveToYear IS NULL OR taxRateEffectiveToYear >= 2023) " +
+                        "ORDER BY fromAnnualSalaryValue;";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@basicAnnualSalary", basicAnnualSalary);
+
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        // This function is used for retrieving the benefit contributions based on what benefits
+        public async Task<DataTable> GetBenefitContributions(int benefitsId)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select personalShareValue, employerShareValue from tbl_benefitsContributions where " +
+                        "benefitsId = @benefitsId and isBenefitContributionActive = 1";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@benefitsId", benefitsId);
+
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
         }
 
         // This function responsible for retrieving personnel department to be used for approving requests
@@ -420,13 +528,14 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     string command = "SELECT tbl_employee.employeeId, employeePassword, employeeFname, employeeLname, employeeMname, employeeJobDesc, " +
                         "employeeContactNumber, employeeSex, employeeCivilStatus, nationality, employeeBirth, employeeEmailAddress, " +
                         "barangay, municipality, province, zipCode, educationalAttainment, course, nameOfSchool, schoolAddress, " +
-                        "departmentName, dateHired, dateRetired, employmentStatus, employeePicture, employeeSignature, isActive, roleName, " +
-                        "salaryRateDescription, salaryValue, payrollScheduleDescription, morningShiftTime, afternoonShiftTime FROM tbl_employee JOIN tbl_department ON " +
+                        "departmentName, dateHired, dateRetired, employmentStatus, employeePicture, employeeSignature, tbl_employee.isActive, roleName, " +
+                        "salaryRateDescription, amount, payrollScheduleDescription, morningShiftTime, afternoonShiftTime FROM tbl_employee JOIN tbl_department ON " +
                         "tbl_employee.departmentId = tbl_department.departmentId JOIN tbl_educationalAttainment ON " +
                         "tbl_employee.educationalAttainmentId = tbl_educationalAttainment.educationalAttainmentId JOIN tbl_userRole ON " +
                         "tbl_employee.roleId = tbl_userRole.roleId JOIN tbl_appointmentForm ON tbl_employee.employeeId = " +
-                        "tbl_appointmentForm.employeeId JOIN tbl_salaryRate ON tbl_appointmentForm.salaryRateId = " +
-                        "tbl_salaryRate.salaryRateId JOIN tbl_payrollSched ON tbl_appointmentForm.payrollSchedId = " +
+                        "tbl_appointmentForm.employeeId JOIN tbl_salaryRateValue ON tbl_appointmentForm.salaryRateValueId = " +
+                        "tbl_salaryRateValue.salaryRateValueId JOIN tbl_salaryRate on tbl_salaryRateValue.salaryRateId = tbl_salaryRate.salaryRateId " +
+                        "JOIN tbl_payrollSched ON tbl_appointmentForm.payrollSchedId = " +
                         "tbl_payrollSched.payrollSchedId JOIN tbl_employmentStatus ON tbl_appointmentForm.employmentStatusId = " +
                         "tbl_employmentStatus.employmentStatusId WHERE tbl_employee.employeeId = @id;";
 
@@ -638,11 +747,11 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select detailsId, benefits, benefitsValue, benefitStatus from tbl_appointmentformbenefitsdetails " +
-                        "join tbl_benefits on tbl_appointmentformbenefitsdetails.benefitsid = tbl_benefits.benefitsid " +
-                        "where tbl_appointmentformbenefitsdetails.appointmentFormId = " +
-                        "(select appointmentFormId from tbl_appointmentForm where employeeId = @id) " +
-                        "order by case benefitStatus when 'Active' then 0 else 1 end";
+                    string command = "SELECT detailsId, tbl_benefits.benefitsId, benefits, isBenefitActive, SUM(personalShareValue + employerShareValue) " +
+                        "AS benefitsValue FROM tbl_appointmentFormBenefitsDetails JOIN tbl_appointmentForm ON tbl_appointmentForm.appointmentFormId = " +
+                        "tbl_appointmentFormBenefitsDetails.appointmentFormId JOIN tbl_benefits ON tbl_benefits.benefitsId = " +
+                        "tbl_appointmentFormBenefitsDetails.benefitsId WHERE employeeid = 1 GROUP BY detailsId, tbl_benefits.benefitsId, benefits, " +
+                        "isBenefitActive ";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
@@ -1245,7 +1354,9 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select timeLogId, dateLog, morningIn, morningOut, morningStatus, afternoonIn, afternoonOut, afternoonStatus, totalHoursWorked from tbl_timeLog " +
+                    string command = "select timeLogId, dateLog, morningIn, morningOut, morningStatus, afternoonIn, afternoonOut, afternoonStatus, " +
+                        "totalHoursWorked, specialPrivilegeDescription from tbl_timeLog " +
+                        "join tbl_specialPrivilege on tbl_timeLog.specialPrivilegeId = tbl_specialPrivilege.specialPrivilegeId " +
                         "where employeeId = @employeeId and dateLog = @date";
                     using (cmd = new SqlCommand(command, conn))
                     {

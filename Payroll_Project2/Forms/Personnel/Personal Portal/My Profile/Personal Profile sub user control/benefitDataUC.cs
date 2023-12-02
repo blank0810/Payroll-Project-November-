@@ -11,7 +11,7 @@ namespace Payroll_Project2.Forms.Personnel.Personal_Portal.My_Profile.Personal_P
 
         public int BenefitID { get; set; }
         public string BenefitName { get; set; }
-        public decimal BenefitValue { get; set; }
+        public string BenefitValue { get; set; }
         public string BenefitStatus { get; set; }
 
         public benefitDataUC(int userId, personalProfileUC parent)
@@ -24,7 +24,7 @@ namespace Payroll_Project2.Forms.Personnel.Personal_Portal.My_Profile.Personal_P
         private void DataBinding()
         {
             benefitName.DataBindings.Add("Text", this, "BenefitName");
-            benefitValue.DataBindings.Add("Text", this, "BenefitValue", true, DataSourceUpdateMode.OnPropertyChanged, "", "₱0.00");
+            benefitValue.DataBindings.Add("Text", this, "BenefitValue");
             benefitsStatus.DataBindings.Add("Text", this, "BenefitStatus");
         }
 

@@ -2,6 +2,7 @@
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
 using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control
         private static newDashboard _parent;
         private static readonly personnelDashboard personnelClass = new personnelDashboard();
         private static readonly generalFunctions generalFunctions = new generalFunctions();
+        private static readonly string employeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
+        private static readonly string departmentLogoPath = ConfigurationManager.AppSettings.Get("DestinationDepartmentImagePath");
         private static string userRoleParameter = "Department Head";
 
         public int DepartmentId { get; set; }

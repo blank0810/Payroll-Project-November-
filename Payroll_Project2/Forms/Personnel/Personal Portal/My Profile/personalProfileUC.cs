@@ -211,7 +211,8 @@ namespace Payroll_Project2.Forms.Personnel.Personal_Portal.My_Profile.Personnel_
 
                         benefitData[i].BenefitID = int.Parse(row["detailsId"].ToString());
                         benefitData[i].BenefitName = $"{row["benefits"]}";
-                        benefitData[i].BenefitValue = decimal.Parse(row["benefitsValue"].ToString());
+                        decimal benefitsValue = decimal.Parse(row["benefitsValue"].ToString());
+                        benefitData[i].BenefitValue = $"{benefitsValue: C2}";
                         benefitData[i].BenefitStatus = $"{row["benefitStatus"]}";
 
                         benefitListPanel.Controls.Add(benefitData[i]);
@@ -233,12 +234,13 @@ namespace Payroll_Project2.Forms.Personnel.Personal_Portal.My_Profile.Personnel_
 
         }
 
-        private async Task DisplayContributions(int employeeId, int benefitId, decimal TotalValue)
+        private async Task DisplayContributions(int employeeId, int benefitId, string TotalValue)
         {
             try
             {
                 benefitListPanel.Controls.Clear();
                 DataTable contributions = await GetBenefitContributions(employeeId, benefitId);
+                decimal totalValue = decimal.Parse(TotalValue.ToString());
 
                 if (contributions != null && contributions.Rows.Count > 0)
                 {
@@ -271,7 +273,7 @@ namespace Payroll_Project2.Forms.Personnel.Personal_Portal.My_Profile.Personnel_
                             contributionsList[i].PayrollID = 0;
                         }
 
-                        contributionsList[i].TotalValue = TotalValue;
+                        contributionsList[i].TotalValue = totalValue;
                         benefitListPanel.Controls.Add(contributionsList[i]);
                     }
 
@@ -345,7 +347,7 @@ namespace Payroll_Project2.Forms.Personnel.Personal_Portal.My_Profile.Personnel_
             await DisplayBenefits(_userId);
         }
 
-        public async Task ContributionsBehaviour(int benefitId, decimal value)
+        public async Task ContributionsBehaviour(int benefitId, string value)
         { 
             await DisplayContributions(_userId, benefitId, value);
         }

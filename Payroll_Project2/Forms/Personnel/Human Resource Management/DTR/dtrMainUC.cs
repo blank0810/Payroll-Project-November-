@@ -21,6 +21,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR
         private static readonly string LeaveStatus = ConfigurationManager.AppSettings.Get("DefaultLeaveStatus");
         private static readonly string TravelStatus = ConfigurationManager.AppSettings.Get("DefaultTravelStatus");
         private static readonly string SlipStatus = ConfigurationManager.AppSettings.Get("DefaultSlipStatus");
+        private static readonly string EmployeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
 
         private static int currentPage = 1;
         private static int recordPerPage = 10;
@@ -360,7 +361,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR
 
                         employee[i].EmployeeId = (int)row["employeeId"];
                         employee[i].EmployeeName = $"{row["employeeName"]}";
-                        employee[i].EmployeeImage = $"{row["employeePicture"]}";
+                        employee[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                         employee[i].Departmentname = $"{row["departmentName"]}";
                         employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
                         employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
@@ -409,7 +410,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR
 
                         employee[i].EmployeeId = (int)row["employeeId"];
                         employee[i].EmployeeName = $"{row["employeeFname"]} {row["employeeLname"]}";
-                        employee[i].EmployeeImage = $"{row["employeePicture"]}";
+                        employee[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                         employee[i].Departmentname = $"{row["departmentName"]}";
                         employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
                         employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
@@ -472,7 +473,7 @@ namespace Payroll_Project2.Forms.Personnel.DTR
 
                                 employee[i].EmployeeId = (int)row["employeeId"];
                                 employee[i].EmployeeName = $"{row["employeeFname"]} {row["employeeLname"]}";
-                                employee[i].EmployeeImage = $"{row["employeePicture"]}";
+                                employee[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                                 employee[i].Departmentname = $"{row["departmentName"]}";
                                 employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
                                 employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";

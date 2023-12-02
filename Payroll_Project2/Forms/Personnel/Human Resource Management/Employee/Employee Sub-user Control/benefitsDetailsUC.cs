@@ -15,7 +15,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         public int DetailsId { get; set; }
         public string BenefitName { get; set; }
-        public decimal BenefitValue { get; set; }
+        public string BenefitValue { get; set; }
         public string BenefitStatus { get; set; }
 
 
@@ -53,7 +53,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         private void DataBinding()
         {
             benefitName.DataBindings.Add("Text", this, "BenefitName");
-            benefitValue.DataBindings.Add("Text", this, "BenefitValue", true, DataSourceUpdateMode.OnPropertyChanged, "", "₱0.00");
+            benefitValue.DataBindings.Add("Text", this, "BenefitValue");
 
             Binding statusBinding = new Binding("Text", this, "BenefitStatus");
             statusBinding.Format += new ConvertEventHandler(StatusBinding_Format);

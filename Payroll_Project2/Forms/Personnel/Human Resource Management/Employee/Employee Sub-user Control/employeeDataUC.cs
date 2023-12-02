@@ -17,6 +17,9 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
         private static employeeUserControl _parent;
         employeeClass employeeClass = new employeeClass();
         private static generalFunctions generalFunctions = new generalFunctions();
+        private static readonly string defaultImage = ConfigurationManager.AppSettings.Get("DefaultLogo");
+        private static readonly string employeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
+        private static readonly string employeeSignaturePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeSignaturePath");
 
         public string employeeName { get; set; }
         public int employeeId { get; set; }
@@ -74,11 +77,10 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
         public async Task EmployeeDetails(int employeeId)
         {
             #region Function in assigning the employee details
-
-            DataTable employeeDataTable = await GetEmployeeDetails(employeeId);
-
             try
             {
+                DataTable employeeDataTable = await GetEmployeeDetails(employeeId);
+
                 if (employeeDataTable != null & employeeDataTable.Rows.Count == 1)
                 {
                     employeeDetailsUserControl employeeDetails = new employeeDetailsUserControl(userId, this);
@@ -319,11 +321,11 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
 
                         if (row["employeepicture"] != null)
                         {
-                            employeeDetails.EmployeeImage = row["employeepicture"].ToString();
+                            employeeDetails.EmployeeImage = $"{employeeImagePath}{row["employeepicture"]}";
                         }
                         else
                         {
-                            employeeDetails.EmployeeImage = ConfigurationManager.AppSettings["DefaultLogo"];
+                            employeeDetails.EmployeeImage = defaultImage;
                         }
 
                         if (row["salaryRateDescription"] != null)
@@ -335,13 +337,14 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                             employeeDetails.EmployeeSalaryRate = "Not Set";
                         }
 
-                        if (row["salaryValue"] != null)
+                        if (row["amount"] != null)
                         {
-                            employeeDetails.EmployeeSalaryValue = row["salaryValue"].ToString();
+                            decimal amount = decimal.Parse(row["amount"].ToString());
+                            employeeDetails.EmployeeSalaryValue = $"{amount:C2}";
                         }
                         else
                         {
-                            employeeDetails.EmployeeSalaryValue = "Not Set";
+                            employeeDetails.EmployeeSalaryValue = "";
                         }
 
                         if (row["payrollScheduleDescription"] != null)
@@ -355,7 +358,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
 
                         if (row["employeesignature"] != null)
                         {
-                            employeeDetails.EmployeeSignature = row["employeesignature"].ToString();
+                            employeeDetails.EmployeeSignature = $"{employeeSignaturePath}{row["employeesignature"]}";
                         }
                         else
                         {

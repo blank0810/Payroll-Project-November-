@@ -11,6 +11,9 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NCalc;
+using System.Globalization;
+using System.Security.Cryptography;
 
 namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
 {
@@ -23,6 +26,12 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
         private static int _year = DateTime.Now.Year;
         private static employeeClass employeeClass = new employeeClass();
         private static generalFunctions generalFunctions = new generalFunctions();
+        private static int numberOfMonths = DateTimeFormatInfo.CurrentInfo.MonthNames.Length - 1;
+        private static readonly string EmployeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
+        private static readonly string MonthlyToAnnualTitle = ConfigurationManager.AppSettings.Get("MonthlyToAnnualTitle");
+        private static readonly string TaxValuePerMonthTitle = ConfigurationManager.AppSettings.Get("TaxValuePerMonthTitle");
+        private static readonly string BasicAnnualSalaryTitle = ConfigurationManager.AppSettings.Get("BasicAnnualSalaryTitle");
+        private static readonly string AnnualValueDeductionsTitle = ConfigurationManager.AppSettings.Get("AnnualValueDeductionsTitle");
 
         public int EmployeeId { get; set; }
         public string EmployeeFname { get; set; }
@@ -54,8 +63,6 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
         public string EmployeeSalaryValue { get; set; }
         public string EmployeeSchedule { get; set; }
         public string EmployeeSignature { get; set; }
-
-        private static string employeeImageDestination = ConfigurationManager.AppSettings["DestinationEmployeeImagePath"];
 
         #endregion
 
@@ -134,13 +141,14 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
 
                 if (File.Exists(oldImage))
                 {
+                    MessageBox.Show("Exist");
                     File.Delete(oldImage);
                     string extension = Path.GetExtension(newImage);
                     string newImageName = EmployeeFname.Replace(" ", "") + EmployeeLname + EmployeeMname + extension;
-                    string newImageSource = Path.Combine(employeeImageDestination, newImageName);
+                    string newImageSource = Path.Combine(EmployeeImagePath, newImageName);
                     File.Copy(newImage, newImageSource, true);
 
-                    bool updateEmployeePicture = await employeeClass.UpdateEmployeePicture(id, newImageSource);
+                    bool updateEmployeePicture = await employeeClass.UpdateEmployeePicture(id, newImageName);
                     if (updateEmployeePicture)
                     {
                         return true;
@@ -154,10 +162,10 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                 {
                     string extension = Path.GetExtension(newImage);
                     string newImageName = EmployeeFname.Replace(" ", "") + EmployeeLname + EmployeeMname + extension;
-                    string newImageSource = Path.Combine(employeeImageDestination, newImageName);
+                    string newImageSource = Path.Combine(EmployeeImagePath, newImageName);
                     File.Copy(newImage, newImageSource, true);
 
-                    bool updateEmployeePicture = await employeeClass.UpdateEmployeePicture(id, newImageSource);
+                    bool updateEmployeePicture = await employeeClass.UpdateEmployeePicture(id, newImageName);
                     if (updateEmployeePicture)
                     {
                         return true;
@@ -192,6 +200,68 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
+        }
+
+        // Function responsible for retrieving the General Formula
+        private async Task<string> GetGeneralFormula(string title)
+        {
+            try
+            {
+                string formulaExpression = await generalFunctions.GetGeneralFormula(title);
+                return formulaExpression;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        // Function responsible for getting the formula of the selected benefit
+        private async Task<string> GetBenefitFormula(int benefitId)
+        {
+            try
+            {
+                string formula = await generalFunctions.GetBenefitsFormula(benefitId);
+                return formula;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // Function responsible for getting the benefits contributions value
+        private async Task<DataTable> GetBenefitContributions(int benefitsId)
+        {
+            try
+            {
+                DataTable contribution = await generalFunctions.GetBenefitContributions(benefitsId); 
+                
+                if(contribution != null && contribution.Rows.Count > 0)
+                {
+                    return contribution;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // Function responsible for retrieving the Proper Witholding Tax Rate
+        private async Task<DataTable> GetWitholdingTaxRate(decimal basicAnnualSalary)
+        {
+            try
+            {
+                DataTable taxRate = await generalFunctions.GetWitholdingTaxRate(basicAnnualSalary);
+
+                if(taxRate != null && taxRate.Rows.Count > 0)
+                {
+                    return taxRate;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
         #endregion
@@ -472,6 +542,304 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
             await DisplayLeaveList(EmployeeId, _userId, _year);
         }
 
+        // Custom function for retrieving the Value of the benefit
+        private async Task<decimal> ComputeBenefitContributionsAmount(int benefitsId, decimal monthlySalary)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+                string formula = await GetBenefitFormula(benefitsId);
+
+                if (contributions != null && formula != null)
+                {
+                    Expression expression = new Expression(formula);
+                    decimal totalAmount = 0;
+
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (Decimal.TryParse(row["personalShareValue"].ToString(), out decimal personalSharePercentage) &&
+                            Decimal.TryParse(row["employerShareValue"].ToString(), out decimal employerSharePercentage))
+                        {
+                            expression.Parameters["personalSharePercentage"] = personalSharePercentage;
+                            expression.Parameters["employerSharePercentage"] = employerSharePercentage;
+                            expression.Parameters["monthlySalary"] = monthlySalary;
+
+                            object result = expression.Evaluate();
+
+                            if (!string.IsNullOrEmpty(result?.ToString()) && Decimal.TryParse(result.ToString(), out decimal value))
+                            {
+                                totalAmount += value;
+                            }
+                            else
+                            {
+                                // Handle parsing errors or empty result if needed
+                            }
+                        }
+                        else
+                        {
+                            // Handle parsing errors if needed
+                        }
+                    }
+
+                    return totalAmount;
+                }
+                else
+                {
+                    // Handle null contributions or formula if needed
+                    return 0;
+                }
+            }
+            catch (SqlException sql)
+            {
+                // Log or handle the SQL exception
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                // Log or handle other exceptions
+                throw ex;
+            }
+        }
+
+        // Custom function for getting the amount of benefit value from the contributions
+        // Applicable only to the benefits that is with mandated percentages and not fixed values
+        private async Task<decimal> GetBenefitValue(int benefitId, decimal monthlySalary)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitId);
+                string formula = await GetBenefitFormula(benefitId);
+
+                if (contributions != null && !string.IsNullOrEmpty(formula))
+                {
+                    Expression expression = new Expression(formula);
+                    decimal totalAmount = 0;
+
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (Decimal.TryParse(row["personalShareValue"].ToString(), out decimal personalSharePercentage) &&
+                            Decimal.TryParse(row["employerShareValue"].ToString(), out decimal employerSharePercentage))
+                        {
+                            expression.Parameters["personalSharePercentage"] = personalSharePercentage;
+                            expression.Parameters["employerSharePercentage"] = employerSharePercentage;
+                            expression.Parameters["monthlySalary"] = monthlySalary;
+
+                            object result = expression.Evaluate();
+
+                            if (result != null && !string.IsNullOrEmpty(result.ToString()) && decimal.TryParse(result.ToString(),
+                                out decimal benefitValue))
+                            {
+                                totalAmount += benefitValue;
+                            }
+                        }
+                    }
+
+                    return totalAmount;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        // Custom function for computing the annual deduction
+        private decimal AnnualDeductionValue(decimal totalAmout, int numberOfMonth, string formulaExpression)
+        {
+            try
+            {
+                Expression expression = new Expression(formulaExpression);
+
+                expression.Parameters["totalValue"] = totalAmout;
+                expression.Parameters["numberOfMonthsInAYear"] = numberOfMonth;
+
+                object result = expression.Evaluate();
+
+                if (!string.IsNullOrEmpty(result?.ToString()) && decimal.TryParse(result.ToString(), out decimal value))
+                {
+                    return value;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // Custom function for computing the annual salary
+        private decimal AnnualSalaryValue(decimal monthlySalary, int numberOfMonth, string formula)
+        {
+            try
+            {
+                Expression expression = new Expression(formula);
+
+                expression.Parameters["monthlySalary"] = monthlySalary;
+                expression.Parameters["numberOfMonthsInAYear"] = numberOfMonth;
+
+                object result = expression.Evaluate();
+
+                if (result != null && !string.IsNullOrEmpty(result.ToString()) && decimal.TryParse(result.ToString(),
+                    out decimal value))
+                {
+                    return value;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // Custom function for computing the basic annual salary
+        private decimal BasicAnnualSalaryValue(decimal annualSalary, decimal annualDeduction, string formula)
+        {
+            try
+            {
+                Expression expression = new Expression(formula);
+
+                expression.Parameters["totalAnnualSalary"] = annualSalary;
+                expression.Parameters["totalAnnualDeductions"] = annualDeduction;
+
+                object result = expression.Evaluate();
+
+                if (result != null && !string.IsNullOrEmpty(result.ToString()) && decimal.TryParse(result.ToString(),
+                    out decimal value))
+                {
+                    return value;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // Custom function responsible for computing the annual salary tax rate
+        private async Task<decimal> AnnualTaxRateValue(decimal basicAnnualSalary, string formula)
+        {
+            try
+            {
+                DataTable parameters = await GetWitholdingTaxRate(basicAnnualSalary);
+
+                if(parameters != null)
+                {
+                    Expression expression = new Expression(formula);
+                    decimal amount = 0;
+                    
+                    foreach (DataRow row in parameters.Rows)
+                    {
+                        expression.Parameters["basicAnnualSalary"] = basicAnnualSalary;
+
+                        if (!string.IsNullOrEmpty(row["amountExcess"].ToString()) && decimal.TryParse(row["amountExcess"].ToString(), 
+                            out decimal amountExcess))
+                        {
+                            expression.Parameters["amountExcess"] = amountExcess;
+                        }
+                        else
+                        {
+                            expression.Parameters["amountExcess"] = 0;
+                        }
+
+                        if (!string.IsNullOrEmpty(row["percentageToBeDeducted"].ToString()) && decimal.TryParse(row["percentageToBeDeducted"].ToString(), 
+                            out decimal percentageToBeDededucted))
+                        {
+                            expression.Parameters["percentageToBeDeducted"] = percentageToBeDededucted;
+                        }
+                        else
+                        {
+                            expression.Parameters["percentageToBeDeducted"] = 0;
+                        }
+
+                        if (!string.IsNullOrEmpty(row["amountToBeDeducted"].ToString()) && decimal.TryParse(row["amountToBeDeducted"].ToString(), 
+                            out decimal amountToBeDeducted))
+                        {
+                            expression.Parameters["amountToBeDeducted"] = amountToBeDeducted;
+                        }
+
+                        object result = expression.Evaluate();
+
+                        if(result != null && !string.IsNullOrEmpty(result.ToString()) && decimal.TryParse(result.ToString(), 
+                            out decimal value))
+                        {
+                            amount += value;
+                        }
+                    }
+
+                    return amount;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        // Custom function to compute the witholding tax total amount
+        private async Task<decimal> ComputeWitholdingTaxPerMonth(int benefitsId, decimal monthlySalary, string monthlyToAnnualTitle, 
+            string basicAnnualSalaryTitle, string taxValuePerMonthTitle, string annualValueDeductionsTitle, int numberOfMonth, int employeeId)
+        {
+            try
+            {
+                DataTable benefitList = await GetEmployeeBenefit(employeeId);
+                decimal annualSalary = 0;
+                decimal basicAnnualSalary = 0;
+                decimal taxValue = 0;
+                decimal annualDeduction = 0;
+                decimal totalAmount = 0;
+                string monthlyToAnnualSalary = await GetGeneralFormula(monthlyToAnnualTitle);
+                string gettingBasicAnnualSalary = await GetGeneralFormula(basicAnnualSalaryTitle);
+                string taxValuePerMonth = await GetGeneralFormula(taxValuePerMonthTitle);
+                string annualValueDeduction = await GetGeneralFormula(annualValueDeductionsTitle);
+                string witholdingTaxFormula = await GetBenefitFormula(benefitsId);
+
+                if (benefitList != null && !string.IsNullOrEmpty(monthlyToAnnualTitle) && !string.IsNullOrEmpty(gettingBasicAnnualSalary) && 
+                    !string.IsNullOrEmpty(taxValuePerMonth) && !string.IsNullOrEmpty(annualValueDeduction) && 
+                    !string.IsNullOrEmpty(witholdingTaxFormula))
+                {
+                    foreach (DataRow row in  benefitList.Rows)
+                    {
+                        if (!string.IsNullOrEmpty(row["benefitsValue"].ToString()) && decimal.TryParse(row["benefitsValue"].ToString(),
+                            out decimal value))
+                        {
+                            totalAmount += value;
+                        }
+                        else if (string.IsNullOrEmpty(row["benefitsValue"].ToString()) && int.TryParse(row["benefitsId"].ToString(), 
+                            out int newBenefitId))
+                        {
+                            totalAmount += await GetBenefitValue(newBenefitId, monthlySalary);
+                        }
+                    }
+                }
+
+                annualSalary = AnnualSalaryValue(monthlySalary, numberOfMonth, monthlyToAnnualSalary);
+                annualDeduction = AnnualDeductionValue(totalAmount, numberOfMonth, annualValueDeduction);
+                basicAnnualSalary = BasicAnnualSalaryValue(annualSalary, annualDeduction, gettingBasicAnnualSalary);
+                taxValue = await AnnualTaxRateValue(basicAnnualSalary, witholdingTaxFormula);
+
+                Expression expression = new Expression(taxValuePerMonth);
+
+                expression.Parameters["totalTax"] = taxValue;
+                expression.Parameters["numberOfMonthsInAYear"] = numberOfMonth;
+
+                object result = expression.Evaluate();
+
+                if(result != null && !string.IsNullOrEmpty(result.ToString()) && decimal.TryParse(result.ToString(), out decimal witholdingTaxValue))
+                {
+                    return witholdingTaxValue;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         // Custom function responsible for displaying the Employee Benefits
         public async Task DisplayBenefit()
         {
@@ -507,9 +875,17 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                             details[i].BenefitName = "Not Set";
                         }
 
-                        if (row["benefitStatus"] != null)
+                        if (row["isBenefitActive"] != null && bool.TryParse(row["isBenefitActive"].ToString(), out 
+                            bool isActive))
                         {
-                            details[i].BenefitStatus = row["benefitStatus"].ToString();
+                            if(isActive)
+                            {
+                                details[i].BenefitStatus = "Active";
+                            }
+                            else
+                            {
+                                details[i].BenefitStatus = "Inactive";
+                            }
                         }
                         else
                         {
@@ -518,12 +894,28 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
 
                         if (row["benefitsValue"] != null && decimal.TryParse(row["benefitsValue"].ToString(), out decimal value))
                         {
-                            details[i].BenefitValue = value;
+                            details[i].BenefitValue = $"{value:C2}";
+                        }
+                        else if (string.IsNullOrEmpty(row["benefitsValue"].ToString()) && details[i].BenefitName != "Witholding Tax" && 
+                            decimal.TryParse(EmployeeSalaryValue, NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal monthlySalary) 
+                            && int.TryParse(row["benefitsId"].ToString(), out int benefitsId))
+                        {
+                            decimal benefitValue = await ComputeBenefitContributionsAmount(benefitsId, monthlySalary);
+                            details[i].BenefitValue = $"{benefitValue:C2}";
+                        }
+                        else if(string.IsNullOrEmpty(row["benefitsValue"].ToString()) && details[i].BenefitName == "Witholding Tax" &&
+                            decimal.TryParse(EmployeeSalaryValue, NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal newMonthlySalary)
+                            && int.TryParse(row["benefitsId"].ToString(), out int newBenefitsId))
+                        {
+                            decimal amount = await ComputeWitholdingTaxPerMonth(newBenefitsId, newMonthlySalary, MonthlyToAnnualTitle, BasicAnnualSalaryTitle, 
+                                TaxValuePerMonthTitle, AnnualValueDeductionsTitle, numberOfMonths, EmployeeId);
+                            details[i].BenefitValue = $"{amount:C2}";
                         }
                         else
                         {
-                            details[i].BenefitValue = 0;
+                            details[i].BenefitValue = $"{0:C2}";
                         }
+
                         benefitsContent.Controls.Add(details[i]);
                     }
                 }
@@ -635,7 +1027,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                 if (employeefile.ShowDialog() == DialogResult.OK)
                 {
                     newImage = employeefile.FileName;
-                    bool uploadNewEmployeeImage = await UploadNewEmployeeImage(EmployeeId, newImage, EmployeeImage);
+                    bool uploadNewEmployeeImage = await UploadNewEmployeeImage(EmployeeId, newImage, $"{EmployeeImagePath}{EmployeeImage}");
 
                     if (uploadNewEmployeeImage)
                     {

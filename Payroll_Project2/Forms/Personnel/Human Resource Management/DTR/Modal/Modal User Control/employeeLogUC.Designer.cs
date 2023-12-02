@@ -47,13 +47,15 @@
             this.afternoonStatusPanel = new System.Windows.Forms.Panel();
             this.afternoonStatus = new System.Windows.Forms.Label();
             this.totalPanel = new System.Windows.Forms.Panel();
-            this.total = new System.Windows.Forms.Label();
+            this.specialPrivilege = new System.Windows.Forms.Label();
             this.morningStatusPanel = new System.Windows.Forms.Panel();
             this.morningStatus = new System.Windows.Forms.Label();
             this.cancelBtn = new Payroll_Project2.Custom.buttonDesign();
             this.absentBtn = new Payroll_Project2.Custom.buttonDesign();
             this.submitBtn = new Payroll_Project2.Custom.buttonDesign();
             this.changeBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.total = new System.Windows.Forms.Label();
             this.dayPanel.SuspendLayout();
             this.datePanel.SuspendLayout();
             this.morningInPanel.SuspendLayout();
@@ -63,6 +65,7 @@
             this.afternoonStatusPanel.SuspendLayout();
             this.totalPanel.SuspendLayout();
             this.morningStatusPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dayPanel
@@ -271,25 +274,25 @@
             // 
             // totalPanel
             // 
-            this.totalPanel.Controls.Add(this.total);
+            this.totalPanel.Controls.Add(this.specialPrivilege);
             this.totalPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.totalPanel.Location = new System.Drawing.Point(775, 0);
             this.totalPanel.Name = "totalPanel";
             this.totalPanel.Size = new System.Drawing.Size(135, 35);
             this.totalPanel.TabIndex = 10;
             // 
-            // total
+            // specialPrivilege
             // 
-            this.total.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.total.AutoSize = true;
-            this.total.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.total.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.total.Location = new System.Drawing.Point(15, 10);
-            this.total.Name = "total";
-            this.total.Size = new System.Drawing.Size(103, 15);
-            this.total.TabIndex = 7;
-            this.total.Text = "Total Work Hours ";
-            this.total.TextChanged += new System.EventHandler(this.total_TextChanged);
+            this.specialPrivilege.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.specialPrivilege.AutoSize = true;
+            this.specialPrivilege.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.specialPrivilege.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.specialPrivilege.Location = new System.Drawing.Point(15, 10);
+            this.specialPrivilege.Name = "specialPrivilege";
+            this.specialPrivilege.Size = new System.Drawing.Size(93, 15);
+            this.specialPrivilege.TabIndex = 7;
+            this.specialPrivilege.Text = "Special Privilege";
+            this.specialPrivilege.TextChanged += new System.EventHandler(this.total_TextChanged);
             // 
             // morningStatusPanel
             // 
@@ -325,9 +328,9 @@
             this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.cancelBtn.ForeColor = System.Drawing.Color.White;
-            this.cancelBtn.Location = new System.Drawing.Point(1011, 4);
+            this.cancelBtn.Location = new System.Drawing.Point(1109, 5);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(89, 25);
+            this.cancelBtn.Size = new System.Drawing.Size(56, 25);
             this.cancelBtn.TabIndex = 14;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.TextColor = System.Drawing.Color.White;
@@ -346,11 +349,11 @@
             this.absentBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.absentBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.absentBtn.ForeColor = System.Drawing.Color.White;
-            this.absentBtn.Location = new System.Drawing.Point(1011, 4);
+            this.absentBtn.Location = new System.Drawing.Point(1109, 4);
             this.absentBtn.Name = "absentBtn";
-            this.absentBtn.Size = new System.Drawing.Size(89, 25);
+            this.absentBtn.Size = new System.Drawing.Size(56, 25);
             this.absentBtn.TabIndex = 12;
-            this.absentBtn.Text = "Mark Absent";
+            this.absentBtn.Text = "Absent";
             this.absentBtn.TextColor = System.Drawing.Color.White;
             this.absentBtn.UseVisualStyleBackColor = false;
             // 
@@ -366,9 +369,9 @@
             this.submitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submitBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.submitBtn.ForeColor = System.Drawing.Color.White;
-            this.submitBtn.Location = new System.Drawing.Point(916, 5);
+            this.submitBtn.Location = new System.Drawing.Point(1050, 5);
             this.submitBtn.Name = "submitBtn";
-            this.submitBtn.Size = new System.Drawing.Size(89, 25);
+            this.submitBtn.Size = new System.Drawing.Size(57, 25);
             this.submitBtn.TabIndex = 13;
             this.submitBtn.Text = "Submit";
             this.submitBtn.TextColor = System.Drawing.Color.White;
@@ -387,20 +390,42 @@
             this.changeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.changeBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.changeBtn.ForeColor = System.Drawing.Color.White;
-            this.changeBtn.Location = new System.Drawing.Point(916, 5);
+            this.changeBtn.Location = new System.Drawing.Point(1050, 5);
             this.changeBtn.Name = "changeBtn";
-            this.changeBtn.Size = new System.Drawing.Size(89, 25);
+            this.changeBtn.Size = new System.Drawing.Size(56, 25);
             this.changeBtn.TabIndex = 11;
-            this.changeBtn.Text = "Modify DTR";
+            this.changeBtn.Text = "Modify";
             this.changeBtn.TextColor = System.Drawing.Color.White;
             this.changeBtn.UseVisualStyleBackColor = false;
             this.changeBtn.Click += new System.EventHandler(this.changeBtn_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.total);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(910, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(135, 35);
+            this.panel1.TabIndex = 15;
+            // 
+            // total
+            // 
+            this.total.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.total.AutoSize = true;
+            this.total.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.total.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.total.Location = new System.Drawing.Point(15, 10);
+            this.total.Name = "total";
+            this.total.Size = new System.Drawing.Size(103, 15);
+            this.total.TabIndex = 7;
+            this.total.Text = "Total Work Hours ";
             // 
             // employeeLogUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.absentBtn);
             this.Controls.Add(this.totalPanel);
@@ -415,7 +440,7 @@
             this.Controls.Add(this.submitBtn);
             this.Controls.Add(this.changeBtn);
             this.Name = "employeeLogUC";
-            this.Size = new System.Drawing.Size(1106, 35);
+            this.Size = new System.Drawing.Size(1169, 35);
             this.Load += new System.EventHandler(this.employeeDTRUC_Load);
             this.dayPanel.ResumeLayout(false);
             this.dayPanel.PerformLayout();
@@ -435,6 +460,8 @@
             this.totalPanel.PerformLayout();
             this.morningStatusPanel.ResumeLayout(false);
             this.morningStatusPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -457,7 +484,7 @@
         private System.Windows.Forms.Panel afternoonStatusPanel;
         private System.Windows.Forms.Label afternoonStatus;
         private System.Windows.Forms.Panel totalPanel;
-        private System.Windows.Forms.Label total;
+        private System.Windows.Forms.Label specialPrivilege;
         private Custom.buttonDesign changeBtn;
         private System.Windows.Forms.DateTimePicker morningInUpdate;
         private System.Windows.Forms.DateTimePicker morningOutUpdate;
@@ -468,5 +495,7 @@
         private Custom.buttonDesign cancelBtn;
         private System.Windows.Forms.Panel morningStatusPanel;
         private System.Windows.Forms.Label morningStatus;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label total;
     }
 }

@@ -12,11 +12,13 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
     {
         private static employeeDetailsUserControl _parent;
         private static int _userId;
+        private static readonly employeeClass employeeClass = new employeeClass();
 
         public int DetailsId { get; set; }
         public string BenefitName { get; set; }
         public string BenefitValue { get; set; }
         public string BenefitStatus { get; set; }
+        public string RateDescriptions { get; set; }
 
 
         public benefitsDetailsUC(employeeDetailsUserControl parent, int userId)
@@ -27,11 +29,10 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         }
 
         // Function Responsible for updating the benefit Status
-        private async Task<bool> UpdateBenefitStatus(int id, string status)
+        private async Task<bool> UpdateBenefitStatus(int id, bool status)
         {
             try
             {
-                employeeClass employeeClass = new employeeClass();
                 bool updateEmployeeBenefitStatus = await employeeClass.UpdateEmployeeBenefitStatus(id, status);
 
                 if (updateEmployeeBenefitStatus)
@@ -49,11 +50,22 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
         }
 
+        private async Task<bool> CheckBenefitMandated(int detailsId)
+        {
+            try
+            {
+                bool mandated = await employeeClass.CheckBenefitIsMandated(detailsId);
+                return mandated;
+            }
+            catch (SqlException sql) { throw sql; }catch (Exception ex) { throw ex; }
+        }
+
         // Custom function responsible for binding the values into the User Interface controls
         private void DataBinding()
         {
             benefitName.DataBindings.Add("Text", this, "BenefitName");
             benefitValue.DataBindings.Add("Text", this, "BenefitValue");
+            rateDescriptions.DataBindings.Add("Text", this, "RateDescriptions");
 
             Binding statusBinding = new Binding("Text", this, "BenefitStatus");
             statusBinding.Format += new ConvertEventHandler(StatusBinding_Format);
@@ -80,12 +92,18 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 benefitsStatus.ForeColor = Color.ForestGreen;
                 activeBtn.Visible = false;
                 inactiveBtn.Visible = true;
+                benefitName.ForeColor = Color.Black;
+                rateDescriptions.ForeColor = Color.Black;
+                benefitValue.ForeColor = Color.Black;
             }
             else if (e.Value.ToString() == "Inactive")
             {
                 benefitsStatus.ForeColor = Color.Red;
                 inactiveBtn.Visible = false;
                 activeBtn.Visible = true;
+                benefitName.ForeColor = Color.DimGray;
+                rateDescriptions.ForeColor = Color.DimGray;
+                benefitValue.ForeColor = Color.DimGray;
             }
             else
             {
@@ -114,12 +132,23 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             {
                 if (inactiveBtn.Text != BenefitStatus)
                 {
-                    bool updateEmployeeBenefitStatus = await UpdateBenefitStatus(DetailsId, inactiveBtn.Text);
+                    bool checkBenefit = await CheckBenefitMandated(DetailsId);
 
-                    if (updateEmployeeBenefitStatus)
+                    if(!checkBenefit)
                     {
-                        SuccessMessage("The benefit status has been successfully modified.", "Benefit Status Modification Successful");
-                        _parent.DisplayBenefit();
+                        bool updateEmployeeBenefitStatus = await UpdateBenefitStatus(DetailsId, false);
+
+                        if (updateEmployeeBenefitStatus)
+                        {
+                            SuccessMessage("The benefit status has been successfully modified.", "Benefit Status Modification Successful");
+                            await _parent.DisplayBenefit();
+                        }
+                    }
+                    else
+                    {
+                        ErrorMessage("The selected benefit is mandated and can only be modified by authorized personnel.",
+                            "Benefit Modification Restricted");
+                        await _parent.DisplayBenefit();
                     }
                 }
                 else
@@ -141,12 +170,12 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             {
                 if (activeBtn.Text != BenefitStatus)
                 {
-                    bool updateEmployeeBenefitStatus = await UpdateBenefitStatus(DetailsId, activeBtn.Text);
+                    bool updateEmployeeBenefitStatus = await UpdateBenefitStatus(DetailsId, true);
 
                     if (updateEmployeeBenefitStatus)
                     {
                         SuccessMessage("The benefit status has been successfully modified.", "Benefit Status Modification Successful");
-                        _parent.DisplayBenefit();
+                        await _parent.DisplayBenefit();
                     }
                 }
                 else

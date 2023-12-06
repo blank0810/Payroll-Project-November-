@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -142,7 +143,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using(SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select personalShareValue, employerShareValue from tbl_benefitsContributions where " +
+                    string command = "select isPercentage, personalShareValue, employerShareValue from tbl_benefitsContributions where " +
                         "benefitsId = @benefitsId and isBenefitContributionActive = 1";
 
                     using (cmd = new SqlCommand(command, conn))
@@ -529,7 +530,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                         "employeeContactNumber, employeeSex, employeeCivilStatus, nationality, employeeBirth, employeeEmailAddress, " +
                         "barangay, municipality, province, zipCode, educationalAttainment, course, nameOfSchool, schoolAddress, " +
                         "departmentName, dateHired, dateRetired, employmentStatus, employeePicture, employeeSignature, tbl_employee.isActive, roleName, " +
-                        "salaryRateDescription, amount, payrollScheduleDescription, morningShiftTime, afternoonShiftTime FROM tbl_employee JOIN tbl_department ON " +
+                        "salaryRateDescription, salaryRateSchedule, amount, payrollScheduleDescription, morningShiftTime, afternoonShiftTime " +
+                        "FROM tbl_employee JOIN tbl_department ON " +
                         "tbl_employee.departmentId = tbl_department.departmentId JOIN tbl_educationalAttainment ON " +
                         "tbl_employee.educationalAttainmentId = tbl_educationalAttainment.educationalAttainmentId JOIN tbl_userRole ON " +
                         "tbl_employee.roleId = tbl_userRole.roleId JOIN tbl_appointmentForm ON tbl_employee.employeeId = " +
@@ -747,11 +749,12 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "SELECT detailsId, tbl_benefits.benefitsId, benefits, isBenefitActive, SUM(personalShareValue + employerShareValue) " +
+                    string command = "SELECT detailsId, tbl_benefits.benefitsId, benefits, isBenefitActive, personalShareValue, employerShareValue, " +
+                        "SUM(personalShareValue + employerShareValue) " +
                         "AS benefitsValue FROM tbl_appointmentFormBenefitsDetails JOIN tbl_appointmentForm ON tbl_appointmentForm.appointmentFormId = " +
                         "tbl_appointmentFormBenefitsDetails.appointmentFormId JOIN tbl_benefits ON tbl_benefits.benefitsId = " +
                         "tbl_appointmentFormBenefitsDetails.benefitsId WHERE employeeid = 1 GROUP BY detailsId, tbl_benefits.benefitsId, benefits, " +
-                        "isBenefitActive ";
+                        "isBenefitActive, personalShareValue, employerShareValue";
 
                     using (cmd = new SqlCommand(command, conn))
                     {

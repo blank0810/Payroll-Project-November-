@@ -601,7 +601,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             try
             {
                 employeeClass employeeClass = new employeeClass();
-                DataTable benefitTable = await employeeClass.GetBenefitList(employmentStatus);
+                DataTable benefitTable = await employeeClass.GetBenefitList(1, employmentStatus);
                 
                 if (benefitTable != null && benefitTable.Rows.Count > 0)
                 {
@@ -653,7 +653,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             try
             {
                 employeeClass employeeClass = new employeeClass();
-                bool addBenefit = await employeeClass.AddEmployeeBenefit(id, benefitName, benefitValue, benefitStatus);
+                bool addBenefit = await employeeClass.AddEmployeeBenefit(id, 1, 0, 0, true);
 
                 if (addBenefit)
                 {

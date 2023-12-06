@@ -337,7 +337,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                             employeeDetails.EmployeeSalaryRate = "Not Set";
                         }
 
-                        if (row["amount"] != null)
+                        if (row["amount"] != null && row["salaryRateSchedule"] != null)
                         {
                             decimal amount = decimal.Parse(row["amount"].ToString());
                             employeeDetails.EmployeeSalaryValue = $"{amount:C2}";
@@ -347,13 +347,13 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                             employeeDetails.EmployeeSalaryValue = "";
                         }
 
-                        if (row["payrollScheduleDescription"] != null)
+                        if (row["salaryRateSchedule"] != null)
                         {
-                            employeeDetails.EmployeeSchedule = FormatAsSentenceCase(row["payrollScheduleDescription"].ToString());
+                            employeeDetails.EmployeeSalarySchedule = FormatAsSentenceCase(row["salaryRateSchedule"].ToString());
                         }
                         else
                         {
-                            employeeDetails.EmployeeSchedule = "Not Set";
+                            employeeDetails.EmployeeSalarySchedule = "Not Set";
                         }
 
                         if (row["employeesignature"] != null)

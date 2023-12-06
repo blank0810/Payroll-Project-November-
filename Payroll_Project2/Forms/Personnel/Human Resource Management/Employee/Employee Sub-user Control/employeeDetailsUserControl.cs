@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using NCalc;
 using System.Globalization;
 using System.Security.Cryptography;
+using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
 
 namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
 {
@@ -61,7 +62,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
         public string EmployeeImage { get; set; }
         public string EmployeeSalaryRate { get; set; }
         public string EmployeeSalaryValue { get; set; }
-        public string EmployeeSchedule { get; set; }
+        public string EmployeeSalarySchedule { get; set; }
         public string EmployeeSignature { get; set; }
 
         #endregion
@@ -299,7 +300,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
             empUserRole.DataBindings.Add("Text", this, "EmployeeUserRole");
             salaryRateDescription.DataBindings.Add("Text", this, "EmployeeSalaryRate");
             salaryRateValue.DataBindings.Add("Text", this, "EmployeeSalaryValue");
-            salarySchedule.DataBindings.Add("Text", this, "EmployeeSchedule");
+            salarySchedule.DataBindings.Add("Text", this, "EmployeeSalarySchedule");
             empEmploymentStatus.DataBindings.Add("Text", this, "EmployeeEmploymentStatus");
             empImage.DataBindings.Add("ImageLocation", this, "EmployeeImage");
 
@@ -601,6 +602,179 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
             }
         }
 
+        // Custom function for retrieving the Personal Share Value
+        private async Task<decimal> ComputePersonalShareAmount(int benefitsId, decimal monthlySalary)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+                string formula = await GetBenefitFormula(benefitsId);
+
+                if (contributions != null && formula != null)
+                {
+                    Expression expression = new Expression(formula);
+                    decimal totalAmount = 0;
+
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (Decimal.TryParse(row["personalShareValue"].ToString(), out decimal personalSharePercentage))
+                        {
+                            expression.Parameters["personalSharePercentage"] = personalSharePercentage;
+                            expression.Parameters["employerSharePercentage"] = 0;
+                            expression.Parameters["monthlySalary"] = monthlySalary;
+
+                            object result = expression.Evaluate();
+
+                            if (!string.IsNullOrEmpty(result?.ToString()) && Decimal.TryParse(result.ToString(), out decimal value))
+                            {
+                                totalAmount += value;
+                            }
+                            else
+                            {
+                                // Handle parsing errors or empty result if needed
+                            }
+                        }
+                        else
+                        {
+                            // Handle parsing errors if needed
+                        }
+                    }
+
+                    return totalAmount;
+                }
+                else
+                {
+                    // Handle null contributions or formula if needed
+                    return 0;
+                }
+            }
+            catch (SqlException sql)
+            {
+                // Log or handle the SQL exception
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                // Log or handle other exceptions
+                throw ex;
+            }
+        }
+
+        // Custom function for retrieving the Employer Share Value
+        private async Task<decimal> ComputeEmployerShareAmount(int benefitsId, decimal monthlySalary)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+                string formula = await GetBenefitFormula(benefitsId);
+
+                if (contributions != null && formula != null)
+                {
+                    Expression expression = new Expression(formula);
+                    decimal totalAmount = 0;
+
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (decimal.TryParse(row["employerShareValue"].ToString(), out decimal employerSharePercentage))
+                        {
+                            expression.Parameters["personalSharePercentage"] = 0;
+                            expression.Parameters["employerSharePercentage"] = employerSharePercentage;
+                            expression.Parameters["monthlySalary"] = monthlySalary;
+
+                            object result = expression.Evaluate();
+
+                            if (!string.IsNullOrEmpty(result?.ToString()) && Decimal.TryParse(result.ToString(), out decimal value))
+                            {
+                                totalAmount += value;
+                            }
+                            else
+                            {
+                                // Handle parsing errors or empty result if needed
+                            }
+                        }
+                        else
+                        {
+                            // Handle parsing errors if needed
+                        }
+                    }
+
+                    return totalAmount;
+                }
+                else
+                {
+                    // Handle null contributions or formula if needed
+                    return 0;
+                }
+            }
+            catch (SqlException sql)
+            {
+                // Log or handle the SQL exception
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                // Log or handle other exceptions
+                throw ex;
+            }
+        }
+
+        // Custom function for retrieving the Personal Share Percentage
+        private async Task<decimal> GetPersonalSharePercentage(int benefitsId)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+
+                if (contributions != null)
+                {
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (!string.IsNullOrEmpty(row["personalShareValue"]?.ToString()) && decimal.TryParse(row["personalShareValue"].ToString(), 
+                            out decimal personalPercentage))
+                        {
+                            return personalPercentage;
+                        }
+                    }
+
+                    return 0;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        // Custom function for retrieving the Personal Share Percentage
+        private async Task<decimal> GetEmployerSharePercentage(int benefitsId)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+
+                if (contributions != null)
+                {
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (!string.IsNullOrEmpty(row["personalShareValue"]?.ToString()) && decimal.TryParse(row["employerShareValue"].ToString(),
+                            out decimal employerPercentage))
+                        {
+                            return employerPercentage;
+                        }
+                    }
+
+                    return 0;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         // Custom function for getting the amount of benefit value from the contributions
         // Applicable only to the benefits that is with mandated percentages and not fixed values
         private async Task<decimal> GetBenefitValue(int benefitId, decimal monthlySalary)
@@ -840,6 +1014,63 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
+        // Custom function for getting the tax rate description for the witholding tax
+        private async Task<string> GetWitholdingTaxRateDescription(int benefitsId, decimal monthlySalary, string monthlyToAnnualTitle, int employeeId,
+            string basicAnnualSalaryTitle, string taxValuePerMonthTitle, string annualValueDeductionsTitle, int numberOfMonth)
+        {
+            try
+            {
+                DataTable benefitList = await GetEmployeeBenefit(employeeId);
+                decimal annualSalary = 0;
+                decimal basicAnnualSalary = 0;
+                decimal annualDeduction = 0;
+                decimal totalAmount = 0;
+                string monthlyToAnnualSalary = await GetGeneralFormula(monthlyToAnnualTitle);
+                string gettingBasicAnnualSalary = await GetGeneralFormula(basicAnnualSalaryTitle);
+                string taxValuePerMonth = await GetGeneralFormula(taxValuePerMonthTitle);
+                string annualValueDeduction = await GetGeneralFormula(annualValueDeductionsTitle);
+                string witholdingTaxFormula = await GetBenefitFormula(benefitsId);
+
+                if (benefitList != null && !string.IsNullOrEmpty(monthlyToAnnualTitle) && !string.IsNullOrEmpty(gettingBasicAnnualSalary) &&
+                    !string.IsNullOrEmpty(taxValuePerMonth) && !string.IsNullOrEmpty(annualValueDeduction) &&
+                    !string.IsNullOrEmpty(witholdingTaxFormula))
+                {
+                    foreach (DataRow row in benefitList.Rows)
+                    {
+                        if (!string.IsNullOrEmpty(row["benefitsValue"].ToString()) && decimal.TryParse(row["benefitsValue"].ToString(),
+                            out decimal value))
+                        {
+                            totalAmount += value;
+                        }
+                        else if (string.IsNullOrEmpty(row["benefitsValue"].ToString()) && int.TryParse(row["benefitsId"].ToString(),
+                            out int newBenefitId))
+                        {
+                            totalAmount += await GetBenefitValue(newBenefitId, monthlySalary);
+                        }
+                    }
+                }
+
+                annualSalary = AnnualSalaryValue(monthlySalary, numberOfMonth, monthlyToAnnualSalary);
+                annualDeduction = AnnualDeductionValue(totalAmount, numberOfMonth, annualValueDeduction);
+                basicAnnualSalary = BasicAnnualSalaryValue(annualSalary, annualDeduction, gettingBasicAnnualSalary);
+                DataTable getRate = await GetWitholdingTaxRate(basicAnnualSalary);
+
+                if(getRate != null)
+                {
+                    foreach (DataRow row in getRate.Rows)
+                    {
+                        if (!string.IsNullOrEmpty(row["taxRateDescription"].ToString()))
+                        {
+                            return $"{row["taxRateDescription"]}";
+                        }
+                    }
+                }
+
+                return null;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         // Custom function responsible for displaying the Employee Benefits
         public async Task DisplayBenefit()
         {
@@ -892,16 +1123,28 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                             details[i].BenefitStatus = "Not Set";
                         }
 
-                        if (row["benefitsValue"] != null && decimal.TryParse(row["benefitsValue"].ToString(), out decimal value))
+                        if (row["benefitsValue"] != null && decimal.TryParse(row["benefitsValue"].ToString(), out decimal value) &&
+                            !string.IsNullOrEmpty(row["personalShareValue"].ToString()) && !string.IsNullOrEmpty(row["employerShareValue"].ToString())
+                             && decimal.TryParse(row["personalShareValue"].ToString(), out decimal personalShare) &&
+                             decimal.TryParse(row["employerShareValue"].ToString(), out decimal employerShare))
                         {
                             details[i].BenefitValue = $"{value:C2}";
+                            details[i].RateDescriptions = $"Employer Share = {employerShare:C2}\n" +
+                                $"Personal Share = {personalShare:C2}";
                         }
                         else if (string.IsNullOrEmpty(row["benefitsValue"].ToString()) && details[i].BenefitName != "Witholding Tax" && 
                             decimal.TryParse(EmployeeSalaryValue, NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal monthlySalary) 
                             && int.TryParse(row["benefitsId"].ToString(), out int benefitsId))
                         {
                             decimal benefitValue = await ComputeBenefitContributionsAmount(benefitsId, monthlySalary);
+                            decimal personalShareValue = await ComputePersonalShareAmount(benefitsId, monthlySalary);
+                            decimal employerShareValue = await ComputeEmployerShareAmount(benefitsId, monthlySalary);
+                            decimal personalPercentage = await GetPersonalSharePercentage(benefitsId);
+                            decimal employerPercentage = await GetEmployerSharePercentage(benefitsId);
+
                             details[i].BenefitValue = $"{benefitValue:C2}";
+                            details[i].RateDescriptions = $"Personal Share is {personalPercentage}% = {personalShareValue:C2}\n" +
+                                $"Employer Share is {employerPercentage}% = {employerShareValue:C2}";
                         }
                         else if(string.IsNullOrEmpty(row["benefitsValue"].ToString()) && details[i].BenefitName == "Witholding Tax" &&
                             decimal.TryParse(EmployeeSalaryValue, NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal newMonthlySalary)
@@ -910,6 +1153,18 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                             decimal amount = await ComputeWitholdingTaxPerMonth(newBenefitsId, newMonthlySalary, MonthlyToAnnualTitle, BasicAnnualSalaryTitle, 
                                 TaxValuePerMonthTitle, AnnualValueDeductionsTitle, numberOfMonths, EmployeeId);
                             details[i].BenefitValue = $"{amount:C2}";
+
+                            string rate = await GetWitholdingTaxRateDescription(newBenefitsId, newMonthlySalary, MonthlyToAnnualTitle, EmployeeId,
+                                BasicAnnualSalaryTitle, TaxValuePerMonthTitle, AnnualValueDeductionsTitle, numberOfMonths);
+
+                            if(!string.IsNullOrEmpty(rate))
+                            {
+                                details[i].RateDescriptions = rate;
+                            }
+                            else
+                            {
+                                details[i].RateDescriptions = string.Empty;
+                            }
                         }
                         else
                         {
@@ -1048,10 +1303,14 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
         // Event handler that handles if the add benefit button is clicked
         private async void addBtn_Click(object sender, EventArgs e)
         {
-            addBenefitModal addBenefitModal = new addBenefitModal(_userId, this);
-            addBenefitModal.EmployeeID = EmployeeId;
-            addBenefitModal.ShowDialog();
-            await DisplayBenefit();
+            if(decimal.TryParse(EmployeeSalaryValue, NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal MonthlySalary))
+            {
+                addBenefitModal addBenefitModal = new addBenefitModal(_userId, this);
+                addBenefitModal.EmployeeID = EmployeeId;
+                addBenefitModal.MonthlySalary = MonthlySalary;
+                addBenefitModal.ShowDialog();
+                await DisplayBenefit();
+            }
         }
 
         private void employeeSignature_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

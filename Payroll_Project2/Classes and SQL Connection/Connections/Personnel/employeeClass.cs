@@ -20,6 +20,30 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         // Double Click to display the methods
         #region Inside is all Get Methods
 
+        // This function checks if the benefit if its mandated before make it inactive
+        public async Task<bool> CheckBenefitIsMandated(int detailsId)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select isMandated from tbl_mandatedBenefits where benefitsId = (select benefitsId from " +
+                        "tbl_appointmentFormBenefitsDetails where detailsId = @detailsId)";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@detailsId", detailsId);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        return (bool)result;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         // This function responsible for retrieving the number of years/months of the contract depending of the employment type
         public async Task<DataTable> GetContractLength(string employmentStatus)
         {
@@ -301,23 +325,23 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
             }
         }
 
-        // This function is responsible for retrieving the benefits listed in the database
-        public async Task<DataTable> GetBenefitList(string employmentStatus)
+        // This function is responsible for retrieving the list of available benefits that the employee can avail
+        public async Task<DataTable> GetBenefitList(int employeeId, string employmentStatus)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select benefits " +
-                        "from tbl_mandatedBenefits join tbl_benefits on tbl_mandatedBenefits.benefitsId = " +
-                        "tbl_benefits.benefitsId join tbl_employmentStatus on tbl_employmentStatus.employmentStatusId = " +
-                        "tbl_mandatedBenefits.employmentStatusId " +
-                        "where employmentStatus = @status and isMandated = 0";
+                    string command = "SELECT benefits, mb.benefitsId FROM tbl_mandatedBenefits mb join tbl_benefits on mb.benefitsId = tbl_benefits.benefitsId " +
+                        "WHERE NOT EXISTS (SELECT 1 FROM tbl_appointmentFormBenefitsDetails ab WHERE mb.benefitsId = ab.benefitsId) AND ( " +
+                        "mb.employmentStatusId = (SELECT employmentStatusId FROM tbl_appointmentForm WHERE employeeid = @employeeId) or " +
+                        "mb.employmentStatusId = (select employmentStatusId from tbl_employmentStatus where employmentStatus = @employmentStatus));";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
-                        cmd.Parameters.AddWithValue("@status", employmentStatus);
+                        cmd.Parameters.AddWithValue("@employeeId", (object)employeeId ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@employmentStatus", employmentStatus ?? string.Empty);
 
                         using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                         {
@@ -503,6 +527,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         }
 
         // Function responsible for retrieving the minimum values of the benefit
+        // Only the active contributions or contributions currently imposed
         public async Task<DataTable> GetValue(string benefitName)
         {
             try
@@ -510,9 +535,11 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                 using(SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select isPercentage, sum(personalShareValue + employerShareValue) as totalValue from tbl_mandatedBenefits " +
-                        "join tbl_benefits on tbl_benefits.benefitsId = tbl_mandatedBenefits.benefitsId where benefits = @benefit " +
-                        "group by isPercentage";
+                    string command = "select bc.benefitsId, isPercentage, employerShareValue, personalShareValue, " +
+                        "sum(personalShareValue + employerShareValue) as " +
+                        "totalValue from tbl_benefitsContributions bc join tbl_benefits b on b.benefitsId = bc.benefitsId " +
+                        "where bc.benefitsId = (select benefitsId from tbl_benefits where benefits = 'SSS') and isBenefitContributionActive = 1 " +
+                        "group by bc.benefitsId, isPercentage, personalShareValue, employerShareValue";
                     
                     using(cmd = new SqlCommand(command, conn))
                     {
@@ -578,6 +605,44 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                         if(result != null && int.TryParse(result.ToString(), out int count))
                         {
                             return count;
+                        }
+                        else
+                        {
+                            return -1;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        // This function is responsible for retrieving the benefit ID based of a benefit name
+        public async Task<int> GetBenefitId (string benefitName)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "Select benefitsId from tbl_benefits where benefits = @benefitName";
+
+                    using (cmd = new SqlCommand (command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@benefitName", benefitName);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            if (int.TryParse(result.ToString(), out int parsed))
+                            {
+                                return parsed;
+                            }
+                            else
+                            {
+                                return -1;
+                            }
                         }
                         else
                         {
@@ -868,33 +933,29 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         }
 
         // This function is responsible for adding the employee's benefit into their appointment form
-        public async Task<bool> AddEmployeeBenefit(int id, string benefitName, decimal benefitValue, string benefitStatus)
+        public async Task<bool> AddEmployeeBenefit(int id, int benefitId, decimal personalShare, decimal employerShare, bool isBenefitActive)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "insert into tbl_appointmentformBenefitsDetails (appointmentformId, benefitsid, benefitsvalue, benefitstatus) values " +
+                    string command = "insert into tbl_appointmentformBenefitsDetails " +
+                        "(appointmentFormId, benefitsId, isBenefitActive, personalShareValue,employerShareValue) " +
+                        "values " +
                         "((select appointmentFormId from tbl_appointmentForm where employeeId = @id), " +
-                        "(select benefitsid from tbl_benefits where benefits = @benefitName), @benefitValue, @benefitStatus)";
+                        "@benefitsId, @isBenefitActive, @personalShare, @employerShare)";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@benefitName", benefitName);
-                        cmd.Parameters.AddWithValue("@benefitValue", benefitValue);
-                        cmd.Parameters.AddWithValue("@benefitStatus", benefitStatus);
+                        cmd.Parameters.AddWithValue("@benefitsId", benefitId);
+                        cmd.Parameters.AddWithValue("@isBenefitActive", isBenefitActive);
+                        cmd.Parameters.AddWithValue("@personalShare", (personalShare != -1) ? (object)personalShare : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@employerShare", (employerShare != -1) ? (object)employerShare : DBNull.Value);
 
                         object result = await cmd.ExecuteNonQueryAsync();
 
-                        if ((int)result > 0)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        return (int)result > 0;
                     }
                 }
             }
@@ -1116,14 +1177,14 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         }
 
         // This function is responsible if a benefit of an employee will be change its status
-        public async Task<bool> UpdateEmployeeBenefitStatus(int id, string updateStatus)
+        public async Task<bool> UpdateEmployeeBenefitStatus(int id, bool updateStatus)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "update tbl_appointmentformBenefitsDetails set benefitStatus = @updateValue where detailsId = @id";
+                    string command = "update tbl_appointmentformBenefitsDetails set isBenefitActive = @updateValue where detailsId = @id";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@updateValue", updateStatus);

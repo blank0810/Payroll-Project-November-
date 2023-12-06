@@ -397,7 +397,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Modal
             try
             {
                 employeeClass employeeClass = new employeeClass();
-                bool addBenefit = await employeeClass.AddEmployeeBenefit(id, benefitName, benefitValue, benefitStatus);
+                bool addBenefit = await employeeClass.AddEmployeeBenefit(id, 0, 0, 0, true);
 
                 if (addBenefit)
                 {

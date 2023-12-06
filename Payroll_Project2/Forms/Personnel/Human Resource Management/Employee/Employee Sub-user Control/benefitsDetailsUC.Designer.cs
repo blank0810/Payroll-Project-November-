@@ -34,38 +34,39 @@
             this.inactiveBtn = new Payroll_Project2.Custom.buttonDesign();
             this.viewBtn = new Payroll_Project2.Custom.buttonDesign();
             this.activeBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.rateDescriptions = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // benefitName
             // 
             this.benefitName.AutoSize = true;
-            this.benefitName.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.benefitName.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
             this.benefitName.ForeColor = System.Drawing.Color.Black;
-            this.benefitName.Location = new System.Drawing.Point(6, 6);
+            this.benefitName.Location = new System.Drawing.Point(6, 7);
             this.benefitName.Name = "benefitName";
-            this.benefitName.Size = new System.Drawing.Size(33, 19);
+            this.benefitName.Size = new System.Drawing.Size(29, 18);
             this.benefitName.TabIndex = 6;
             this.benefitName.Text = "SSS";
             // 
             // benefitValue
             // 
             this.benefitValue.AutoSize = true;
-            this.benefitValue.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.benefitValue.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
             this.benefitValue.ForeColor = System.Drawing.Color.Black;
-            this.benefitValue.Location = new System.Drawing.Point(268, 6);
+            this.benefitValue.Location = new System.Drawing.Point(641, 7);
             this.benefitValue.Name = "benefitValue";
-            this.benefitValue.Size = new System.Drawing.Size(33, 19);
+            this.benefitValue.Size = new System.Drawing.Size(29, 18);
             this.benefitValue.TabIndex = 6;
             this.benefitValue.Text = "700";
             // 
             // benefitsStatus
             // 
             this.benefitsStatus.AutoSize = true;
-            this.benefitsStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.benefitsStatus.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
             this.benefitsStatus.ForeColor = System.Drawing.Color.Black;
-            this.benefitsStatus.Location = new System.Drawing.Point(559, 6);
+            this.benefitsStatus.Location = new System.Drawing.Point(797, 7);
             this.benefitsStatus.Name = "benefitsStatus";
-            this.benefitsStatus.Size = new System.Drawing.Size(48, 19);
+            this.benefitsStatus.Size = new System.Drawing.Size(47, 18);
             this.benefitsStatus.TabIndex = 6;
             this.benefitsStatus.Text = "Active";
             // 
@@ -82,7 +83,7 @@
             this.inactiveBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.inactiveBtn.ForeColor = System.Drawing.Color.White;
             this.inactiveBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.inactiveBtn.Location = new System.Drawing.Point(918, 3);
+            this.inactiveBtn.Location = new System.Drawing.Point(1082, 3);
             this.inactiveBtn.Name = "inactiveBtn";
             this.inactiveBtn.Size = new System.Drawing.Size(82, 25);
             this.inactiveBtn.TabIndex = 7;
@@ -104,7 +105,7 @@
             this.viewBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.viewBtn.ForeColor = System.Drawing.Color.White;
             this.viewBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.viewBtn.Location = new System.Drawing.Point(799, 3);
+            this.viewBtn.Location = new System.Drawing.Point(960, 3);
             this.viewBtn.Name = "viewBtn";
             this.viewBtn.Size = new System.Drawing.Size(118, 25);
             this.viewBtn.TabIndex = 7;
@@ -126,7 +127,7 @@
             this.activeBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.activeBtn.ForeColor = System.Drawing.Color.White;
             this.activeBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.activeBtn.Location = new System.Drawing.Point(918, 3);
+            this.activeBtn.Location = new System.Drawing.Point(1082, 3);
             this.activeBtn.Name = "activeBtn";
             this.activeBtn.Size = new System.Drawing.Size(82, 25);
             this.activeBtn.TabIndex = 8;
@@ -135,19 +136,32 @@
             this.activeBtn.UseVisualStyleBackColor = false;
             this.activeBtn.Click += new System.EventHandler(this.activeBtn_Click);
             // 
+            // rateDescriptions
+            // 
+            this.rateDescriptions.AutoSize = true;
+            this.rateDescriptions.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.rateDescriptions.ForeColor = System.Drawing.Color.Black;
+            this.rateDescriptions.Location = new System.Drawing.Point(233, 7);
+            this.rateDescriptions.Name = "rateDescriptions";
+            this.rateDescriptions.Size = new System.Drawing.Size(125, 18);
+            this.rateDescriptions.TabIndex = 6;
+            this.rateDescriptions.Text = "{Rate descriptions}";
+            // 
             // benefitsDetailsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.viewBtn);
             this.Controls.Add(this.benefitsStatus);
             this.Controls.Add(this.benefitValue);
+            this.Controls.Add(this.rateDescriptions);
             this.Controls.Add(this.benefitName);
             this.Controls.Add(this.inactiveBtn);
+            this.Controls.Add(this.viewBtn);
             this.Controls.Add(this.activeBtn);
             this.Name = "benefitsDetailsUC";
-            this.Size = new System.Drawing.Size(1017, 33);
+            this.Size = new System.Drawing.Size(1175, 31);
             this.Load += new System.EventHandler(this.benefitsDetailsUC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -161,5 +175,6 @@
         private Custom.buttonDesign viewBtn;
         private Custom.buttonDesign inactiveBtn;
         private Custom.buttonDesign activeBtn;
+        private System.Windows.Forms.Label rateDescriptions;
     }
 }

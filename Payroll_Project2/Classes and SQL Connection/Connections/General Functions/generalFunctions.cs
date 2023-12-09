@@ -143,8 +143,10 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using(SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select isPercentage, personalShareValue, employerShareValue from tbl_benefitsContributions where " +
-                        "benefitsId = @benefitsId and isBenefitContributionActive = 1";
+                    string command = "SELECT isPercentage, personalShareValue, employerShareValue, SUM(personalShareValue + employerShareValue) as value " +
+                        "FROM tbl_benefitsContributions WHERE " +
+                        "benefitsId = @benefitsId AND isBenefitContributionActive = 1 " +
+                        "GROUP BY isPercentage, personalShareValue, employerShareValue";
 
                     using (cmd = new SqlCommand(command, conn))
                     {

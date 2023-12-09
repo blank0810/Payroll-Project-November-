@@ -8,6 +8,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Modal
     {
         private static addEmployeeModal _parent;
         
+        public int BenefitId { get; set; }
         public string BenefitName { get; set; }
         public string EmployeeShare { get; set; }
         public string EmployerShare { get; set; }

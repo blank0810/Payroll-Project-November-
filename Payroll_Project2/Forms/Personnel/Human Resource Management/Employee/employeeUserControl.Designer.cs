@@ -37,9 +37,9 @@
             this.employmentStatus = new System.Windows.Forms.ComboBox();
             this.searchBtn = new Payroll_Project2.Custom.buttonDesign();
             this.searchEmployee = new Payroll_Project2.Custom.customTextBox2();
-            this.addBtn = new Payroll_Project2.Custom.buttonDesign();
             this.returnBtn = new Payroll_Project2.Custom.buttonDesign();
             this.filterBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.addBtn = new Payroll_Project2.Custom.buttonDesign();
             this.departmentSearchTimer = new System.Windows.Forms.Timer(this.components);
             this.description = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
@@ -106,9 +106,9 @@
             this.searchBarPanel.Controls.Add(this.employmentStatus);
             this.searchBarPanel.Controls.Add(this.searchBtn);
             this.searchBarPanel.Controls.Add(this.searchEmployee);
-            this.searchBarPanel.Controls.Add(this.returnBtn);
             this.searchBarPanel.Controls.Add(this.filterBtn);
             this.searchBarPanel.Controls.Add(this.addBtn);
+            this.searchBarPanel.Controls.Add(this.returnBtn);
             this.searchBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.searchBarPanel.Location = new System.Drawing.Point(10, 0);
             this.searchBarPanel.Name = "searchBarPanel";
@@ -179,28 +179,6 @@
             this.searchEmployee.UnderlinedStyle = false;
             this.searchEmployee._TextChanged += new System.EventHandler(this.searchEmployee__TextChanged);
             // 
-            // addBtn
-            // 
-            this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addBtn.AutoSize = true;
-            this.addBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.addBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.addBtn.BorderColor = System.Drawing.Color.Navy;
-            this.addBtn.BorderRadius = 10;
-            this.addBtn.BorderSize = 0;
-            this.addBtn.FlatAppearance.BorderSize = 0;
-            this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBtn.ForeColor = System.Drawing.Color.White;
-            this.addBtn.Location = new System.Drawing.Point(1010, 11);
-            this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(107, 27);
-            this.addBtn.TabIndex = 1;
-            this.addBtn.Text = "Add User";
-            this.addBtn.TextColor = System.Drawing.Color.White;
-            this.addBtn.UseVisualStyleBackColor = false;
-            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
-            // 
             // returnBtn
             // 
             this.returnBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -244,6 +222,28 @@
             this.filterBtn.TextColor = System.Drawing.Color.White;
             this.filterBtn.UseVisualStyleBackColor = false;
             this.filterBtn.Click += new System.EventHandler(this.filterBtn_Click);
+            // 
+            // addBtn
+            // 
+            this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addBtn.AutoSize = true;
+            this.addBtn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.addBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.addBtn.BorderColor = System.Drawing.Color.Navy;
+            this.addBtn.BorderRadius = 10;
+            this.addBtn.BorderSize = 0;
+            this.addBtn.FlatAppearance.BorderSize = 0;
+            this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBtn.ForeColor = System.Drawing.Color.White;
+            this.addBtn.Location = new System.Drawing.Point(1010, 11);
+            this.addBtn.Name = "addBtn";
+            this.addBtn.Size = new System.Drawing.Size(107, 27);
+            this.addBtn.TabIndex = 1;
+            this.addBtn.Text = "Add User";
+            this.addBtn.TextColor = System.Drawing.Color.White;
+            this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // departmentSearchTimer
             // 

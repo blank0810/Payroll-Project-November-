@@ -144,15 +144,15 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Modal
             try
             {
                 employeeClass employeeClass = new employeeClass();
-                int values = await employeeClass.GetSalaryRateValue(description);
+                decimal values = await employeeClass.GetSalaryRateValue(1,1);
 
                 if (values > 0)
                 {
-                    return values;
+                    return 0;
                 }
                 else
                 {
-                    return values;
+                    return 0;
                 }
             }
             catch (SqlException sql)

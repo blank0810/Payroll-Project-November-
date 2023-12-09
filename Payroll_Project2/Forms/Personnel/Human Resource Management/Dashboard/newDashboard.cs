@@ -1302,6 +1302,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
             travelOrderSubPanel.Hide();
             passSlipSubPanel.Hide();
             contentPanel.Controls.Clear();
+            HideHR();
 
             if(!contentPanel.Controls.Contains(dashboardPanel))
             {

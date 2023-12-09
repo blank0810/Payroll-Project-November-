@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Security.Policy;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
 {
@@ -166,7 +167,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "SELECT COUNT(*) AS custom_Count FROM tbl_salaryRate WHERE salaryratedescription LIKE '%' + @description + '%'";
+                    string command = "SELECT COUNT(*) AS custom_Count FROM tbl_salaryRate WHERE salaryratedescription " +
+                        "LIKE '%' + @description + '%'";
                     using (SqlCommand cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@description", description);
@@ -231,7 +233,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select max(employeeId) from tbl_employee";
+                    string command = "SELECT IDENT_CURRENT('tbl_employee')";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         object result = await cmd.ExecuteScalarAsync();
@@ -250,43 +252,6 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
-        }
-
-        // This function is to retrieve the salary value of a salary grade
-        public async Task<int> GetSalaryRateValue(string description)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select salaryvalue from tbl_salaryrate where salaryRateDescription = @description";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@description", description);
-
-                        object result = await cmd.ExecuteScalarAsync();
-                        conn.Close();
-
-                        if (result != null && result != DBNull.Value)
-                        {
-                            return (int)result;
-                        }
-                        else
-                        {
-                            return -1;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql)
-            {
-                throw sql;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         // This function is responsible for retrieving the employee appointment form and its details
@@ -325,8 +290,46 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
             }
         }
 
+        // This function get the benefits that is mandated that will be added during the addition of employee
+        public async Task<DataTable> GetBenefitList(string employmentStatus)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select benefits " +
+                        "from tbl_mandatedBenefits join tbl_benefits on tbl_mandatedBenefits.benefitsId = " +
+                        "tbl_benefits.benefitsId join tbl_employmentStatus on tbl_employmentStatus.employmentStatusId = " +
+                        "tbl_mandatedBenefits.employmentStatusId " +
+                        "where employmentStatus = @status and isMandated = 0";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@status", employmentStatus);
+
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            conn.Close();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                throw sqlEx;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         // This function is responsible for retrieving the list of available benefits that the employee can avail
-        public async Task<DataTable> GetBenefitList(int employeeId, string employmentStatus)
+        public async Task<DataTable> GetAvailableBenefitList(int employeeId, string employmentStatus)
         {
             try
             {
@@ -371,13 +374,13 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select benefits, isPercentage, personalShareValue, employerShareValue, " +
-                        "sum(personalShareValue + employerShareValue) as value " +
-                        "from tbl_mandatedBenefits join tbl_benefits on tbl_mandatedBenefits.benefitsId = " +
-                        "tbl_benefits.benefitsId join tbl_employmentStatus on tbl_employmentStatus.employmentStatusId = " +
-                        "tbl_mandatedBenefits.employmentStatusId " +
-                        "where employmentStatus = @status and isMandated = 1 group by benefits, isPercentage, personalShareValue, " +
-                        "employerShareValue";
+                    string command = "SELECT isPercentage, benefits, tbl_benefits.benefitsId " +
+                                     "FROM tbl_mandatedBenefits " +
+                                     "JOIN tbl_benefits ON tbl_mandatedBenefits.benefitsId = tbl_benefits.benefitsId " +
+                                     "JOIN tbl_employmentStatus ON tbl_employmentStatus.employmentStatusId = tbl_mandatedBenefits.employmentStatusId " +
+                                     "LEFT JOIN tbl_benefitsContributions ON tbl_mandatedBenefits.benefitsId = tbl_benefitsContributions.benefitsid " +
+                                     "AND tbl_benefitsContributions.isBenefitContributionActive = 1 " +
+                                     "WHERE employmentStatus = @status AND isMandated = 1";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
@@ -463,6 +466,36 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
             }
         }
 
+        // This function retrieves the salary rate description ID to be used for retrieving the salary value
+        public async Task<int> GetSalaryRateDescriptionId(string salaryRateDescription)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select salaryRateId from tbl_salaryRate where salaryRateDescription = @description";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@description", salaryRateDescription);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        if(result != null && int.TryParse(result.ToString(), out int id))
+                        {
+                            return id;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         // This function is responsible retrieving the list of salary rate saved in the database aside from custom ones
         public async Task<DataTable> GetSalaryRate()
         {
@@ -480,6 +513,51 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                             conn.Close();
                             sda.Fill(dt);
                             return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        // This function is to retrieve the salary value of a salary grade
+        public async Task<decimal> GetSalaryRateValue(int salaryRateId, int stepNumber)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "SELECT amount FROM tbl_salaryRateValue sv " +
+                        "JOIN tbl_salaryRate sr ON sv.salaryRateId = sr.salaryRateId " +
+                        "JOIN tbl_salaryRateStep st ON st.stepId = sv.stepId " +
+                        "JOIN tbl_salaryRateTranche srt " +
+                        "ON srt.trancheId = sv.trancheId " +
+                        "WHERE sr.salaryRateId = @salaryRateId " +
+                        "AND st.stepNumber = @stepNumber " +
+                        "AND srt.isTrancheUsed = 1";
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@salaryRateId", salaryRateId);
+                        cmd.Parameters.AddWithValue("@stepNumber", stepNumber);
+
+                        object result = await cmd.ExecuteScalarAsync();
+                        conn.Close();
+
+                        if (result != null && decimal.TryParse(result.ToString(), out decimal amount))
+                        {
+                            return amount;
+                        }
+                        else
+                        {
+                            return -1;
                         }
                     }
                 }
@@ -660,36 +738,109 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
 
         // This function is responsible for adding a new salary rate which means the salary rate of the employee does not exist in the database
         // and needed to be a custom one
-        public async Task<bool> AddSalaryRate(string description, int value)
+        public async Task<bool> AddSalaryRate(string description, string schedule)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "insert into tbl_salaryrate (salaryratedescription, salaryValue) " +
-                        "values (@description, @value)";
-                    using (cmd = new SqlCommand(command, conn))
+
+                    using (SqlTransaction transaction = conn.BeginTransaction())
                     {
-                        cmd.Parameters.AddWithValue("@description", description);
-                        cmd.Parameters.AddWithValue("@value", value);
-
-                        object result = await cmd.ExecuteNonQueryAsync();
-                        conn.Close();
-
-                        if ((int)result > 0)
+                        try
                         {
-                            return true;
+                            string command = "INSERT INTO tbl_salaryrate (salaryratedescription, salaryRateSchedule) " +
+                                "VALUES (@description, @schedule)";
+
+                            using (cmd = new SqlCommand(command, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@description", description);
+                                cmd.Parameters.AddWithValue("@schedule", schedule);
+
+                                int result = await cmd.ExecuteNonQueryAsync();
+
+                                if (result > 0)
+                                {
+                                    // If everything is successful, commit the transaction
+                                    transaction.Commit();
+                                    return true;
+                                }
+                                else
+                                {
+                                    // If the result is not greater than 0, consider rolling back the transaction
+                                    transaction.Rollback();
+                                    return false;
+                                }
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            return false;
+                            // Handle exceptions and rollback the transaction
+                            transaction.Rollback();
+                            throw ex;
                         }
                     }
                 }
             }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
+            catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        // This function is responsible for adding the salary value of the custom salary rate
+        public async Task<bool> AddCustomValue(string customDescription, decimal value)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    
+                    using(SqlTransaction transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            string command = "Insert into tbl_salaryRateValue (salaryRateId, amount, isActive) " +
+                                "values ((select salaryRateId from tbl_salaryRate where salaryRateDescription = @customDescription), " +
+                                "@value, 1)";
+
+                            using(cmd = new SqlCommand(command, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@customDescription", customDescription);
+                                cmd.Parameters.AddWithValue("@value", value);
+
+                                int result = await cmd.ExecuteNonQueryAsync();
+
+                                if (result > 0)
+                                {
+                                    // If everything is successful, commit the transaction
+                                    transaction.Commit();
+                                    return true;
+                                }
+                                else
+                                {
+                                    // If the result is not greater than 0, consider rolling back the transaction
+                                    transaction.Rollback();
+                                    return false;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // Handle exceptions and rollback the transaction
+                            transaction.Rollback();
+                            throw ex;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
         // This function is responsible for adding the new employee
@@ -704,54 +855,67 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "insert into tbl_employee (employeePassword, isActive, employeeFname, employeeLname, employeeMname, " +
-                        "employeeBirth, employeeCivilStatus, employeeSex,employeeContactNumber, " +
-                        "employeeEmailAddress, educationalAttainmentId, nameOfSchool, course, schoolAddress, departmentId,employeeJobDesc, " +
-                        "roleId, employeePicture, employeeSignature, nationality, barangay, municipality, province, zipCode) "+
-                        "values (@password, @accountStatus, @fname, @lname, @mname, @birthday, @civilstatus, @sex, " +
-                        "@contactnumber, @emailaddress, (select educationalattainmentid from tbl_educationalattainment where educationalattainment " +
-                        "= @educationalattainment), @schoolname, @course, @schooladdress, (select departmentid from tbl_department " +
-                        "where departmentname = @department), " +
-                        "@jobdescription, (select roleid from tbl_userrole where rolename = @rolename), @employeepicture, @employeesignature, " +
-                        "@nationality, @barangay, @municipality, @province, @zipCode)";
 
-                    using (cmd = new SqlCommand(command, conn))
+                    using(SqlTransaction transaction = conn.BeginTransaction())
                     {
-                        cmd.Parameters.AddWithValue("@password", password);
-                        cmd.Parameters.AddWithValue("@accountstatus", isActive);
-                        cmd.Parameters.AddWithValue("@fname", fName);
-                        cmd.Parameters.AddWithValue("@lName", lName);
-                        cmd.Parameters.AddWithValue("@mname", mName);
-                        cmd.Parameters.AddWithValue("@birthday", birthday);
-                        cmd.Parameters.AddWithValue("@civilstatus", civilStatus);
-                        cmd.Parameters.AddWithValue("@sex", sex);
-                        cmd.Parameters.AddWithValue("@contactnumber", contactNumber);
-                        cmd.Parameters.AddWithValue("@emailaddress", emailAddress ?? (object) DBNull.Value);
-                        cmd.Parameters.AddWithValue("@educationalattainment", educationalAttainment);
-                        cmd.Parameters.AddWithValue("@schoolname", schoolName);
-                        cmd.Parameters.AddWithValue("@course", course);
-                        cmd.Parameters.AddWithValue("@schooladdress", schoolAddress);
-                        cmd.Parameters.AddWithValue("@department", department);
-                        cmd.Parameters.AddWithValue("@jobdescription", jobDescription);
-                        cmd.Parameters.AddWithValue("@rolename", roleName);
-                        cmd.Parameters.AddWithValue("@employeepicture", employeePicture);
-                        cmd.Parameters.AddWithValue("@employeesignature", employeeSignature);
-                        cmd.Parameters.AddWithValue("@nationality", nationality);
-                        cmd.Parameters.AddWithValue("@barangay", barangay);
-                        cmd.Parameters.AddWithValue("@municipality", municipality);
-                        cmd.Parameters.AddWithValue("@province", province);
-                        cmd.Parameters.AddWithValue("@zipCode", zipCode ?? (object) DBNull.Value);
-
-                        object result = await cmd.ExecuteNonQueryAsync();
-                        conn.Close();
-
-                        if ((int)result == 1)
+                        try
                         {
-                            return true;
+                            string command = "insert into tbl_employee (employeePassword, isActive, employeeFname, employeeLname, employeeMname, " +
+                                "employeeBirth, employeeCivilStatus, employeeSex,employeeContactNumber, " +
+                                "employeeEmailAddress, educationalAttainmentId, nameOfSchool, course, schoolAddress, departmentId,employeeJobDesc, " +
+                                "roleId, employeePicture, employeeSignature, nationality, barangay, municipality, province, zipCode) " +
+                                "values (@password, @accountStatus, @fname, @lname, @mname, @birthday, @civilstatus, @sex, " +
+                                "@contactnumber, @emailaddress, (select educationalattainmentid from tbl_educationalattainment where educationalattainment " +
+                                "= @educationalattainment), @schoolname, @course, @schooladdress, (select departmentid from tbl_department " +
+                                "where departmentname = @department), " +
+                                "@jobdescription, (select roleid from tbl_userrole where rolename = @rolename), @employeepicture, @employeesignature, " +
+                                "@nationality, @barangay, @municipality, @province, @zipCode)";
+
+                            using (cmd = new SqlCommand(command, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@password", password);
+                                cmd.Parameters.AddWithValue("@accountstatus", isActive);
+                                cmd.Parameters.AddWithValue("@fname", fName);
+                                cmd.Parameters.AddWithValue("@lName", lName);
+                                cmd.Parameters.AddWithValue("@mname", mName ?? (object)DBNull.Value);
+                                cmd.Parameters.AddWithValue("@birthday", birthday);
+                                cmd.Parameters.AddWithValue("@civilstatus", civilStatus);
+                                cmd.Parameters.AddWithValue("@sex", sex);
+                                cmd.Parameters.AddWithValue("@contactnumber", contactNumber);
+                                cmd.Parameters.AddWithValue("@emailaddress", emailAddress ?? (object)DBNull.Value);
+                                cmd.Parameters.AddWithValue("@educationalattainment", educationalAttainment);
+                                cmd.Parameters.AddWithValue("@schoolname", schoolName);
+                                cmd.Parameters.AddWithValue("@course", course);
+                                cmd.Parameters.AddWithValue("@schooladdress", schoolAddress);
+                                cmd.Parameters.AddWithValue("@department", department);
+                                cmd.Parameters.AddWithValue("@jobdescription", jobDescription);
+                                cmd.Parameters.AddWithValue("@rolename", roleName);
+                                cmd.Parameters.AddWithValue("@employeepicture", employeePicture);
+                                cmd.Parameters.AddWithValue("@employeesignature", employeeSignature);
+                                cmd.Parameters.AddWithValue("@nationality", nationality);
+                                cmd.Parameters.AddWithValue("@barangay", barangay);
+                                cmd.Parameters.AddWithValue("@municipality", municipality);
+                                cmd.Parameters.AddWithValue("@province", province);
+                                cmd.Parameters.AddWithValue("@zipCode", zipCode ?? (object)DBNull.Value);
+
+                                int result = await cmd.ExecuteNonQueryAsync();
+
+                                if (result > 0)
+                                {
+                                    transaction.Commit();
+                                    return true;
+                                }
+                                else
+                                {
+                                    transaction.Rollback();
+                                    return false;
+                                }
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            return false;
+                            transaction.Rollback();
+                            throw ex;
                         }
                     }
                 }
@@ -760,50 +924,77 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
             catch (Exception ex) { throw ex; }
         }
 
-        // This function is responsible for adding a new appointment form for every employee being added
-        public async Task<bool> AddAppointmentForm(int employeeId, string salaryRate, DateTime date, DateTime dateHired, DateTime? dateRetired, 
-            string schedule, string employmentStatus, string morningShift, string afternoonShift)
+        public async Task<bool> AddAppointmentForm(int employeeId, decimal amount, DateTime date, DateTime dateHired, DateTime? dateRetired,
+            string schedule, string employmentStatus, string morningShift, string afternoonShift, DateTime dateNextStepIncrement)
         {
             try
             {
+                // Open a new SqlConnection and initiate a SqlTransaction
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "insert into tbl_appointmentform (employeeid, salaryrateid, datecreated, datehired, " +
-                        "dateretired, payrollschedid, employmentstatusid, morningShiftTime, afternoonShiftTime) " +
-                        "values (@employeeid, (select salaryrateid from tbl_salaryrate where salaryratedescription = @salaryrate), " +
-                        "@date, @datehired, @dateretired, " +
-                        "(select payrollschedid from tbl_payrollsched where payrollscheduledescription = @schedule), " +
-                        "(select employmentstatusid from tbl_employmentstatus where employmentstatus = @employmentstatus), @morningShift, " +
-                        "@afternoonShift)";
-                    using (cmd = new SqlCommand(command, conn))
+
+                    using (SqlTransaction transaction = conn.BeginTransaction())
                     {
-                        cmd.Parameters.AddWithValue("@employeeid", employeeId);
-                        cmd.Parameters.AddWithValue("@salaryrate", salaryRate);
-                        cmd.Parameters.AddWithValue("@date", date);
-                        cmd.Parameters.AddWithValue("@datehired", dateHired);
-                        cmd.Parameters.AddWithValue("@dateretired", dateRetired ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@schedule", schedule);
-                        cmd.Parameters.AddWithValue("@employmentstatus", employmentStatus);
-                        cmd.Parameters.AddWithValue("@morningShift", morningShift);
-                        cmd.Parameters.AddWithValue("@afternoonShift", afternoonShift);
-
-                        object result = await cmd.ExecuteNonQueryAsync();
-                        conn.Close();
-
-                        if ((int)result == 1)
+                        try
                         {
-                            return true;
+                            // SQL command to insert a new record into tbl_appointmentform
+                            string command = "INSERT INTO tbl_appointmentform (employeeid, salaryRateValueId, datecreated, datehired, " +
+                                              "dateretired, payrollschedid, employmentstatusid, morningShiftTime, afternoonShiftTime, " +
+                                              "salaryRateValueNextStepIncrement) " +
+                                              "VALUES (@employeeid, (SELECT salaryRateValueId FROM tbl_salaryRateValue WHERE amount = @amount), @date, @datehired, " +
+                                              "@dateretired, (SELECT payrollschedid FROM tbl_payrollsched WHERE payrollscheduledescription = @schedule), " +
+                                              "(SELECT employmentstatusid FROM tbl_employmentstatus WHERE employmentstatus = @employmentstatus), @morningShift, " +
+                                              "@afternoonShift, @dateNextStepIncrement)";
+
+                            // Execute the command
+                            using (cmd = new SqlCommand(command, conn, transaction))
+                            {
+                                // Set parameters for the SQL command
+                                cmd.Parameters.AddWithValue("@employeeid", employeeId);
+                                cmd.Parameters.AddWithValue("@amount", amount);
+                                cmd.Parameters.AddWithValue("@date", date);
+                                cmd.Parameters.AddWithValue("@datehired", dateHired);
+                                cmd.Parameters.AddWithValue("@dateretired", dateRetired ?? (object)DBNull.Value);
+                                cmd.Parameters.AddWithValue("@schedule", schedule);
+                                cmd.Parameters.AddWithValue("@employmentstatus", employmentStatus);
+                                cmd.Parameters.AddWithValue("@morningShift", morningShift);
+                                cmd.Parameters.AddWithValue("@afternoonShift", afternoonShift);
+                                cmd.Parameters.AddWithValue("@dateNextStepIncrement", dateNextStepIncrement);
+
+                                // Execute the command and get the result
+                                int result = await cmd.ExecuteNonQueryAsync();
+
+                                // Commit or rollback the transaction based on the result
+                                if (result > 0)
+                                {
+                                    transaction.Commit();
+                                    return true;
+                                }
+                                else
+                                {
+                                    transaction.Rollback();
+                                    return false;
+                                }
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            return false;
+                            // Handle exceptions and rollback the transaction
+                            transaction.Rollback();
+                            throw ex;
                         }
                     }
                 }
             }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
+            catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // This function would be responsible for adding the employee default leave credits if it is regular

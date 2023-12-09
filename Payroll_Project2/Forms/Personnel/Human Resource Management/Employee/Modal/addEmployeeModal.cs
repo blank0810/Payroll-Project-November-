@@ -9,10 +9,13 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
+using NCalc;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
+using System.Collections.ObjectModel;
+using System.Collections;
 
 namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Modal
 {
@@ -25,16 +28,20 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         private static readonly string MorningShift = "8:00 AM - 12:00 PM";
         private static readonly string AfternoonShift = "1:00 PM - 5:00 PM";
         private static int numberOfMonth = DateTimeFormatInfo.CurrentInfo.MonthNames.Length - 1;
+        private static readonly int numberOfYears = int.Parse(ConfigurationManager.AppSettings["DefaultNumberOfYearsToIncreaseStep"]);
         private static string defaultHours = ConfigurationManager.AppSettings["DefaultSlipHours"];
+        private static readonly string CustomSchedule = ConfigurationManager.AppSettings.Get("DefaultCustomSchedule");
         private static int _year = DateTime.Now.Year;
         private static int _month = DateTime.Now.Month;
-        private generalFunctions generalFunctions = new generalFunctions();
-        private employeeClass employeeClass = new employeeClass();
-
-        private static decimal minimumBenefitValue = 0; 
+        private static readonly generalFunctions generalFunctions = new generalFunctions();
+        private static readonly employeeClass employeeClass = new employeeClass();
+        private static decimal minimumBenefitValue = 0;
+        private static readonly int defaultStepNumber = 1;
+        private static bool IsPercentage;
         
         // This status indicates for the default status of benefits when added into the employee
-        private static string status = "Active";
+        private static bool status = true;
+        private static bool isPercentage = true;
 
         // This is a static string variable in which the default account status of a new employee is Active
         private static bool accountStatus = false;
@@ -73,14 +80,17 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         private string EmploymentStatus { get; set; }
         private string UserRole { get; set; }
         private string SalaryRate { get; set; }
-        private int SalaryRateValue { get; set; }
+        private decimal SalaryRateValue { get; set; }
+        private decimal SalaryRateValueId { get; set; }
         private string SalarySchedule { get; set; }
+        private decimal PersonalShare { get; set; }
+        private decimal EmployerShare { get; set; }
         public DateTime DateHired { get; set; }
         private DateTime? DateRetired { get; set; }
         private string EmployeePicture { get; set; }
         private string EmployeeSignature { get; set; }
 
-        private static readonly List<(string, decimal)> benefitList = new List<(string, decimal)>();
+        private static readonly List<(int, decimal, decimal)> benefitList = new List<(int, decimal, decimal)>();
 
         #endregion
         
@@ -92,6 +102,27 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         }
 
         #region Custom functions responsible for responsiveness of the Form
+
+        // Custom function for getting the number of working days in a month
+        private static int CountWeekdays(int year, int month)
+        {
+            DateTime startOfMonth = new DateTime(year, month, 1);
+            DateTime endOfMonth = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+
+            int count = 0;
+            DateTime currentDate = startOfMonth;
+
+            while (currentDate <= endOfMonth)
+            {
+                if (currentDate.DayOfWeek != DayOfWeek.Saturday && currentDate.DayOfWeek != DayOfWeek.Sunday)
+                {
+                    count++;
+                }
+                currentDate = currentDate.AddDays(1);
+            }
+
+            return count;
+        }
 
         // Function for binding and populating some combo boxes and controls
         private async Task DataBinding()
@@ -111,40 +142,39 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 departmentName.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
                 AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
-                AutoCompleteStringCollection salaryRateCollection = new AutoCompleteStringCollection();
                 AutoCompleteStringCollection autoCompleteValues = new AutoCompleteStringCollection();
 
                 List<string> employmentStatusList = new List<string>();
                 List<string> educationalAttainmentList = new List<string>();
                 List<string> scheduleDescriptionList = new List<string>();
+                List<string> salaryRateCollection = new List<string>()
+                {
+                    "Custom"
+                };
 
                 foreach (DataRow row in salaryRateDescription.Rows)
                 {
-                    salaryRateCollection.Add(row["salaryratedescription"].ToString().ToUpper());
+                    salaryRateCollection.Add($"{row["salaryRateDescription"]}");
                 }
-                salaryRateCollection.Add("Custom");
 
                 foreach (DataRow row in departmentTable.Rows)
                 {
-                    collection.Add(row["departmentName"].ToString().ToUpper());
+                    collection.Add($"{row["departmentName"]}");
                 }
 
                 foreach (DataRow row in employmentStatusTable.Rows)
                 {
-                    string statusItem = row["employmentstatus"].ToString().ToUpper();
-                    employmentStatusList.Add(statusItem);
+                    employmentStatusList.Add($"{row["employmentStatus"]}");
                 }
 
                 foreach (DataRow row in educationalAttainmentTable.Rows)
                 {
-                    string educationalItems = row["educationalattainment"].ToString().ToUpper();
-                    educationalAttainmentList.Add(educationalItems);
+                    educationalAttainmentList.Add($"{row["educationalAttainment"]}");
                 }
 
                 foreach (DataRow row in scheduleDescription.Rows)
                 {
-                    string scheduleItems = row["payrollscheduledescription"].ToString().ToUpper();
-                    scheduleDescriptionList.Add(scheduleItems);
+                    scheduleDescriptionList.Add($"{row["payrollscheduledescription"]}");
                 }
 
                 departmentName.DataSource = collection;
@@ -175,24 +205,36 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
         }
 
-        // Function responsible for computing the total value of mandated benefit if its percentage
-        private decimal ComputeTotalValue(int totalPercentage, int salaryRate)
+        private void ClearAll()
         {
             try
             {
-                decimal totalValue = (totalPercentage * salaryRate) / 100;
-                return totalValue;
+                departmentName.DataSource = null;
+                salaryRate.DataSource = null;
+                employmentStatus.DataSource = null;
+                educationalAttainment.DataSource = null;
+                scheduleBox.DataSource = null;
+
+                departmentName.Items.Clear();
+                salaryRate.Items.Clear();
+                employmentStatus.Items.Clear();
+                educationalAttainment.Items.Clear();
+                scheduleBox.Items.Clear();
             }
-            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+            catch (Exception ex)
+            {
+                ErrorMessages(ex.Message, "Exception Error");
+            }
         }
 
         // Function responsible for displaying the mandated benefits
-        private async Task ForwardMandatedValue(string employmentStatus)
+        private async Task ForwardMandatedValue(string employmentStatus, decimal monthlySalary, List<(int, decimal, decimal)> benefitList)
         {
             try
             {
                 mandatedPanel.Controls.Clear();
                 DataTable benefits = await GetMandated(employmentStatus);
+                bool isPercentage = false;
 
                 if (benefits != null && benefits.Rows.Count > 0)
                 {
@@ -202,38 +244,355 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                         DataRow row = benefits.Rows[i];
                         mandated[i] = new mandateDeductionsUC();
 
-                        if ((bool)row["isPercentage"])
+                        if (!string.IsNullOrEmpty(row["isPercentage"]?.ToString()) && bool.TryParse(row["isPercentage"].ToString(), 
+                            out isPercentage))
                         {
-                            decimal totalValue = ComputeTotalValue(int.Parse(row["value"].ToString()), SalaryRateValue);
 
-                            mandated[i].BenefitName = row["benefits"].ToString();
-                            mandated[i].EmployeeShare = $"{row["personalShareValue"]} %";
-                            mandated[i].EmployerShare = $"{row["employerShareValue"]} %";
-                            mandated[i].TotalValue = $"${totalValue}";
+                        }
 
-                            mandatedPanel.Controls.Add(mandated[i]);
-                            benefitList.Add((row["benefits"].ToString(), totalValue));
+                        if (!string.IsNullOrEmpty(row["benefits"].ToString()))
+                        {
+                            mandated[i].BenefitName = $"{row["benefits"]}";
                         }
                         else
                         {
-                            mandated[i].BenefitName = row["benefits"].ToString();
-                            mandated[i].EmployeeShare = $"${row["personalShareValue"]}";
-                            mandated[i].EmployerShare = $"${row["employerShareValue"]}";
-                            mandated[i].TotalValue = $"${row["value"]}";
-
-                            mandatedPanel.Controls.Add(mandated[i]);
-                            benefitList.Add((row["benefits"].ToString(), Convert.ToDecimal(row["value"])));
+                            mandated[i].BenefitName = "---------";
                         }
+
+                        if (!string.IsNullOrEmpty(row["benefitsId"].ToString()) && int.TryParse(row["benefitsId"].ToString(), 
+                            out int benefitsId))
+                        {
+                            mandated[i].BenefitId = benefitsId;
+                        }
+                        else
+                        {
+                            mandated[i].BenefitId = 0;
+                        }
+
+                        if (mandated[i].BenefitId != 0 && mandated[i].BenefitName != "Witholding Tax" && isPercentage)
+                        {
+                            decimal employerShare = await GetEmployerShareValue(mandated[i].BenefitId);
+                            decimal personalShare = await GetPersonalShareValue(mandated[i].BenefitId);
+                            decimal amount = await ComputeBenefitContributionsAmount(mandated[i].BenefitId, monthlySalary);
+
+                            mandated[i].EmployeeShare = $"{personalShare}%";
+                            mandated[i].EmployerShare = $"{employerShare}%";
+                            mandated[i].TotalValue = $"{amount:C2}";
+
+                            benefitList.Add((mandated[i].BenefitId, -1, -1));
+                        }
+                        else if (mandated[i].BenefitId != 0 && mandated[i].BenefitName != "Witholding Tax" && !isPercentage)
+                        {
+                            decimal employerShare = await GetEmployerShareValue(mandated[i].BenefitId);
+                            decimal personalShare = await GetPersonalShareValue(mandated[i].BenefitId);
+                            decimal amount = await ComputeBenefitContributionsAmount(mandated[i].BenefitId, monthlySalary);
+
+                            mandated[i].EmployeeShare = $"{personalShare:C2}";
+                            mandated[i].EmployerShare = $"{employerShare:C2}";
+                            mandated[i].TotalValue = $"{amount:C2}";
+
+                            benefitList.Add((mandated[i].BenefitId, employerShare, personalShare));
+                        }
+                        else
+                        {
+                            mandated[i].EmployeeShare = string.Empty;
+                            mandated[i].EmployerShare = string.Empty;
+                            mandated[i].TotalValue = $"Pending Value!";
+                            benefitList.Add((mandated[i].BenefitId, -1, -1));
+                        }
+
+                        mandatedPanel.Controls.Add(mandated[i]);
                     }
                 }
             }
             catch (SqlException sql)
             {
-                ErrorMessages(sql.Message, "SQL Error");
+                ErrorMessages(sql.Message, "SQL Benefits Error");
             }
             catch (Exception ex)
             {
                 ErrorMessages(ex.Message, "Exception Error");
+            }
+        }
+
+        // Function responsible for adding the new benefit into the mandate user control
+        private async Task AddNewBenefit(string benefitName, decimal personalShare, decimal employerShare, bool isPercentage,
+            List<(int, decimal, decimal)> benefitList)
+        {
+            try
+            {
+                int benefitsId = await GetBenefitsId(benefitName);
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+                mandateDeductionsUC mandate = new mandateDeductionsUC();
+
+                if (contributions != null && benefitsId != 0)
+                {
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (!isPercentage)
+                        {
+                            decimal amount = personalShare + employerShare;
+
+                            mandate.BenefitId = benefitsId;
+                            mandate.BenefitName = benefitName;
+                            mandate.EmployeeShare = $"{personalShare:C2}";
+                            mandate.EmployerShare = $"{employerShare:C2}";
+                            mandate.TotalValue = $"{amount:C2}";
+
+                            benefitList.Add((benefitsId, employerShare, personalShare));
+                        }
+                        else
+                        {
+                            decimal personalShareValue = await GetPersonalShareValue(benefitsId);
+                            decimal employerShareValue = await GetEmployerShareValue(benefitsId);
+                            decimal amount = personalShareValue + employerShareValue;
+
+                            mandate.BenefitId = benefitsId;
+                            mandate.BenefitName = benefitName;
+                            mandate.EmployeeShare = $"{personalShare}%";
+                            mandate.EmployerShare = $"{employerShare}%";
+                            mandate.TotalValue = $"{amount:C2}";
+
+                            benefitList.Add((benefitsId, -1, -1));
+                        }
+
+                        mandatedPanel.Controls.Add(mandate);
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<decimal> GetPersonalShareValue(int benefitsId)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+
+                if(contributions != null)
+                {
+                    foreach(DataRow row in contributions.Rows)
+                    {
+                        if (decimal.TryParse(row["personalShareValue"].ToString(), out decimal value))
+                        {
+                            return value;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+                return 0;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<decimal> GetEmployerShareValue(int benefitsId)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+
+                if (contributions != null)
+                {
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (decimal.TryParse(row["employerShareValue"].ToString(),
+                                out decimal employerShare))
+                        {
+                            return employerShare;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+                return 0;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // Custom function for retrieving the Value of the benefit
+        private async Task<decimal> ComputeBenefitContributionsAmount(int benefitsId, decimal monthlySalary)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+
+                if (contributions != null)
+                {
+                    decimal totalAmount = 0;
+
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (!string.IsNullOrEmpty(row["isPercentage"]?.ToString()) && bool.TryParse(row["isPercentage"].ToString(), out
+                            bool isPercentage))
+                        {
+                            if (!isPercentage && decimal.TryParse(row["value"].ToString(), out decimal amount))
+                            {
+                                return amount;
+                            }
+                            else if (!string.IsNullOrEmpty(row["personalShareValue"]?.ToString()) &&
+                                !string.IsNullOrEmpty(row["employerShareValue"]?.ToString()) &&
+                                decimal.TryParse(row["personalShareValue"].ToString(), out decimal personalShare) &&
+                                decimal.TryParse(row["employerShareValue"].ToString(), out decimal employerShare))
+                            {
+
+                                string formula = await GetBenefitFormula(benefitsId);
+                                Expression expression = new Expression(formula);
+
+                                expression.Parameters["personalSharePercentage"] = personalShare;
+                                expression.Parameters["employerSharePercentage"] = employerShare;
+                                expression.Parameters["monthlySalary"] = monthlySalary;
+
+                                object result = expression.Evaluate();
+
+                                if (!string.IsNullOrEmpty(result?.ToString()) && Decimal.TryParse(result.ToString(), out decimal value))
+                                {
+                                    totalAmount += value;
+                                }
+
+                                return totalAmount;
+                            }
+                        }
+                    }
+
+                    return totalAmount;
+                }
+                else
+                {
+                    // Handle null contributions or formula if needed
+                    return -1;
+                }
+            }
+            catch (SqlException sql)
+            {
+                // Log or handle the SQL exception
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                // Log or handle other exceptions
+                throw ex;
+            }
+        }
+
+        // Custom function for retrieving the Personal Share Value
+        private async Task<decimal> ComputePersonalShareAmount(int benefitsId, decimal monthlySalary)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+                string formula = await GetBenefitFormula(benefitsId);
+
+                if (contributions != null && formula != null)
+                {
+                    Expression expression = new Expression(formula);
+                    decimal totalAmount = 0;
+
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (Decimal.TryParse(row["personalShareValue"].ToString(), out decimal personalSharePercentage))
+                        {
+                            expression.Parameters["personalSharePercentage"] = personalSharePercentage;
+                            expression.Parameters["employerSharePercentage"] = 0;
+                            expression.Parameters["monthlySalary"] = monthlySalary;
+
+                            object result = expression.Evaluate();
+
+                            if (!string.IsNullOrEmpty(result?.ToString()) && Decimal.TryParse(result.ToString(), out decimal value))
+                            {
+                                totalAmount += value;
+                            }
+                            else
+                            {
+                                // Handle parsing errors or empty result if needed
+                            }
+                        }
+                        else
+                        {
+                            // Handle parsing errors if needed
+                        }
+                    }
+
+                    return totalAmount;
+                }
+                else
+                {
+                    // Handle null contributions or formula if needed
+                    return 0;
+                }
+            }
+            catch (SqlException sql)
+            {
+                // Log or handle the SQL exception
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                // Log or handle other exceptions
+                throw ex;
+            }
+        }
+
+        // Custom function for retrieving the Employer Share Value
+        private async Task<decimal> ComputeEmployerShareAmount(int benefitsId, decimal monthlySalary)
+        {
+            try
+            {
+                DataTable contributions = await GetBenefitContributions(benefitsId);
+                string formula = await GetBenefitFormula(benefitsId);
+
+                if (contributions != null && formula != null)
+                {
+                    Expression expression = new Expression(formula);
+                    decimal totalAmount = 0;
+
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (decimal.TryParse(row["employerShareValue"].ToString(), out decimal employerSharePercentage))
+                        {
+                            expression.Parameters["personalSharePercentage"] = 0;
+                            expression.Parameters["employerSharePercentage"] = employerSharePercentage;
+                            expression.Parameters["monthlySalary"] = monthlySalary;
+
+                            object result = expression.Evaluate();
+
+                            if (!string.IsNullOrEmpty(result?.ToString()) && Decimal.TryParse(result.ToString(), out decimal value))
+                            {
+                                totalAmount += value;
+                            }
+                            else
+                            {
+                                // Handle parsing errors or empty result if needed
+                            }
+                        }
+                        else
+                        {
+                            // Handle parsing errors if needed
+                        }
+                    }
+
+                    return totalAmount;
+                }
+                else
+                {
+                    // Handle null contributions or formula if needed
+                    return 0;
+                }
+            }
+            catch (SqlException sql)
+            {
+                // Log or handle the SQL exception
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                // Log or handle other exceptions
+                throw ex;
             }
         }
 
@@ -278,7 +637,10 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             try
             {
                 DataTable benefits = await GetBenefitList(employmentStatus);
-                List<string> items = new List<string>();
+                List<string> items = new List<string>
+                {
+                    "Choose benefit/s"
+                };
 
                if (benefits != null && benefits.Rows.Count > 0)
                 {
@@ -310,10 +672,12 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                     {
                         if (row["numberOfYears"] != null && int.TryParse(row["numberOfYears"].ToString(), out int years))
                         {
+                            retiredWarning.Text = $"Notice: {employmentStatus} employee's have a\n {years} year/s contract\n as mandated by LGU - Initao";
                             return DateHired.AddYears(years);
                         }
                         else if (row["numberOfMonths"] != null && int.TryParse(row["numberOfMonths"].ToString(), out int months))
                         {
+                            retiredWarning.Text = $"Notice: {employmentStatus} employee's have a\n {months} month/s contract\n as mandated by LGU - Initao";
                             return DateHired.AddMonths(months);
                         }
                         else if ((row["numberOfYears"] != null && row["numberOfMonths"] != null) && int.TryParse(row["numberOfYears"].ToString(),
@@ -321,6 +685,8 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                         {
                             DateTime newDate = DateHired.AddYears(numberOfYears);
                             newDate = newDate.AddMonths(numberOfMonths);
+                            retiredWarning.Text = $"Notice: {employmentStatus} employee's have a\n {numberOfYears} year/s and {numberOfMonths} month/s " +
+                                $"contract\n as mandated by LGU - Initao";
                             return newDate;
                         }
                     }
@@ -341,9 +707,209 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             catch (Exception ex) { throw ex; }
         }
 
+        // Function to parse the display the salary value
+        private async Task DisplaySalaryRateValue(string salaryRateDescription, int stepNumber)
+        {
+            try
+            {
+                int salaryRateId =  await GetSalaryRateId(salaryRateDescription);
+                decimal salaryRateValue = await GetSalaryRateValue(salaryRateId, stepNumber);
+
+                salaryRateValueTextBox.Visible = false;
+                salaryRateValueLabel.Visible = true;
+                salaryRateValueLabel.BringToFront();
+
+                if(salaryRateValue > -1)
+                {
+                    salaryRateValueLabel.Text = $"{salaryRateValue:C2}";
+                }
+                else
+                {
+                    salaryRateValueLabel.Text = $"{-1:C2}";
+                }
+            }
+            catch (SqlException sql)
+            {
+                ErrorMessages(sql.Message, "SQL Salary Rate Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessages(ex.Message, "Exception Error");
+            }
+        }
+
+        // Function responsible for parsing the benefit value of chosen benefits
+        private async Task ParsingBenefitContributions(string benefitName, decimal monthlySalary)
+        {
+            try
+            {
+                int benefitId = await GetBenefitsId(benefitName);
+                DataTable contributions = await GetBenefitContributions(benefitId);
+
+                if (contributions != null && benefitId > -1)
+                {
+                    foreach (DataRow row in contributions.Rows)
+                    {
+                        if (!string.IsNullOrEmpty(row["isPercentage"].ToString()) && bool.TryParse(row["isPercentage"].ToString(),
+                            out bool isPercentage))
+                        {
+                            if (!isPercentage)
+                            {
+                                IsPercentage = false;
+
+                                if (!string.IsNullOrEmpty(row["personalShareValue"].ToString()) && !string.IsNullOrEmpty(row["employerShareValue"].ToString())
+                                    && decimal.TryParse(row["personalShareValue"].ToString(), out decimal personalShareValueMoney) &&
+                                    decimal.TryParse(row["employerShareValue"].ToString(), out decimal employerShareValueMoney))
+                                {
+                                    personalShareValue.Enabled = true;
+                                    employerShareValue.Enabled = true;
+                                    employerShareValue.Texts = $"{employerShareValueMoney:C2}";
+                                    personalShareValue.Texts = $"{personalShareValueMoney:C2}";
+                                    personalMinimumAmountLabel.Visible = true;
+                                    employerMinimumAmountLabel.Visible = true;
+
+                                    personalPercentageWarningLabel.Visible = false;
+                                    employerPercentageWarningLabel.Visible = false;
+                                }
+                                else
+                                {
+                                    employerShareValue.Texts = $"0";
+                                    personalShareValue.Texts = $"0";
+                                    employerShareValue.Enabled = false;
+                                    personalShareValue.Enabled = false;
+                                    personalMinimumAmountLabel.Visible = false;
+                                    employerMinimumAmountLabel.Visible = false;
+                                    personalPercentageWarningLabel.Visible = false;
+                                    employerPercentageWarningLabel.Visible = false;
+                                }
+                            }
+                            else if (!string.IsNullOrEmpty(row["personalShareValue"].ToString()) && decimal.TryParse(row["personalShareValue"].ToString(),
+                                out decimal personalShare) && !string.IsNullOrEmpty(row["employerShareValue"].ToString()) &&
+                                decimal.TryParse(row["employerShareValue"].ToString(), out decimal employerShare))
+                            {
+
+                                decimal personalSharePreviewValue = await ComputePersonalShareAmount(benefitId, monthlySalary);
+                                decimal employerSharePreviewValue = await ComputeEmployerShareAmount(benefitId, monthlySalary);
+
+                                employerShareValue.Texts = $"{employerShare}% = {employerSharePreviewValue:C2}";
+                                personalShareValue.Texts = $"{personalShare}% = {personalSharePreviewValue:C2}";
+
+                                employerShareValue.Enabled = false;
+                                personalShareValue.Enabled = false;
+
+                                personalMinimumAmountLabel.Visible = false;
+                                employerMinimumAmountLabel.Visible = false;
+                                personalPercentageWarningLabel.Visible = true;
+                                employerPercentageWarningLabel.Visible = true;
+
+                                IsPercentage = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ErrorMessages($"No contributions have been recorded for the benefit '{benefitName}'. " +
+                        $"Please contact the system administrator for resolution.", "Benefit Contributions Error");
+                }
+            }
+            catch (SqlException sql)
+            {
+                ErrorMessages(sql.Message, "SQL Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessages(ex.Message, "Exception Error");
+            }
+        }
+
         #endregion
 
         #region Functions inside serves to communicate with the Employee Class
+
+        // Function responsible for getting the salary rate id
+        public async Task<int> GetSalaryRateId(string description)
+        {
+            try
+            {
+                int id = await employeeClass.GetSalaryRateDescriptionId(description);
+                return id;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        // Function responsible for retrieving the Proper Witholding Tax Rate
+        private async Task<DataTable> GetWitholdingTaxRate(decimal basicAnnualSalary)
+        {
+            try
+            {
+                DataTable taxRate = await generalFunctions.GetWitholdingTaxRate(basicAnnualSalary);
+
+                if (taxRate != null && taxRate.Rows.Count > 0)
+                {
+                    return taxRate;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<string> GetGeneralFormula(string title)
+        {
+            try
+            {
+                string formulaExpression = await generalFunctions.GetGeneralFormula(title);
+                return formulaExpression;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // Function responsible for getting the formula of the selected benefit
+        private async Task<string> GetBenefitFormula(int benefitId)
+        {
+            try
+            {
+                string formula = await generalFunctions.GetBenefitsFormula(benefitId);
+                return formula;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<DataTable> GetBenefitContributions(int benefitId)
+        {
+            try
+            {
+                DataTable contribution = await generalFunctions.GetBenefitContributions(benefitId);
+
+                if (contribution != null && contribution.Rows.Count > 0)
+                {
+                    return contribution;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<int> GetBenefitsId(string benefitName)
+        {
+            try
+            {
+                int benefitId = await employeeClass.GetBenefitId(benefitName);
+                return benefitId;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
 
         // Function responsible for retrieving the contract length of an employment aside from a regular
         private async Task<DataTable> GetContractLength(string employmentStatus)
@@ -428,21 +994,12 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         // This function return the value of the salary rate chosen by the user in the combo box such as the value of a
         // Salary Grade 1
-        private async Task<int> GetValue(string description)
+        private async Task<decimal> GetSalaryRateValue(int salaryRateId, int stepNumber)
         {
             try
             {
-                employeeClass employeeClass = new employeeClass();
-                int values = await employeeClass.GetSalaryRateValue(description);
-
-                if (values > 0)
-                {
-                    return values;
-                }
-                else
-                {
-                    return values;
-                }
+                decimal value = await employeeClass.GetSalaryRateValue(salaryRateId, stepNumber);
+                return value;
             }
             catch (SqlException sql)
             {
@@ -485,12 +1042,12 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         // This function serves as adding a custom salary rate if the salary rate is custom before adding the new employee
         // It will return true if the salary rate is being added or false is not
-        private async Task<bool> AddSalaryRate(string description, int value)
+        private async Task<bool> AddSalaryRate(string description, string schedule)
         {
             try
             {
                 employeeClass employeeClass = new employeeClass();
-                bool addSalaryRate = await employeeClass.AddSalaryRate(description, value);
+                bool addSalaryRate = await employeeClass.AddSalaryRate(description, schedule);
 
                 if (addSalaryRate)
                 {
@@ -503,6 +1060,17 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
+        }
+
+        // This function would be responsible for adding the value of the custom salary rate
+        private async Task<bool> AddCustomSalaryValue(string description, decimal value)
+        {
+            try
+            {
+                bool addValue = await employeeClass.AddCustomValue(description, value);
+                return addValue;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
         // This function responsible for adding new employee into the database
@@ -531,14 +1099,14 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         // This function is responsible for creating new appointment form for the new employee
         // It will return true if the form is created false if not
-        private async Task<bool> AddAppointmentForm(int employeeId, string salaryRate, DateTime date, DateTime dateHired, DateTime? dateRetired, 
-            string schedule, string employmentStatus, string morningShift, string afternoonShift)
+        private async Task<bool> AddAppointmentForm(int employeeId, decimal amount, DateTime date, DateTime dateHired, DateTime? dateRetired, 
+            string schedule, string employmentStatus, string morningShift, string afternoonShift, DateTime dateNextStep)
         {
             try
             {
                 employeeClass employeeClass = new employeeClass();
-                bool addAppointmentForm = await employeeClass.AddAppointmentForm(employeeId, salaryRate, date, dateHired, dateRetired, schedule, 
-                    employmentStatus, morningShift, afternoonShift);
+                bool addAppointmentForm = await employeeClass.AddAppointmentForm(employeeId, amount, date, dateHired, dateRetired, schedule, 
+                    employmentStatus, morningShift, afternoonShift, dateNextStep);
 
                 if (addAppointmentForm)
                 {
@@ -566,42 +1134,11 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> CheckEmployeeBenefitExist(int id, string benefitName)
-        {
-            #region This function when called is use to check if the benefit that will be addded does exist on the employee appointment form or not
-            // If the benefit exist then the function will notify the personnel that this benefit is already exist on employee appointment form
-
-            try
-            {
-                employeeClass employeeClass = new employeeClass();
-                DataTable employeeBenefitList = await generalFunctions.GetEmployeeBenefits(id);
-
-                if (employeeBenefitList != null)
-                {
-                    foreach (DataRow row in employeeBenefitList.Rows)
-                    {
-                        if (row["benefits"].ToString().ToUpper() == benefitName)
-                        {
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            #endregion
-        }
-
         private async Task<DataTable> GetBenefitList(string employmentStatus)
         {
             try
             {
-                employeeClass employeeClass = new employeeClass();
-                DataTable benefitTable = await employeeClass.GetBenefitList(1, employmentStatus);
+                DataTable benefitTable = await employeeClass.GetBenefitList(employmentStatus);
                 
                 if (benefitTable != null && benefitTable.Rows.Count > 0)
                 {
@@ -626,7 +1163,6 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         {
             try
             {
-                employeeClass employeeClass = new employeeClass();
                 DataTable benefitTable = await employeeClass.GetMandatedBenefit(employmentStatus);
 
                 if (benefitTable != null && benefitTable.Rows.Count > 0)
@@ -648,12 +1184,11 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
         }
 
-        private async Task<bool> AddBenefit(int id, string benefitName, decimal benefitValue, string benefitStatus)
+        private async Task<bool> AddBenefit(int id, int benefitsId, decimal personalShare, decimal employerShare, bool isActive)
         {
             try
             {
-                employeeClass employeeClass = new employeeClass();
-                bool addBenefit = await employeeClass.AddEmployeeBenefit(id, 1, 0, 0, true);
+                bool addBenefit = await employeeClass.AddEmployeeBenefit(id, benefitsId, personalShare, employerShare, isActive);
 
                 if (addBenefit)
                 {
@@ -712,25 +1247,6 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             catch (Exception ex) { throw ex; }
         }
 
-        // Function responsible for retrieving the benefit value if there is minimum value of it
-        private async Task<DataTable> GetBenefitValue(string benefitName)
-        {
-            try
-            {
-                DataTable value = await employeeClass.GetValue(benefitName);
-
-                if (value != null && value.Rows.Count > 0)
-                {
-                    return value;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
-        }
-
         // Function responsible for getting the default leave credits
         private async Task<DataTable> GetLeaveCredits()
         {
@@ -779,7 +1295,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         private bool AuthorizedAccountPanel()
         {
-            if (string.IsNullOrWhiteSpace(firstNameTextBox.Texts) || string.IsNullOrWhiteSpace(lastNameTextBox.Texts) || string.IsNullOrWhiteSpace(middleNameTextBox.Texts))
+            if (string.IsNullOrWhiteSpace(firstNameTextBox.Texts) || string.IsNullOrWhiteSpace(lastNameTextBox.Texts))
             {
                 ErrorMessages("Kindly ensure that you furnish the comprehensive particulars of the employee's name. " +
                     "Your attention to supplying complete information is greatly appreciated. Thank you.",
@@ -820,7 +1336,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 ErrorMessages("Please choose one of the access level choices", "Access Level Information");
                 return false;
             }
-            else if (employmentStatus.Text.ToUpper() != "REGULAR" && dateRetired.Value.Date == DateTime.Today)
+            else if (employmentStatus.Text != "Regular" && dateRetired.Value.Date == DateTime.Today)
             {
                 ErrorMessages("Please provide the number of years stated in Contract", "Incomplete Contract Information");
                 return false;
@@ -830,7 +1346,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 ErrorMessages("Please choose for the Employee Salary rate or create one", "Salary Rate Selection");
                 return false;
             }
-            else if (string.IsNullOrWhiteSpace(salaryRateValueTextBox.Texts) && salaryRate.Text.ToUpper().Contains("CUSTOM"))
+            else if (string.IsNullOrWhiteSpace(salaryRateValueTextBox.Texts) && salaryRate.Text.Contains("Custom"))
             {
                 ErrorMessages("We apologize for the inconvenience there is an error in assigning the Salary Value. Please review the details" +
                     " or Contact System Administrator for assistance", "Salary Rate Value Error");
@@ -1064,12 +1580,25 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             nextBtn.Visible = false;
             previousBtn.Visible = true;
             submitBtn.Visible = true;
+
+            MessageBox.Show(
+                                $"The calculation of deductions for Witholding Tax is pending, as both deductions and benefits need to be " +
+                                $"finalized. The employee will be able to view the final tax rate after saving the employee information in the database.",
+                                "Pending Tax Rate",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information
+                                );
         }
 
         private async void addEmployeeModal_Load(object sender, EventArgs e)
         {
             await DataBinding();
             DisplayAccountPanel();
+        }
+
+        private void addEmployeeModal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ClearAll();
         }
 
         private void accountBtn_Click(object sender, EventArgs e)
@@ -1188,45 +1717,20 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
         }
 
-        private void addBtn0_Click(object sender, EventArgs e)
+        private async void addBtn0_Click(object sender, EventArgs e)
         {
             try
             {
-                MessageBox.Show($"{benefitList.Count}");
-                if ((!string.IsNullOrEmpty(benefitName.Text) && int.TryParse(benefitValue.Texts, out int value)) && (value != 0 && value >= minimumBenefitValue))
-                {
-                    if (!benefitList.Any(item => item.Item1 == benefitName.Text))
-                    {
-                        mandateDeductionsUC mandateDeductions = new mandateDeductionsUC();
-
-                        mandateDeductions.BenefitName = benefitName.Text;
-                        mandateDeductions.TotalValue = $"${value}";
-
-                        mandatedPanel.Controls.Add(mandateDeductions);
-                        benefitList.Add((benefitName.Text, value));
-
-                        benefitName.SelectedIndex = -1;
-                        benefitValue.Texts = "";
-                    }
-                    else
-                    {
-                        ErrorMessages("The chosen benefit is already available to be added. Please choose another benefit / deductions", 
-                            "Option Invalid");
-                    }
-                }
-                else
-                {
-                    ErrorMessages("Kindly provide the necessary details for the additional benefits. Ensure that the chosen benefit and its value " +
-                        "is greater than or equal to the designated minimum value", "Insufficient Information");
-                }
+                await AddNewBenefit(benefitName.Text, PersonalShare, EmployerShare, IsPercentage, benefitList);
             }
-            catch (Exception ex) { throw ex; }
-        }
-
-        private void removeBtn0_Click(object sender, EventArgs e)
-        {
-            benefitName.SelectedIndex = -1;
-            benefitValue.Texts = "";
+            catch (SqlException sql)
+            {
+                ErrorMessages(sql.Message, "SQL Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessages(ex.Message, "Exception Error");
+            }
         }
 
         // This function responsible for formatting the user input into a sentence format
@@ -1306,7 +1810,17 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         private void userRole_TextChanged(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty(userRole.Text))
+            bool isUserRoleDepartmentHead = !string.IsNullOrEmpty(userRole.Text) && userRole.Text == "Department Head";
+            bool isDepartmentAllowed = DepartmentName == "Mayor's Office" || DepartmentName == "Human Resources Office";
+
+            if (!isUserRoleDepartmentHead && !isDepartmentAllowed)
+            {
+                ErrorMessages("The role Department Head is not allowed for the department Mayor's Office or in Human Resources Office",
+                    "User Role Restriction Error");
+                UserRole = userRole.Text;
+                userRole.SelectedIndex = -1;
+            }
+            else
             {
                 UserRole = userRole.Text;
             }
@@ -1390,58 +1904,49 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         {
             try
             {
-                if (salaryRate.Text != "Custom" && salaryRate.Text != string.Empty && EmploymentStatus == "REGULAR")
+                if (salaryRate.Text != "Custom" && salaryRate.Text != string.Empty && EmploymentStatus == "Regular")
                 {
-                    int value = await GetValue(salaryRate.Text);
-
-                    SalaryRate = salaryRate.Text;
-
-                    if (value > 0)
-                    {
-                        salaryRateValueTextBox.Visible = false;
-                        salaryRateValueLabel.Visible = true;
-                        salaryRateValueLabel.BringToFront();
-
-                        salaryRateValueLabel.Text = value.ToString();
-                    }
-                    else
-                    {
-                        salaryRateValueLabel.Text = "Error";
-                    }
+                    await DisplaySalaryRateValue(salaryRate.Text, defaultStepNumber);
                 }
-                else if ((salaryRate.Text == "Custom" || string.IsNullOrEmpty(salaryRate.Text)) && EmploymentStatus != "REGULAR")
+                else if ((salaryRate.Text == "Custom" || string.IsNullOrEmpty(salaryRate.Text)) && EmploymentStatus != "Regular")
                 {
                     salaryRateValueLabel.Visible = false;
+                    salaryRateValueLabel.Text = string.Empty;
                     salaryRateValueTextBox.Visible = true;
+                    salaryRateValueTextBox.BringToFront();
 
-                    int count = await GetCustomCount(salaryRate.Text) + 1;
+                    int count = await GetCustomCount(salaryRate.Text);
 
                     if (count >= 0)
                     {
-                        SalaryRate = salaryRate.Text + count.ToString();
-                        salaryRateValueTextBox.Visible = true;
-                        salaryRateValueTextBox.BringToFront();
+                        SalaryRate = $"{salaryRate.Text}{++count}";
                     }
                     else
                     {
-                        MessageBox.Show("There is an error in retrieving custom count");
+                        ErrorMessages("There is an error in retrieving custom count", "Custom Count Retrieval");
                     }
                 }
-                else if (EmploymentStatus == "REGULAR" && salaryRate.Text == "Custom")
+                else if (EmploymentStatus == "Regular" && salaryRate.Text == "Custom")
                 {
                     salaryRate.SelectedIndex = -1;
-                    ErrorMessages("A regular employee salary rate must only be chosen from a designated salary grade. Please choose the proper salary grade " +
+                    ErrorMessages("A regular employee salary rate must only be chosen from a designated salary grade. " +
+                        "Please choose the proper salary grade " +
                         "below", "Invalid Salary Rate");
+
+                    salaryRateValueLabel.Visible = false;
+                    salaryRateValueLabel.Text = string.Empty;
+                    salaryRateValueTextBox.Visible = true;
+                    salaryRateValueTextBox.BringToFront();
                 }
             }
             catch (SqlException sql)
             {
-                MessageBox.Show(sql.Message, caption: @"Sql Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(sql.Message, caption: "Sql Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, caption: @"Salary Rate Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, caption: "Salary Rate Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1460,19 +1965,24 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         private async void salaryRateValueTextBox__TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(salaryRateValueTextBox.Texts) && int.TryParse(salaryRateValueTextBox.Texts, out int salary) && EmploymentStatus != "REGULAR")
+            if (!string.IsNullOrEmpty(salaryRateValueTextBox.Texts) && decimal.TryParse(salaryRateValueTextBox.Texts, out decimal salary) 
+                && EmploymentStatus != "Regular")
             {
+                int numberOfDays = CountWeekdays(_year, _month);
                 SalaryRateValue = salary;
-                await ForwardMandatedValue(EmploymentStatus);
+                await ForwardMandatedValue(EmploymentStatus, SalaryRateValue * numberOfDays, benefitList);
             }
         }
 
         private async void salaryRateValueLabel_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(salaryRateValueLabel.Text) && int.TryParse(salaryRateValueLabel.Text, out int salary) && EmploymentStatus == "REGULAR")
+            if (!string.IsNullOrEmpty(salaryRateValueLabel.Text) && decimal.TryParse(salaryRateValueLabel.Text, NumberStyles.Currency, 
+                CultureInfo.CurrentCulture, out decimal salary) 
+                && EmploymentStatus == "Regular")
             {
+                salaryRateValueTextBox.Texts = string.Empty;
                 SalaryRateValue = salary;
-                await ForwardMandatedValue(EmploymentStatus);
+                await ForwardMandatedValue(EmploymentStatus, SalaryRateValue, benefitList);
             }
         }
 
@@ -1486,39 +1996,50 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         private async void employmentStatus_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(employmentStatus.Text) && employmentStatus.SelectedIndex > -1 && employmentStatus.Text.ToUpper() != "REGULAR")
+            try
             {
-                EmploymentStatus = employmentStatus.Text;
-                DateTime? newDateRetired = await SetDateRetired(employmentStatus.Text);
-                dateRetired.Value = newDateRetired.Value.Date;
-                retiredLabel.Visible = true;
-                dateRetired.Visible = true;
-                retiredWarning.Visible = true;
+                if (!string.IsNullOrEmpty(employmentStatus.Text) && employmentStatus.SelectedIndex > -1 && employmentStatus.Text != "Regular")
+                {
+                    EmploymentStatus = employmentStatus.Text;
+                    DateTime? newDateRetired = await SetDateRetired(employmentStatus.Text);
+                    dateRetired.Value = newDateRetired.Value.Date;
+                    retiredLabel.Visible = true;
+                    dateRetired.Visible = true;
+                    retiredWarning.Visible = true;
 
-                await PopulateUserRole(employmentStatus.Text);
-                benefitName.DataSource = await PopulateBenefitList(employmentStatus.Text);
-                benefitName.SelectedIndex = -1;
+                    await PopulateUserRole(employmentStatus.Text);
+                    benefitName.DataSource = await PopulateBenefitList(employmentStatus.Text);
+                    benefitName.SelectedIndex = -1;
 
-                int index = salaryRate.Items.IndexOf("Custom");
-                salaryRate.SelectedIndex = index;
-                salaryRate.Enabled = false;
-                salaryWarning.Visible = true;
+                    int index = salaryRate.Items.IndexOf("Custom");
+                    salaryRate.SelectedIndex = index;
+                    salaryRate.Enabled = false;
+                    salaryWarning.Visible = true;
+                }
+                else if (!string.IsNullOrEmpty(employmentStatus.Text) && employmentStatus.SelectedIndex > -1 && employmentStatus.Text == "Regular")
+                {
+                    EmploymentStatus = employmentStatus.Text;
+                    retiredLabel.Visible = false;
+                    dateRetired.Visible = false;
+                    retiredWarning.Visible = false;
+                    dateRetired.Value = DateTime.Today;
+
+                    await PopulateUserRole(employmentStatus.Text);
+                    benefitName.DataSource = await PopulateBenefitList(employmentStatus.Text);
+                    benefitName.SelectedIndex = -1;
+
+                    salaryRate.SelectedIndex = -1;
+                    salaryRate.Enabled = true;
+                    salaryWarning.Visible = false;
+                }
             }
-            else if (!string.IsNullOrEmpty(employmentStatus.Text) && employmentStatus.SelectedIndex > -1 && employmentStatus.Text.ToUpper() == "REGULAR")
+            catch (SqlException sql)
             {
-                EmploymentStatus = employmentStatus.Text;
-                retiredLabel.Visible = false;
-                dateRetired.Visible = false;
-                retiredWarning.Visible = false;
-                dateRetired.Value = DateTime.Today;
-
-                await PopulateUserRole(employmentStatus.Text);
-                benefitName.DataSource = await PopulateBenefitList(employmentStatus.Text);
-                benefitName.SelectedIndex = -1;
-
-                salaryRate.SelectedIndex = -1;
-                salaryRate.Enabled = true;
-                salaryWarning.Visible = false;
+                ErrorMessages(sql.Message, "SQL Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessages(ex.Message, "Exception Error");
             }
         }
 
@@ -1718,7 +2239,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
 
             // Allow the dot if it's not already present in the text
-            if (e.KeyChar == '.' && benefitValue.Texts.Contains("."))
+            if (e.KeyChar == '.' && personalShareValue.Texts.Contains("."))
             {
                 e.Handled = true; // Ignore the input
             }
@@ -1738,35 +2259,80 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         private async void benefitName_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(benefitName.Text) && benefitName.SelectedIndex > -1)
+            if (!string.IsNullOrEmpty(benefitName.Text) && benefitName.SelectedIndex > 0)
             {
-                DataTable value = await GetBenefitValue(benefitName.Text);
+                await ParsingBenefitContributions(benefitName.Text, SalaryRateValue);
+            }
+            else
+            {
+                personalShareValue.Texts = string.Empty;
+                employerShareValue.Texts = string.Empty;
+            }
+        }
 
-                if (value != null)
+        private void personalShareValue__TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(personalShareValue.Texts) && decimal.TryParse(personalShareValue.Texts,
+                NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal personalShare))
+            {
+                if (personalShare >= PersonalShare)
                 {
-                    DataRow row = value.Rows[0];
-                    
-                    if ((bool)row["isPercentage"])
-                    {
-                        int totalPercent = int.Parse(row["totalValue"].ToString());
-                        decimal totalValue = ComputeTotalValue(totalPercent, SalaryRateValue);
-                        minimumBenefitValue = totalValue;
-                        benefitValue.Texts = $"{totalValue}";
-                    }
-                    else
-                    {
-                        benefitValue.Texts = $"{row["totalValue"]}";
-                        minimumBenefitValue = Convert.ToDecimal(row["totalValue"].ToString());
-                    }
+                    PersonalShare = personalShare;
                 }
                 else
                 {
-                    benefitValue.Texts = "";
+                    personalShareValue.Enabled = true;
+                    personalMinimumAmountLabel.Visible = false;
+                    personalMinimumAmountWarning.Text = $"(The user input must be greater than or equal to {PersonalShare:C2}, " +
+                        $"which represents the designated minimum value for this benefit!)";
+                    personalMinimumAmountWarning.Visible = true;
+                    personalMinimumAmountWarning.BringToFront();
+                    personalShareValue.Texts = $"{PersonalShare:C2}";
                 }
             }
             else
             {
-                benefitValue.Texts = "";
+                PersonalShare = -1;
+            }
+        }
+
+        private void employerShareValue__TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(employerShareValue.Texts) && decimal.TryParse(employerShareValue.Texts,
+                NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal employerValue))
+            {
+                if (employerValue >= EmployerShare)
+                {
+                    EmployerShare = employerValue;
+                }
+                else
+                {
+                    employerMinimumAmountLabel.Visible = false;
+                    employerMinimumAmountWarning.Text = $"(The user input must be greater than or equal to {EmployerShare:C2}, " +
+                        "which represents the designated minimum value for this benefit!)";
+                    employerMinimumAmountWarning.Visible = true;
+                    employerMinimumAmountLabel.BringToFront();
+                    employerShareValue.Enabled = true;
+                    employerShareValue.Texts = $"{EmployerShare:C2}";
+                }
+            }
+            else
+            {
+                EmployerShare = -1;
+            }
+        }
+
+        private void addEmployeeModal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the pressed key is the Escape key
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                DialogResult result = MessageBox.Show("Do you wish to cancel the addition of a new employee?", "Cancel Action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
             }
         }
 
@@ -1820,35 +2386,56 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
         }
 
+        private async Task<bool> AddCustomSalaryRate(string description, string schedule)
+        {
+            try
+            {
+                bool addCustomSalaryRate = await AddSalaryRate(description, schedule);
+                return addCustomSalaryRate;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> AddCustomValue(string description, decimal value)
+        {
+            try
+            {
+                bool addValue = await AddCustomSalaryValue(description, value);
+                return addValue;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         //Function responsible for adding the new Employee, Appointment Form and Custom Salary Rate if needed
         private async Task<bool> AddNewEmployee(string password)
         {
             try
             {
-                EmployeePicture = Path.Combine(employeeImageDestination, FirstName + LastName + MiddleName + Path.GetExtension(employeeImageLocation));
-                EmployeeSignature = Path.Combine(employeeSignatureDestination, FirstName + LastName + MiddleName + Path.GetExtension(employeeSignatureLocation));
+                EmployeePicture = FirstName + LastName + MiddleName + Path.GetExtension(employeeImageLocation);
+                EmployeeSignature = FirstName + LastName + MiddleName + Path.GetExtension(employeeSignatureLocation);
                 File.Copy(employeeImageLocation, EmployeePicture, true);
                 File.Copy(employeeSignatureLocation, EmployeeSignature, true);
 
                 bool addSalaryRate = false;
+                bool addValue = false;
                 bool addEmployee = false;
                 bool addAppointmentForm = false;
 
-                if (SalaryRate.ToUpper().Contains("CUSTOM"))
+                if (SalaryRate.Contains("Custom"))
                 {
-                    int customCount = await GetCustomCount(SalaryRate) + 1;
-                    SalaryRate += customCount;
-                    addSalaryRate = await AddSalaryRate(SalaryRate, SalaryRateValue);
+                    addSalaryRate = await AddCustomSalaryRate(SalaryRate, CustomSchedule);
+                    addValue = await AddCustomValue(SalaryRate, SalaryRateValue);
                     addEmployee = await AddEmployee(password, EmployeePicture, EmployeeSignature);
-                    addAppointmentForm = await AddAppointmentForm(EmployeeID, SalaryRate, DateTime.Today, DateHired, DateRetired, SalarySchedule, 
-                        EmploymentStatus, MorningShift, AfternoonShift);
+                    addAppointmentForm = await AddAppointmentForm(EmployeeID, SalaryRateValue, DateTime.Today, DateHired, DateRetired, SalarySchedule, 
+                        EmploymentStatus, MorningShift, AfternoonShift, DateHired.AddYears(numberOfYears));
                 }
                 else
                 {
                     addSalaryRate = true;
                     addEmployee = await AddEmployee(password, EmployeePicture, EmployeeSignature);
-                    addAppointmentForm = await AddAppointmentForm(EmployeeID, SalaryRate, DateTime.Today, DateHired, DateRetired, SalarySchedule, 
-                        EmploymentStatus, MorningShift, AfternoonShift);
+                    addAppointmentForm = await AddAppointmentForm(EmployeeID, SalaryRateValue, DateTime.Today, DateHired, DateRetired, SalarySchedule, 
+                        EmploymentStatus, MorningShift, AfternoonShift, DateHired.AddYears(numberOfYears));
                 }
 
                 if (!addSalaryRate && !addEmployee && !addAppointmentForm)
@@ -1919,7 +2506,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         }
 
         // Function responsible for adding the benefits and deductions
-        private async Task<bool> AddEmployeeBenefit(int employeeId, string status)
+        private async Task<bool> AddEmployeeBenefit(int employeeId, bool status)
         {
             try
             {
@@ -1927,28 +2514,12 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 {
                     foreach (var benefit in benefitList)
                     {
-                        bool isAllowed = await CheckEmployeeBenefitExist(employeeId, benefit.Item1);
+                        bool addEmployeeBenefit = await AddBenefit(employeeId, benefit.Item1, benefit.Item2, benefit.Item1, status);
 
-                        if (isAllowed)
+                        if (!addEmployeeBenefit)
                         {
-                            bool addEmployeeBenefit = await AddBenefit(employeeId, benefit.Item1, benefit.Item2, status);
-
-                            if (addEmployeeBenefit)
-                            {
-                                SuccessMessages($"The benefit '{benefit.Item1}' has been successfully added to the Appointment form.",
-                               "Benefit Addition Successful");
-                            }
-                            else
-                            {
-                                ErrorMessages("An error occurred while adding the benefit. Please review the provided details and try again.",
-                                "Benefit Addition Error");
-                            }
-                        }
-                        else
-                        {
-                            ErrorMessages($"The benefit named '{benefit.Item1}' already exists on the employee's appointment form. " +
-                           "Please review the form and ensure that duplicate benefits are not added.",
-                           "Benefit Insertion Error");
+                            ErrorMessages($"An error occurred while adding the benefit number {benefit.Item1}. Please review the provided details and try again.",
+                            "Benefit Addition Error");
                         }
                     }
 
@@ -2081,6 +2652,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         {
             MessageBox.Show(description, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
         #endregion
 
         private async void submitBtn_Click(object sender, EventArgs e)
@@ -2090,37 +2662,55 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 if (!AuthorizedBenefitPanel())
                     return;
 
+                MessageBox.Show("1st");
+
                 bool isAuthorized = await IsAuthorized(_userId);
                 if (!isAuthorized)
                     return;
+
+                MessageBox.Show("2nd");
 
                 string password = PasswordGenerator(EmployeeID.ToString());
                 if (string.IsNullOrEmpty(password))
                     return;
 
+                MessageBox.Show("3rd");
+
                 bool addEmployee = await AddNewEmployee(password);
                 if (!addEmployee)
                     return;
+
+                MessageBox.Show("4th");
 
                 bool addBenefit = await AddEmployeeBenefit(EmployeeID, status);
                 if (!addBenefit)
                     return;
 
+                MessageBox.Show("5th");
+
                 bool addLeaveCredits = await AddLeaveCredits(EmployeeID, EmploymentStatus);
                 if (!addLeaveCredits)
                     return;
+
+                MessageBox.Show("6");
 
                 bool addSlip = await SubmitSlipHours(EmployeeID, _month, _year, numberOfMonth, defaultHours);
                 if (!addSlip)
                     return;
 
+                MessageBox.Show("7th");
+
                 bool addDtr = await AddNewDTRLog(EmployeeID);
                 if(!addDtr) 
                     return;
 
+                MessageBox.Show("8th");
+
                 string userName = await UserDetails(_userId);
                 if (string.IsNullOrEmpty(userName))
                     return;
+
+                MessageBox.Show("9th");
 
                 bool addNewLog = await AddNewLog(userName, $"{FirstName} {LastName}", EmployeeID);
                 if(!addNewLog)
@@ -2130,11 +2720,11 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
             catch (SqlException sql)
             {
-                MessageBox.Show(sql.Message);
+                ErrorMessages(sql.Message, "SQL Error");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorMessages(ex.Message, "Exception Error");
             }
         }
     }

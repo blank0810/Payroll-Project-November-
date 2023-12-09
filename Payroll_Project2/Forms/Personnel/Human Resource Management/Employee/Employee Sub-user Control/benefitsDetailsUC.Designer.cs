@@ -142,6 +142,7 @@
             this.rateDescriptions.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
             this.rateDescriptions.ForeColor = System.Drawing.Color.Black;
             this.rateDescriptions.Location = new System.Drawing.Point(233, 7);
+            this.rateDescriptions.MaximumSize = new System.Drawing.Size(367, 0);
             this.rateDescriptions.Name = "rateDescriptions";
             this.rateDescriptions.Size = new System.Drawing.Size(125, 18);
             this.rateDescriptions.TabIndex = 6;

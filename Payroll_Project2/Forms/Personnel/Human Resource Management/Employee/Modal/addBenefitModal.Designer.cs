@@ -175,9 +175,9 @@
             // 
             this.panel6.Controls.Add(this.personalShareValue);
             this.panel6.Controls.Add(this.label4);
+            this.panel6.Controls.Add(this.personalPercentageWarningLabel);
             this.panel6.Controls.Add(this.personalMinimumAmountLabel);
             this.panel6.Controls.Add(this.personalMinimumAmountWarning);
-            this.panel6.Controls.Add(this.personalPercentageWarningLabel);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 130);
             this.panel6.Name = "panel6";

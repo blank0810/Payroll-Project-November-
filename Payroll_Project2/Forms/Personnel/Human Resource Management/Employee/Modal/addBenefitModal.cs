@@ -53,7 +53,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         {
             try
             {
-                DataTable list = await employeeClass.GetBenefitList(employeeId, employmentStatus);
+                DataTable list = await employeeClass.GetAvailableBenefitList(employeeId, employmentStatus);
 
                 if (list != null && list.Rows.Count > 0)
                 {
@@ -115,35 +115,6 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 }
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
-        }
-
-        private async Task<bool> AddBenefitToList(string benefitName)
-        {
-            #region This function is used so that if the user will input a new benefit into employee's appointment form it will first add into the database
-
-            try
-            {
-                employeeClass employeeClass = new employeeClass();
-                bool addBenefit = await employeeClass.AddBenefit(benefitName);
-                if (addBenefit)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (SqlException sqlEx)
-            {
-                throw sqlEx;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            #endregion 
         }
 
         private async Task<bool> AddExistingBenefit(int id, int benefitId, bool isBenefitActive, decimal personalShare, decimal employerShare)
@@ -501,7 +472,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             {
                 employerMinimumAmountLabel.Visible = false;
                 employerMinimumAmountWarning.Text = $"(The user input must be greater than or equal to {EmployerShareValue:C2}, " +
-                    "\r\nwhich represents the designated minimum value for this benefit!)\r\n";
+                    "which represents the designated minimum value for this benefit!)";
                 employerMinimumAmountWarning.Visible = true;
                 employerMinimumAmountLabel.BringToFront();
                 employerShareValue.Enabled = true;
@@ -512,7 +483,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 personalShareValue.Enabled = true;
                 personalMinimumAmountLabel.Visible = false;
                 personalMinimumAmountWarning.Text = $"(The user input must be greater than or equal to {PersonalShareValue:C2}, " +
-                    $"\r\nwhich represents the designated minimum value for this benefit!)\r\n";
+                    $"which represents the designated minimum value for this benefit!)";
                 personalMinimumAmountWarning.Visible = true;
                 personalMinimumAmountWarning.BringToFront();
                 return false;
@@ -585,6 +556,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         }
 
         #endregion
+
         private async void submitBtn_Click(object sender, EventArgs e)
         {
             try

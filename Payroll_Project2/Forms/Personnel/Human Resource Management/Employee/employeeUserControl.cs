@@ -444,7 +444,6 @@ namespace Payroll_Project2.Forms.Personnel.Employee
             addEmployeeModal addEmployee = new addEmployeeModal(userId, this);
             addEmployee.EmployeeID = await GetEmployeeId();
             addEmployee.DateHired = DateTime.Today;
-            MessageBox.Show($"{addEmployee.EmployeeID}");
             addEmployee.ShowDialog();
             await DisplayEmployee();
         }

@@ -41,7 +41,6 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         
         // This status indicates for the default status of benefits when added into the employee
         private static bool status = true;
-        private static bool isPercentage = true;
 
         // This is a static string variable in which the default account status of a new employee is Active
         private static bool accountStatus = false;
@@ -317,7 +316,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         // Function responsible for adding the new benefit into the mandate user control
         private async Task AddNewBenefit(string benefitName, decimal personalShare, decimal employerShare, bool isPercentage,
-            List<(int, decimal, decimal)> benefitList)
+            List<(int, decimal, decimal)> benefitList, decimal monthlySalary)
         {
             try
             {
@@ -345,12 +344,14 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                         {
                             decimal personalShareValue = await GetPersonalShareValue(benefitsId);
                             decimal employerShareValue = await GetEmployerShareValue(benefitsId);
-                            decimal amount = personalShareValue + employerShareValue;
+                            decimal amount = await ComputeBenefitContributionsAmount(benefitsId, monthlySalary);
+                            MessageBox.Show($"{personalShareValue}");
+                            MessageBox.Show($"{employerShareValue}");
 
                             mandate.BenefitId = benefitsId;
                             mandate.BenefitName = benefitName;
-                            mandate.EmployeeShare = $"{personalShare}%";
-                            mandate.EmployerShare = $"{employerShare}%";
+                            mandate.EmployeeShare = $"{personalShareValue}%";
+                            mandate.EmployerShare = $"{employerShareValue}%";
                             mandate.TotalValue = $"{amount:C2}";
 
                             benefitList.Add((benefitsId, -1, -1));
@@ -1581,13 +1582,16 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             previousBtn.Visible = true;
             submitBtn.Visible = true;
 
-            MessageBox.Show(
-                                $"The calculation of deductions for Witholding Tax is pending, as both deductions and benefits need to be " +
-                                $"finalized. The employee will be able to view the final tax rate after saving the employee information in the database.",
-                                "Pending Tax Rate",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information
-                                );
+            if(EmploymentStatus == "Regular")
+            {
+                MessageBox.Show(
+                    $"The calculation of deductions for Witholding Tax is pending, as both deductions and benefits need to be " +
+                    $"finalized. The employee will be able to view the final tax rate after saving the employee information in the database.",
+                    "Pending Tax Rate",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            }
         }
 
         private async void addEmployeeModal_Load(object sender, EventArgs e)
@@ -1721,7 +1725,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         {
             try
             {
-                await AddNewBenefit(benefitName.Text, PersonalShare, EmployerShare, IsPercentage, benefitList);
+                await AddNewBenefit(benefitName.Text, PersonalShare, EmployerShare, IsPercentage, benefitList, SalaryRateValue);
             }
             catch (SqlException sql)
             {
@@ -1813,11 +1817,10 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             bool isUserRoleDepartmentHead = !string.IsNullOrEmpty(userRole.Text) && userRole.Text == "Department Head";
             bool isDepartmentAllowed = DepartmentName == "Mayor's Office" || DepartmentName == "Human Resources Office";
 
-            if (!isUserRoleDepartmentHead && !isDepartmentAllowed)
+            if (isUserRoleDepartmentHead && isDepartmentAllowed)
             {
                 ErrorMessages("The role Department Head is not allowed for the department Mayor's Office or in Human Resources Office",
                     "User Role Restriction Error");
-                UserRole = userRole.Text;
                 userRole.SelectedIndex = -1;
             }
             else
@@ -2288,10 +2291,12 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                     personalMinimumAmountWarning.Visible = true;
                     personalMinimumAmountWarning.BringToFront();
                     personalShareValue.Texts = $"{PersonalShare:C2}";
+                    IsPercentage = false;
                 }
             }
             else
             {
+                IsPercentage = true;
                 PersonalShare = -1;
             }
         }
@@ -2314,11 +2319,13 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                     employerMinimumAmountLabel.BringToFront();
                     employerShareValue.Enabled = true;
                     employerShareValue.Texts = $"{EmployerShare:C2}";
+                    IsPercentage = false;
                 }
             }
             else
             {
                 EmployerShare = -1;
+                IsPercentage = true;
             }
         }
 
@@ -2412,10 +2419,12 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         {
             try
             {
-                EmployeePicture = FirstName + LastName + MiddleName + Path.GetExtension(employeeImageLocation);
-                EmployeeSignature = FirstName + LastName + MiddleName + Path.GetExtension(employeeSignatureLocation);
-                File.Copy(employeeImageLocation, EmployeePicture, true);
-                File.Copy(employeeSignatureLocation, EmployeeSignature, true);
+                EmployeePicture = FirstName.Replace(" ", "") + LastName + MiddleName + Path.GetExtension(employeeImageLocation);
+                EmployeeSignature = FirstName.Replace(" ", "") + LastName + MiddleName + Path.GetExtension(employeeSignatureLocation);
+                MessageBox.Show(EmployeePicture);
+                MessageBox.Show(EmployeeSignature);
+                File.Copy(employeeImageLocation, $"{employeeImageDestination}{EmployeePicture}", true);
+                File.Copy(employeeSignatureLocation, $"{employeeSignatureDestination}{EmployeeSignature}", true);
 
                 bool addSalaryRate = false;
                 bool addValue = false;
@@ -2514,7 +2523,8 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 {
                     foreach (var benefit in benefitList)
                     {
-                        bool addEmployeeBenefit = await AddBenefit(employeeId, benefit.Item1, benefit.Item2, benefit.Item1, status);
+
+                        bool addEmployeeBenefit = await AddBenefit(employeeId, benefit.Item1, benefit.Item3, benefit.Item2, status);
 
                         if (!addEmployeeBenefit)
                         {

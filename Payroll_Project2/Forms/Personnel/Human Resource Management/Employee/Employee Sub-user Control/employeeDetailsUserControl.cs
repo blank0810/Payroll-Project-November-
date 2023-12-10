@@ -203,6 +203,25 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
             catch (Exception ex) { throw ex; }
         }
 
+        // Function responsible for retrieving the active employee benefits
+        private async Task<DataTable> GetActiveEmployeeBenefit(int formId)
+        {
+            try
+            {
+                DataTable activeBenefit = await generalFunctions.GetActiveEmployeeBenefits(formId);
+
+                if(activeBenefit != null && activeBenefit.Rows.Count > 0)
+                {
+                    return activeBenefit;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         // Function responsible for retrieving the General Formula
         private async Task<string> GetGeneralFormula(string title)
         {
@@ -959,7 +978,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
         {
             try
             {
-                DataTable benefitList = await GetEmployeeBenefit(employeeId);
+                DataTable benefitList = await GetActiveEmployeeBenefit(employeeId);
                 decimal annualSalary = 0;
                 decimal basicAnnualSalary = 0;
                 decimal taxValue = 0;

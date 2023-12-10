@@ -13,6 +13,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Moda
         public int EmployeeID { get; set; }
         public string EmployeePicture { get; set; }
         public string DateHired {  get; set; }
+        public string JobDescription { get; set; }
 
 
         public employeeUC(int userId, analyticsButtonModal parent)
@@ -29,6 +30,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Moda
             empPicture.DataBindings.Add("ImageLocation", this, "EmployeePicture");
             empStatus.DataBindings.Add("Text", this, "EmploymentStatus");
             dateHired.DataBindings.Add("Text", this, "DateHired");
+            jobDesc.DataBindings.Add("Text", this, "JobDescription");
         }
 
         private void employeeUC_Load(object sender, EventArgs e)

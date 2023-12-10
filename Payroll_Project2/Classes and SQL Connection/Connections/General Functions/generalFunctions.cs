@@ -755,7 +755,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                         "SUM(personalShareValue + employerShareValue) " +
                         "AS benefitsValue FROM tbl_appointmentFormBenefitsDetails JOIN tbl_appointmentForm ON tbl_appointmentForm.appointmentFormId = " +
                         "tbl_appointmentFormBenefitsDetails.appointmentFormId JOIN tbl_benefits ON tbl_benefits.benefitsId = " +
-                        "tbl_appointmentFormBenefitsDetails.benefitsId WHERE employeeid = 1 GROUP BY detailsId, tbl_benefits.benefitsId, benefits, " +
+                        "tbl_appointmentFormBenefitsDetails.benefitsId WHERE employeeid = @id GROUP BY detailsId, tbl_benefits.benefitsId, benefits, " +
                         "isBenefitActive, personalShareValue, employerShareValue";
 
                     using (cmd = new SqlCommand(command, conn))
@@ -779,6 +779,38 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
             {
                 throw ex;
             }
+        }
+
+        // This function is responsible for retrieving the Active benefits this is for computing the tax rates
+        public async Task<DataTable> GetActiveEmployeeBenefits(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "SELECT detailsId, tbl_benefits.benefitsId, benefits, isBenefitActive, personalShareValue, employerShareValue, " +
+                        "SUM(personalShareValue + employerShareValue) " +
+                        "AS benefitsValue FROM tbl_appointmentFormBenefitsDetails JOIN tbl_appointmentForm ON tbl_appointmentForm.appointmentFormId = " +
+                        "tbl_appointmentFormBenefitsDetails.appointmentFormId JOIN tbl_benefits ON tbl_benefits.benefitsId = " +
+                        "tbl_appointmentFormBenefitsDetails.benefitsId WHERE employeeid = @id  and isBenefitActive = 1 " +
+                        "GROUP BY detailsId, tbl_benefits.benefitsId, benefits, " +
+                        "isBenefitActive, personalShareValue, employerShareValue";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            conn.Close();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
         // This function is responsible for retrieving the benefit contributions list

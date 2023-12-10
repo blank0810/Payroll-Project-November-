@@ -49,11 +49,11 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             catch (SqlException sql) { throw sql;} catch (Exception ex) { throw ex; }
         }
 
-        private async Task<DataTable> GetBenefitList(int employeeId, string employmentStatus)
+        private async Task<DataTable> GetBenefitList(int employeeId)
         {
             try
             {
-                DataTable list = await employeeClass.GetAvailableBenefitList(employeeId, employmentStatus);
+                DataTable list = await employeeClass.GetAvailableBenefitList(employeeId);
 
                 if (list != null && list.Rows.Count > 0)
                 {
@@ -162,8 +162,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             #region This function is used that the value of the labels is being databind to the variables so that it will be updated in the real time
             try
             {
-                string employmentStatus = await GetEmploymentStatus(EmployeeID);
-                DataTable benefitTable = await GetBenefitList(EmployeeID, employmentStatus);
+                DataTable benefitTable = await GetBenefitList(EmployeeID);
                 List<string> autoCompleteValues = new List<string>
                     {
                         "Please choose"
@@ -176,12 +175,9 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                         autoCompleteValues.Add($"{row["benefits"]}");
                     }
                 }
-                else
-                {
-                    benefitName.SelectedIndex = 0;
-                }
 
                 benefitName.DataSource = autoCompleteValues;
+                benefitName.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -379,7 +375,6 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
             else
             {
-                benefitName.SelectedIndex = 0;
                 employerShareValue.Enabled = false;
                 personalShareValue.Enabled = false;
                 employerPercentageWarningLabel.Visible = false;

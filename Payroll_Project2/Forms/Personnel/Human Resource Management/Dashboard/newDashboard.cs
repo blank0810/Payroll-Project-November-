@@ -1295,7 +1295,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
         }
 
         // Button for when clicking the dashboard button
-        private void dashboardBtn_Click(object sender, EventArgs e)
+        private async void dashboardBtn_Click(object sender, EventArgs e)
         {
             leaveManagementSubPanel.Hide();
             payrollSubPanel.Hide();
@@ -1314,6 +1314,8 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
             {
                 dashboardPanel.BringToFront();
             }
+
+            await displayDepartment();
         }
 
         // Button for clicking the search button for the department lists

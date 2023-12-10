@@ -103,6 +103,15 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Moda
                             employee[i].EmploymentStatus = "Not Set";
                         }
 
+                        if (!string.IsNullOrEmpty(row["employeeJobDesc"]?.ToString()))
+                        {
+                            employee[i].JobDescription = $"{row["employeeJobDesc"]}";
+                        }
+                        else
+                        {
+                            employee[i].JobDescription = $"---------";
+                        }
+
                         if (int.TryParse(row["employeeId"].ToString(), out int id))
                         {
                             employee[i].EmployeeID = id;

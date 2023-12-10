@@ -329,22 +329,23 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         }
 
         // This function is responsible for retrieving the list of available benefits that the employee can avail
-        public async Task<DataTable> GetAvailableBenefitList(int employeeId, string employmentStatus)
+        public async Task<DataTable> GetAvailableBenefitList(int employeeId)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "SELECT benefits, mb.benefitsId FROM tbl_mandatedBenefits mb join tbl_benefits on mb.benefitsId = tbl_benefits.benefitsId " +
-                        "WHERE NOT EXISTS (SELECT 1 FROM tbl_appointmentFormBenefitsDetails ab WHERE mb.benefitsId = ab.benefitsId) AND ( " +
-                        "mb.employmentStatusId = (SELECT employmentStatusId FROM tbl_appointmentForm WHERE employeeid = @employeeId) or " +
-                        "mb.employmentStatusId = (select employmentStatusId from tbl_employmentStatus where employmentStatus = @employmentStatus));";
+                    string command = "SELECT DISTINCT mb.benefitsId, tb.benefits FROM tbl_mandatedBenefits mb " +
+                        "JOIN tbl_benefits tb ON mb.benefitsId = tb.benefitsId " +
+                        "LEFT JOIN tbl_appointmentFormBenefitsDetails ab ON mb.benefitsId = ab.benefitsId " +
+                        "AND ab.appointmentFormId = (SELECT appointmentFormId FROM tbl_appointmentForm WHERE employeeid = @employeeId) " +
+                        "WHERE mb.employmentStatusId = (SELECT TOP 1 employmentStatusId FROM tbl_appointmentForm WHERE employeeid = @employeeId) " +
+                        "AND ab.benefitsId IS NULL";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
-                        cmd.Parameters.AddWithValue("@employeeId", (object)employeeId ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@employmentStatus", employmentStatus ?? string.Empty);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
 
                         using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                         {
@@ -810,7 +811,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                                 "values ((select salaryRateId from tbl_salaryRate where salaryRateDescription = @customDescription), " +
                                 "@value, 1)";
 
-                            using(cmd = new SqlCommand(command, conn))
+                            using(cmd = new SqlCommand(command, conn, transaction))
                             {
                                 cmd.Parameters.AddWithValue("@customDescription", customDescription);
                                 cmd.Parameters.AddWithValue("@value", value);

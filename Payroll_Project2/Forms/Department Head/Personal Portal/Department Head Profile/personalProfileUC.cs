@@ -80,7 +80,7 @@ namespace Payroll_Project2.Forms.Department_Head.Personal_Portal.Department_Head
         {
             try
             {
-                DataTable contributions = await generalFunctions.GetBenefitContributions(employeeId, benefitsId);
+                DataTable contributions = await generalFunctions.GetBenefitRemmitance(employeeId, benefitsId);
 
                 if (contributions != null && contributions.Rows.Count > 0)
                 {

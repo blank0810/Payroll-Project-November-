@@ -46,6 +46,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -131,6 +132,7 @@
             this.generalJobDescription = new System.Windows.Forms.Label();
             this.generalEmployeeName = new System.Windows.Forms.Label();
             this.employeePicture = new System.Windows.Forms.PictureBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.profileContentPanel.SuspendLayout();
             this.completeInfoPanel.SuspendLayout();
@@ -160,7 +162,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.Gainsboro;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(1225, 10);
+            this.panel3.Location = new System.Drawing.Point(1425, 10);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(10, 838);
             this.panel3.TabIndex = 6;
@@ -171,7 +173,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 848);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1235, 10);
+            this.panel2.Size = new System.Drawing.Size(1435, 10);
             this.panel2.TabIndex = 5;
             // 
             // panel1
@@ -180,7 +182,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1235, 10);
+            this.panel1.Size = new System.Drawing.Size(1435, 10);
             this.panel1.TabIndex = 4;
             // 
             // panel6
@@ -189,7 +191,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(10, 49);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1215, 10);
+            this.panel6.Size = new System.Drawing.Size(1415, 10);
             this.panel6.TabIndex = 9;
             // 
             // panel5
@@ -199,7 +201,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(10, 10);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1215, 39);
+            this.panel5.Size = new System.Drawing.Size(1415, 39);
             this.panel5.TabIndex = 8;
             // 
             // titleLabel
@@ -223,7 +225,7 @@
             this.profileContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profileContentPanel.Location = new System.Drawing.Point(10, 59);
             this.profileContentPanel.Name = "profileContentPanel";
-            this.profileContentPanel.Size = new System.Drawing.Size(1215, 789);
+            this.profileContentPanel.Size = new System.Drawing.Size(1415, 789);
             this.profileContentPanel.TabIndex = 10;
             // 
             // completeInfoPanel
@@ -234,7 +236,7 @@
             this.completeInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.completeInfoPanel.Location = new System.Drawing.Point(418, 0);
             this.completeInfoPanel.Name = "completeInfoPanel";
-            this.completeInfoPanel.Size = new System.Drawing.Size(797, 789);
+            this.completeInfoPanel.Size = new System.Drawing.Size(997, 789);
             this.completeInfoPanel.TabIndex = 2;
             // 
             // contentPanel
@@ -245,7 +247,7 @@
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentPanel.Location = new System.Drawing.Point(0, 34);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(797, 755);
+            this.contentPanel.Size = new System.Drawing.Size(997, 755);
             this.contentPanel.TabIndex = 1;
             // 
             // employmentPanel
@@ -260,7 +262,7 @@
             this.employmentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.employmentPanel.Location = new System.Drawing.Point(0, 0);
             this.employmentPanel.Name = "employmentPanel";
-            this.employmentPanel.Size = new System.Drawing.Size(797, 755);
+            this.employmentPanel.Size = new System.Drawing.Size(997, 755);
             this.employmentPanel.TabIndex = 2;
             // 
             // benefitListPanel
@@ -270,7 +272,7 @@
             this.benefitListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.benefitListPanel.Location = new System.Drawing.Point(0, 416);
             this.benefitListPanel.Name = "benefitListPanel";
-            this.benefitListPanel.Size = new System.Drawing.Size(797, 339);
+            this.benefitListPanel.Size = new System.Drawing.Size(997, 339);
             this.benefitListPanel.TabIndex = 15;
             // 
             // panel16
@@ -279,24 +281,26 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel16.Location = new System.Drawing.Point(0, 413);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(797, 3);
+            this.panel16.Size = new System.Drawing.Size(997, 3);
             this.panel16.TabIndex = 14;
             // 
             // panel15
             // 
             this.panel15.BackColor = System.Drawing.Color.White;
             this.panel15.Controls.Add(this.returnBtn);
-            this.panel15.Controls.Add(this.label21);
             this.panel15.Controls.Add(this.label46);
             this.panel15.Controls.Add(this.label47);
+            this.panel15.Controls.Add(this.label28);
             this.panel15.Controls.Add(this.label48);
             this.panel15.Controls.Add(this.label22);
             this.panel15.Controls.Add(this.label24);
             this.panel15.Controls.Add(this.label26);
+            this.panel15.Controls.Add(this.label30);
+            this.panel15.Controls.Add(this.label21);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel15.Location = new System.Drawing.Point(0, 374);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(797, 39);
+            this.panel15.Size = new System.Drawing.Size(997, 39);
             this.panel15.TabIndex = 13;
             // 
             // returnBtn
@@ -313,7 +317,7 @@
             this.returnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.returnBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.returnBtn.ForeColor = System.Drawing.Color.White;
-            this.returnBtn.Location = new System.Drawing.Point(732, 5);
+            this.returnBtn.Location = new System.Drawing.Point(932, 5);
             this.returnBtn.Name = "returnBtn";
             this.returnBtn.Size = new System.Drawing.Size(60, 29);
             this.returnBtn.TabIndex = 94;
@@ -331,7 +335,7 @@
             this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label21.ForeColor = System.Drawing.Color.DimGray;
             this.label21.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label21.Location = new System.Drawing.Point(600, 10);
+            this.label21.Location = new System.Drawing.Point(824, 10);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(56, 19);
             this.label21.TabIndex = 87;
@@ -346,7 +350,7 @@
             this.label46.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label46.ForeColor = System.Drawing.Color.DimGray;
             this.label46.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label46.Location = new System.Drawing.Point(431, 10);
+            this.label46.Location = new System.Drawing.Point(655, 10);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(48, 19);
             this.label46.TabIndex = 88;
@@ -361,12 +365,27 @@
             this.label47.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label47.ForeColor = System.Drawing.Color.DimGray;
             this.label47.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label47.Location = new System.Drawing.Point(218, 10);
+            this.label47.Location = new System.Drawing.Point(523, 10);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(59, 19);
             this.label47.TabIndex = 89;
             this.label47.Text = "Amount";
             this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label28
+            // 
+            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label28.ForeColor = System.Drawing.Color.DimGray;
+            this.label28.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label28.Location = new System.Drawing.Point(170, 10);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(117, 19);
+            this.label28.TabIndex = 90;
+            this.label28.Text = "Rate descriptions";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label48
             // 
@@ -407,7 +426,7 @@
             this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label24.ForeColor = System.Drawing.Color.DimGray;
             this.label24.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label24.Location = new System.Drawing.Point(218, 10);
+            this.label24.Location = new System.Drawing.Point(187, 10);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(71, 19);
             this.label24.TabIndex = 92;
@@ -423,7 +442,7 @@
             this.label26.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label26.ForeColor = System.Drawing.Color.DimGray;
             this.label26.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label26.Location = new System.Drawing.Point(431, 10);
+            this.label26.Location = new System.Drawing.Point(412, 10);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(78, 19);
             this.label26.TabIndex = 93;
@@ -437,7 +456,7 @@
             this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel14.Location = new System.Drawing.Point(0, 371);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(797, 3);
+            this.panel14.Size = new System.Drawing.Size(997, 3);
             this.panel14.TabIndex = 12;
             // 
             // panel13
@@ -447,7 +466,7 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel13.Location = new System.Drawing.Point(0, 332);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(797, 39);
+            this.panel13.Size = new System.Drawing.Size(997, 39);
             this.panel13.TabIndex = 11;
             // 
             // label20
@@ -468,7 +487,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel11.Location = new System.Drawing.Point(0, 329);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(797, 3);
+            this.panel11.Size = new System.Drawing.Size(997, 3);
             this.panel11.TabIndex = 10;
             // 
             // panel12
@@ -497,7 +516,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel12.Location = new System.Drawing.Point(0, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(797, 329);
+            this.panel12.Size = new System.Drawing.Size(997, 329);
             this.panel12.TabIndex = 0;
             // 
             // employeeSignature
@@ -781,7 +800,7 @@
             this.generalPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.generalPanel.Location = new System.Drawing.Point(0, 0);
             this.generalPanel.Name = "generalPanel";
-            this.generalPanel.Size = new System.Drawing.Size(797, 755);
+            this.generalPanel.Size = new System.Drawing.Size(997, 755);
             this.generalPanel.TabIndex = 0;
             // 
             // label11
@@ -1074,7 +1093,7 @@
             this.educationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.educationPanel.Location = new System.Drawing.Point(0, 0);
             this.educationPanel.Name = "educationPanel";
-            this.educationPanel.Size = new System.Drawing.Size(797, 755);
+            this.educationPanel.Size = new System.Drawing.Size(997, 755);
             this.educationPanel.TabIndex = 1;
             // 
             // label8
@@ -1194,7 +1213,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(797, 34);
+            this.panel8.Size = new System.Drawing.Size(997, 34);
             this.panel8.TabIndex = 0;
             // 
             // employmentBtn
@@ -1475,6 +1494,22 @@
             this.employeePicture.TabIndex = 0;
             this.employeePicture.TabStop = false;
             // 
+            // label30
+            // 
+            this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label30.ForeColor = System.Drawing.Color.DimGray;
+            this.label30.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label30.Location = new System.Drawing.Point(639, 10);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(56, 19);
+            this.label30.TabIndex = 87;
+            this.label30.Text = "Actions";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label30.Visible = false;
+            // 
             // personalProfileUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1487,7 +1522,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "personalProfileUC";
-            this.Size = new System.Drawing.Size(1235, 858);
+            this.Size = new System.Drawing.Size(1435, 858);
             this.Load += new System.EventHandler(this.personalProfileUC_Load);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -1620,5 +1655,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label26;
         private Custom.buttonDesign returnBtn;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label30;
     }
 }

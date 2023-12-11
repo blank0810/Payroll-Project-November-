@@ -548,7 +548,6 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Modal
                         if (!string.IsNullOrEmpty(row["benefitsId"].ToString()) && int.TryParse(row["benefitsId"].ToString(), 
                             out int benefitsId))
                         {
-                            MessageBox.Show($"Benefits ID: {benefitsId} Benefits to be added: {id}");
                             if (benefitsId == id)
                             {
                                 return false;

@@ -23,6 +23,7 @@ namespace Payroll_Project2.Forms.Personnel.Human_Resource_Management.Forms.Pass_
         private static formClass formClass = new formClass();
         private static generalFunctions generalFunctions = new generalFunctions();
         private static readonly string defaultImage = ConfigurationManager.AppSettings["DefaultLogo"];
+        private static readonly string employeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
 
         public slipApproveUC(int userId, newDashboard parent)
         {
@@ -129,7 +130,7 @@ namespace Payroll_Project2.Forms.Personnel.Human_Resource_Management.Forms.Pass_
 
                         if (!string.IsNullOrEmpty(row["employeePicture"].ToString()))
                         {
-                            slipDate[i].EmployeePicture = $"{row["employeePicture"]}";
+                            slipDate[i].EmployeePicture = $"{employeeImagePath}{row["employeePicture"]}";
                         }
                         else
                         {
@@ -199,7 +200,7 @@ namespace Payroll_Project2.Forms.Personnel.Human_Resource_Management.Forms.Pass_
 
                         if (!string.IsNullOrEmpty(row["employeePicture"].ToString()))
                         {
-                            slipDate[i].EmployeePicture = $"{row["employeePicture"]}";
+                            slipDate[i].EmployeePicture = $"{employeeImagePath}{row["employeePicture"]}";
                         }
                         else
                         {

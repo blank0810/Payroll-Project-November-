@@ -18,6 +18,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms
         private static readonly string _personnelDepartment;
         private static readonly formClass formClass = new formClass();
         private static readonly generalFunctions generalFunctions = new generalFunctions();
+        private static readonly string employeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
 
         public leaveApproveUC(int userId, newDashboard parent)
         {
@@ -96,7 +97,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms
                         {
                             applicationForLeaveData[i] = new applicationForLeaveData(_userId, this);
 
-                            applicationForLeaveData[i].EmployeeImage = row["employeePicture"].ToString();
+                            applicationForLeaveData[i].EmployeeImage = $"{employeeImagePath}{row["employeepicture"]}";
                             applicationForLeaveData[i].EmployeeName = row["employeeFname"].ToString() + " " + row["employeeLname"].ToString();
                             
                             if (!string.IsNullOrEmpty(row["employeeId"].ToString()) && int.TryParse(row["employeeId"].ToString(), 
@@ -193,7 +194,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms
                         {
                             applicationForLeaveData[i] = new applicationForLeaveData(_userId, this);
 
-                            applicationForLeaveData[i].EmployeeImage = row["employeePicture"].ToString();
+                            applicationForLeaveData[i].EmployeeImage = $"{employeeImagePath}{row["employeepicture"]}";
                             applicationForLeaveData[i].EmployeeName = row["employeeFname"].ToString() + " " + row["employeeLname"].ToString();
 
                             if (int.TryParse(row["applicationNumber"].ToString(), out int id))

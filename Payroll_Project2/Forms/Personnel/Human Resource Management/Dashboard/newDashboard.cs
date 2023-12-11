@@ -36,8 +36,10 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
         public static string _password;
         private static readonly string mayorRole = "Mayor";
         private static personnelDashboard personnelClass = new personnelDashboard();
-        private static generalFunctions generalFunctions = new generalFunctions();
-        private static formClass formClass = new formClass();
+        private static readonly generalFunctions generalFunctions = new generalFunctions();
+        private static readonly formClass formClass = new formClass();
+        private static readonly string EmployeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
+        private static readonly string EmployeeSignaturePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeSignaturePath");
         private static readonly string defaultEmployeeImage = ConfigurationManager.AppSettings.Get("DefaultLogo");
         private static readonly string departmentLogoPath = ConfigurationManager.AppSettings.Get("DestinationDepartmentImagePath");
 
@@ -528,15 +530,14 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
                             personalInfo.SalaryRate = "----------";
                         }
 
-                        if (!string.IsNullOrEmpty(row["salaryValue"].ToString()))
+                        if (!string.IsNullOrEmpty(row["amount"].ToString()))
                         {
-                            decimal value = decimal.Parse(row["salaryValue"].ToString());
-
-                            personalInfo.SalaryValue = value;
+                            decimal value = decimal.Parse(row["amount"].ToString());
+                            personalInfo.SalaryValue = $"{value:C2}";
                         }
                         else
                         {
-                            personalInfo.SalaryValue = 0;
+                            personalInfo.SalaryValue = $"{0:C2}";
                         }
 
                         if (!string.IsNullOrEmpty(row["payrollScheduleDescription"].ToString()))
@@ -581,7 +582,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
 
                         if (!string.IsNullOrEmpty(row["employeeSignature"].ToString()))
                         {
-                            personalInfo.EmployeeSignature = $"{row["employeeSignature"]}";
+                            personalInfo.EmployeeSignature = $"{EmployeeSignaturePath}{row["employeeSignature"]}";
                         }
                         else
                         {
@@ -590,7 +591,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
 
                         if (!string.IsNullOrEmpty(row["employeePicture"].ToString()))
                         {
-                            personalInfo.EmployeeImage = $"{row["employeePicture"]}";
+                            personalInfo.EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                         }
                         else
                         {

@@ -12,7 +12,7 @@ namespace Payroll_Project2.Forms.Personnel.Personal_Portal.My_Profile.Personal_P
 
         public string Month { get; set; }
         public int PayrollID { get; set; }
-        public decimal TotalValue { get; set; }
+        public string TotalValue { get; set; }
 
         public benefitInformationUC(int userId, personalProfileUC parent)
         {

@@ -1,6 +1,7 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents.Modal
         private static personnelPassSlipUC _passSlipUC;
         private static travelOrder _travelOrder;
         private static readonly string defaultUserRole = "Department Head";
+        private static readonly string employeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
 
         private static generalFunctions generalFunctions = new generalFunctions();
         private static formClass formClass = new formClass();
@@ -148,7 +150,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents.Modal
 
                         employeeListUC[i].EmployeeName = row["employeeFname"].ToString() + " " + row["employeeLname"].ToString();
                         employeeListUC[i].EmployeeID = Convert.ToInt32(row["employeeId"]);
-                        employeeListUC[i].EmployeeImage = row["employeePicture"].ToString();
+                        employeeListUC[i].EmployeeImage = $"{employeeImagePath}{row["employeepicture"]}";
                         employeeListUC[i].DepartmentName = row["departmentName"].ToString();
                         employeeListPanel.Controls.Add(employeeListUC[i]);
                     }
@@ -188,7 +190,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents.Modal
 
                         employeeListUC[i].EmployeeName = row["employeefname"].ToString() + " " + row["employeelname"].ToString();
                         employeeListUC[i].EmployeeID = Convert.ToInt16(row["employeeid"]);
-                        employeeListUC[i].EmployeeImage = row["employeepicture"].ToString();
+                        employeeListUC[i].EmployeeImage = $"{employeeImagePath}{row["employeepicture"]}";
                         employeeListUC[i].DepartmentName = row["departmentName"].ToString();
                         employeeListPanel.Controls.Add(employeeListUC[i]);
                     }

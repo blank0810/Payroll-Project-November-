@@ -47,7 +47,7 @@
             this.viewBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.viewBtn.ForeColor = System.Drawing.Color.White;
             this.viewBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.viewBtn.Location = new System.Drawing.Point(595, 6);
+            this.viewBtn.Location = new System.Drawing.Point(639, 6);
             this.viewBtn.Name = "viewBtn";
             this.viewBtn.Size = new System.Drawing.Size(83, 25);
             this.viewBtn.TabIndex = 17;
@@ -61,7 +61,7 @@
             this.totalValue.AutoSize = true;
             this.totalValue.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.totalValue.ForeColor = System.Drawing.Color.Black;
-            this.totalValue.Location = new System.Drawing.Point(425, 9);
+            this.totalValue.Location = new System.Drawing.Point(412, 9);
             this.totalValue.Name = "totalValue";
             this.totalValue.Size = new System.Drawing.Size(107, 19);
             this.totalValue.TabIndex = 14;
@@ -72,7 +72,7 @@
             this.payrollId.AutoSize = true;
             this.payrollId.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.payrollId.ForeColor = System.Drawing.Color.Black;
-            this.payrollId.Location = new System.Drawing.Point(220, 9);
+            this.payrollId.Location = new System.Drawing.Point(187, 9);
             this.payrollId.Name = "payrollId";
             this.payrollId.Size = new System.Drawing.Size(70, 19);
             this.payrollId.TabIndex = 15;
@@ -99,7 +99,7 @@
             this.Controls.Add(this.payrollId);
             this.Controls.Add(this.month);
             this.Name = "benefitInformationUC";
-            this.Size = new System.Drawing.Size(690, 39);
+            this.Size = new System.Drawing.Size(735, 39);
             this.Load += new System.EventHandler(this.benefitInformationUC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

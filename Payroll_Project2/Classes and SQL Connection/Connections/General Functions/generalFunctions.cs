@@ -1006,7 +1006,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         // This function is responsible for retrieving the benefit contributions list
-        public async Task<DataTable> GetBenefitContributions(int employeeId, int benefitId)
+        public async Task<DataTable> GetBenefitRemmitance(int employeeId, int benefitId)
         {
             try
             {

@@ -58,6 +58,7 @@
             this.panel36 = new System.Windows.Forms.Panel();
             this.salaryWarning = new System.Windows.Forms.Label();
             this.salaryRateValueLabel = new System.Windows.Forms.Label();
+            this.stepNumberBox = new System.Windows.Forms.ComboBox();
             this.salaryRate = new System.Windows.Forms.ComboBox();
             this.salaryValueTextBox = new Payroll_Project2.Custom.customTextBox2();
             this.panel37 = new System.Windows.Forms.Panel();
@@ -184,7 +185,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(764, 77);
+            this.panel1.Size = new System.Drawing.Size(868, 77);
             this.panel1.TabIndex = 1;
             // 
             // label2
@@ -215,7 +216,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 648);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(764, 40);
+            this.panel3.Size = new System.Drawing.Size(868, 40);
             this.panel3.TabIndex = 3;
             // 
             // submitBtn
@@ -231,7 +232,7 @@
             this.submitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submitBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.submitBtn.ForeColor = System.Drawing.Color.White;
-            this.submitBtn.Location = new System.Drawing.Point(689, 4);
+            this.submitBtn.Location = new System.Drawing.Point(793, 4);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(71, 32);
             this.submitBtn.TabIndex = 33;
@@ -249,11 +250,12 @@
             this.cancelBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.cancelBtn.BorderRadius = 10;
             this.cancelBtn.BorderSize = 0;
+            this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelBtn.FlatAppearance.BorderSize = 0;
             this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelBtn.ForeColor = System.Drawing.Color.White;
-            this.cancelBtn.Location = new System.Drawing.Point(616, 4);
+            this.cancelBtn.Location = new System.Drawing.Point(720, 4);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(71, 32);
             this.cancelBtn.TabIndex = 32;
@@ -305,7 +307,7 @@
             this.content.Dock = System.Windows.Forms.DockStyle.Fill;
             this.content.Location = new System.Drawing.Point(0, 77);
             this.content.Name = "content";
-            this.content.Size = new System.Drawing.Size(764, 571);
+            this.content.Size = new System.Drawing.Size(868, 571);
             this.content.TabIndex = 4;
             // 
             // panel38
@@ -320,13 +322,13 @@
             this.panel38.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel38.Location = new System.Drawing.Point(0, 1319);
             this.panel38.Name = "panel38";
-            this.panel38.Size = new System.Drawing.Size(745, 254);
+            this.panel38.Size = new System.Drawing.Size(849, 254);
             this.panel38.TabIndex = 96;
             // 
             // empImage
             // 
             this.empImage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.empImage.Location = new System.Drawing.Point(86, 34);
+            this.empImage.Location = new System.Drawing.Point(138, 34);
             this.empImage.Name = "empImage";
             this.empImage.Size = new System.Drawing.Size(188, 131);
             this.empImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -336,7 +338,7 @@
             // signatureImage
             // 
             this.signatureImage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.signatureImage.Location = new System.Drawing.Point(452, 34);
+            this.signatureImage.Location = new System.Drawing.Point(504, 34);
             this.signatureImage.Name = "signatureImage";
             this.signatureImage.Size = new System.Drawing.Size(188, 131);
             this.signatureImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -353,7 +355,7 @@
             this.signatureImageBox.BorderSize = 1;
             this.signatureImageBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signatureImageBox.ForeColor = System.Drawing.Color.Black;
-            this.signatureImageBox.Location = new System.Drawing.Point(375, 171);
+            this.signatureImageBox.Location = new System.Drawing.Point(427, 171);
             this.signatureImageBox.Multiline = false;
             this.signatureImageBox.Name = "signatureImageBox";
             this.signatureImageBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -375,7 +377,7 @@
             this.employeeImageBox.BorderSize = 1;
             this.employeeImageBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.employeeImageBox.ForeColor = System.Drawing.Color.Black;
-            this.employeeImageBox.Location = new System.Drawing.Point(27, 171);
+            this.employeeImageBox.Location = new System.Drawing.Point(79, 171);
             this.employeeImageBox.Multiline = false;
             this.employeeImageBox.Name = "employeeImageBox";
             this.employeeImageBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -400,7 +402,7 @@
             this.signatureImageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signatureImageBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signatureImageBtn.ForeColor = System.Drawing.Color.White;
-            this.signatureImageBtn.Location = new System.Drawing.Point(452, 206);
+            this.signatureImageBtn.Location = new System.Drawing.Point(504, 206);
             this.signatureImageBtn.Name = "signatureImageBtn";
             this.signatureImageBtn.Size = new System.Drawing.Size(189, 32);
             this.signatureImageBtn.TabIndex = 40;
@@ -422,7 +424,7 @@
             this.employeeImageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.employeeImageBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.employeeImageBtn.ForeColor = System.Drawing.Color.White;
-            this.employeeImageBtn.Location = new System.Drawing.Point(106, 206);
+            this.employeeImageBtn.Location = new System.Drawing.Point(158, 206);
             this.employeeImageBtn.Name = "employeeImageBtn";
             this.employeeImageBtn.Size = new System.Drawing.Size(168, 32);
             this.employeeImageBtn.TabIndex = 39;
@@ -437,7 +439,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.DimGray;
-            this.label25.Location = new System.Drawing.Point(8, 7);
+            this.label25.Location = new System.Drawing.Point(60, 7);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(179, 17);
             this.label25.TabIndex = 1;
@@ -449,7 +451,7 @@
             this.panel39.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel39.Location = new System.Drawing.Point(0, 1287);
             this.panel39.Name = "panel39";
-            this.panel39.Size = new System.Drawing.Size(745, 32);
+            this.panel39.Size = new System.Drawing.Size(849, 32);
             this.panel39.TabIndex = 95;
             // 
             // label26
@@ -458,7 +460,7 @@
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label26.ForeColor = System.Drawing.Color.DimGray;
-            this.label26.Location = new System.Drawing.Point(8, 5);
+            this.label26.Location = new System.Drawing.Point(60, 5);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(237, 21);
             this.label26.TabIndex = 1;
@@ -471,7 +473,7 @@
             this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel24.Location = new System.Drawing.Point(0, 1240);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(745, 47);
+            this.panel24.Size = new System.Drawing.Size(849, 47);
             this.panel24.TabIndex = 94;
             // 
             // retiredWarning
@@ -482,7 +484,7 @@
             this.retiredWarning.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.retiredWarning.ForeColor = System.Drawing.Color.Red;
             this.retiredWarning.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.retiredWarning.Location = new System.Drawing.Point(228, 17);
+            this.retiredWarning.Location = new System.Drawing.Point(231, 17);
             this.retiredWarning.Name = "retiredWarning";
             this.retiredWarning.Size = new System.Drawing.Size(513, 15);
             this.retiredWarning.TabIndex = 23;
@@ -510,7 +512,7 @@
             this.panel25.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel25.Location = new System.Drawing.Point(0, 1202);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(745, 38);
+            this.panel25.Size = new System.Drawing.Size(849, 38);
             this.panel25.TabIndex = 93;
             // 
             // label16
@@ -530,7 +532,7 @@
             this.panel34.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel34.Location = new System.Drawing.Point(0, 1161);
             this.panel34.Name = "panel34";
-            this.panel34.Size = new System.Drawing.Size(745, 41);
+            this.panel34.Size = new System.Drawing.Size(849, 41);
             this.panel34.TabIndex = 92;
             // 
             // scheduleBox
@@ -562,7 +564,7 @@
             this.panel35.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel35.Location = new System.Drawing.Point(0, 1123);
             this.panel35.Name = "panel35";
-            this.panel35.Size = new System.Drawing.Size(745, 38);
+            this.panel35.Size = new System.Drawing.Size(849, 38);
             this.panel35.TabIndex = 91;
             // 
             // label22
@@ -580,12 +582,13 @@
             // 
             this.panel36.Controls.Add(this.salaryWarning);
             this.panel36.Controls.Add(this.salaryRateValueLabel);
+            this.panel36.Controls.Add(this.stepNumberBox);
             this.panel36.Controls.Add(this.salaryRate);
             this.panel36.Controls.Add(this.salaryValueTextBox);
             this.panel36.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel36.Location = new System.Drawing.Point(0, 1082);
             this.panel36.Name = "panel36";
-            this.panel36.Size = new System.Drawing.Size(745, 41);
+            this.panel36.Size = new System.Drawing.Size(849, 41);
             this.panel36.TabIndex = 90;
             // 
             // salaryWarning
@@ -596,7 +599,7 @@
             this.salaryWarning.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.salaryWarning.ForeColor = System.Drawing.Color.Red;
             this.salaryWarning.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.salaryWarning.Location = new System.Drawing.Point(223, 6);
+            this.salaryWarning.Location = new System.Drawing.Point(400, 5);
             this.salaryWarning.Name = "salaryWarning";
             this.salaryWarning.Size = new System.Drawing.Size(166, 30);
             this.salaryWarning.TabIndex = 23;
@@ -609,11 +612,35 @@
             this.salaryRateValueLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.salaryRateValueLabel.AutoSize = true;
             this.salaryRateValueLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.salaryRateValueLabel.Location = new System.Drawing.Point(411, 11);
+            this.salaryRateValueLabel.Location = new System.Drawing.Point(590, 11);
             this.salaryRateValueLabel.Name = "salaryRateValueLabel";
             this.salaryRateValueLabel.Size = new System.Drawing.Size(0, 19);
             this.salaryRateValueLabel.TabIndex = 14;
             this.salaryRateValueLabel.TextChanged += new System.EventHandler(this.salaryRateValueLabel_TextChanged);
+            // 
+            // stepNumberBox
+            // 
+            this.stepNumberBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.stepNumberBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stepNumberBox.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.stepNumberBox.FormattingEnabled = true;
+            this.stepNumberBox.Items.AddRange(new object[] {
+            "Doctor\'s Degree",
+            "Master\'s Degree",
+            "Bachelor\'s Degree",
+            "College Undergraduate",
+            "College Level",
+            "Senior High School Graduate",
+            "Senior High School Level",
+            "Junior High School Graduate",
+            "Junior High School Level",
+            "Elementary School Graduate",
+            "Elementary School Level"});
+            this.stepNumberBox.Location = new System.Drawing.Point(225, 8);
+            this.stepNumberBox.Name = "stepNumberBox";
+            this.stepNumberBox.Size = new System.Drawing.Size(164, 25);
+            this.stepNumberBox.TabIndex = 13;
+            this.stepNumberBox.TextChanged += new System.EventHandler(this.stepNumberBox_TextChanged);
             // 
             // salaryRate
             // 
@@ -649,7 +676,7 @@
             this.salaryValueTextBox.BorderSize = 1;
             this.salaryValueTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.salaryValueTextBox.ForeColor = System.Drawing.Color.Black;
-            this.salaryValueTextBox.Location = new System.Drawing.Point(411, 3);
+            this.salaryValueTextBox.Location = new System.Drawing.Point(590, 3);
             this.salaryValueTextBox.Multiline = false;
             this.salaryValueTextBox.Name = "salaryValueTextBox";
             this.salaryValueTextBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -670,7 +697,7 @@
             this.panel37.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel37.Location = new System.Drawing.Point(0, 1044);
             this.panel37.Name = "panel37";
-            this.panel37.Size = new System.Drawing.Size(745, 38);
+            this.panel37.Size = new System.Drawing.Size(849, 38);
             this.panel37.TabIndex = 89;
             // 
             // label23
@@ -678,7 +705,7 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label23.ForeColor = System.Drawing.Color.DimGray;
-            this.label23.Location = new System.Drawing.Point(411, 10);
+            this.label23.Location = new System.Drawing.Point(590, 10);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(97, 21);
             this.label23.TabIndex = 1;
@@ -701,7 +728,7 @@
             this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel23.Location = new System.Drawing.Point(0, 1003);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(745, 41);
+            this.panel23.Size = new System.Drawing.Size(849, 41);
             this.panel23.TabIndex = 88;
             // 
             // userRoleBox
@@ -733,7 +760,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel22.Location = new System.Drawing.Point(0, 971);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(745, 32);
+            this.panel22.Size = new System.Drawing.Size(849, 32);
             this.panel22.TabIndex = 87;
             // 
             // label17
@@ -754,7 +781,7 @@
             this.panel32.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel32.Location = new System.Drawing.Point(0, 930);
             this.panel32.Name = "panel32";
-            this.panel32.Size = new System.Drawing.Size(745, 41);
+            this.panel32.Size = new System.Drawing.Size(849, 41);
             this.panel32.TabIndex = 86;
             // 
             // employmentStatus
@@ -778,7 +805,7 @@
             this.panel33.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel33.Location = new System.Drawing.Point(0, 892);
             this.panel33.Name = "panel33";
-            this.panel33.Size = new System.Drawing.Size(745, 38);
+            this.panel33.Size = new System.Drawing.Size(849, 38);
             this.panel33.TabIndex = 85;
             // 
             // label18
@@ -799,7 +826,7 @@
             this.panel21.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel21.Location = new System.Drawing.Point(0, 851);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(745, 41);
+            this.panel21.Size = new System.Drawing.Size(849, 41);
             this.panel21.TabIndex = 76;
             // 
             // jobDescriptionBox
@@ -812,7 +839,7 @@
             this.jobDescriptionBox.BorderSize = 1;
             this.jobDescriptionBox.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.jobDescriptionBox.ForeColor = System.Drawing.Color.Black;
-            this.jobDescriptionBox.Location = new System.Drawing.Point(411, 3);
+            this.jobDescriptionBox.Location = new System.Drawing.Point(384, 3);
             this.jobDescriptionBox.Multiline = false;
             this.jobDescriptionBox.Name = "jobDescriptionBox";
             this.jobDescriptionBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -854,7 +881,7 @@
             this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel20.Location = new System.Drawing.Point(0, 819);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(745, 32);
+            this.panel20.Size = new System.Drawing.Size(849, 32);
             this.panel20.TabIndex = 75;
             // 
             // label14
@@ -863,7 +890,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label14.ForeColor = System.Drawing.Color.DimGray;
-            this.label14.Location = new System.Drawing.Point(411, 5);
+            this.label14.Location = new System.Drawing.Point(384, 5);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(124, 21);
             this.label14.TabIndex = 1;
@@ -888,7 +915,7 @@
             this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel18.Location = new System.Drawing.Point(0, 778);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(745, 41);
+            this.panel18.Size = new System.Drawing.Size(849, 41);
             this.panel18.TabIndex = 74;
             // 
             // courseBox
@@ -901,7 +928,7 @@
             this.courseBox.BorderSize = 1;
             this.courseBox.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.courseBox.ForeColor = System.Drawing.Color.Black;
-            this.courseBox.Location = new System.Drawing.Point(411, 3);
+            this.courseBox.Location = new System.Drawing.Point(384, 3);
             this.courseBox.Multiline = false;
             this.courseBox.Name = "courseBox";
             this.courseBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -943,7 +970,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel19.Location = new System.Drawing.Point(0, 746);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(745, 32);
+            this.panel19.Size = new System.Drawing.Size(849, 32);
             this.panel19.TabIndex = 73;
             // 
             // label12
@@ -952,7 +979,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label12.ForeColor = System.Drawing.Color.DimGray;
-            this.label12.Location = new System.Drawing.Point(411, 5);
+            this.label12.Location = new System.Drawing.Point(384, 5);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(124, 21);
             this.label12.TabIndex = 1;
@@ -977,7 +1004,7 @@
             this.panel26.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel26.Location = new System.Drawing.Point(0, 705);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(745, 41);
+            this.panel26.Size = new System.Drawing.Size(849, 41);
             this.panel26.TabIndex = 72;
             // 
             // schoolAddressBox
@@ -990,7 +1017,7 @@
             this.schoolAddressBox.BorderSize = 1;
             this.schoolAddressBox.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.schoolAddressBox.ForeColor = System.Drawing.Color.Black;
-            this.schoolAddressBox.Location = new System.Drawing.Point(411, 3);
+            this.schoolAddressBox.Location = new System.Drawing.Point(384, 3);
             this.schoolAddressBox.Multiline = false;
             this.schoolAddressBox.Name = "schoolAddressBox";
             this.schoolAddressBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -1033,7 +1060,7 @@
             this.panel27.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel27.Location = new System.Drawing.Point(0, 673);
             this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(745, 32);
+            this.panel27.Size = new System.Drawing.Size(849, 32);
             this.panel27.TabIndex = 71;
             // 
             // label10
@@ -1042,7 +1069,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label10.ForeColor = System.Drawing.Color.DimGray;
-            this.label10.Location = new System.Drawing.Point(411, 5);
+            this.label10.Location = new System.Drawing.Point(384, 5);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 21);
             this.label10.TabIndex = 1;
@@ -1067,7 +1094,7 @@
             this.panel28.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel28.Location = new System.Drawing.Point(0, 632);
             this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(745, 41);
+            this.panel28.Size = new System.Drawing.Size(849, 41);
             this.panel28.TabIndex = 70;
             // 
             // contactNumberBox
@@ -1105,7 +1132,7 @@
             this.emailAddressBox.BorderSize = 1;
             this.emailAddressBox.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.emailAddressBox.ForeColor = System.Drawing.Color.Black;
-            this.emailAddressBox.Location = new System.Drawing.Point(411, 4);
+            this.emailAddressBox.Location = new System.Drawing.Point(384, 4);
             this.emailAddressBox.Multiline = false;
             this.emailAddressBox.Name = "emailAddressBox";
             this.emailAddressBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -1125,7 +1152,7 @@
             this.panel29.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel29.Location = new System.Drawing.Point(0, 600);
             this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(745, 32);
+            this.panel29.Size = new System.Drawing.Size(849, 32);
             this.panel29.TabIndex = 69;
             // 
             // label9
@@ -1134,7 +1161,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.DimGray;
-            this.label9.Location = new System.Drawing.Point(411, 5);
+            this.label9.Location = new System.Drawing.Point(384, 5);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(112, 21);
             this.label9.TabIndex = 1;
@@ -1158,7 +1185,7 @@
             this.panel30.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel30.Location = new System.Drawing.Point(0, 559);
             this.panel30.Name = "panel30";
-            this.panel30.Size = new System.Drawing.Size(745, 41);
+            this.panel30.Size = new System.Drawing.Size(849, 41);
             this.panel30.TabIndex = 68;
             // 
             // sexBox
@@ -1189,7 +1216,7 @@
             this.panel31.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel31.Location = new System.Drawing.Point(0, 527);
             this.panel31.Name = "panel31";
-            this.panel31.Size = new System.Drawing.Size(745, 32);
+            this.panel31.Size = new System.Drawing.Size(849, 32);
             this.panel31.TabIndex = 67;
             // 
             // label20
@@ -1211,7 +1238,7 @@
             this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel15.Location = new System.Drawing.Point(0, 486);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(745, 41);
+            this.panel15.Size = new System.Drawing.Size(849, 41);
             this.panel15.TabIndex = 54;
             // 
             // nationalityBox
@@ -1224,7 +1251,7 @@
             this.nationalityBox.BorderSize = 1;
             this.nationalityBox.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.nationalityBox.ForeColor = System.Drawing.Color.Black;
-            this.nationalityBox.Location = new System.Drawing.Point(411, 3);
+            this.nationalityBox.Location = new System.Drawing.Point(384, 3);
             this.nationalityBox.Multiline = false;
             this.nationalityBox.Name = "nationalityBox";
             this.nationalityBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -1265,7 +1292,7 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel17.Location = new System.Drawing.Point(0, 454);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(745, 32);
+            this.panel17.Size = new System.Drawing.Size(849, 32);
             this.panel17.TabIndex = 53;
             // 
             // label21
@@ -1274,7 +1301,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label21.ForeColor = System.Drawing.Color.DimGray;
-            this.label21.Location = new System.Drawing.Point(411, 3);
+            this.label21.Location = new System.Drawing.Point(384, 3);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(89, 21);
             this.label21.TabIndex = 1;
@@ -1298,7 +1325,7 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel13.Location = new System.Drawing.Point(0, 413);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(745, 41);
+            this.panel13.Size = new System.Drawing.Size(849, 41);
             this.panel13.TabIndex = 40;
             // 
             // zipCode
@@ -1329,7 +1356,7 @@
             this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel14.Location = new System.Drawing.Point(0, 381);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(745, 32);
+            this.panel14.Size = new System.Drawing.Size(849, 32);
             this.panel14.TabIndex = 39;
             // 
             // label7
@@ -1350,7 +1377,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel11.Location = new System.Drawing.Point(0, 340);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(745, 41);
+            this.panel11.Size = new System.Drawing.Size(849, 41);
             this.panel11.TabIndex = 38;
             // 
             // province
@@ -1381,7 +1408,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel12.Location = new System.Drawing.Point(0, 308);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(745, 32);
+            this.panel12.Size = new System.Drawing.Size(849, 32);
             this.panel12.TabIndex = 37;
             // 
             // label100
@@ -1402,7 +1429,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 267);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(745, 41);
+            this.panel9.Size = new System.Drawing.Size(849, 41);
             this.panel9.TabIndex = 36;
             // 
             // municipality
@@ -1433,7 +1460,7 @@
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel10.Location = new System.Drawing.Point(0, 235);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(745, 32);
+            this.panel10.Size = new System.Drawing.Size(849, 32);
             this.panel10.TabIndex = 35;
             // 
             // label6
@@ -1454,7 +1481,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 194);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(745, 41);
+            this.panel7.Size = new System.Drawing.Size(849, 41);
             this.panel7.TabIndex = 34;
             // 
             // barangay
@@ -1485,7 +1512,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 162);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(745, 32);
+            this.panel8.Size = new System.Drawing.Size(849, 32);
             this.panel8.TabIndex = 33;
             // 
             // label5
@@ -1506,7 +1533,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel16.Location = new System.Drawing.Point(0, 116);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(745, 46);
+            this.panel16.Size = new System.Drawing.Size(849, 46);
             this.panel16.TabIndex = 32;
             // 
             // dateOfBirthPicker
@@ -1534,7 +1561,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 84);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(745, 32);
+            this.panel6.Size = new System.Drawing.Size(849, 32);
             this.panel6.TabIndex = 2;
             // 
             // label4
@@ -1557,7 +1584,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 38);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(745, 46);
+            this.panel5.Size = new System.Drawing.Size(849, 46);
             this.panel5.TabIndex = 1;
             // 
             // middleName
@@ -1570,7 +1597,7 @@
             this.middleName.BorderSize = 1;
             this.middleName.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.middleName.ForeColor = System.Drawing.Color.Black;
-            this.middleName.Location = new System.Drawing.Point(411, 5);
+            this.middleName.Location = new System.Drawing.Point(400, 5);
             this.middleName.Multiline = false;
             this.middleName.Name = "middleName";
             this.middleName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -1595,7 +1622,7 @@
             this.lastName.BorderSize = 1;
             this.lastName.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lastName.ForeColor = System.Drawing.Color.Black;
-            this.lastName.Location = new System.Drawing.Point(210, 5);
+            this.lastName.Location = new System.Drawing.Point(199, 5);
             this.lastName.Multiline = false;
             this.lastName.Name = "lastName";
             this.lastName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -1641,7 +1668,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(745, 38);
+            this.panel2.Size = new System.Drawing.Size(849, 38);
             this.panel2.TabIndex = 0;
             // 
             // label3
@@ -1666,7 +1693,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.cancelBtn;
-            this.ClientSize = new System.Drawing.Size(764, 688);
+            this.ClientSize = new System.Drawing.Size(868, 688);
             this.Controls.Add(this.content);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -1849,5 +1876,6 @@
         private System.Windows.Forms.Label retiredWarning;
         private System.Windows.Forms.Label salaryWarning;
         private System.Windows.Forms.ErrorProvider salaryValueError;
+        private System.Windows.Forms.ComboBox stepNumberBox;
     }
 }

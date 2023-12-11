@@ -21,6 +21,35 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         // Double Click to display the methods
         #region Inside is all Get Methods
 
+        // This function is responsible for retrieving the salary amount and step number based on the salary rate value Id
+        public async Task<DataTable> GetSalaryRateDetails(int salaryRateValueId)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select salaryRateDescription, salaryRateStepDescription, amount from tbl_salaryRateValue " +
+                        "join tbl_salaryRate on tbl_salaryRate.salaryRateId = tbl_salaryRateValue.salaryRateId " +
+                        "left join tbl_salaryRateStep on tbl_salaryRateStep.stepId = tbl_salaryRateValue.stepId " +
+                        "where salaryRateValueId = @salaryRateValueId";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@salaryRateValueId", salaryRateValueId);
+
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         // This function checks if the benefit if its mandated before make it inactive
         public async Task<bool> CheckBenefitIsMandated(int detailsId)
         {
@@ -433,158 +462,23 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         }
 
         // This function is responsible for retrieving the list of all user roles saved in the database
-        public async Task<DataTable> GetUserRoles(string employmentStatus)
+        public async Task<DataTable> GetUserRoles(string employmentStatus, string departmentName)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select roleName from tbl_employmentStatusAccess join tbl_employmentStatus on tbl_employmentStatusAccess." +
-                        "employmentStatusId = tbl_employmentStatus.employmentStatusId join tbl_userRole on tbl_userRole.roleId = tbl_employment" +
-                        "StatusAccess.roleId where employmentStatus = @status";
+                    string command = "select roleName from tbl_employmentStatusAccess " +
+                        "join tbl_userRole on tbl_userRole.roleId = tbl_employmentStatusAccess.roleId " +
+                        "join tbl_department on tbl_department.departmentId = tbl_employmentStatusAccess.departmentId " +
+                        "join tbl_employmentStatus on tbl_employmentStatus.employmentStatusId = tbl_employmentStatusAccess.employmentStatusId " +
+                        "where employmentStatus = @status and tbl_department.departmentName = @departmentName";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@status", employmentStatus);
+                        cmd.Parameters.AddWithValue("@departmentName", departmentName);
 
-                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                        {
-                            DataTable dt = new DataTable();
-                            conn.Close();
-                            sda.Fill(dt);
-                            return dt;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql)
-            {
-                throw sql;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        // This function retrieves the salary rate description ID to be used for retrieving the salary value
-        public async Task<int> GetSalaryRateDescriptionId(string salaryRateDescription)
-        {
-            try
-            {
-                using(SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select salaryRateId from tbl_salaryRate where salaryRateDescription = @description";
-
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@description", salaryRateDescription);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if(result != null && int.TryParse(result.ToString(), out int id))
-                        {
-                            return id;
-                        }
-                        else
-                        {
-                            return 0;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible retrieving the list of salary rate saved in the database aside from custom ones
-        public async Task<DataTable> GetSalaryRate()
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select salaryratedescription from tbl_salaryrate where salaryratedescription not like '%custom%'";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                        {
-                            DataTable dt = new DataTable();
-                            conn.Close();
-                            sda.Fill(dt);
-                            return dt;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql)
-            {
-                throw sql;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        // This function is to retrieve the salary value of a salary grade
-        public async Task<decimal> GetSalaryRateValue(int salaryRateId, int stepNumber)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "SELECT amount FROM tbl_salaryRateValue sv " +
-                        "JOIN tbl_salaryRate sr ON sv.salaryRateId = sr.salaryRateId " +
-                        "JOIN tbl_salaryRateStep st ON st.stepId = sv.stepId " +
-                        "JOIN tbl_salaryRateTranche srt " +
-                        "ON srt.trancheId = sv.trancheId " +
-                        "WHERE sr.salaryRateId = @salaryRateId " +
-                        "AND st.stepNumber = @stepNumber " +
-                        "AND srt.isTrancheUsed = 1";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@salaryRateId", salaryRateId);
-                        cmd.Parameters.AddWithValue("@stepNumber", stepNumber);
-
-                        object result = await cmd.ExecuteScalarAsync();
-                        conn.Close();
-
-                        if (result != null && decimal.TryParse(result.ToString(), out decimal amount))
-                        {
-                            return amount;
-                        }
-                        else
-                        {
-                            return -1;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql)
-            {
-                throw sql;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        // This function is responsible for retrieving the all salary rate saved in the database
-        // Purpose for this is when modifying the salary rate of an employee
-        public async Task<DataTable> GetAllSalaryRate()
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select salaryratedescription from tbl_salaryrate";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
                         using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                         {
                             DataTable dt = new DataTable();
@@ -795,7 +689,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         }
 
         // This function is responsible for adding the salary value of the custom salary rate
-        public async Task<bool> AddCustomValue(string customDescription, decimal value)
+        public async Task<bool> AddCustomValue(string customDescription, decimal value, int year)
         {
             try
             {
@@ -807,14 +701,15 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                     {
                         try
                         {
-                            string command = "Insert into tbl_salaryRateValue (salaryRateId, amount, isActive) " +
+                            string command = "Insert into tbl_salaryRateValue (salaryRateId, amount, tranchedId, yearEffective, isActive) " +
                                 "values ((select salaryRateId from tbl_salaryRate where salaryRateDescription = @customDescription), " +
-                                "@value, 1)";
+                                "@value, (select trancheId from tbl_salaryRateTranche where isTrancheUsed = 1), @year, 1)";
 
                             using(cmd = new SqlCommand(command, conn, transaction))
                             {
                                 cmd.Parameters.AddWithValue("@customDescription", customDescription);
                                 cmd.Parameters.AddWithValue("@value", value);
+                                cmd.Parameters.AddWithValue("@year", year);
 
                                 int result = await cmd.ExecuteNonQueryAsync();
 
@@ -1193,7 +1088,12 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
 
         #region Inside is all Update Methods
 
-        public async Task<bool> UpdateEmployeeAndAppointmentForm(int employeeId, string fName, string lName, string mName, DateTime birthday, string barangay, string municipality, string province, string zipCode, string civilStatus, string sex, string contactNumber, string emailAddress, string educationalAttainment, string schoolName, string course, string schoolAddress, string department, string jobDescription, string roleName, string employeePicture, string employeeSignature, string nationality, string salaryRate, DateTime dateRetired, string payrollSched, string employmentStatus)
+        public async Task<bool> UpdateEmployeeAndAppointmentForm(int employeeId, string fName, string lName, string mName, 
+            DateTime birthday, string barangay, string municipality, string province, string zipCode, string civilStatus, 
+            string sex, string contactNumber, string emailAddress, string educationalAttainment, string schoolName, 
+            string course, string schoolAddress, string department, string jobDescription, string roleName, 
+            string employeePicture, string employeeSignature, string nationality, decimal salaryAmount, DateTime 
+            dateRetired, string payrollSched, string employmentStatus)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -1202,7 +1102,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
 
                 try
                 {
-                    await UpdateAppointmentForm(conn, transaction, employeeId, salaryRate, dateRetired, payrollSched, employmentStatus);
+                    await UpdateAppointmentForm(conn, transaction, employeeId, salaryAmount, dateRetired, payrollSched, employmentStatus);
                     await UpdateEmployeeData(conn, transaction, employeeId, fName, lName, mName, birthday, barangay, municipality, province, zipCode, civilStatus, sex, contactNumber, emailAddress, educationalAttainment, schoolName, course, schoolAddress, department, jobDescription, roleName, employeePicture, employeeSignature, nationality);
 
                     transaction.Commit();
@@ -1221,12 +1121,12 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         }
 
         // This function is responsible if there someone will modify the employee's appointment form
-        public async Task UpdateAppointmentForm(SqlConnection conn, SqlTransaction transaction, int employeeId, string salaryRate, DateTime dateRetired, string payrollSched, string employmentStatus)
+        public async Task UpdateAppointmentForm(SqlConnection conn, SqlTransaction transaction, int employeeId, decimal amount, DateTime dateRetired, string payrollSched, string employmentStatus)
         {
             try
             {
-                string command = "UPDATE tbl_appointmentform SET salaryrateid = (SELECT salaryrateid FROM tbl_salaryRate WHERE " +
-                    "salaryratedescription = @salaryrate), dateretired = @dateretired, payrollSchedid = (select payrollSchedid from " +
+                string command = "UPDATE tbl_appointmentform SET salaryratevalueid = (SELECT salaryratevalueid FROM tbl_salaryRatevalue " +
+                    "WHERE amount = @amount), dateretired = @dateretired, payrollSchedid = (select payrollSchedid from " +
                     "tbl_payrollSched where payrollScheduleDescription = @payrollSched), employmentStatusId = (select employmentStatusId from " +
                     "tbl_employmentStatus where employmentStatus = @employmentStatus) " +
                     "WHERE appointmentformid = (SELECT appointmentFormId FROM tbl_appointmentForm WHERE employeeId = @employeeId)";
@@ -1234,7 +1134,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                 using (SqlCommand cmd = new SqlCommand(command, conn, transaction))
                 {
                     cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                    cmd.Parameters.AddWithValue("@salaryrate", salaryRate);
+                    cmd.Parameters.AddWithValue("@amount", amount);
                     cmd.Parameters.AddWithValue("@dateretired", dateRetired);
                     cmd.Parameters.AddWithValue("@payrollSched", payrollSched);
                     cmd.Parameters.AddWithValue("@employmentStatus", employmentStatus);
@@ -1336,30 +1236,43 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         }
 
         // This function is responsible if there is an update or modification for the employee's salary rate
-        public async Task<bool> UpdateSalaryRate(string salaryDescription, int salaryValue)
+        public async Task<bool> UpdateSalaryRate(int salaryRateValueId, decimal salaryValue)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "update tbl_salaryrate set salaryvalue = @salaryvalue where salaryratedescription = @salarydescription";
 
-                    using (cmd = new SqlCommand(command, conn))
+                    using(SqlTransaction transaction =  conn.BeginTransaction())
                     {
-                        cmd.Parameters.AddWithValue("@salaryvalue", salaryValue);
-                        cmd.Parameters.AddWithValue("@salarydescription", salaryDescription);
-
-                        object result = await cmd.ExecuteNonQueryAsync();
-                        conn.Close();
-
-                        if ((int)result == 1)
+                        try
                         {
-                            return true;
+                            string command = "update tbl_salaryrateValue set amount = @salaryvalue " +
+                            "where salaryRateValueId = @id";
+
+                            using (cmd = new SqlCommand(command, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@salaryvalue", salaryValue);
+                                cmd.Parameters.AddWithValue("@id", salaryRateValueId);
+
+                                int result = await cmd.ExecuteNonQueryAsync();
+
+                                if (result > 0)
+                                {
+                                    transaction.Commit();
+                                    return true;
+                                }
+                                else
+                                {
+                                    transaction.Rollback();
+                                    return false;
+                                }
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            return false;
+                            throw ex;
                         }
                     }
                 }

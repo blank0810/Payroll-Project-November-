@@ -128,10 +128,9 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         {
             try
             {
-                employeeClass employeeClass = new employeeClass();
                 DataTable departmentTable = await generalFunctions.GetDepartmentList();
                 DataTable employmentStatusTable = await generalFunctions.GetEmploymentStatus();
-                DataTable salaryRateDescription = await employeeClass.GetSalaryRate();
+                DataTable salaryRateDescription = await generalFunctions.GetSalaryRate();
                 DataTable educationalAttainmentTable = await employeeClass.GetEducationalAttainment();
                 DataTable scheduleDescription = await employeeClass.GetScheduleDescription();
 
@@ -598,11 +597,11 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         }
 
         // Function for populating user role depending to the chosen employment
-        private async Task PopulateUserRole(string employmentStatus)
+        private async Task PopulateUserRole(string employmentStatus, string departmentName)
         {
             try
             {
-                DataTable role = await GetUserRole(employmentStatus);
+                DataTable role = await GetUserRole(employmentStatus, departmentName);
                 List<string> roleList = new List<string>();
 
                 if (role != null && role.Rows.Count > 0)
@@ -828,46 +827,33 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
         #region Functions inside serves to communicate with the Employee Class
 
-        // Function responsible for getting the salary rate id
-        public async Task<int> GetSalaryRateId(string description)
+        private async Task<bool> GetRoleCount(string roleName, string departmentName)
         {
             try
             {
-                int id = await employeeClass.GetSalaryRateDescriptionId(description);
-                return id;
+                int count = await employeeClass.GetRoleCount(roleName, departmentName);
+
+                if (count > 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
-        // Function responsible for retrieving the Proper Witholding Tax Rate
-        private async Task<DataTable> GetWitholdingTaxRate(decimal basicAnnualSalary)
+        // Function responsible for getting the salary rate id
+        private async Task<int> GetSalaryRateId(string description)
         {
             try
             {
-                DataTable taxRate = await generalFunctions.GetWitholdingTaxRate(basicAnnualSalary);
-
-                if (taxRate != null && taxRate.Rows.Count > 0)
-                {
-                    return taxRate;
-                }
-                else
-                {
-                    return null;
-                }
+                int id = await generalFunctions.GetSalaryRateDescriptionId(description);
+                return id;
             }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        private async Task<string> GetGeneralFormula(string title)
-        {
-            try
-            {
-                string formulaExpression = await generalFunctions.GetGeneralFormula(title);
-                return formulaExpression;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
         // Function responsible for getting the formula of the selected benefit
@@ -932,11 +918,11 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         }
 
         //Function in retrieving the User Role
-        private async Task<DataTable> GetUserRole(string employmentStatus)
+        private async Task<DataTable> GetUserRole(string employmentStatus, string departmentName)
         {
             try
             {
-                DataTable userRoleTable = await employeeClass.GetUserRoles(employmentStatus);
+                DataTable userRoleTable = await employeeClass.GetUserRoles(employmentStatus, departmentName);
 
                 if (userRoleTable != null && userRoleTable.Rows.Count > 0)
                 {
@@ -999,7 +985,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         {
             try
             {
-                decimal value = await employeeClass.GetSalaryRateValue(salaryRateId, stepNumber);
+                decimal value = await generalFunctions.GetSalaryRateValue(salaryRateId, stepNumber);
                 return value;
             }
             catch (SqlException sql)
@@ -1064,11 +1050,11 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         }
 
         // This function would be responsible for adding the value of the custom salary rate
-        private async Task<bool> AddCustomSalaryValue(string description, decimal value)
+        private async Task<bool> AddCustomSalaryValue(string description, decimal value, int year)
         {
             try
             {
-                bool addValue = await employeeClass.AddCustomValue(description, value);
+                bool addValue = await employeeClass.AddCustomValue(description, value, year);
                 return addValue;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
@@ -1881,9 +1867,14 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
         }
 
-        private void departmentName_TextChanged(object sender, EventArgs e)
+        private async void departmentName_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(departmentName.Text) && departmentName.SelectedIndex != -1)
+            if (!string.IsNullOrEmpty(departmentName.Text) && !string.IsNullOrEmpty(employmentStatus.Text))
+            {
+                DepartmentName = departmentName.Text;
+                await PopulateUserRole(EmploymentStatus, DepartmentName);
+            }
+            else
             {
                 DepartmentName = departmentName.Text;
             }
@@ -2010,7 +2001,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                     dateRetired.Visible = true;
                     retiredWarning.Visible = true;
 
-                    await PopulateUserRole(employmentStatus.Text);
+                    await PopulateUserRole(EmploymentStatus, DepartmentName);
                     benefitName.DataSource = await PopulateBenefitList(employmentStatus.Text);
                     benefitName.SelectedIndex = -1;
 
@@ -2027,7 +2018,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                     retiredWarning.Visible = false;
                     dateRetired.Value = DateTime.Today;
 
-                    await PopulateUserRole(employmentStatus.Text);
+                    await PopulateUserRole(EmploymentStatus, DepartmentName);
                     benefitName.DataSource = await PopulateBenefitList(employmentStatus.Text);
                     benefitName.SelectedIndex = -1;
 
@@ -2393,6 +2384,26 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
         }
 
+        private async Task<bool> IdentifyRoleValid(string roleName, string departmentName)
+        {
+            try
+            {
+                bool count = await GetRoleCount(roleName, departmentName);
+
+                if(count)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages($"Sorry to inform you but there is only 1 {roleName} required in the office of {departmentName}. " +
+                        $"Please review the details and try again later.", "Role Invalid Error");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         private async Task<bool> AddCustomSalaryRate(string description, string schedule)
         {
             try
@@ -2404,11 +2415,11 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> AddCustomValue(string description, decimal value)
+        private async Task<bool> AddCustomValue(string description, decimal value, int year)
         {
             try
             {
-                bool addValue = await AddCustomSalaryValue(description, value);
+                bool addValue = await AddCustomSalaryValue(description, value, year);
                 return addValue;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
@@ -2434,7 +2445,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 if (SalaryRate.Contains("Custom"))
                 {
                     addSalaryRate = await AddCustomSalaryRate(SalaryRate, CustomSchedule);
-                    addValue = await AddCustomValue(SalaryRate, SalaryRateValue);
+                    addValue = await AddCustomValue(SalaryRate, SalaryRateValue, _year);
                     addEmployee = await AddEmployee(password, EmployeePicture, EmployeeSignature);
                     addAppointmentForm = await AddAppointmentForm(EmployeeID, SalaryRateValue, DateTime.Today, DateHired, DateRetired, SalarySchedule, 
                         EmploymentStatus, MorningShift, AfternoonShift, DateHired.AddYears(numberOfYears));
@@ -2672,55 +2683,41 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
                 if (!AuthorizedBenefitPanel())
                     return;
 
-                MessageBox.Show("1st");
-
                 bool isAuthorized = await IsAuthorized(_userId);
                 if (!isAuthorized)
                     return;
-
-                MessageBox.Show("2nd");
 
                 string password = PasswordGenerator(EmployeeID.ToString());
                 if (string.IsNullOrEmpty(password))
                     return;
 
-                MessageBox.Show("3rd");
+                bool isRoleValid = await IdentifyRoleValid(UserRole, DepartmentName);
+                if (!isRoleValid)
+                    return;
 
                 bool addEmployee = await AddNewEmployee(password);
                 if (!addEmployee)
                     return;
 
-                MessageBox.Show("4th");
-
                 bool addBenefit = await AddEmployeeBenefit(EmployeeID, status);
                 if (!addBenefit)
                     return;
-
-                MessageBox.Show("5th");
 
                 bool addLeaveCredits = await AddLeaveCredits(EmployeeID, EmploymentStatus);
                 if (!addLeaveCredits)
                     return;
 
-                MessageBox.Show("6");
-
                 bool addSlip = await SubmitSlipHours(EmployeeID, _month, _year, numberOfMonth, defaultHours);
                 if (!addSlip)
                     return;
-
-                MessageBox.Show("7th");
 
                 bool addDtr = await AddNewDTRLog(EmployeeID);
                 if(!addDtr) 
                     return;
 
-                MessageBox.Show("8th");
-
                 string userName = await UserDetails(_userId);
                 if (string.IsNullOrEmpty(userName))
                     return;
-
-                MessageBox.Show("9th");
 
                 bool addNewLog = await AddNewLog(userName, $"{FirstName} {LastName}", EmployeeID);
                 if(!addNewLog)

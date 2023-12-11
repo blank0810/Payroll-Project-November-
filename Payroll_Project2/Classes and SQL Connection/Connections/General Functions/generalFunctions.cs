@@ -26,6 +26,197 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
+        public async Task<int> GetStepNumber(string stepDescription)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select stepNumber from tbl_salaryRateStep where salaryRateStepDescription = @description";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@description", stepDescription);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        if (result != null && int.TryParse(result.ToString(), out int stepNumber))
+                        {
+                            return stepNumber;
+                        }
+                        else
+                        {
+                            return -1;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<DataTable> GetAllStepNumber()
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select salaryRateStepDescription from tbl_salaryRateStep";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        using (SqlDataAdapter sda =  new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        // This function retrieves the salary rate description ID to be used for retrieving the salary value
+        public async Task<int> GetSalaryRateDescriptionId(string salaryRateDescription)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select salaryRateId from tbl_salaryRate where salaryRateDescription = @description";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@description", salaryRateDescription);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        if (result != null && int.TryParse(result.ToString(), out int id))
+                        {
+                            return id;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // This function is responsible retrieving the list of salary rate saved in the database aside from custom ones
+        public async Task<DataTable> GetSalaryRate()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select salaryratedescription from tbl_salaryrate where salaryratedescription not like '%custom%'";
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            conn.Close();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        // This function is to retrieve the salary value of a salary grade
+        public async Task<decimal> GetSalaryRateValue(int salaryRateId, int stepNumber)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "SELECT amount FROM tbl_salaryRateValue sv " +
+                        "JOIN tbl_salaryRate sr ON sv.salaryRateId = sr.salaryRateId " +
+                        "LEFT JOIN tbl_salaryRateStep st ON st.stepId = sv.stepId " +
+                        "LEFT JOIN tbl_salaryRateTranche srt ON srt.trancheId = sv.trancheId " +
+                        "WHERE sr.salaryRateId = @salaryRateId " +
+                        "AND (st.stepNumber = @stepNumber OR @stepNumber IS NULL) " +
+                        "AND srt.isTrancheUsed = 1";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@salaryRateId", salaryRateId);
+                        cmd.Parameters.AddWithValue("@stepNumber", (stepNumber != -1) ? (object)stepNumber : DBNull.Value);
+
+                        object result = await cmd.ExecuteScalarAsync();
+                        conn.Close();
+
+                        if (result != null && decimal.TryParse(result.ToString(), out decimal amount))
+                        {
+                            return amount;
+                        }
+                        else
+                        {
+                            return -1;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        // This function is responsible for retrieving the all salary rate saved in the database
+        // Purpose for this is when modifying the salary rate of an employee
+        public async Task<DataTable> GetAllSalaryRate()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select salaryratedescription from tbl_salaryrate";
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            conn.Close();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<string> GetEmployeeName(int employeeId)
         {
             try
@@ -532,7 +723,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                         "employeeContactNumber, employeeSex, employeeCivilStatus, nationality, employeeBirth, employeeEmailAddress, " +
                         "barangay, municipality, province, zipCode, educationalAttainment, course, nameOfSchool, schoolAddress, " +
                         "departmentName, dateHired, dateRetired, employmentStatus, employeePicture, employeeSignature, tbl_employee.isActive, roleName, " +
-                        "salaryRateDescription, salaryRateSchedule, amount, payrollScheduleDescription, morningShiftTime, afternoonShiftTime " +
+                        "amount, tbl_appointmentForm.salaryRateValueId, salaryRateDescription, salaryRateSchedule, payrollScheduleDescription, " +
+                        "morningShiftTime, afternoonShiftTime " +
                         "FROM tbl_employee JOIN tbl_department ON " +
                         "tbl_employee.departmentId = tbl_department.departmentId JOIN tbl_educationalAttainment ON " +
                         "tbl_employee.educationalAttainmentId = tbl_educationalAttainment.educationalAttainmentId JOIN tbl_userRole ON " +
@@ -541,7 +733,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                         "tbl_salaryRateValue.salaryRateValueId JOIN tbl_salaryRate on tbl_salaryRateValue.salaryRateId = tbl_salaryRate.salaryRateId " +
                         "JOIN tbl_payrollSched ON tbl_appointmentForm.payrollSchedId = " +
                         "tbl_payrollSched.payrollSchedId JOIN tbl_employmentStatus ON tbl_appointmentForm.employmentStatusId = " +
-                        "tbl_employmentStatus.employmentStatusId WHERE tbl_employee.employeeId = @id;";
+                        "tbl_employmentStatus.employmentStatusId WHERE tbl_employee.employeeId = @id";
 
                     cmd = new SqlCommand(command, conn);
                     cmd.Parameters.AddWithValue("@id", id);

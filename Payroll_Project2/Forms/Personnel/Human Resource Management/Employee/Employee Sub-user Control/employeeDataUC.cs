@@ -417,11 +417,10 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                         modifyEmployee.Department = FormatAsSentenceCase(row["departmentname"].ToString());
                         modifyEmployee.JobDescription = FormatAsSentenceCase(row["employeejobdesc"].ToString());
                         modifyEmployee.UserRole = FormatAsSentenceCase(row["rolename"].ToString());
-                        modifyEmployee.EmployeeImage = row["employeePicture"].ToString();
-                        modifyEmployee.EmployeeSignature = row["employeeSignature"].ToString();
+                        modifyEmployee.EmployeeImage = $"{employeeImagePath}{row["employeePicture"]}";
+                        modifyEmployee.EmployeeSignature = $"{employeeSignaturePath}{row["employeeSignature"]}";
                         modifyEmployee.EmployeeID = employeeId;
                         modifyEmployee.EmploymentStatus = FormatAsSentenceCase(row["employmentStatus"].ToString());
-                        modifyEmployee.SalaryRate = FormatAsSentenceCase(row["salaryRateDescription"].ToString());
                         modifyEmployee.SalarySchedule = FormatAsSentenceCase(row["payrollScheduleDescription"].ToString());
 
                         if (row["dateRetired"] != null && DateTime.TryParse(row["dateRetired"].ToString(), out DateTime retired))
@@ -440,6 +439,16 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control
                         else
                         {
                             modifyEmployee.DateHired = DateTime.Today;
+                        }
+
+                        if (row["salaryRateValueId"] != null && int.TryParse(row["salaryRateValueId"].ToString(), 
+                            out int salaryRateValueId))
+                        {
+                            modifyEmployee.SalaryRateValueId = salaryRateValueId;
+                        }
+                        else
+                        {
+                            modifyEmployee.SalaryRateValueId = -1;
                         }
                     }
 

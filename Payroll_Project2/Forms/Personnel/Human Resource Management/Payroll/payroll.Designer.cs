@@ -33,338 +33,445 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.description = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.profileContentPanel = new System.Windows.Forms.Panel();
+            this.completeInfoPanel = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.generalInfoPanel = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.salaryType = new System.Windows.Forms.ComboBox();
+            this.submitBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.contentList = new System.Windows.Forms.FlowLayoutPanel();
-            this.searchBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.generateAllBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.todayBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.fifteenBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.thirtyBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.searchEmployee = new Payroll_Project2.Custom.customTextBox2();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.employmentType = new System.Windows.Forms.ComboBox();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.monthList = new System.Windows.Forms.ComboBox();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
-            this.description.SuspendLayout();
-            this.panel8.SuspendLayout();
+            this.profileContentPanel.SuspendLayout();
+            this.completeInfoPanel.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel9.SuspendLayout();
+            this.generalInfoPanel.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel16.SuspendLayout();
+            this.panel18.SuspendLayout();
+            this.panel20.SuspendLayout();
+            this.panel22.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(992, 10);
+            this.panel1.Size = new System.Drawing.Size(1461, 10);
             this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 10);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(10, 765);
+            this.panel2.Size = new System.Drawing.Size(10, 848);
             this.panel2.TabIndex = 1;
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(982, 10);
+            this.panel3.Location = new System.Drawing.Point(1451, 10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(10, 765);
+            this.panel3.Size = new System.Drawing.Size(10, 848);
             this.panel3.TabIndex = 2;
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(10, 765);
+            this.panel4.Location = new System.Drawing.Point(10, 848);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(972, 10);
+            this.panel4.Size = new System.Drawing.Size(1441, 10);
             this.panel4.TabIndex = 3;
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchBtn);
-            this.panel5.Controls.Add(this.generateAllBtn);
-            this.panel5.Controls.Add(this.todayBtn);
-            this.panel5.Controls.Add(this.fifteenBtn);
-            this.panel5.Controls.Add(this.thirtyBtn);
-            this.panel5.Controls.Add(this.searchEmployee);
-            this.panel5.Controls.Add(this.label5);
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.titleLabel);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(10, 10);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(972, 39);
-            this.panel5.TabIndex = 4;
+            this.panel5.Size = new System.Drawing.Size(1441, 39);
+            this.panel5.TabIndex = 9;
             // 
-            // label5
+            // titleLabel
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Nirmala UI", 11F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(489, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Sort By:";
-            // 
-            // description
-            // 
-            this.description.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.description.Controls.Add(this.panel8);
-            this.description.Controls.Add(this.panel7);
-            this.description.Controls.Add(this.panel6);
-            this.description.Controls.Add(this.panel9);
-            this.description.Dock = System.Windows.Forms.DockStyle.Top;
-            this.description.Location = new System.Drawing.Point(10, 49);
-            this.description.Name = "description";
-            this.description.Size = new System.Drawing.Size(972, 42);
-            this.description.TabIndex = 6;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.label4);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel8.Location = new System.Drawing.Point(774, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(197, 40);
-            this.panel8.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Nirmala UI", 11F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(74, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 20);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Actions";
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label3);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(560, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(214, 40);
-            this.panel7.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 11F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(6, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Department";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.ForeColor = System.Drawing.Color.Black;
+            this.titleLabel.Location = new System.Drawing.Point(10, 8);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(169, 24);
+            this.titleLabel.TabIndex = 4;
+            this.titleLabel.Text = "Payslip Generation";
+            this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.label2);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel6.Location = new System.Drawing.Point(333, 0);
+            this.panel6.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(10, 49);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(227, 40);
-            this.panel6.TabIndex = 1;
+            this.panel6.Size = new System.Drawing.Size(1441, 5);
+            this.panel6.TabIndex = 10;
+            // 
+            // profileContentPanel
+            // 
+            this.profileContentPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.profileContentPanel.Controls.Add(this.completeInfoPanel);
+            this.profileContentPanel.Controls.Add(this.panel9);
+            this.profileContentPanel.Controls.Add(this.panel7);
+            this.profileContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.profileContentPanel.Location = new System.Drawing.Point(10, 54);
+            this.profileContentPanel.Name = "profileContentPanel";
+            this.profileContentPanel.Size = new System.Drawing.Size(1441, 794);
+            this.profileContentPanel.TabIndex = 12;
+            // 
+            // completeInfoPanel
+            // 
+            this.completeInfoPanel.BackColor = System.Drawing.Color.White;
+            this.completeInfoPanel.Controls.Add(this.panel8);
+            this.completeInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.completeInfoPanel.Location = new System.Drawing.Point(418, 0);
+            this.completeInfoPanel.Name = "completeInfoPanel";
+            this.completeInfoPanel.Size = new System.Drawing.Size(1023, 794);
+            this.completeInfoPanel.TabIndex = 2;
+            // 
+            // panel8
+            // 
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1023, 34);
+            this.panel8.TabIndex = 0;
+            // 
+            // panel9
+            // 
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel9.Location = new System.Drawing.Point(408, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(10, 794);
+            this.panel9.TabIndex = 1;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.generalInfoPanel);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(408, 794);
+            this.panel7.TabIndex = 0;
+            // 
+            // generalInfoPanel
+            // 
+            this.generalInfoPanel.BackColor = System.Drawing.Color.White;
+            this.generalInfoPanel.Controls.Add(this.panel22);
+            this.generalInfoPanel.Controls.Add(this.panel21);
+            this.generalInfoPanel.Controls.Add(this.panel20);
+            this.generalInfoPanel.Controls.Add(this.panel19);
+            this.generalInfoPanel.Controls.Add(this.panel18);
+            this.generalInfoPanel.Controls.Add(this.panel17);
+            this.generalInfoPanel.Controls.Add(this.panel16);
+            this.generalInfoPanel.Controls.Add(this.panel14);
+            this.generalInfoPanel.Controls.Add(this.panel12);
+            this.generalInfoPanel.Controls.Add(this.panel10);
+            this.generalInfoPanel.Controls.Add(this.panel15);
+            this.generalInfoPanel.Controls.Add(this.submitBtn);
+            this.generalInfoPanel.Controls.Add(this.panel11);
+            this.generalInfoPanel.Controls.Add(this.panel13);
+            this.generalInfoPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.generalInfoPanel.Location = new System.Drawing.Point(0, 0);
+            this.generalInfoPanel.Name = "generalInfoPanel";
+            this.generalInfoPanel.Size = new System.Drawing.Size(408, 426);
+            this.generalInfoPanel.TabIndex = 1;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Controls.Add(this.label2);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(0, 78);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(408, 36);
+            this.panel12.TabIndex = 23;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Nirmala UI", 11F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(6, 10);
+            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(10, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(118, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Salary Schedule";
+            this.label2.Size = new System.Drawing.Size(131, 19);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Employment type";
             // 
-            // panel9
+            // panel10
             // 
-            this.panel9.Controls.Add(this.label1);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(333, 40);
-            this.panel9.TabIndex = 0;
+            this.panel10.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(0, 75);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(408, 3);
+            this.panel10.TabIndex = 22;
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Controls.Add(this.salaryType);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(0, 39);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(408, 36);
+            this.panel15.TabIndex = 21;
+            // 
+            // salaryType
+            // 
+            this.salaryType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.salaryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.salaryType.Font = new System.Drawing.Font("Calibri", 11F);
+            this.salaryType.FormattingEnabled = true;
+            this.salaryType.Location = new System.Drawing.Point(10, 5);
+            this.salaryType.Name = "salaryType";
+            this.salaryType.Size = new System.Drawing.Size(229, 26);
+            this.salaryType.TabIndex = 6;
+            // 
+            // submitBtn
+            // 
+            this.submitBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.submitBtn.AutoSize = true;
+            this.submitBtn.BackColor = System.Drawing.Color.ForestGreen;
+            this.submitBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
+            this.submitBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.submitBtn.BorderRadius = 5;
+            this.submitBtn.BorderSize = 0;
+            this.submitBtn.FlatAppearance.BorderSize = 0;
+            this.submitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submitBtn.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
+            this.submitBtn.ForeColor = System.Drawing.Color.White;
+            this.submitBtn.Location = new System.Drawing.Point(318, 393);
+            this.submitBtn.Name = "submitBtn";
+            this.submitBtn.Size = new System.Drawing.Size(85, 29);
+            this.submitBtn.TabIndex = 16;
+            this.submitBtn.Text = "+Add Leave";
+            this.submitBtn.TextColor = System.Drawing.Color.White;
+            this.submitBtn.UseVisualStyleBackColor = false;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 36);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(408, 3);
+            this.panel11.TabIndex = 5;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Controls.Add(this.label1);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(0, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(408, 36);
+            this.panel13.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Nirmala UI", 11F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(11, 10);
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(10, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Employee";
+            this.label1.Size = new System.Drawing.Size(92, 19);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Payslip type";
             // 
-            // contentList
+            // panel14
             // 
-            this.contentList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.contentList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentList.Location = new System.Drawing.Point(10, 91);
-            this.contentList.Name = "contentList";
-            this.contentList.Size = new System.Drawing.Size(972, 674);
-            this.contentList.TabIndex = 7;
+            this.panel14.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel14.Location = new System.Drawing.Point(0, 114);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(408, 3);
+            this.panel14.TabIndex = 24;
             // 
-            // searchBtn
+            // panel16
             // 
-            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.searchBtn.BackColor = System.Drawing.Color.White;
-            this.searchBtn.BackgroundColor = System.Drawing.Color.White;
-            this.searchBtn.BorderColor = System.Drawing.Color.Green;
-            this.searchBtn.BorderRadius = 10;
-            this.searchBtn.BorderSize = 1;
-            this.searchBtn.FlatAppearance.BorderSize = 0;
-            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchBtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.searchBtn.ForeColor = System.Drawing.Color.Black;
-            this.searchBtn.Location = new System.Drawing.Point(251, 5);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(123, 30);
-            this.searchBtn.TabIndex = 6;
-            this.searchBtn.Text = "Search Employee";
-            this.searchBtn.TextColor = System.Drawing.Color.Black;
-            this.searchBtn.UseVisualStyleBackColor = false;
+            this.panel16.BackColor = System.Drawing.Color.White;
+            this.panel16.Controls.Add(this.employmentType);
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel16.Location = new System.Drawing.Point(0, 117);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(408, 36);
+            this.panel16.TabIndex = 25;
             // 
-            // generateAllBtn
+            // employmentType
             // 
-            this.generateAllBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.generateAllBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.generateAllBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.generateAllBtn.BorderColor = System.Drawing.Color.Navy;
-            this.generateAllBtn.BorderRadius = 10;
-            this.generateAllBtn.BorderSize = 0;
-            this.generateAllBtn.FlatAppearance.BorderSize = 0;
-            this.generateAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.generateAllBtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.generateAllBtn.ForeColor = System.Drawing.Color.White;
-            this.generateAllBtn.Location = new System.Drawing.Point(827, 4);
-            this.generateAllBtn.Name = "generateAllBtn";
-            this.generateAllBtn.Size = new System.Drawing.Size(140, 30);
-            this.generateAllBtn.TabIndex = 2;
-            this.generateAllBtn.Text = "Generate Payroll All";
-            this.generateAllBtn.TextColor = System.Drawing.Color.White;
-            this.generateAllBtn.UseVisualStyleBackColor = false;
+            this.employmentType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.employmentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.employmentType.Font = new System.Drawing.Font("Calibri", 11F);
+            this.employmentType.FormattingEnabled = true;
+            this.employmentType.Location = new System.Drawing.Point(10, 5);
+            this.employmentType.Name = "employmentType";
+            this.employmentType.Size = new System.Drawing.Size(229, 26);
+            this.employmentType.TabIndex = 6;
             // 
-            // todayBtn
+            // panel17
             // 
-            this.todayBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.todayBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.todayBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.todayBtn.BorderColor = System.Drawing.Color.Navy;
-            this.todayBtn.BorderRadius = 10;
-            this.todayBtn.BorderSize = 0;
-            this.todayBtn.FlatAppearance.BorderSize = 0;
-            this.todayBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.todayBtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.todayBtn.ForeColor = System.Drawing.Color.White;
-            this.todayBtn.Location = new System.Drawing.Point(715, 4);
-            this.todayBtn.Name = "todayBtn";
-            this.todayBtn.Size = new System.Drawing.Size(105, 30);
-            this.todayBtn.TabIndex = 2;
-            this.todayBtn.Text = "Today\'s Salary";
-            this.todayBtn.TextColor = System.Drawing.Color.White;
-            this.todayBtn.UseVisualStyleBackColor = false;
-            this.todayBtn.Click += new System.EventHandler(this.todayBtn_Click);
+            this.panel17.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel17.Location = new System.Drawing.Point(0, 153);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(408, 3);
+            this.panel17.TabIndex = 26;
             // 
-            // fifteenBtn
+            // panel18
             // 
-            this.fifteenBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fifteenBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.fifteenBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.fifteenBtn.BorderColor = System.Drawing.Color.Navy;
-            this.fifteenBtn.BorderRadius = 10;
-            this.fifteenBtn.BorderSize = 0;
-            this.fifteenBtn.FlatAppearance.BorderSize = 0;
-            this.fifteenBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fifteenBtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fifteenBtn.ForeColor = System.Drawing.Color.White;
-            this.fifteenBtn.Location = new System.Drawing.Point(633, 4);
-            this.fifteenBtn.Name = "fifteenBtn";
-            this.fifteenBtn.Size = new System.Drawing.Size(76, 30);
-            this.fifteenBtn.TabIndex = 2;
-            this.fifteenBtn.Text = "15 Days";
-            this.fifteenBtn.TextColor = System.Drawing.Color.White;
-            this.fifteenBtn.UseVisualStyleBackColor = false;
-            this.fifteenBtn.Click += new System.EventHandler(this.fifteenBtn_Click);
+            this.panel18.BackColor = System.Drawing.Color.White;
+            this.panel18.Controls.Add(this.label3);
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel18.Location = new System.Drawing.Point(0, 156);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(408, 36);
+            this.panel18.TabIndex = 27;
             // 
-            // thirtyBtn
+            // label3
             // 
-            this.thirtyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.thirtyBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.thirtyBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.thirtyBtn.BorderColor = System.Drawing.Color.Navy;
-            this.thirtyBtn.BorderRadius = 10;
-            this.thirtyBtn.BorderSize = 0;
-            this.thirtyBtn.FlatAppearance.BorderSize = 0;
-            this.thirtyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.thirtyBtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thirtyBtn.ForeColor = System.Drawing.Color.White;
-            this.thirtyBtn.Location = new System.Drawing.Point(551, 4);
-            this.thirtyBtn.Name = "thirtyBtn";
-            this.thirtyBtn.Size = new System.Drawing.Size(76, 30);
-            this.thirtyBtn.TabIndex = 2;
-            this.thirtyBtn.Text = "30 Days";
-            this.thirtyBtn.TextColor = System.Drawing.Color.White;
-            this.thirtyBtn.UseVisualStyleBackColor = false;
-            this.thirtyBtn.Click += new System.EventHandler(this.thirtyBtn_Click);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(10, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 19);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Month";
             // 
-            // searchEmployee
+            // panel19
             // 
-            this.searchEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.searchEmployee.BackColor = System.Drawing.Color.White;
-            this.searchEmployee.BorderColor = System.Drawing.Color.Gray;
-            this.searchEmployee.BorderFocusColor = System.Drawing.Color.Black;
-            this.searchEmployee.BorderRadius = 10;
-            this.searchEmployee.BorderSize = 1;
-            this.searchEmployee.Font = new System.Drawing.Font("Segoe UI Semibold", 8.75F, System.Drawing.FontStyle.Bold);
-            this.searchEmployee.ForeColor = System.Drawing.Color.Black;
-            this.searchEmployee.Location = new System.Drawing.Point(3, 6);
-            this.searchEmployee.Multiline = false;
-            this.searchEmployee.Name = "searchEmployee";
-            this.searchEmployee.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.searchEmployee.PasswordChar = false;
-            this.searchEmployee.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.searchEmployee.PlaceholderText = "Search employee name or id";
-            this.searchEmployee.Size = new System.Drawing.Size(248, 30);
-            this.searchEmployee.TabIndex = 1;
-            this.searchEmployee.Texts = "";
-            this.searchEmployee.UnderlinedStyle = false;
+            this.panel19.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel19.Location = new System.Drawing.Point(0, 192);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(408, 3);
+            this.panel19.TabIndex = 28;
+            // 
+            // panel20
+            // 
+            this.panel20.BackColor = System.Drawing.Color.White;
+            this.panel20.Controls.Add(this.monthList);
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel20.Location = new System.Drawing.Point(0, 195);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(408, 36);
+            this.panel20.TabIndex = 29;
+            // 
+            // monthList
+            // 
+            this.monthList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.monthList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.monthList.Font = new System.Drawing.Font("Calibri", 11F);
+            this.monthList.FormattingEnabled = true;
+            this.monthList.Location = new System.Drawing.Point(10, 5);
+            this.monthList.Name = "monthList";
+            this.monthList.Size = new System.Drawing.Size(229, 26);
+            this.monthList.TabIndex = 6;
+            // 
+            // panel21
+            // 
+            this.panel21.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel21.Location = new System.Drawing.Point(0, 231);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(408, 3);
+            this.panel21.TabIndex = 30;
+            // 
+            // panel22
+            // 
+            this.panel22.BackColor = System.Drawing.Color.White;
+            this.panel22.Controls.Add(this.label4);
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel22.Location = new System.Drawing.Point(0, 234);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(408, 36);
+            this.panel22.TabIndex = 31;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(10, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(106, 19);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Payslip period";
             // 
             // payroll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.contentList);
-            this.Controls.Add(this.description);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.profileContentPanel);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "payroll";
-            this.Size = new System.Drawing.Size(992, 775);
+            this.Size = new System.Drawing.Size(1461, 858);
             this.Load += new System.EventHandler(this.payroll_Load);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.description.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
+            this.profileContentPanel.ResumeLayout(false);
+            this.completeInfoPanel.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
+            this.generalInfoPanel.ResumeLayout(false);
+            this.generalInfoPanel.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            this.panel16.ResumeLayout(false);
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
+            this.panel20.ResumeLayout(false);
+            this.panel22.ResumeLayout(false);
+            this.panel22.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -376,22 +483,34 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private Custom.customTextBox2 searchEmployee;
-        private Custom.buttonDesign thirtyBtn;
-        private Custom.buttonDesign fifteenBtn;
-        private Custom.buttonDesign todayBtn;
-        private System.Windows.Forms.Panel description;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel profileContentPanel;
+        private System.Windows.Forms.Panel completeInfoPanel;
+        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel generalInfoPanel;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.ComboBox salaryType;
+        private Custom.buttonDesign submitBtn;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel contentList;
-        private Custom.buttonDesign generateAllBtn;
-        private System.Windows.Forms.Label label5;
-        private Custom.buttonDesign searchBtn;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.ComboBox employmentType;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.ComboBox monthList;
+        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel21;
     }
 }

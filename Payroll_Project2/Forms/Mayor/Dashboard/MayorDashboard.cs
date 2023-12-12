@@ -19,6 +19,7 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard
         private static readonly generalFunctions generalFunctions = new generalFunctions();
         private static readonly mayorDashboard mayorDashboard = new mayorDashboard();
         private static readonly string defaultImage = ConfigurationManager.AppSettings.Get("DefaultLogo");
+        private static readonly string DepartmentImagePath = ConfigurationManager.AppSettings.Get("DestinationDepartmentImagePath");
 
         public int LeaveRequestCount { get; set; }
         public int TravelRequestCount { get; set; }
@@ -173,7 +174,7 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard
 
                         if (!string.IsNullOrEmpty(row["departmentLogo"].ToString()))
                         {
-                            departmentList[i].DepartmentLogo = $"{row["departmentLogo"]}";
+                            departmentList[i].DepartmentLogo = $"{DepartmentImagePath}{row["departmentLogo"]}";
                         }
                         else
                         {

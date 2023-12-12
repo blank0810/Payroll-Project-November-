@@ -258,6 +258,7 @@
     <Compile Include="Classes and SQL Connection\Connections\Personnel\dtrClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\employeeClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\formClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Personnel\payrollClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\personnelDashboard.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\personnelProfile.cs" />
     <Compile Include="Classes and SQL Connection\logInClass.cs" />

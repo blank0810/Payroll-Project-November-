@@ -31,7 +31,9 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
         private static string _department;
         private static readonly string present = "On Time";
         private static readonly string late = "Late";
-        private static readonly string defaultImage = ConfigurationManager.AppSettings["DefaultLogo"];
+        private static readonly string defaultEmployeeImage = ConfigurationManager.AppSettings.Get("DefaultLogo");
+        private static readonly string EmployeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
+        private static readonly string EmployeeSignaturePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeSignaturePath");
         private static generalFunctions generalFunctions = new generalFunctions();
         private static dashboardClass dashboardClass = new dashboardClass();
 
@@ -338,11 +340,11 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
 
                         if (!string.IsNullOrEmpty(row["employeePicture"].ToString()))
                         {
-                            dashboardUC[i].EmployeeImage = $"{row["employeePicture"]}";
+                            dashboardUC[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                         }
                         else
                         {
-                            dashboardUC[i].EmployeeImage = defaultImage;
+                            dashboardUC[i].EmployeeImage = defaultEmployeeImage;
                         }
 
                         if (!string.IsNullOrEmpty(row["employeeJobDesc"].ToString()))
@@ -705,15 +707,14 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
                             personalInfo.SalaryRate = "----------";
                         }
 
-                        if (!string.IsNullOrEmpty(row["salaryValue"].ToString()))
+                        if (!string.IsNullOrEmpty(row["amount"].ToString()))
                         {
-                            decimal value = decimal.Parse(row["salaryValue"].ToString());
-
-                            personalInfo.SalaryValue = value;
+                            decimal value = decimal.Parse(row["amount"].ToString());
+                            personalInfo.SalaryValue = $"{value:C2}";
                         }
                         else
                         {
-                            personalInfo.SalaryValue = 0;
+                            personalInfo.SalaryValue = $"{0:C2}";
                         }
 
                         if (!string.IsNullOrEmpty(row["payrollScheduleDescription"].ToString()))
@@ -758,7 +759,7 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
 
                         if (!string.IsNullOrEmpty(row["employeeSignature"].ToString()))
                         {
-                            personalInfo.EmployeeSignature = $"{row["employeeSignature"]}";
+                            personalInfo.EmployeeSignature = $"{EmployeeSignaturePath}{row["employeeSignature"]}";
                         }
                         else
                         {
@@ -767,11 +768,11 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
 
                         if (!string.IsNullOrEmpty(row["employeePicture"].ToString()))
                         {
-                            personalInfo.EmployeeImage = $"{row["employeePicture"]}";
+                            personalInfo.EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                         }
                         else
                         {
-                            personalInfo.EmployeeImage = defaultImage;
+                            personalInfo.EmployeeImage = defaultEmployeeImage;
                         }
 
                         if (!string.IsNullOrEmpty(row["employeePassword"].ToString()))

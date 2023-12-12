@@ -192,7 +192,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.employeeName);
             this.Name = "employeeDataUC";
-            this.Size = new System.Drawing.Size(337, 202);
+            this.Size = new System.Drawing.Size(337, 206);
             this.Load += new System.EventHandler(this.employeeDataUC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.employeeImage)).EndInit();
             this.ResumeLayout(false);

@@ -12,9 +12,20 @@ namespace Payroll_Project2
 {
     public partial class loginForm : Form
     {
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x80; // WS_EX_TOOLWINDOW
+                return cp;
+            }
+        }
+
         public static int userId;
         public static string password;
         private static LogInConnection logInClass = new LogInConnection();
+
         
         public loginForm()
         {
@@ -141,7 +152,9 @@ namespace Payroll_Project2
         {
             try
             {
-                switch(role)
+                ShowInTaskbar = false;
+
+                switch (role)
                 {
                     case "Mayor":
                     case "mayor":

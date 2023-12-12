@@ -18,6 +18,7 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard.Modals
     {
         private static readonly generalFunctions generalFunctions = new generalFunctions();
         private static readonly string defaultImage = ConfigurationManager.AppSettings.Get("DefaultLogo");
+        private static readonly string EmployeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
 
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
@@ -89,7 +90,7 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard.Modals
 
                         if (!string.IsNullOrEmpty(row["employeePicture"].ToString()))
                         {
-                            employeeList[i].EmployeePicture = $"{row["employeePicture"]}";
+                            employeeList[i].EmployeePicture = $"{EmployeeImagePath}{row["employeePicture"]}";
                         }
                         else
                         {

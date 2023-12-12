@@ -134,5 +134,41 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
         }
+
+        // This function is responsible for retrieving the Head of each respective Department
+        public async Task<string> GetHeadRoleDescription(int departmentId, string userRole)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+
+                    string command = "select roleName from tbl_employmentStatusAccess " +
+                        "join tbl_department on tbl_employmentStatusAccess.departmentId = tbl_department.departmentId " +
+                        "join tbl_userRole on tbl_employmentStatusAccess.roleId = tbl_userRole.roleId " +
+                        "where roleName != @userRole and tbl_department.departmentId = @departmentId";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userRole", userRole);
+                        cmd.Parameters.AddWithValue("@departmentId", departmentId);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        if(!string.IsNullOrEmpty(result?.ToString()))
+                        {
+                            return $"{result}";
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
     }
 }

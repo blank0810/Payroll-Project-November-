@@ -20,7 +20,7 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard.Dashboard_User_Control
         private static int _userId;
         private static MayorDashboard _parent;
         private static string _userDepartment;
-        private static readonly string DefaultUserRole = "Department Head";
+        private static readonly string DefaultUserRole = "Employee";
         private static readonly string defaultImage = ConfigurationManager.AppSettings.Get("DefaultLogo");
         private static readonly mayorDashboard mayorDashboard = new mayorDashboard();
         private static readonly generalFunctions generalFunctions = new generalFunctions();
@@ -58,6 +58,16 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard.Dashboard_User_Control
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
+        private async Task<string> GetUserRole(int departmentId, string userRole)
+        {
+            try
+            {
+                string role = await mayorDashboard.GetHeadRoleDescription(departmentId, userRole);
+                return role;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         private void ErrorMessages(string message, string caption)
         {
             MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -78,163 +88,84 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard.Dashboard_User_Control
             totalEmployeeCount.DataBindings.Add("Text", this, "TotalCount");
         }
 
-        private async Task DisplayDepartmentDetails(int departmentId, string department, string userDepartment, string userRole, string departmentLogo)
+        private async Task DisplayDepartmentDetails(int departmentId, string department, string departmentLogo, string role)
         {
             try
             {
-                if(userDepartment == department)
+                string userRole = await GetUserRole(departmentId, role);
+                DataTable details = await GetDepartmentDetails(departmentId, userRole);
+                departmentDetailsModal departmentDetails = new departmentDetailsModal();
+
+                if (details != null && details.Rows.Count > 0)
                 {
-                    userRole = "Mayor";
-                    DataTable details = await GetDepartmentDetails(departmentId, userRole);
-                    departmentDetailsModal departmentDetails = new departmentDetailsModal();
-
-                    if (details != null && details.Rows.Count > 0)
-                    {
-                        foreach (DataRow row in details.Rows)
-                        {
-                            departmentDetails.DepartmentId = departmentId;
-                            departmentDetails.DepartmentName = department;
-                            departmentDetails.UserRole = userRole;
-                            departmentDetails.DepartmentLogo = departmentLogo;
-
-                            if (!string.IsNullOrEmpty(row["employeeFname"].ToString()) && !string.IsNullOrEmpty(row["employeeLname"].ToString()))
-                            {
-                                departmentDetails.DepartmentHead = $"{row["employeeFname"]} {row["employeeLname"]}";
-                            }
-                            else
-                            {
-                                departmentDetails.DepartmentHead = "--------";
-                            }
-
-                            if (!string.IsNullOrEmpty(row["nameOfSchool"].ToString()))
-                            {
-                                departmentDetails.SchoolName = $"{row["nameOfSchool"]}";
-                            }
-                            else
-                            {
-                                departmentDetails.SchoolName = "--------";
-                            }
-
-                            if (!string.IsNullOrEmpty(row["dateHired"].ToString()) && DateTime.TryParse(row["dateHired"].ToString(), 
-                                out DateTime dateHired))
-                            {
-                                departmentDetails.DateHired = $"{dateHired: MMM dd, yyyy}";
-                            }
-                            else
-                            {
-                                departmentDetails.DateHired = "--------";
-                            }
-
-                            if (!string.IsNullOrEmpty(row["employeeContactNumber"].ToString()))
-                            {
-                                departmentDetails.ContactNumber = $"{row["employeeContactNumber"]}";
-                            }
-                            else
-                            {
-                                departmentDetails.ContactNumber = "--------";
-                            }
-
-                            if (!string.IsNullOrEmpty(row["employeeJobDesc"].ToString()))
-                            {
-                                departmentDetails.JobDescription = $"{row["employeeJobDesc"]}";
-                            }
-                            else
-                            {
-                                departmentDetails.JobDescription = "--------";
-                            }
-
-                            departmentDetails.ShowDialog();
-                        }
-                    }
-                    else
+                    foreach (DataRow row in details.Rows)
                     {
                         departmentDetails.DepartmentId = departmentId;
                         departmentDetails.DepartmentName = department;
+                        departmentDetails.UserRole = userRole;
                         departmentDetails.DepartmentLogo = departmentLogo;
-                        departmentDetails.DepartmentHead = "------";
-                        departmentDetails.SchoolName = "----";
-                        departmentDetails.DateHired = "----";
-                        departmentDetails.ContactNumber = "----";
-                        departmentDetails.JobDescription = "----";
+
+                        if (!string.IsNullOrEmpty(row["employeeFname"].ToString()) && !string.IsNullOrEmpty(row["employeeLname"].ToString()))
+                        {
+                            departmentDetails.DepartmentHead = $"{row["employeeFname"]} {row["employeeLname"]}";
+                        }
+                        else
+                        {
+                            departmentDetails.DepartmentHead = "--------";
+                        }
+
+                        if (!string.IsNullOrEmpty(row["nameOfSchool"].ToString()))
+                        {
+                            departmentDetails.SchoolName = $"{row["nameOfSchool"]}";
+                        }
+                        else
+                        {
+                            departmentDetails.SchoolName = "--------";
+                        }
+
+                        if (!string.IsNullOrEmpty(row["dateHired"].ToString()) && DateTime.TryParse(row["dateHired"].ToString(),
+                            out DateTime dateHired))
+                        {
+                            departmentDetails.DateHired = $"{dateHired: MMM dd, yyyy}";
+                        }
+                        else
+                        {
+                            departmentDetails.DateHired = "--------";
+                        }
+
+                        if (!string.IsNullOrEmpty(row["employeeContactNumber"].ToString()))
+                        {
+                            departmentDetails.ContactNumber = $"{row["employeeContactNumber"]}";
+                        }
+                        else
+                        {
+                            departmentDetails.ContactNumber = "--------";
+                        }
+
+                        if (!string.IsNullOrEmpty(row["employeeJobDesc"].ToString()))
+                        {
+                            departmentDetails.JobDescription = $"{row["employeeJobDesc"]}";
+                        }
+                        else
+                        {
+                            departmentDetails.JobDescription = "--------";
+                        }
 
                         departmentDetails.ShowDialog();
                     }
                 }
                 else
                 {
-                    DataTable details = await GetDepartmentDetails(departmentId, userRole);
-                    departmentDetailsModal departmentDetails = new departmentDetailsModal();
+                    departmentDetails.DepartmentId = departmentId;
+                    departmentDetails.DepartmentName = department;
+                    departmentDetails.DepartmentLogo = departmentLogo;
+                    departmentDetails.DepartmentHead = "------";
+                    departmentDetails.SchoolName = "----";
+                    departmentDetails.DateHired = "----";
+                    departmentDetails.ContactNumber = "----";
+                    departmentDetails.JobDescription = "----";
 
-                    if (details != null && details.Rows.Count > 0)
-                    {
-                        foreach (DataRow row in details.Rows)
-                        {
-                            departmentDetails.DepartmentId = departmentId;
-                            departmentDetails.DepartmentName = department;
-                            departmentDetails.UserRole = userRole;
-                            departmentDetails.DepartmentLogo = departmentLogo;
-
-                            if (!string.IsNullOrEmpty(row["employeeFname"].ToString()) && !string.IsNullOrEmpty(row["employeeLname"].ToString()))
-                            {
-                                departmentDetails.DepartmentHead = $"{row["employeeFname"]} {row["employeeLname"]}";
-                            }
-                            else
-                            {
-                                departmentDetails.DepartmentHead = "--------";
-                            }
-
-                            if (!string.IsNullOrEmpty(row["nameOfSchool"].ToString()))
-                            {
-                                departmentDetails.SchoolName = $"{row["nameOfSchool"]}";
-                            }
-                            else
-                            {
-                                departmentDetails.SchoolName = "--------";
-                            }
-
-                            if (!string.IsNullOrEmpty(row["dateHired"].ToString()) && DateTime.TryParse(row["dateHired"].ToString(),
-                                out DateTime dateHired))
-                            {
-                                departmentDetails.DateHired = $"{dateHired: MMM dd, yyyy}";
-                            }
-                            else
-                            {
-                                departmentDetails.DateHired = "--------";
-                            }
-
-                            if (!string.IsNullOrEmpty(row["employeeContactNumber"].ToString()))
-                            {
-                                departmentDetails.ContactNumber = $"{row["employeeContactNumber"]}";
-                            }
-                            else
-                            {
-                                departmentDetails.ContactNumber = "--------";
-                            }
-
-                            if (!string.IsNullOrEmpty(row["employeeJobDesc"].ToString()))
-                            {
-                                departmentDetails.JobDescription = $"{row["employeeJobDesc"]}";
-                            }
-                            else
-                            {
-                                departmentDetails.JobDescription = "--------";
-                            }
-                        }
-                        departmentDetails.ShowDialog();
-                    }
-                    else
-                    {
-                        departmentDetails.DepartmentId = departmentId;
-                        departmentDetails.DepartmentName = department;
-                        departmentDetails.DepartmentLogo = departmentLogo;
-                        departmentDetails.DepartmentHead = "------";
-                        departmentDetails.SchoolName = "----";
-                        departmentDetails.DateHired = "----";
-                        departmentDetails.ContactNumber = "----";
-                        departmentDetails.JobDescription = "----";
-
-                        departmentDetails.ShowDialog();
-                    }
+                    departmentDetails.ShowDialog();
                 }
             }
             catch (SqlException sql)
@@ -254,7 +185,7 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard.Dashboard_User_Control
 
         private async void detailsBtn_Click(object sender, EventArgs e)
         {
-            await DisplayDepartmentDetails(DepartmentID, DepartmentName, _userDepartment, DefaultUserRole, DepartmentLogo);
+            await DisplayDepartmentDetails(DepartmentID, DepartmentName, DepartmentLogo, DefaultUserRole );
             await _parent.DisplayDepartment(_userId);
         }
     }

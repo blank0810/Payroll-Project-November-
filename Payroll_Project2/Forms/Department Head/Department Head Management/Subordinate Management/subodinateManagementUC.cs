@@ -16,6 +16,7 @@ namespace Payroll_Project2.Forms.Department_Head.Subordinate_Management
         private static string _department;
         private departmentHeadDashboard _parent;
         private static readonly string defaultImage = ConfigurationManager.AppSettings["DefaultLogo"];
+        private static readonly string EmployeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
         private static dashboardClass dashboardClass = new dashboardClass();
         private static subordinateManagementClass subordinateManagementClass = new subordinateManagementClass();
 
@@ -69,7 +70,7 @@ namespace Payroll_Project2.Forms.Department_Head.Subordinate_Management
 
                         if (!string.IsNullOrEmpty(row["employeePicture"].ToString()))
                         {
-                            employeeData[i].EmployeePicture = $"{row["employeePicture"]}";
+                            employeeData[i].EmployeePicture = $"{EmployeeImagePath}{row["employeePicture"]}";
                         }
                         else
                         {

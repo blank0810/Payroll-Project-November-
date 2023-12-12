@@ -20,6 +20,37 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
+        public async Task<bool> CheckIfEmployeeHasLog(DateTime dateLog, int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select count(*) from tbl_timeLog where dateLog = @dateLog and employeeId = @employeeId";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dateLog", dateLog);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        if (!string.IsNullOrEmpty(result?.ToString()) && int.TryParse(result.ToString(), out int count))
+                        {
+                            return count > 0;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         // This function responsible for retrieving the list of leave request needed to be approved
         public async Task<DataTable> GetLeaveRequestList(string department, int offset, int recordPerPage)
         {
@@ -287,23 +318,23 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
         }
 
         // This function is responsible for adding the leave into employee DTR
-        public async Task<bool> AddDTRLog(int employeeId, DateTime dateLog, string status, int totalHours)
+        public async Task<bool> AddLeaveSpecialPrivilegeLog(int applicationNumber, DateTime dateLog, string remarks, string description)
         {
             try
             {
                 using(SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "insert into tbl_timeLog (employeeId, dateLog, morningStatus, afternoonStatus, totalHoursWorked) " +
-                        "values (@employeeId, @dateLog, @morningStatus, @afternoonStatus, @totalHours)";
+                    string command = "insert into tbl_specialPrivilege (specialPrivilegeLogDate, applicationNumber, " +
+                        "specialPrivilegeDescription, specialPrivilegeRemarks) " +
+                        "values (@dateLog, @applicationNumber, @description, @remarks)";
 
                     using (cmd = new SqlCommand (command, conn))
                     {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
                         cmd.Parameters.AddWithValue("@dateLog", dateLog);
-                        cmd.Parameters.AddWithValue("@morningStatus", status);
-                        cmd.Parameters.AddWithValue("@afternoonStatus", status);
-                        cmd.Parameters.AddWithValue("@totalHours", totalHours);
+                        cmd.Parameters.AddWithValue("@applicationNumber", applicationNumber);
+                        cmd.Parameters.AddWithValue("@description", description);
+                        cmd.Parameters.AddWithValue("@remarks", remarks);
 
                         int result = await cmd.ExecuteNonQueryAsync();
                         return result > 0;
@@ -311,6 +342,222 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                 }
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        // This function is responsible for adding the leave into employee DTR
+        public async Task<bool> AddTravelSpecialPrivilegeLog(int orderControlNumber, DateTime dateLog, string remarks, string description)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "insert into tbl_specialPrivilege (specialPrivilegeLogDate, orderControlNumber, " +
+                        "specialPrivilegeDescription, specialPrivilegeRemarks) " +
+                        "values (@dateLog, @orderControlNumber, @description, @remarks)";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dateLog", dateLog);
+                        cmd.Parameters.AddWithValue("@orderControlNumber", orderControlNumber);
+                        cmd.Parameters.AddWithValue("@description", description);
+                        cmd.Parameters.AddWithValue("@remarks", remarks);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // This function is responsible for adding the leave into employee DTR
+        public async Task<bool> AddSlipSpecialPrivilegeLog(int slipControlNumber, DateTime dateLog, string remarks, string description)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "insert into tbl_specialPrivilege (specialPrivilegeLogDate, slipControlNumber, " +
+                        "specialPrivilegeDescription, specialPrivilegeRemarks) " +
+                        "values (@dateLog, @slipControlNumber, @description, @remarks)";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dateLog", dateLog);
+                        cmd.Parameters.AddWithValue("@slipControlNumber", slipControlNumber);
+                        cmd.Parameters.AddWithValue("@description", description);
+                        cmd.Parameters.AddWithValue("@remarks", remarks);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> UpdateExistingLeaveDTRLog(int applicationNumber, DateTime logDate, int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "update tbl_timeLog set specialPrivilegeId = (select specialPrivilegeId from tbl_specialPrivilege " +
+                        "where applicationNumber = @applicationNumber) where employeeId = @employeeId and dateLog = @logDate";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@applicationNumber", applicationNumber);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@logDate", logDate);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> UpdateExistingTravelDTRLog(int controlNumber, DateTime logDate, int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "update tbl_timeLog set specialPrivilegeId = (select specialPrivilegeId from tbl_specialPrivilege " +
+                        "where orderControlNumber = @controlNumber) where employeeId = @employeeId and dateLog = @logDate";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@applicationNumber", controlNumber);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@logDate", logDate);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> UpdateExistingSlipDTRLog(int controlNumber, DateTime logDate, int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "update tbl_timeLog set specialPrivilegeId = (select specialPrivilegeId from tbl_specialPrivilege " +
+                        "where slipControlNumber = @controlNumber) where employeeId = @employeeId and dateLog = @logDate";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@controlNumber", controlNumber);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@logDate", logDate);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> InsertNewLeaveDTRLog(int applicationNumber, DateTime logDate, int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+
+                    string command = "insert into tbl_timeLog (dateLog, employeeId, specialPrivilegeId) " +
+                        "values (@logDate, @employeeId, (select specialPrivilegeId from tbl_specialPrivilege where applicationNumber = " +
+                        "@applicationNumber))";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@applicationNumber", applicationNumber);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@logDate", logDate);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> InsertNewTravelDTRLog(int controlNumber, DateTime logDate, int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+
+                    string command = "insert into tbl_timeLog (dateLog, employeeId, specialPrivilegeId) " +
+                        "values (@logDate, @employeeId, (select specialPrivilegeId from tbl_specialPrivilege " +
+                        "where orderControlNumber = @controlNumber))";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@controlNumber", controlNumber);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@logDate", logDate);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> InsertNewSlipDTRLog(int controlNumber, DateTime logDate, int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+
+                    string command = "insert into tbl_timeLog (dateLog, employeeId, specialPrivilegeId) " +
+                        "values (@logDate, @employeeId, (select specialPrivilegeId from tbl_specialPrivilege " +
+                        "where slipControlNumber = @controlNumber))";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@controlNumber", controlNumber);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@logDate", logDate);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
         }
     }
 }

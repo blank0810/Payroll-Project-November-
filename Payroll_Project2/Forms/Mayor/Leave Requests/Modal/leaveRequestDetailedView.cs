@@ -15,6 +15,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Payroll_Project2.Forms.Mayor.Leave_Requests.Modal
 {
@@ -77,6 +78,53 @@ namespace Payroll_Project2.Forms.Mayor.Leave_Requests.Modal
 
         #region Function for getters and add
 
+        private async Task<bool> CheckLog(DateTime dateLog, int employeeId)
+        {
+            try
+            {
+                bool checkLog = await formRequestClass.CheckIfEmployeeHasLog(dateLog, employeeId);
+
+                if (!checkLog)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertLeaveSpecialPrivilegeLog(int applicationNumber, DateTime dateLog, string remarks, 
+            string description)
+        {
+            try
+            {
+                bool insertLog = await formRequestClass.AddLeaveSpecialPrivilegeLog(applicationNumber, dateLog, remarks, description);
+                return insertLog;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertOrUpdateDTR(int applicationNumber, DateTime dateLog, int employeeId, bool hasLogOrNot)
+        {
+            try
+            {
+                if (hasLogOrNot)
+                {
+                    bool update = await formRequestClass.UpdateExistingLeaveDTRLog(applicationNumber, dateLog, employeeId);
+                    return update;
+                }
+                else
+                {
+                    bool insert = await formRequestClass.InsertNewLeaveDTRLog(applicationNumber, dateLog, employeeId);
+                    return insert;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         private async Task<bool> RecommendLeaveRequest(int applicationNumber, bool isRecommend, string recommendedBy, DateTime dateRecommended)
         {
             try
@@ -105,16 +153,6 @@ namespace Payroll_Project2.Forms.Mayor.Leave_Requests.Modal
             {
                 bool updateCredits = await formRequestClass.UpdateEmployeeLeaveCredits(employeeId, leaveType, newCredits);
                 return updateCredits;
-            }
-            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
-        }
-
-        private async Task<bool> InsertDTRLog(int employeeId, DateTime logDate, string status, int totalHours)
-        {
-            try
-            {
-                bool insertDtr = await formRequestClass.AddDTRLog(employeeId, logDate, status, totalHours);
-                return insertDtr;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
@@ -383,7 +421,30 @@ namespace Payroll_Project2.Forms.Mayor.Leave_Requests.Modal
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> SubmitDTRLog(int employeeId, string status, string startDate, string endDate, int totalHours, bool isApproved)
+        private async Task<bool> InsertSpecialPrivilegeLog(DateTime logDate, int applicationNumber, string startDate, string endDate, 
+            string leaveType)
+        {
+            try
+            {
+                string description = $"{leaveType} starting from {startDate} to {endDate}";
+                string remarks = $"{leaveType} Effective from {startDate} - {endDate}";
+                bool specialPrivilege = await InsertLeaveSpecialPrivilegeLog(applicationNumber, logDate, remarks, description);
+
+                if (specialPrivilege)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessage("There is an error encountered when inserting to the Special Privilege Log. Process is terminated.",
+                        "Special Privilege Log Error");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> SubmitDTRLog(int employeeId, int applicationNumber, string startDate, string endDate, bool isApproved)
         {
             try
             {
@@ -397,7 +458,9 @@ namespace Payroll_Project2.Forms.Mayor.Leave_Requests.Modal
                 {
                     for (DateTime logDate = startingDate; logDate <= endingDate; logDate = endingDate.AddDays(1))
                     {
-                        bool insertDtr = await InsertDTRLog(employeeId, logDate, status, totalHours);
+                        bool hasLog = await CheckLog(logDate, employeeId);
+
+                        bool insertDtr = await InsertOrUpdateDTR(applicationNumber, logDate, employeeId, hasLog);
 
                         if (!insertDtr)
                         {
@@ -408,7 +471,6 @@ namespace Payroll_Project2.Forms.Mayor.Leave_Requests.Modal
                             return false;
                         }
                     }
-
                     return true;
                 }
                 else
@@ -504,7 +566,11 @@ namespace Payroll_Project2.Forms.Mayor.Leave_Requests.Modal
                 if (!deductCredit)
                     return;
 
-                bool dtrLog = await SubmitDTRLog(EmployeeID, LeaveStatus, LeaveStartDate, LeaveEndDate, TotalHours, IsApproved);
+                bool specialPrivilege = await InsertSpecialPrivilegeLog(DateTime.Today, ApplicationNumber, LeaveStartDate, LeaveEndDate, LeaveType);
+                if (!specialPrivilege)
+                    return;
+
+                bool dtrLog = await SubmitDTRLog(EmployeeID,ApplicationNumber, LeaveStartDate, LeaveEndDate, IsApproved);
                 if (!dtrLog)
                     return;
 

@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -41,6 +42,56 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
             _userId = userId;
             _parent = parent;
             _userDepartment = userDepartment;
+        }
+
+        private async Task<bool> CheckLog(DateTime dateLog, int employeeId)
+        {
+            try
+            {
+                bool checkLog = await formRequestClass.CheckIfEmployeeHasLog(dateLog, employeeId);
+
+                if (!checkLog)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertTravelSpecialPrivilegeLog(int controlNumber, DateTime dateLog, string remarks,
+            string description)
+        {
+            try
+            {
+                bool insertLog = await formRequestClass.AddTravelSpecialPrivilegeLog(controlNumber, dateLog, remarks, description);
+                return insertLog;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertOrUpdateDTR(int controlNumber, DateTime dateLog, int employeeId, bool hasLogOrNot)
+        {
+            try
+            {
+                if (hasLogOrNot)
+                {
+                    bool update = await formRequestClass.UpdateExistingTravelDTRLog(controlNumber, dateLog, employeeId);
+                    return update;
+                }
+                else
+                {
+                    bool insert = await formRequestClass.InsertNewTravelDTRLog(controlNumber, dateLog, employeeId);
+                    return insert;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
         }
 
         private async Task<DataTable> GetTravelDetails(int controlNumber)
@@ -98,17 +149,6 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
                 return approve;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
-        }
-
-        private async Task<bool> InsertDTRLog(int employeeId, DateTime logDate, string status, int totalHours)
-        {
-            try
-            {
-                bool insertDtr = await formRequestClass.AddDTRLog(employeeId, logDate, status, totalHours);
-                return insertDtr;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
         }
 
         // This function serves as an indicator if the logs are recorded or not this for the form logs
@@ -326,13 +366,39 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> SubmitDTRLog(int employeeId, string status, string logDate, int totalHours)
+        private async Task<bool> InsertSpecialPrivilegeLog(DateTime logDate, int controlNumber, string dateFiled, string departure)
         {
             try
             {
-                if(!string.IsNullOrEmpty(logDate) && DateTime.TryParse(logDate, out DateTime parsedDate))
+                string description = $"Travel Order enforce in date: {dateDeparture}";
+                string remarks = $"Travel Order Filed at {dateFiled}";
+                bool specialPrivilege = await InsertTravelSpecialPrivilegeLog(controlNumber, logDate, remarks, description);
+
+                if (specialPrivilege)
                 {
-                    bool insertDtr = await InsertDTRLog(employeeId, parsedDate, status, totalHours);
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages("There is an error encountered when inserting to the Special Privilege Log. Process is terminated.",
+                        "Special Privilege Log Error");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> SubmitDTRLog(int employeeId, string logDate, int controlNumber)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(logDate))
+                {
+                    DateTime parsedDate = DateTime.Parse(logDate);
+                    bool hasLog = await CheckLog(parsedDate, employeeId);
+
+                    bool insertDtr = await InsertOrUpdateDTR(controlNumber, parsedDate, employeeId, hasLog);
 
                     if (insertDtr)
                     {
@@ -428,7 +494,11 @@ namespace Payroll_Project2.Forms.Mayor.Travel_Order_Requests.Travel_Order_Reques
                 if (!approve)
                     return;
 
-                bool dtr = await SubmitDTRLog(EmployeeId, TravelStatus, DateDeparture, TotalHours);
+                bool specialPrivilege = await InsertSpecialPrivilegeLog(DateTime.Today, ControlNumber, DateFiled, DateDeparture);
+                if (!specialPrivilege)
+                    return;
+
+                bool dtr = await SubmitDTRLog(EmployeeId, DateDeparture, ControlNumber);
                 if (!dtr)
                     return;
 

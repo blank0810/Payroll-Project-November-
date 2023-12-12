@@ -56,6 +56,56 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Modals
             _userDepartment = userDepartment;
         }
 
+        private async Task<bool> CheckLog(DateTime dateLog, int employeeId)
+        {
+            try
+            {
+                bool checkLog = await formRequestClass.CheckIfEmployeeHasLog(dateLog, employeeId);
+
+                if (!checkLog)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertSlipSpecialPrivilegeLog(int controlNumber, DateTime dateLog, string remarks,
+            string description)
+        {
+            try
+            {
+                bool insertLog = await formRequestClass.AddSlipSpecialPrivilegeLog(controlNumber, dateLog, remarks, description);
+                return insertLog;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertOrUpdateDTR(int controlNumber, DateTime dateLog, int employeeId, bool hasLogOrNot)
+        {
+            try
+            {
+                if (hasLogOrNot)
+                {
+                    bool update = await formRequestClass.UpdateExistingSlipDTRLog(controlNumber, dateLog, employeeId);
+                    return update;
+                }
+                else
+                {
+                    bool insert = await formRequestClass.InsertNewSlipDTRLog(controlNumber, dateLog, employeeId);
+                    return insert;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         private async Task<TimeSpan> GetEmployeeSlipHours(int employeeId, int month, int year)
         {
             try
@@ -95,17 +145,6 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Modals
             {
                 bool deduct = await formRequestClass.UpdateEmployeeSlipHours(employeeId, month, year, newHours);
                 return deduct;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        private async Task<bool> InsertDTRLog(int employeeId, DateTime logDate, string status, int totalHours)
-        {
-            try
-            {
-                bool insertDtr = await formRequestClass.AddDTRLog(employeeId, logDate, status, totalHours);
-                return insertDtr;
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
@@ -301,14 +340,40 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Modals
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> SubmitDTRLog(int employeeId, string status, string logDate, int totalHours)
+        private async Task<bool> InsertSpecialPrivilegeLog(DateTime logDate, int controlNumber, string startDate, string destination, 
+            string startingTime, string endTime)
+        {
+            try
+            {
+                string description = $"Usage of pass slip for {destination} at {startDate}";
+                string remarks = $" Time Coverage: {startingTime} - {endTime}";
+                bool specialPrivilege = await InsertSlipSpecialPrivilegeLog(controlNumber, logDate, remarks, description);
+
+                if (specialPrivilege)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages("There is an error encountered when inserting to the Special Privilege Log. Process is terminated.",
+                        "Special Privilege Log Error");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> SubmitDTRLog(int employeeId, string logDate, int controlNumber)
         {
             try
             {
                 if (!string.IsNullOrEmpty(logDate))
                 {
                     DateTime parsedDate = DateTime.Parse(logDate);
-                    bool insertDtr = await InsertDTRLog(employeeId, parsedDate, status, totalHours);
+                    bool hasLog = await CheckLog(parsedDate, employeeId);
+
+                    bool insertDtr = await InsertOrUpdateDTR(controlNumber, parsedDate, employeeId, hasLog);
 
                     if (insertDtr)
                     {
@@ -404,7 +469,12 @@ namespace Payroll_Project2.Forms.Mayor.Pass_Slip_Requests.Modals
                 if (!deduct)
                     return;
 
-                bool dtr = await SubmitDTRLog(EmployeeId, SlipStatus, SlipDate, TotalHours);
+                bool specialPrivilege = await InsertSpecialPrivilegeLog(DateTime.Today, ControlNumber, SlipDate, Destination, 
+                    StartingTime, EndingTime);
+                if (!specialPrivilege)
+                    return;
+
+                bool dtr = await SubmitDTRLog(EmployeeId, SlipDate, ControlNumber);
                 if (!dtr)
                     return;
 

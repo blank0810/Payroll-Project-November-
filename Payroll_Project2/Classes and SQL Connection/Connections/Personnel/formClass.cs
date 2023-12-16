@@ -701,7 +701,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         public async Task<bool> AddLeave(int applicationNumber, int employeeId, DateTime dateFile, string leaveType, string formType, string leaveDetails,
             bool isRecommended, string recommendedBy, DateTime dateRecommended, bool isCertified, string certifiedBy, 
             DateTime certificationDate, string statusDescription, DateTime leaveStartDate, DateTime leaveEndDate, int numberOfDays, 
-            float creditsUsed)
+            decimal creditsUsed)
         {
             try
             {

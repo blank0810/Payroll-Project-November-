@@ -205,6 +205,7 @@ namespace Payroll_Project2
             this.ClientSize = new System.Drawing.Size(1168, 710);
             this.Controls.Add(this.panel1);
             this.Name = "loginForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Log In Form";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();

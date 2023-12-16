@@ -158,7 +158,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
 
                 if (applicationNumber >= 0)
                 {
-                    return applicationNumber;
+                    return ++applicationNumber;
                 }
                 else
                 {
@@ -178,7 +178,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
 
                 if (applicationNumber >= 0)
                 {
-                    return applicationNumber;
+                    return ++applicationNumber;
                 }
                 else
                 {
@@ -198,7 +198,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
 
                 if (applicationNumber >= 0)
                 {
-                    return applicationNumber;
+                    return ++applicationNumber;
                 }
                 else
                 {
@@ -1239,17 +1239,19 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
             leaveManagementSubPanel.Hide();
             travelOrderSubPanel.Hide();
             passSlipSubPanel.Hide();
+            titleLabel.Text = createPayrollBtn.Text;
             contentPanel.Controls.Clear();
+            payroll payrollUC = new payroll(userId, this);
 
-            if (!contentPanel.Controls.Contains(payroll.Instance))
+            if (!contentPanel.Controls.Contains(payrollUC))
             {
-                contentPanel.Controls.Add(payroll.Instance);
-                payroll.Instance.Dock = DockStyle.Fill;
-                payroll.Instance.BringToFront();
+                contentPanel.Controls.Add(payrollUC);
+                payrollUC.Dock = DockStyle.Fill;
+                payrollUC.BringToFront();
             }
             else
             {
-                payroll.Instance.BringToFront();
+                payrollUC.BringToFront();
             }
         }
 

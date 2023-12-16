@@ -111,6 +111,7 @@
             this.generateBtn.Text = "Generate Payslip";
             this.generateBtn.TextColor = System.Drawing.Color.White;
             this.generateBtn.UseVisualStyleBackColor = false;
+            this.generateBtn.Click += new System.EventHandler(this.generateBtn_Click);
             // 
             // employeeList
             // 
@@ -124,6 +125,7 @@
             this.Controls.Add(this.empName);
             this.Name = "employeeList";
             this.Size = new System.Drawing.Size(966, 46);
+            this.Load += new System.EventHandler(this.employeeList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.empPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

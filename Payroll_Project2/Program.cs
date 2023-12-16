@@ -1,4 +1,5 @@
 ﻿using Payroll_Project2.Forms.Employee.Dashboard;
+using Payroll_Project2.Forms.Personnel.Payroll.Modal;
 using System;
 using System.Windows.Forms;
 
@@ -17,6 +18,8 @@ namespace Payroll_Project2
 
             // This is the log-in form also the personnel dashboard
             Application.Run(new loginForm());
+
+            //Application.Run(new payslip());
 
             // This is the system admin form
             //Application.Run(new systemAdminDashboard());

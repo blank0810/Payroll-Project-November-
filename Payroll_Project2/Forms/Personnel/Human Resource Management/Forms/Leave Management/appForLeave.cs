@@ -47,10 +47,10 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
         private static bool IsCertified { get; set; }
         public DateTime CertifiedDate { get; set; }
         private string CertifiedBy { get; set; }
-        private float VacationLeaveCreditsNumber { get; set; }
-        private float SickLeaveCreditsNumber { get; set; }
+        private decimal VacationLeaveCreditsNumber { get; set; }
+        private decimal SickLeaveCreditsNumber { get; set; }
         private int NumberOfDaysLeave { get; set; }
-        private float CreditsUsed { get; set; }
+        private decimal CreditsUsed { get; set; }
         private DateTime StartingLeaveDate { get; set; }
         private DateTime EndingLeaveDate { get; set; }
 
@@ -81,10 +81,10 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
 
         // This function responsible for retrieving the indicator if the leave request is being submitted or not
         // By forwarding true or false
-        private async Task<bool> AddNewLeave(int applicationNumber, int employeeId, DateTime dateFile, string leaveType, string formType, 
-            string leaveDetails, bool isRecommended, string recommendedBy, DateTime dateRecommended, 
-            bool isCertified, string certifiedBy, DateTime certificationDate, string statusDescription, DateTime leaveStartDate, 
-            DateTime leaveEndDate, int numberOfDays, float creditsUsed)
+        private async Task<bool> AddNewLeave(int applicationNumber, int employeeId, DateTime dateFile, string leaveType, string formType,
+            string leaveDetails, bool isRecommended, string recommendedBy, DateTime dateRecommended,
+            bool isCertified, string certifiedBy, DateTime certificationDate, string statusDescription, DateTime leaveStartDate,
+            DateTime leaveEndDate, int numberOfDays, decimal creditsUsed)
         {
             try
             {
@@ -147,11 +147,11 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
-        private async Task<float> CheckLeaveCredits(int employeeId, string leaveType, int year)
+        private async Task<decimal> CheckLeaveCredits(int employeeId, string leaveType, int year)
         {
             try
             {
-                float getLeaveCredits = await generalFunctions.GetLeaveCredits(employeeId, leaveType, year);
+                decimal getLeaveCredits = await generalFunctions.GetLeaveCredits(employeeId, leaveType, year);
 
                 return getLeaveCredits;
             }
@@ -160,7 +160,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
         }
 
         private async Task<bool> AddleaveRequest(int applicationNumber, int employeeId, DateTime dateFile, string leaveType, string formType,
-            string leaveDetails, int numberOfDays, DateTime leaveStartDate, DateTime leaveEndDate, float creditsUsed, string status)
+            string leaveDetails, int numberOfDays, DateTime leaveStartDate, DateTime leaveEndDate, decimal creditsUsed, string status)
         {
             try
             {
@@ -204,6 +204,8 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
                 typeOfLeave.DataSource = leaveTypeCollection;
                 typeOfLeave.SelectedIndex = -1;
 
+                startingDate.Value = DateTime.Today;
+                endingDate.Value = DateTime.Today;
                 personnel.DataBindings.Add("Text", this, "PersonnelName");
                 applicationNumber.DataBindings.Add("Text", this, "ApplicationNumber");
                 dateFiled.DataBindings.Add("Value", this, "DateFiled");
@@ -514,7 +516,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
 
         private void sickLeaveCredits_TextChanged(object sender, EventArgs e)
         {
-            if (float.TryParse(sickLeaveCredits.Text, out float sickLeave))
+            if (decimal.TryParse(sickLeaveCredits.Text, out decimal sickLeave))
             {
                 SickLeaveCreditsNumber = sickLeave;
             }
@@ -522,7 +524,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
 
         private void vacationLeaveCredits_TextChanged(object sender, EventArgs e)
         {
-            if (float.TryParse(vacationLeaveCredits.Text, out float vacationLeave))
+            if (decimal.TryParse(vacationLeaveCredits.Text, out decimal vacationLeave))
             {
                 VacationLeaveCreditsNumber = vacationLeave;
             }
@@ -547,7 +549,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
 
         private void sickLeaveDeduct_TextChanged(object sender, EventArgs e)
         {
-            if (float.TryParse(sickLeaveDeduct.Text, out float sickLeaveDeduction) && sickLeaveDeduct.Text != "0")
+            if (decimal.TryParse(sickLeaveDeduct.Text, out decimal sickLeaveDeduction) && sickLeaveDeduct.Text != "0")
             {
                 CreditsUsed = sickLeaveDeduction;
             }
@@ -555,7 +557,7 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
 
         private void vacationLeaveDeduct_TextChanged(object sender, EventArgs e)
         {
-            if (float.TryParse(vacationLeaveDeduct.Text, out float vacationLeave) && vacationLeaveDeduct.Text != "0")
+            if (decimal.TryParse(vacationLeaveDeduct.Text, out decimal vacationLeave) && vacationLeaveDeduct.Text != "0")
             {
                 CreditsUsed = vacationLeave;
             }
@@ -589,16 +591,16 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
         {
             if (LeaveType == "Sick Leave")
             {
-                float newSickLeave = SickLeaveCreditsNumber - CreditsUsed;
-                float newVacationLeave = VacationLeaveCreditsNumber - 0;
+                decimal newSickLeave = SickLeaveCreditsNumber - CreditsUsed;
+                decimal newVacationLeave = VacationLeaveCreditsNumber - 0;
 
                 vacationLeaveBalance.Text = $"{newVacationLeave}";
                 sickLeaveBalance.Text = $"{newSickLeave}";
             }
             else
             {
-                float newSickLeave = SickLeaveCreditsNumber - 0;
-                float newVacationLeave = VacationLeaveCreditsNumber - CreditsUsed;
+                decimal newSickLeave = SickLeaveCreditsNumber - 0;
+                decimal newVacationLeave = VacationLeaveCreditsNumber - CreditsUsed;
 
                 vacationLeaveBalance.Text = $"{newVacationLeave}";
                 sickLeaveBalance.Text = $"{newSickLeave}";
@@ -698,11 +700,11 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> CheckCredits(int employeeId, string leaveType, int year, float numberOfCredits)
+        private async Task<bool> CheckCredits(int employeeId, string leaveType, int year, decimal numberOfCredits)
         {
             try
             {
-                float getCredits = await CheckLeaveCredits(employeeId, leaveType, year);
+                decimal getCredits = await CheckLeaveCredits(employeeId, leaveType, year);
 
                 if (getCredits > 0 && numberOfCredits <= getCredits)
                 {
@@ -822,7 +824,6 @@ namespace Payroll_Project2.Forms.Personnel.Forms.Create_Form_Contents
         {
             try
             {
-                MessageBox.Show($"{DateFiled} {CertifiedDate} {StartingLeaveDate} {EndingLeaveDate}");
                 if (!IsValidate())
                     return;
 

@@ -83,11 +83,11 @@ namespace Payroll_Project2.Forms.Department_Head.Leave_Management
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
-        private async Task<float> GetLeaveCredits(int employeeId, string leaveType, int year)
+        private async Task<decimal> GetLeaveCredits(int employeeId, string leaveType, int year)
         {
             try
             {
-                float credits = await generalFunctions.GetLeaveCredits(employeeId, leaveType, year);
+                decimal credits = await generalFunctions.GetLeaveCredits(employeeId, leaveType, year);
                 return credits;
             }
             catch (SqlException sql) { throw sql;} catch (Exception ex) { throw ex; }

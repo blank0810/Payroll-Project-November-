@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.employmentPanel = new System.Windows.Forms.Panel();
+            this.dateRetired = new Payroll_Project2.Custom.customDateTime();
             this.retiredLabel = new System.Windows.Forms.Label();
             this.retiredWarning = new System.Windows.Forms.Label();
             this.salaryWarning = new System.Windows.Forms.Label();
@@ -39,12 +40,20 @@
             this.userRole = new System.Windows.Forms.ComboBox();
             this.accessLabel = new System.Windows.Forms.Label();
             this.salaryRateValueLabel = new System.Windows.Forms.Label();
+            this.customPanel3 = new Payroll_Project2.Custom.customPanel();
+            this.afternoonShiftLabel = new System.Windows.Forms.Label();
+            this.customPanel2 = new Payroll_Project2.Custom.customPanel();
+            this.morningShiftLabel = new System.Windows.Forms.Label();
+            this.customPanel1 = new Payroll_Project2.Custom.customPanel();
+            this.employeeID = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.scheduleBox = new System.Windows.Forms.ComboBox();
             this.salaryRate = new System.Windows.Forms.ComboBox();
             this.employmentStatus = new System.Windows.Forms.ComboBox();
+            this.jobDescriptionBox = new Payroll_Project2.Custom.customTextBox2();
             this.departmentName = new System.Windows.Forms.ComboBox();
+            this.dateHire = new Payroll_Project2.Custom.customDateTime();
             this.label2 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
@@ -55,12 +64,18 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
+            this.salaryRateValueTextBox = new Payroll_Project2.Custom.customTextBox2();
             this.accountPanel = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.infoLabel = new System.Windows.Forms.Label();
             this.accountCheck = new System.Windows.Forms.CheckBox();
             this.signatureImage = new System.Windows.Forms.PictureBox();
+            this.signatureImageBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.employeeImageBtn = new Payroll_Project2.Custom.buttonDesign();
             this.employeeImage = new System.Windows.Forms.PictureBox();
+            this.lastNameTextBox = new Payroll_Project2.Custom.customTextBox2();
+            this.middleNameTextBox = new Payroll_Project2.Custom.customTextBox2();
+            this.firstNameTextBox = new Payroll_Project2.Custom.customTextBox2();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -77,6 +92,9 @@
             this.benefitLabel = new System.Windows.Forms.Label();
             this.boundaryPanel0 = new System.Windows.Forms.Panel();
             this.addPanel0 = new System.Windows.Forms.Panel();
+            this.addBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.employerShareValue = new Payroll_Project2.Custom.customTextBox2();
+            this.personalShareValue = new Payroll_Project2.Custom.customTextBox2();
             this.label43 = new System.Windows.Forms.Label();
             this.benefitName = new System.Windows.Forms.ComboBox();
             this.valueLabel0 = new System.Windows.Forms.Label();
@@ -96,6 +114,9 @@
             this.panel11 = new System.Windows.Forms.Panel();
             this.label21 = new System.Windows.Forms.Label();
             this.educationPanel = new System.Windows.Forms.Panel();
+            this.courseBox = new Payroll_Project2.Custom.customTextBox2();
+            this.schoolName = new Payroll_Project2.Custom.customTextBox2();
+            this.schoolAddressBox = new Payroll_Project2.Custom.customTextBox2();
             this.educationalAttainment = new System.Windows.Forms.ComboBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
@@ -105,12 +126,20 @@
             this.label36 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.personalPanel = new System.Windows.Forms.Panel();
+            this.emailAddressBox = new Payroll_Project2.Custom.customTextBox2();
             this.emailLabel = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.civilStatus = new System.Windows.Forms.ComboBox();
             this.sex = new System.Windows.Forms.ComboBox();
+            this.contactNumberBox = new Payroll_Project2.Custom.customTextBox2();
+            this.nationalityBox = new Payroll_Project2.Custom.customTextBox2();
+            this.zipCode = new Payroll_Project2.Custom.customTextBox2();
+            this.provinceBox = new Payroll_Project2.Custom.customTextBox2();
+            this.municipalityBox = new Payroll_Project2.Custom.customTextBox2();
+            this.barangayBox = new Payroll_Project2.Custom.customTextBox2();
+            this.dateOfBirthPicker = new Payroll_Project2.Custom.customDateTime();
             this.label16 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -124,54 +153,28 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.previousBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.submitBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.nextBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.benefitsBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.educationBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.personalBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.employmentBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.accountBtn = new Payroll_Project2.Custom.buttonDesign();
             this.salaryValueError = new System.Windows.Forms.ErrorProvider(this.components);
             this.birthdayError = new System.Windows.Forms.ErrorProvider(this.components);
             this.mobileNumberError = new System.Windows.Forms.ErrorProvider(this.components);
             this.barangayError = new System.Windows.Forms.ErrorProvider(this.components);
             this.municipalityError = new System.Windows.Forms.ErrorProvider(this.components);
             this.provinceError = new System.Windows.Forms.ErrorProvider(this.components);
-            this.addBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.employerShareValue = new Payroll_Project2.Custom.customTextBox2();
-            this.personalShareValue = new Payroll_Project2.Custom.customTextBox2();
-            this.courseBox = new Payroll_Project2.Custom.customTextBox2();
-            this.schoolName = new Payroll_Project2.Custom.customTextBox2();
-            this.schoolAddressBox = new Payroll_Project2.Custom.customTextBox2();
-            this.emailAddressBox = new Payroll_Project2.Custom.customTextBox2();
-            this.contactNumberBox = new Payroll_Project2.Custom.customTextBox2();
-            this.nationalityBox = new Payroll_Project2.Custom.customTextBox2();
-            this.zipCode = new Payroll_Project2.Custom.customTextBox2();
-            this.provinceBox = new Payroll_Project2.Custom.customTextBox2();
-            this.municipalityBox = new Payroll_Project2.Custom.customTextBox2();
-            this.barangayBox = new Payroll_Project2.Custom.customTextBox2();
-            this.dateOfBirthPicker = new Payroll_Project2.Custom.customDateTime();
-            this.dateRetired = new Payroll_Project2.Custom.customDateTime();
-            this.customPanel3 = new Payroll_Project2.Custom.customPanel();
-            this.afternoonShiftLabel = new System.Windows.Forms.Label();
-            this.customPanel2 = new Payroll_Project2.Custom.customPanel();
-            this.morningShiftLabel = new System.Windows.Forms.Label();
-            this.customPanel1 = new Payroll_Project2.Custom.customPanel();
-            this.employeeID = new System.Windows.Forms.Label();
-            this.jobDescriptionBox = new Payroll_Project2.Custom.customTextBox2();
-            this.dateHire = new Payroll_Project2.Custom.customDateTime();
-            this.salaryRateValueTextBox = new Payroll_Project2.Custom.customTextBox2();
-            this.signatureImageBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.employeeImageBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.lastNameTextBox = new Payroll_Project2.Custom.customTextBox2();
-            this.middleNameTextBox = new Payroll_Project2.Custom.customTextBox2();
-            this.firstNameTextBox = new Payroll_Project2.Custom.customTextBox2();
-            this.previousBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.submitBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.nextBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.benefitsBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.educationBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.personalBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.employmentBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.accountBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel1.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.employmentPanel.SuspendLayout();
+            this.customPanel3.SuspendLayout();
+            this.customPanel2.SuspendLayout();
+            this.customPanel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.accountPanel.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -197,9 +200,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.barangayError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.municipalityError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.provinceError)).BeginInit();
-            this.customPanel3.SuspendLayout();
-            this.customPanel2.SuspendLayout();
-            this.customPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -266,6 +266,25 @@
             this.employmentPanel.Name = "employmentPanel";
             this.employmentPanel.Size = new System.Drawing.Size(1133, 581);
             this.employmentPanel.TabIndex = 17;
+            // 
+            // dateRetired
+            // 
+            this.dateRetired.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dateRetired.BorderColor = System.Drawing.Color.DimGray;
+            this.dateRetired.BorderSize = 1;
+            this.dateRetired.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.dateRetired.CustomFormat = "MMM dd, yyyy";
+            this.dateRetired.Enabled = false;
+            this.dateRetired.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateRetired.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateRetired.Location = new System.Drawing.Point(606, 216);
+            this.dateRetired.MinimumSize = new System.Drawing.Size(4, 35);
+            this.dateRetired.Name = "dateRetired";
+            this.dateRetired.Size = new System.Drawing.Size(258, 35);
+            this.dateRetired.SkinColor = System.Drawing.Color.White;
+            this.dateRetired.TabIndex = 23;
+            this.dateRetired.TextColor = System.Drawing.Color.Black;
+            this.dateRetired.ValueChanged += new System.EventHandler(this.dateRetired_ValueChanged);
             // 
             // retiredLabel
             // 
@@ -334,7 +353,7 @@
             this.userRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.userRole.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
             this.userRole.FormattingEnabled = true;
-            this.userRole.Location = new System.Drawing.Point(606, 85);
+            this.userRole.Location = new System.Drawing.Point(606, 86);
             this.userRole.Name = "userRole";
             this.userRole.Size = new System.Drawing.Size(258, 26);
             this.userRole.TabIndex = 21;
@@ -364,6 +383,84 @@
             this.salaryRateValueLabel.Visible = false;
             this.salaryRateValueLabel.TextChanged += new System.EventHandler(this.salaryRateValueLabel_TextChanged);
             // 
+            // customPanel3
+            // 
+            this.customPanel3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customPanel3.BackColor = System.Drawing.Color.White;
+            this.customPanel3.BorderRadius = 0;
+            this.customPanel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel3.Controls.Add(this.afternoonShiftLabel);
+            this.customPanel3.ForeColor = System.Drawing.Color.Black;
+            this.customPanel3.GradientAngle = 90F;
+            this.customPanel3.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel3.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel3.Location = new System.Drawing.Point(221, 123);
+            this.customPanel3.Name = "customPanel3";
+            this.customPanel3.Size = new System.Drawing.Size(226, 32);
+            this.customPanel3.TabIndex = 18;
+            // 
+            // afternoonShiftLabel
+            // 
+            this.afternoonShiftLabel.AutoSize = true;
+            this.afternoonShiftLabel.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.afternoonShiftLabel.Location = new System.Drawing.Point(4, 6);
+            this.afternoonShiftLabel.Name = "afternoonShiftLabel";
+            this.afternoonShiftLabel.Size = new System.Drawing.Size(113, 18);
+            this.afternoonShiftLabel.TabIndex = 1;
+            this.afternoonShiftLabel.Text = "{Afternoon shift}";
+            // 
+            // customPanel2
+            // 
+            this.customPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customPanel2.BackColor = System.Drawing.Color.White;
+            this.customPanel2.BorderRadius = 0;
+            this.customPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel2.Controls.Add(this.morningShiftLabel);
+            this.customPanel2.ForeColor = System.Drawing.Color.Black;
+            this.customPanel2.GradientAngle = 90F;
+            this.customPanel2.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel2.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel2.Location = new System.Drawing.Point(221, 89);
+            this.customPanel2.Name = "customPanel2";
+            this.customPanel2.Size = new System.Drawing.Size(226, 32);
+            this.customPanel2.TabIndex = 18;
+            // 
+            // morningShiftLabel
+            // 
+            this.morningShiftLabel.AutoSize = true;
+            this.morningShiftLabel.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.morningShiftLabel.Location = new System.Drawing.Point(4, 6);
+            this.morningShiftLabel.Name = "morningShiftLabel";
+            this.morningShiftLabel.Size = new System.Drawing.Size(102, 18);
+            this.morningShiftLabel.TabIndex = 1;
+            this.morningShiftLabel.Text = "{Morning shift}";
+            // 
+            // customPanel1
+            // 
+            this.customPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customPanel1.BackColor = System.Drawing.Color.White;
+            this.customPanel1.BorderRadius = 0;
+            this.customPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customPanel1.Controls.Add(this.employeeID);
+            this.customPanel1.ForeColor = System.Drawing.Color.Black;
+            this.customPanel1.GradientAngle = 90F;
+            this.customPanel1.GradientBottomColor = System.Drawing.Color.White;
+            this.customPanel1.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel1.Location = new System.Drawing.Point(221, 52);
+            this.customPanel1.Name = "customPanel1";
+            this.customPanel1.Size = new System.Drawing.Size(226, 32);
+            this.customPanel1.TabIndex = 18;
+            // 
+            // employeeID
+            // 
+            this.employeeID.AutoSize = true;
+            this.employeeID.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.employeeID.Location = new System.Drawing.Point(4, 6);
+            this.employeeID.Name = "employeeID";
+            this.employeeID.Size = new System.Drawing.Size(96, 18);
+            this.employeeID.TabIndex = 0;
+            this.employeeID.Text = "{Employee ID}";
+            // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.White;
@@ -390,14 +487,14 @@
             // 
             this.scheduleBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.scheduleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.scheduleBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scheduleBox.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scheduleBox.FormattingEnabled = true;
             this.scheduleBox.Items.AddRange(new object[] {
             "Monthly",
             "Semi-monthly"});
-            this.scheduleBox.Location = new System.Drawing.Point(606, 189);
+            this.scheduleBox.Location = new System.Drawing.Point(606, 185);
             this.scheduleBox.Name = "scheduleBox";
-            this.scheduleBox.Size = new System.Drawing.Size(258, 23);
+            this.scheduleBox.Size = new System.Drawing.Size(258, 26);
             this.scheduleBox.TabIndex = 7;
             this.scheduleBox.TextChanged += new System.EventHandler(this.scheduleBox_TextChanged);
             // 
@@ -411,7 +508,7 @@
             "Regular",
             "Job Order",
             "Contractual"});
-            this.salaryRate.Location = new System.Drawing.Point(606, 115);
+            this.salaryRate.Location = new System.Drawing.Point(606, 117);
             this.salaryRate.Name = "salaryRate";
             this.salaryRate.Size = new System.Drawing.Size(258, 26);
             this.salaryRate.TabIndex = 5;
@@ -429,10 +526,33 @@
             this.employmentStatus.TabIndex = 4;
             this.employmentStatus.TextChanged += new System.EventHandler(this.employmentStatus_TextChanged);
             // 
+            // jobDescriptionBox
+            // 
+            this.jobDescriptionBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.jobDescriptionBox.BackColor = System.Drawing.SystemColors.Window;
+            this.jobDescriptionBox.BorderColor = System.Drawing.Color.Gray;
+            this.jobDescriptionBox.BorderFocusColor = System.Drawing.Color.Black;
+            this.jobDescriptionBox.BorderRadius = 5;
+            this.jobDescriptionBox.BorderSize = 1;
+            this.jobDescriptionBox.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobDescriptionBox.ForeColor = System.Drawing.Color.Black;
+            this.jobDescriptionBox.Location = new System.Drawing.Point(221, 223);
+            this.jobDescriptionBox.Multiline = false;
+            this.jobDescriptionBox.Name = "jobDescriptionBox";
+            this.jobDescriptionBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.jobDescriptionBox.PasswordChar = false;
+            this.jobDescriptionBox.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.jobDescriptionBox.PlaceholderText = "";
+            this.jobDescriptionBox.Size = new System.Drawing.Size(226, 33);
+            this.jobDescriptionBox.TabIndex = 3;
+            this.jobDescriptionBox.Texts = "";
+            this.jobDescriptionBox.UnderlinedStyle = false;
+            this.jobDescriptionBox._TextChanged += new System.EventHandler(this.jobDescriptionBox__TextChanged);
+            // 
             // departmentName
             // 
             this.departmentName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.departmentName.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.departmentName.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.departmentName.FormattingEnabled = true;
             this.departmentName.Items.AddRange(new object[] {
             "Human Resource Office",
@@ -442,9 +562,26 @@
             "Vice Mayor\'s Office"});
             this.departmentName.Location = new System.Drawing.Point(221, 195);
             this.departmentName.Name = "departmentName";
-            this.departmentName.Size = new System.Drawing.Size(226, 26);
+            this.departmentName.Size = new System.Drawing.Size(226, 27);
             this.departmentName.TabIndex = 2;
             this.departmentName.TextChanged += new System.EventHandler(this.departmentName_TextChanged);
+            // 
+            // dateHire
+            // 
+            this.dateHire.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dateHire.BorderColor = System.Drawing.Color.DimGray;
+            this.dateHire.BorderSize = 1;
+            this.dateHire.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.dateHire.CustomFormat = "MMM dd, yyyy";
+            this.dateHire.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateHire.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateHire.Location = new System.Drawing.Point(221, 157);
+            this.dateHire.MinimumSize = new System.Drawing.Size(4, 35);
+            this.dateHire.Name = "dateHire";
+            this.dateHire.Size = new System.Drawing.Size(226, 35);
+            this.dateHire.SkinColor = System.Drawing.Color.White;
+            this.dateHire.TabIndex = 1;
+            this.dateHire.TextColor = System.Drawing.Color.Black;
             // 
             // label2
             // 
@@ -478,7 +615,7 @@
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label39.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label39.Location = new System.Drawing.Point(132, 196);
+            this.label39.Location = new System.Drawing.Point(132, 199);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(83, 19);
             this.label39.TabIndex = 4;
@@ -491,7 +628,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label4.Location = new System.Drawing.Point(484, 191);
+            this.label4.Location = new System.Drawing.Point(484, 189);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 19);
             this.label4.TabIndex = 4;
@@ -504,7 +641,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Location = new System.Drawing.Point(511, 157);
+            this.label3.Location = new System.Drawing.Point(511, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 19);
             this.label3.TabIndex = 4;
@@ -530,7 +667,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label5.Location = new System.Drawing.Point(517, 120);
+            this.label5.Location = new System.Drawing.Point(517, 121);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 19);
             this.label5.TabIndex = 4;
@@ -575,6 +712,30 @@
             this.label41.TabIndex = 4;
             this.label41.Text = "Employee Code";
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // salaryRateValueTextBox
+            // 
+            this.salaryRateValueTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.salaryRateValueTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.salaryRateValueTextBox.BorderColor = System.Drawing.Color.Gray;
+            this.salaryRateValueTextBox.BorderFocusColor = System.Drawing.Color.Black;
+            this.salaryRateValueTextBox.BorderRadius = 5;
+            this.salaryRateValueTextBox.BorderSize = 1;
+            this.salaryRateValueTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.salaryRateValueTextBox.ForeColor = System.Drawing.Color.Black;
+            this.salaryRateValueTextBox.Location = new System.Drawing.Point(606, 148);
+            this.salaryRateValueTextBox.Multiline = false;
+            this.salaryRateValueTextBox.Name = "salaryRateValueTextBox";
+            this.salaryRateValueTextBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.salaryRateValueTextBox.PasswordChar = false;
+            this.salaryRateValueTextBox.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.salaryRateValueTextBox.PlaceholderText = "";
+            this.salaryRateValueTextBox.Size = new System.Drawing.Size(258, 32);
+            this.salaryRateValueTextBox.TabIndex = 6;
+            this.salaryRateValueTextBox.Texts = "";
+            this.salaryRateValueTextBox.UnderlinedStyle = false;
+            this.salaryRateValueTextBox._TextChanged += new System.EventHandler(this.salaryRateValueTextBox__TextChanged);
+            this.salaryRateValueTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.salaryRateValueTextBox_KeyPress);
             // 
             // accountPanel
             // 
@@ -643,6 +804,50 @@
             this.signatureImage.TabIndex = 42;
             this.signatureImage.TabStop = false;
             // 
+            // signatureImageBtn
+            // 
+            this.signatureImageBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.signatureImageBtn.AutoSize = true;
+            this.signatureImageBtn.BackColor = System.Drawing.Color.SteelBlue;
+            this.signatureImageBtn.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.signatureImageBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.signatureImageBtn.BorderRadius = 10;
+            this.signatureImageBtn.BorderSize = 0;
+            this.signatureImageBtn.FlatAppearance.BorderSize = 0;
+            this.signatureImageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signatureImageBtn.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.signatureImageBtn.ForeColor = System.Drawing.Color.White;
+            this.signatureImageBtn.Location = new System.Drawing.Point(846, 200);
+            this.signatureImageBtn.Name = "signatureImageBtn";
+            this.signatureImageBtn.Size = new System.Drawing.Size(162, 32);
+            this.signatureImageBtn.TabIndex = 41;
+            this.signatureImageBtn.Text = "Upload Employee Signature";
+            this.signatureImageBtn.TextColor = System.Drawing.Color.White;
+            this.signatureImageBtn.UseVisualStyleBackColor = false;
+            this.signatureImageBtn.Click += new System.EventHandler(this.signatureImageBtn_Click);
+            // 
+            // employeeImageBtn
+            // 
+            this.employeeImageBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.employeeImageBtn.AutoSize = true;
+            this.employeeImageBtn.BackColor = System.Drawing.Color.SteelBlue;
+            this.employeeImageBtn.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.employeeImageBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.employeeImageBtn.BorderRadius = 10;
+            this.employeeImageBtn.BorderSize = 0;
+            this.employeeImageBtn.FlatAppearance.BorderSize = 0;
+            this.employeeImageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.employeeImageBtn.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.employeeImageBtn.ForeColor = System.Drawing.Color.White;
+            this.employeeImageBtn.Location = new System.Drawing.Point(629, 200);
+            this.employeeImageBtn.Name = "employeeImageBtn";
+            this.employeeImageBtn.Size = new System.Drawing.Size(144, 32);
+            this.employeeImageBtn.TabIndex = 40;
+            this.employeeImageBtn.Text = "Upload Employee Image";
+            this.employeeImageBtn.TextColor = System.Drawing.Color.White;
+            this.employeeImageBtn.UseVisualStyleBackColor = false;
+            this.employeeImageBtn.Click += new System.EventHandler(this.employeeImageBtn_Click);
+            // 
             // employeeImage
             // 
             this.employeeImage.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -653,6 +858,78 @@
             this.employeeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.employeeImage.TabIndex = 39;
             this.employeeImage.TabStop = false;
+            // 
+            // lastNameTextBox
+            // 
+            this.lastNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lastNameTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.lastNameTextBox.BorderColor = System.Drawing.Color.Gray;
+            this.lastNameTextBox.BorderFocusColor = System.Drawing.Color.Black;
+            this.lastNameTextBox.BorderRadius = 5;
+            this.lastNameTextBox.BorderSize = 1;
+            this.lastNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastNameTextBox.ForeColor = System.Drawing.Color.Black;
+            this.lastNameTextBox.Location = new System.Drawing.Point(233, 162);
+            this.lastNameTextBox.Multiline = false;
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.lastNameTextBox.PasswordChar = false;
+            this.lastNameTextBox.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.lastNameTextBox.PlaceholderText = "";
+            this.lastNameTextBox.Size = new System.Drawing.Size(282, 32);
+            this.lastNameTextBox.TabIndex = 3;
+            this.lastNameTextBox.Texts = "";
+            this.lastNameTextBox.UnderlinedStyle = false;
+            this.lastNameTextBox._TextChanged += new System.EventHandler(this.lastNameTextBox__TextChanged);
+            this.lastNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lastNameTextBox_KeyPress);
+            // 
+            // middleNameTextBox
+            // 
+            this.middleNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.middleNameTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.middleNameTextBox.BorderColor = System.Drawing.Color.Gray;
+            this.middleNameTextBox.BorderFocusColor = System.Drawing.Color.Black;
+            this.middleNameTextBox.BorderRadius = 5;
+            this.middleNameTextBox.BorderSize = 1;
+            this.middleNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.middleNameTextBox.ForeColor = System.Drawing.Color.Black;
+            this.middleNameTextBox.Location = new System.Drawing.Point(233, 121);
+            this.middleNameTextBox.Multiline = false;
+            this.middleNameTextBox.Name = "middleNameTextBox";
+            this.middleNameTextBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.middleNameTextBox.PasswordChar = false;
+            this.middleNameTextBox.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.middleNameTextBox.PlaceholderText = "";
+            this.middleNameTextBox.Size = new System.Drawing.Size(282, 32);
+            this.middleNameTextBox.TabIndex = 2;
+            this.middleNameTextBox.Texts = "";
+            this.middleNameTextBox.UnderlinedStyle = false;
+            this.middleNameTextBox._TextChanged += new System.EventHandler(this.middleNameTextBox__TextChanged);
+            this.middleNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.middleNameTextBox_KeyPress);
+            // 
+            // firstNameTextBox
+            // 
+            this.firstNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.firstNameTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.firstNameTextBox.BorderColor = System.Drawing.Color.Gray;
+            this.firstNameTextBox.BorderFocusColor = System.Drawing.Color.Black;
+            this.firstNameTextBox.BorderRadius = 5;
+            this.firstNameTextBox.BorderSize = 1;
+            this.firstNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstNameTextBox.ForeColor = System.Drawing.Color.Black;
+            this.firstNameTextBox.Location = new System.Drawing.Point(233, 80);
+            this.firstNameTextBox.Multiline = false;
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.firstNameTextBox.PasswordChar = false;
+            this.firstNameTextBox.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.firstNameTextBox.PlaceholderText = "";
+            this.firstNameTextBox.Size = new System.Drawing.Size(282, 32);
+            this.firstNameTextBox.TabIndex = 1;
+            this.firstNameTextBox.Texts = "";
+            this.firstNameTextBox.UnderlinedStyle = false;
+            this.firstNameTextBox._TextChanged += new System.EventHandler(this.firstNameTextBox__TextChanged);
+            this.firstNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.firstNameTextBox_KeyPress);
             // 
             // label26
             // 
@@ -868,6 +1145,74 @@
             this.addPanel0.Name = "addPanel0";
             this.addPanel0.Size = new System.Drawing.Size(1133, 37);
             this.addPanel0.TabIndex = 24;
+            // 
+            // addBtn
+            // 
+            this.addBtn.AutoSize = true;
+            this.addBtn.BackColor = System.Drawing.Color.DimGray;
+            this.addBtn.BackgroundColor = System.Drawing.Color.DimGray;
+            this.addBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.addBtn.BorderRadius = 5;
+            this.addBtn.BorderSize = 0;
+            this.addBtn.FlatAppearance.BorderSize = 0;
+            this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addBtn.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBtn.ForeColor = System.Drawing.Color.White;
+            this.addBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addBtn.Location = new System.Drawing.Point(7, 7);
+            this.addBtn.Name = "addBtn";
+            this.addBtn.Size = new System.Drawing.Size(122, 25);
+            this.addBtn.TabIndex = 13;
+            this.addBtn.Text = "Add New Benefit";
+            this.addBtn.TextColor = System.Drawing.Color.White;
+            this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn0_Click);
+            // 
+            // employerShareValue
+            // 
+            this.employerShareValue.BackColor = System.Drawing.SystemColors.Window;
+            this.employerShareValue.BorderColor = System.Drawing.Color.Gray;
+            this.employerShareValue.BorderFocusColor = System.Drawing.Color.Black;
+            this.employerShareValue.BorderRadius = 5;
+            this.employerShareValue.BorderSize = 1;
+            this.employerShareValue.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.employerShareValue.ForeColor = System.Drawing.Color.Black;
+            this.employerShareValue.Location = new System.Drawing.Point(125, 78);
+            this.employerShareValue.Multiline = false;
+            this.employerShareValue.Name = "employerShareValue";
+            this.employerShareValue.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.employerShareValue.PasswordChar = false;
+            this.employerShareValue.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.employerShareValue.PlaceholderText = "";
+            this.employerShareValue.Size = new System.Drawing.Size(287, 32);
+            this.employerShareValue.TabIndex = 23;
+            this.employerShareValue.Texts = "";
+            this.employerShareValue.UnderlinedStyle = false;
+            this.employerShareValue._TextChanged += new System.EventHandler(this.employerShareValue__TextChanged);
+            this.employerShareValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.benefitValue0_KeyPress);
+            // 
+            // personalShareValue
+            // 
+            this.personalShareValue.BackColor = System.Drawing.SystemColors.Window;
+            this.personalShareValue.BorderColor = System.Drawing.Color.Gray;
+            this.personalShareValue.BorderFocusColor = System.Drawing.Color.Black;
+            this.personalShareValue.BorderRadius = 5;
+            this.personalShareValue.BorderSize = 1;
+            this.personalShareValue.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.personalShareValue.ForeColor = System.Drawing.Color.Black;
+            this.personalShareValue.Location = new System.Drawing.Point(125, 40);
+            this.personalShareValue.Multiline = false;
+            this.personalShareValue.Name = "personalShareValue";
+            this.personalShareValue.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.personalShareValue.PasswordChar = false;
+            this.personalShareValue.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.personalShareValue.PlaceholderText = "";
+            this.personalShareValue.Size = new System.Drawing.Size(287, 32);
+            this.personalShareValue.TabIndex = 23;
+            this.personalShareValue.Texts = "";
+            this.personalShareValue.UnderlinedStyle = false;
+            this.personalShareValue._TextChanged += new System.EventHandler(this.personalShareValue__TextChanged);
+            this.personalShareValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.benefitValue0_KeyPress);
             // 
             // label43
             // 
@@ -1098,6 +1443,75 @@
             this.educationPanel.Size = new System.Drawing.Size(1133, 581);
             this.educationPanel.TabIndex = 20;
             // 
+            // courseBox
+            // 
+            this.courseBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.courseBox.BackColor = System.Drawing.SystemColors.Window;
+            this.courseBox.BorderColor = System.Drawing.Color.Gray;
+            this.courseBox.BorderFocusColor = System.Drawing.Color.Black;
+            this.courseBox.BorderRadius = 5;
+            this.courseBox.BorderSize = 1;
+            this.courseBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.courseBox.ForeColor = System.Drawing.Color.Black;
+            this.courseBox.Location = new System.Drawing.Point(237, 201);
+            this.courseBox.Multiline = false;
+            this.courseBox.Name = "courseBox";
+            this.courseBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.courseBox.PasswordChar = false;
+            this.courseBox.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.courseBox.PlaceholderText = "";
+            this.courseBox.Size = new System.Drawing.Size(401, 32);
+            this.courseBox.TabIndex = 4;
+            this.courseBox.Texts = "";
+            this.courseBox.UnderlinedStyle = false;
+            this.courseBox._TextChanged += new System.EventHandler(this.courseBox__TextChanged);
+            // 
+            // schoolName
+            // 
+            this.schoolName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.schoolName.BackColor = System.Drawing.SystemColors.Window;
+            this.schoolName.BorderColor = System.Drawing.Color.Gray;
+            this.schoolName.BorderFocusColor = System.Drawing.Color.Black;
+            this.schoolName.BorderRadius = 5;
+            this.schoolName.BorderSize = 1;
+            this.schoolName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.schoolName.ForeColor = System.Drawing.Color.Black;
+            this.schoolName.Location = new System.Drawing.Point(237, 160);
+            this.schoolName.Multiline = false;
+            this.schoolName.Name = "schoolName";
+            this.schoolName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.schoolName.PasswordChar = false;
+            this.schoolName.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.schoolName.PlaceholderText = "";
+            this.schoolName.Size = new System.Drawing.Size(401, 32);
+            this.schoolName.TabIndex = 3;
+            this.schoolName.Texts = "";
+            this.schoolName.UnderlinedStyle = false;
+            this.schoolName._TextChanged += new System.EventHandler(this.schoolName__TextChanged);
+            // 
+            // schoolAddressBox
+            // 
+            this.schoolAddressBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.schoolAddressBox.BackColor = System.Drawing.SystemColors.Window;
+            this.schoolAddressBox.BorderColor = System.Drawing.Color.Gray;
+            this.schoolAddressBox.BorderFocusColor = System.Drawing.Color.Black;
+            this.schoolAddressBox.BorderRadius = 5;
+            this.schoolAddressBox.BorderSize = 1;
+            this.schoolAddressBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.schoolAddressBox.ForeColor = System.Drawing.Color.Black;
+            this.schoolAddressBox.Location = new System.Drawing.Point(237, 119);
+            this.schoolAddressBox.Multiline = false;
+            this.schoolAddressBox.Name = "schoolAddressBox";
+            this.schoolAddressBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.schoolAddressBox.PasswordChar = false;
+            this.schoolAddressBox.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.schoolAddressBox.PlaceholderText = "";
+            this.schoolAddressBox.Size = new System.Drawing.Size(401, 32);
+            this.schoolAddressBox.TabIndex = 2;
+            this.schoolAddressBox.Texts = "";
+            this.schoolAddressBox.UnderlinedStyle = false;
+            this.schoolAddressBox._TextChanged += new System.EventHandler(this.schoolAddressBox__TextChanged);
+            // 
             // educationalAttainment
             // 
             this.educationalAttainment.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1240,6 +1654,29 @@
             this.personalPanel.Size = new System.Drawing.Size(1133, 581);
             this.personalPanel.TabIndex = 19;
             // 
+            // emailAddressBox
+            // 
+            this.emailAddressBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.emailAddressBox.BackColor = System.Drawing.SystemColors.Window;
+            this.emailAddressBox.BorderColor = System.Drawing.Color.Gray;
+            this.emailAddressBox.BorderFocusColor = System.Drawing.Color.Black;
+            this.emailAddressBox.BorderRadius = 5;
+            this.emailAddressBox.BorderSize = 1;
+            this.emailAddressBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailAddressBox.ForeColor = System.Drawing.Color.Black;
+            this.emailAddressBox.Location = new System.Drawing.Point(200, 259);
+            this.emailAddressBox.Multiline = false;
+            this.emailAddressBox.Name = "emailAddressBox";
+            this.emailAddressBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.emailAddressBox.PasswordChar = false;
+            this.emailAddressBox.PlaceholderColor = System.Drawing.Color.DimGray;
+            this.emailAddressBox.PlaceholderText = "";
+            this.emailAddressBox.Size = new System.Drawing.Size(295, 32);
+            this.emailAddressBox.TabIndex = 6;
+            this.emailAddressBox.Texts = "";
+            this.emailAddressBox.UnderlinedStyle = false;
+            this.emailAddressBox._TextChanged += new System.EventHandler(this.emailAddressBox__TextChanged);
+            // 
             // emailLabel
             // 
             this.emailLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1323,366 +1760,6 @@
             this.sex.Size = new System.Drawing.Size(295, 28);
             this.sex.TabIndex = 2;
             this.sex.TextChanged += new System.EventHandler(this.sex_TextChanged);
-            // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label16.Location = new System.Drawing.Point(710, 202);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(65, 19);
-            this.label16.TabIndex = 5;
-            this.label16.Text = "Zip Code";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label10.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label10.Location = new System.Drawing.Point(80, 233);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(108, 19);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Mobile Number";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label15.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label15.Location = new System.Drawing.Point(712, 164);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(63, 19);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "Province";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label9.Location = new System.Drawing.Point(108, 194);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 19);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Civil Status";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label14
-            // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label14.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label14.Location = new System.Drawing.Point(656, 126);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(119, 19);
-            this.label14.TabIndex = 5;
-            this.label14.Text = "City/Municipality";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label8.Location = new System.Drawing.Point(109, 160);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(79, 19);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Nationality";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label13.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label13.Location = new System.Drawing.Point(709, 89);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(66, 19);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "Barangay";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label7.Location = new System.Drawing.Point(134, 124);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 19);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Gender";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label18
-            // 
-            this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label18.Location = new System.Drawing.Point(116, 89);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(72, 19);
-            this.label18.TabIndex = 5;
-            this.label18.Text = "Birth Date";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel7
-            // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(1143, 47);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(10, 581);
-            this.panel7.TabIndex = 16;
-            // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 47);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(10, 581);
-            this.panel5.TabIndex = 15;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 628);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1153, 3);
-            this.panel3.TabIndex = 14;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.previousBtn);
-            this.panel6.Controls.Add(this.submitBtn);
-            this.panel6.Controls.Add(this.nextBtn);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 631);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1153, 35);
-            this.panel6.TabIndex = 13;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 44);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1153, 3);
-            this.panel4.TabIndex = 10;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.benefitsBtn);
-            this.panel2.Controls.Add(this.educationBtn);
-            this.panel2.Controls.Add(this.personalBtn);
-            this.panel2.Controls.Add(this.employmentBtn);
-            this.panel2.Controls.Add(this.accountBtn);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1153, 44);
-            this.panel2.TabIndex = 7;
-            // 
-            // salaryValueError
-            // 
-            this.salaryValueError.ContainerControl = this;
-            // 
-            // birthdayError
-            // 
-            this.birthdayError.ContainerControl = this;
-            // 
-            // mobileNumberError
-            // 
-            this.mobileNumberError.ContainerControl = this;
-            // 
-            // barangayError
-            // 
-            this.barangayError.ContainerControl = this;
-            // 
-            // municipalityError
-            // 
-            this.municipalityError.ContainerControl = this;
-            // 
-            // provinceError
-            // 
-            this.provinceError.ContainerControl = this;
-            // 
-            // addBtn
-            // 
-            this.addBtn.AutoSize = true;
-            this.addBtn.BackColor = System.Drawing.Color.DimGray;
-            this.addBtn.BackgroundColor = System.Drawing.Color.DimGray;
-            this.addBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.addBtn.BorderRadius = 5;
-            this.addBtn.BorderSize = 0;
-            this.addBtn.FlatAppearance.BorderSize = 0;
-            this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addBtn.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBtn.ForeColor = System.Drawing.Color.White;
-            this.addBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.addBtn.Location = new System.Drawing.Point(7, 7);
-            this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(122, 25);
-            this.addBtn.TabIndex = 13;
-            this.addBtn.Text = "Add New Benefit";
-            this.addBtn.TextColor = System.Drawing.Color.White;
-            this.addBtn.UseVisualStyleBackColor = false;
-            this.addBtn.Click += new System.EventHandler(this.addBtn0_Click);
-            // 
-            // employerShareValue
-            // 
-            this.employerShareValue.BackColor = System.Drawing.SystemColors.Window;
-            this.employerShareValue.BorderColor = System.Drawing.Color.Gray;
-            this.employerShareValue.BorderFocusColor = System.Drawing.Color.Black;
-            this.employerShareValue.BorderRadius = 5;
-            this.employerShareValue.BorderSize = 1;
-            this.employerShareValue.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.employerShareValue.ForeColor = System.Drawing.Color.Black;
-            this.employerShareValue.Location = new System.Drawing.Point(125, 78);
-            this.employerShareValue.Multiline = false;
-            this.employerShareValue.Name = "employerShareValue";
-            this.employerShareValue.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.employerShareValue.PasswordChar = false;
-            this.employerShareValue.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.employerShareValue.PlaceholderText = "";
-            this.employerShareValue.Size = new System.Drawing.Size(287, 32);
-            this.employerShareValue.TabIndex = 23;
-            this.employerShareValue.Texts = "";
-            this.employerShareValue.UnderlinedStyle = false;
-            this.employerShareValue._TextChanged += new System.EventHandler(this.employerShareValue__TextChanged);
-            this.employerShareValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.benefitValue0_KeyPress);
-            // 
-            // personalShareValue
-            // 
-            this.personalShareValue.BackColor = System.Drawing.SystemColors.Window;
-            this.personalShareValue.BorderColor = System.Drawing.Color.Gray;
-            this.personalShareValue.BorderFocusColor = System.Drawing.Color.Black;
-            this.personalShareValue.BorderRadius = 5;
-            this.personalShareValue.BorderSize = 1;
-            this.personalShareValue.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.personalShareValue.ForeColor = System.Drawing.Color.Black;
-            this.personalShareValue.Location = new System.Drawing.Point(125, 40);
-            this.personalShareValue.Multiline = false;
-            this.personalShareValue.Name = "personalShareValue";
-            this.personalShareValue.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.personalShareValue.PasswordChar = false;
-            this.personalShareValue.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.personalShareValue.PlaceholderText = "";
-            this.personalShareValue.Size = new System.Drawing.Size(287, 32);
-            this.personalShareValue.TabIndex = 23;
-            this.personalShareValue.Texts = "";
-            this.personalShareValue.UnderlinedStyle = false;
-            this.personalShareValue._TextChanged += new System.EventHandler(this.personalShareValue__TextChanged);
-            this.personalShareValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.benefitValue0_KeyPress);
-            // 
-            // courseBox
-            // 
-            this.courseBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.courseBox.BackColor = System.Drawing.SystemColors.Window;
-            this.courseBox.BorderColor = System.Drawing.Color.Gray;
-            this.courseBox.BorderFocusColor = System.Drawing.Color.Black;
-            this.courseBox.BorderRadius = 5;
-            this.courseBox.BorderSize = 1;
-            this.courseBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.courseBox.ForeColor = System.Drawing.Color.Black;
-            this.courseBox.Location = new System.Drawing.Point(237, 201);
-            this.courseBox.Multiline = false;
-            this.courseBox.Name = "courseBox";
-            this.courseBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.courseBox.PasswordChar = false;
-            this.courseBox.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.courseBox.PlaceholderText = "";
-            this.courseBox.Size = new System.Drawing.Size(401, 32);
-            this.courseBox.TabIndex = 4;
-            this.courseBox.Texts = "";
-            this.courseBox.UnderlinedStyle = false;
-            this.courseBox._TextChanged += new System.EventHandler(this.courseBox__TextChanged);
-            // 
-            // schoolName
-            // 
-            this.schoolName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.schoolName.BackColor = System.Drawing.SystemColors.Window;
-            this.schoolName.BorderColor = System.Drawing.Color.Gray;
-            this.schoolName.BorderFocusColor = System.Drawing.Color.Black;
-            this.schoolName.BorderRadius = 5;
-            this.schoolName.BorderSize = 1;
-            this.schoolName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.schoolName.ForeColor = System.Drawing.Color.Black;
-            this.schoolName.Location = new System.Drawing.Point(237, 160);
-            this.schoolName.Multiline = false;
-            this.schoolName.Name = "schoolName";
-            this.schoolName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.schoolName.PasswordChar = false;
-            this.schoolName.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.schoolName.PlaceholderText = "";
-            this.schoolName.Size = new System.Drawing.Size(401, 32);
-            this.schoolName.TabIndex = 3;
-            this.schoolName.Texts = "";
-            this.schoolName.UnderlinedStyle = false;
-            this.schoolName._TextChanged += new System.EventHandler(this.schoolName__TextChanged);
-            // 
-            // schoolAddressBox
-            // 
-            this.schoolAddressBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.schoolAddressBox.BackColor = System.Drawing.SystemColors.Window;
-            this.schoolAddressBox.BorderColor = System.Drawing.Color.Gray;
-            this.schoolAddressBox.BorderFocusColor = System.Drawing.Color.Black;
-            this.schoolAddressBox.BorderRadius = 5;
-            this.schoolAddressBox.BorderSize = 1;
-            this.schoolAddressBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.schoolAddressBox.ForeColor = System.Drawing.Color.Black;
-            this.schoolAddressBox.Location = new System.Drawing.Point(237, 119);
-            this.schoolAddressBox.Multiline = false;
-            this.schoolAddressBox.Name = "schoolAddressBox";
-            this.schoolAddressBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.schoolAddressBox.PasswordChar = false;
-            this.schoolAddressBox.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.schoolAddressBox.PlaceholderText = "";
-            this.schoolAddressBox.Size = new System.Drawing.Size(401, 32);
-            this.schoolAddressBox.TabIndex = 2;
-            this.schoolAddressBox.Texts = "";
-            this.schoolAddressBox.UnderlinedStyle = false;
-            this.schoolAddressBox._TextChanged += new System.EventHandler(this.schoolAddressBox__TextChanged);
-            // 
-            // emailAddressBox
-            // 
-            this.emailAddressBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.emailAddressBox.BackColor = System.Drawing.SystemColors.Window;
-            this.emailAddressBox.BorderColor = System.Drawing.Color.Gray;
-            this.emailAddressBox.BorderFocusColor = System.Drawing.Color.Black;
-            this.emailAddressBox.BorderRadius = 5;
-            this.emailAddressBox.BorderSize = 1;
-            this.emailAddressBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailAddressBox.ForeColor = System.Drawing.Color.Black;
-            this.emailAddressBox.Location = new System.Drawing.Point(200, 259);
-            this.emailAddressBox.Multiline = false;
-            this.emailAddressBox.Name = "emailAddressBox";
-            this.emailAddressBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.emailAddressBox.PasswordChar = false;
-            this.emailAddressBox.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.emailAddressBox.PlaceholderText = "";
-            this.emailAddressBox.Size = new System.Drawing.Size(295, 32);
-            this.emailAddressBox.TabIndex = 6;
-            this.emailAddressBox.Texts = "";
-            this.emailAddressBox.UnderlinedStyle = false;
-            this.emailAddressBox._TextChanged += new System.EventHandler(this.emailAddressBox__TextChanged);
             // 
             // contactNumberBox
             // 
@@ -1846,282 +1923,158 @@
             this.dateOfBirthPicker.Value = new System.DateTime(2023, 1, 12, 9, 30, 18, 0);
             this.dateOfBirthPicker.ValueChanged += new System.EventHandler(this.dateOfBirthPicker_ValueChanged);
             // 
-            // dateRetired
+            // label16
             // 
-            this.dateRetired.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateRetired.BorderColor = System.Drawing.Color.DimGray;
-            this.dateRetired.BorderSize = 1;
-            this.dateRetired.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.dateRetired.CustomFormat = "MMM dd, yyyy";
-            this.dateRetired.Enabled = false;
-            this.dateRetired.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateRetired.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateRetired.Location = new System.Drawing.Point(606, 219);
-            this.dateRetired.MinimumSize = new System.Drawing.Size(4, 35);
-            this.dateRetired.Name = "dateRetired";
-            this.dateRetired.Size = new System.Drawing.Size(258, 35);
-            this.dateRetired.SkinColor = System.Drawing.Color.White;
-            this.dateRetired.TabIndex = 23;
-            this.dateRetired.TextColor = System.Drawing.Color.Black;
-            this.dateRetired.ValueChanged += new System.EventHandler(this.dateRetired_ValueChanged);
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label16.Location = new System.Drawing.Point(710, 202);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(65, 19);
+            this.label16.TabIndex = 5;
+            this.label16.Text = "Zip Code";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // customPanel3
+            // label10
             // 
-            this.customPanel3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.customPanel3.BackColor = System.Drawing.Color.White;
-            this.customPanel3.BorderRadius = 0;
-            this.customPanel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel3.Controls.Add(this.afternoonShiftLabel);
-            this.customPanel3.ForeColor = System.Drawing.Color.Black;
-            this.customPanel3.GradientAngle = 90F;
-            this.customPanel3.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel3.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel3.Location = new System.Drawing.Point(221, 123);
-            this.customPanel3.Name = "customPanel3";
-            this.customPanel3.Size = new System.Drawing.Size(226, 32);
-            this.customPanel3.TabIndex = 18;
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label10.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label10.Location = new System.Drawing.Point(80, 233);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(108, 19);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Mobile Number";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // afternoonShiftLabel
+            // label15
             // 
-            this.afternoonShiftLabel.AutoSize = true;
-            this.afternoonShiftLabel.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
-            this.afternoonShiftLabel.Location = new System.Drawing.Point(4, 6);
-            this.afternoonShiftLabel.Name = "afternoonShiftLabel";
-            this.afternoonShiftLabel.Size = new System.Drawing.Size(113, 18);
-            this.afternoonShiftLabel.TabIndex = 1;
-            this.afternoonShiftLabel.Text = "{Afternoon shift}";
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label15.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label15.Location = new System.Drawing.Point(712, 164);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(63, 19);
+            this.label15.TabIndex = 5;
+            this.label15.Text = "Province";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // customPanel2
+            // label9
             // 
-            this.customPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.customPanel2.BackColor = System.Drawing.Color.White;
-            this.customPanel2.BorderRadius = 0;
-            this.customPanel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel2.Controls.Add(this.morningShiftLabel);
-            this.customPanel2.ForeColor = System.Drawing.Color.Black;
-            this.customPanel2.GradientAngle = 90F;
-            this.customPanel2.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel2.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel2.Location = new System.Drawing.Point(221, 89);
-            this.customPanel2.Name = "customPanel2";
-            this.customPanel2.Size = new System.Drawing.Size(226, 32);
-            this.customPanel2.TabIndex = 18;
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label9.Location = new System.Drawing.Point(108, 194);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(80, 19);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Civil Status";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // morningShiftLabel
+            // label14
             // 
-            this.morningShiftLabel.AutoSize = true;
-            this.morningShiftLabel.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
-            this.morningShiftLabel.Location = new System.Drawing.Point(4, 6);
-            this.morningShiftLabel.Name = "morningShiftLabel";
-            this.morningShiftLabel.Size = new System.Drawing.Size(102, 18);
-            this.morningShiftLabel.TabIndex = 1;
-            this.morningShiftLabel.Text = "{Morning shift}";
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label14.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label14.Location = new System.Drawing.Point(656, 126);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(119, 19);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "City/Municipality";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // customPanel1
+            // label8
             // 
-            this.customPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.customPanel1.BackColor = System.Drawing.Color.White;
-            this.customPanel1.BorderRadius = 0;
-            this.customPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customPanel1.Controls.Add(this.employeeID);
-            this.customPanel1.ForeColor = System.Drawing.Color.Black;
-            this.customPanel1.GradientAngle = 90F;
-            this.customPanel1.GradientBottomColor = System.Drawing.Color.White;
-            this.customPanel1.GradientTopColor = System.Drawing.Color.White;
-            this.customPanel1.Location = new System.Drawing.Point(221, 52);
-            this.customPanel1.Name = "customPanel1";
-            this.customPanel1.Size = new System.Drawing.Size(226, 32);
-            this.customPanel1.TabIndex = 18;
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label8.Location = new System.Drawing.Point(109, 160);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(79, 19);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Nationality";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // employeeID
+            // label13
             // 
-            this.employeeID.AutoSize = true;
-            this.employeeID.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
-            this.employeeID.Location = new System.Drawing.Point(4, 6);
-            this.employeeID.Name = "employeeID";
-            this.employeeID.Size = new System.Drawing.Size(96, 18);
-            this.employeeID.TabIndex = 0;
-            this.employeeID.Text = "{Employee ID}";
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label13.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label13.Location = new System.Drawing.Point(709, 89);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(66, 19);
+            this.label13.TabIndex = 5;
+            this.label13.Text = "Barangay";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // jobDescriptionBox
+            // label7
             // 
-            this.jobDescriptionBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.jobDescriptionBox.BackColor = System.Drawing.SystemColors.Window;
-            this.jobDescriptionBox.BorderColor = System.Drawing.Color.Gray;
-            this.jobDescriptionBox.BorderFocusColor = System.Drawing.Color.Black;
-            this.jobDescriptionBox.BorderRadius = 5;
-            this.jobDescriptionBox.BorderSize = 1;
-            this.jobDescriptionBox.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobDescriptionBox.ForeColor = System.Drawing.Color.Black;
-            this.jobDescriptionBox.Location = new System.Drawing.Point(221, 223);
-            this.jobDescriptionBox.Multiline = false;
-            this.jobDescriptionBox.Name = "jobDescriptionBox";
-            this.jobDescriptionBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.jobDescriptionBox.PasswordChar = false;
-            this.jobDescriptionBox.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.jobDescriptionBox.PlaceholderText = "";
-            this.jobDescriptionBox.Size = new System.Drawing.Size(226, 33);
-            this.jobDescriptionBox.TabIndex = 3;
-            this.jobDescriptionBox.Texts = "";
-            this.jobDescriptionBox.UnderlinedStyle = false;
-            this.jobDescriptionBox._TextChanged += new System.EventHandler(this.jobDescriptionBox__TextChanged);
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label7.Location = new System.Drawing.Point(134, 124);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 19);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Gender";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dateHire
+            // label18
             // 
-            this.dateHire.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateHire.BorderColor = System.Drawing.Color.DimGray;
-            this.dateHire.BorderSize = 1;
-            this.dateHire.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.dateHire.CustomFormat = "MMM dd, yyyy";
-            this.dateHire.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateHire.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateHire.Location = new System.Drawing.Point(221, 157);
-            this.dateHire.MinimumSize = new System.Drawing.Size(4, 35);
-            this.dateHire.Name = "dateHire";
-            this.dateHire.Size = new System.Drawing.Size(226, 35);
-            this.dateHire.SkinColor = System.Drawing.Color.White;
-            this.dateHire.TabIndex = 1;
-            this.dateHire.TextColor = System.Drawing.Color.Black;
+            this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label18.Location = new System.Drawing.Point(116, 89);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(72, 19);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "Birth Date";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // salaryRateValueTextBox
+            // panel7
             // 
-            this.salaryRateValueTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.salaryRateValueTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.salaryRateValueTextBox.BorderColor = System.Drawing.Color.Gray;
-            this.salaryRateValueTextBox.BorderFocusColor = System.Drawing.Color.Black;
-            this.salaryRateValueTextBox.BorderRadius = 5;
-            this.salaryRateValueTextBox.BorderSize = 1;
-            this.salaryRateValueTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.salaryRateValueTextBox.ForeColor = System.Drawing.Color.Black;
-            this.salaryRateValueTextBox.Location = new System.Drawing.Point(606, 150);
-            this.salaryRateValueTextBox.Multiline = false;
-            this.salaryRateValueTextBox.Name = "salaryRateValueTextBox";
-            this.salaryRateValueTextBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.salaryRateValueTextBox.PasswordChar = false;
-            this.salaryRateValueTextBox.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.salaryRateValueTextBox.PlaceholderText = "";
-            this.salaryRateValueTextBox.Size = new System.Drawing.Size(258, 32);
-            this.salaryRateValueTextBox.TabIndex = 6;
-            this.salaryRateValueTextBox.Texts = "";
-            this.salaryRateValueTextBox.UnderlinedStyle = false;
-            this.salaryRateValueTextBox._TextChanged += new System.EventHandler(this.salaryRateValueTextBox__TextChanged);
-            this.salaryRateValueTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.salaryRateValueTextBox_KeyPress);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel7.Location = new System.Drawing.Point(1143, 47);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(10, 581);
+            this.panel7.TabIndex = 16;
             // 
-            // signatureImageBtn
+            // panel5
             // 
-            this.signatureImageBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.signatureImageBtn.AutoSize = true;
-            this.signatureImageBtn.BackColor = System.Drawing.Color.SteelBlue;
-            this.signatureImageBtn.BackgroundColor = System.Drawing.Color.SteelBlue;
-            this.signatureImageBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.signatureImageBtn.BorderRadius = 10;
-            this.signatureImageBtn.BorderSize = 0;
-            this.signatureImageBtn.FlatAppearance.BorderSize = 0;
-            this.signatureImageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signatureImageBtn.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.signatureImageBtn.ForeColor = System.Drawing.Color.White;
-            this.signatureImageBtn.Location = new System.Drawing.Point(846, 200);
-            this.signatureImageBtn.Name = "signatureImageBtn";
-            this.signatureImageBtn.Size = new System.Drawing.Size(162, 32);
-            this.signatureImageBtn.TabIndex = 41;
-            this.signatureImageBtn.Text = "Upload Employee Signature";
-            this.signatureImageBtn.TextColor = System.Drawing.Color.White;
-            this.signatureImageBtn.UseVisualStyleBackColor = false;
-            this.signatureImageBtn.Click += new System.EventHandler(this.signatureImageBtn_Click);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 47);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(10, 581);
+            this.panel5.TabIndex = 15;
             // 
-            // employeeImageBtn
+            // panel3
             // 
-            this.employeeImageBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.employeeImageBtn.AutoSize = true;
-            this.employeeImageBtn.BackColor = System.Drawing.Color.SteelBlue;
-            this.employeeImageBtn.BackgroundColor = System.Drawing.Color.SteelBlue;
-            this.employeeImageBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.employeeImageBtn.BorderRadius = 10;
-            this.employeeImageBtn.BorderSize = 0;
-            this.employeeImageBtn.FlatAppearance.BorderSize = 0;
-            this.employeeImageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.employeeImageBtn.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.employeeImageBtn.ForeColor = System.Drawing.Color.White;
-            this.employeeImageBtn.Location = new System.Drawing.Point(629, 200);
-            this.employeeImageBtn.Name = "employeeImageBtn";
-            this.employeeImageBtn.Size = new System.Drawing.Size(144, 32);
-            this.employeeImageBtn.TabIndex = 40;
-            this.employeeImageBtn.Text = "Upload Employee Image";
-            this.employeeImageBtn.TextColor = System.Drawing.Color.White;
-            this.employeeImageBtn.UseVisualStyleBackColor = false;
-            this.employeeImageBtn.Click += new System.EventHandler(this.employeeImageBtn_Click);
+            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 628);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1153, 3);
+            this.panel3.TabIndex = 14;
             // 
-            // lastNameTextBox
+            // panel6
             // 
-            this.lastNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lastNameTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.lastNameTextBox.BorderColor = System.Drawing.Color.Gray;
-            this.lastNameTextBox.BorderFocusColor = System.Drawing.Color.Black;
-            this.lastNameTextBox.BorderRadius = 5;
-            this.lastNameTextBox.BorderSize = 1;
-            this.lastNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastNameTextBox.ForeColor = System.Drawing.Color.Black;
-            this.lastNameTextBox.Location = new System.Drawing.Point(233, 162);
-            this.lastNameTextBox.Multiline = false;
-            this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.lastNameTextBox.PasswordChar = false;
-            this.lastNameTextBox.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.lastNameTextBox.PlaceholderText = "";
-            this.lastNameTextBox.Size = new System.Drawing.Size(282, 32);
-            this.lastNameTextBox.TabIndex = 3;
-            this.lastNameTextBox.Texts = "";
-            this.lastNameTextBox.UnderlinedStyle = false;
-            this.lastNameTextBox._TextChanged += new System.EventHandler(this.lastNameTextBox__TextChanged);
-            this.lastNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lastNameTextBox_KeyPress);
-            // 
-            // middleNameTextBox
-            // 
-            this.middleNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.middleNameTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.middleNameTextBox.BorderColor = System.Drawing.Color.Gray;
-            this.middleNameTextBox.BorderFocusColor = System.Drawing.Color.Black;
-            this.middleNameTextBox.BorderRadius = 5;
-            this.middleNameTextBox.BorderSize = 1;
-            this.middleNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.middleNameTextBox.ForeColor = System.Drawing.Color.Black;
-            this.middleNameTextBox.Location = new System.Drawing.Point(233, 121);
-            this.middleNameTextBox.Multiline = false;
-            this.middleNameTextBox.Name = "middleNameTextBox";
-            this.middleNameTextBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.middleNameTextBox.PasswordChar = false;
-            this.middleNameTextBox.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.middleNameTextBox.PlaceholderText = "";
-            this.middleNameTextBox.Size = new System.Drawing.Size(282, 32);
-            this.middleNameTextBox.TabIndex = 2;
-            this.middleNameTextBox.Texts = "";
-            this.middleNameTextBox.UnderlinedStyle = false;
-            this.middleNameTextBox._TextChanged += new System.EventHandler(this.middleNameTextBox__TextChanged);
-            this.middleNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.middleNameTextBox_KeyPress);
-            // 
-            // firstNameTextBox
-            // 
-            this.firstNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.firstNameTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.firstNameTextBox.BorderColor = System.Drawing.Color.Gray;
-            this.firstNameTextBox.BorderFocusColor = System.Drawing.Color.Black;
-            this.firstNameTextBox.BorderRadius = 5;
-            this.firstNameTextBox.BorderSize = 1;
-            this.firstNameTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstNameTextBox.ForeColor = System.Drawing.Color.Black;
-            this.firstNameTextBox.Location = new System.Drawing.Point(233, 80);
-            this.firstNameTextBox.Multiline = false;
-            this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.firstNameTextBox.PasswordChar = false;
-            this.firstNameTextBox.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.firstNameTextBox.PlaceholderText = "";
-            this.firstNameTextBox.Size = new System.Drawing.Size(282, 32);
-            this.firstNameTextBox.TabIndex = 1;
-            this.firstNameTextBox.Texts = "";
-            this.firstNameTextBox.UnderlinedStyle = false;
-            this.firstNameTextBox._TextChanged += new System.EventHandler(this.firstNameTextBox__TextChanged);
-            this.firstNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.firstNameTextBox_KeyPress);
+            this.panel6.Controls.Add(this.previousBtn);
+            this.panel6.Controls.Add(this.submitBtn);
+            this.panel6.Controls.Add(this.nextBtn);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 631);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1153, 35);
+            this.panel6.TabIndex = 13;
             // 
             // previousBtn
             // 
@@ -2184,6 +2137,29 @@
             this.nextBtn.TextColor = System.Drawing.Color.White;
             this.nextBtn.UseVisualStyleBackColor = false;
             this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 44);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1153, 3);
+            this.panel4.TabIndex = 10;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.benefitsBtn);
+            this.panel2.Controls.Add(this.educationBtn);
+            this.panel2.Controls.Add(this.personalBtn);
+            this.panel2.Controls.Add(this.employmentBtn);
+            this.panel2.Controls.Add(this.accountBtn);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1153, 44);
+            this.panel2.TabIndex = 7;
             // 
             // benefitsBtn
             // 
@@ -2294,6 +2270,30 @@
             this.accountBtn.UseVisualStyleBackColor = false;
             this.accountBtn.Click += new System.EventHandler(this.accountBtn_Click);
             // 
+            // salaryValueError
+            // 
+            this.salaryValueError.ContainerControl = this;
+            // 
+            // birthdayError
+            // 
+            this.birthdayError.ContainerControl = this;
+            // 
+            // mobileNumberError
+            // 
+            this.mobileNumberError.ContainerControl = this;
+            // 
+            // barangayError
+            // 
+            this.barangayError.ContainerControl = this;
+            // 
+            // municipalityError
+            // 
+            this.municipalityError.ContainerControl = this;
+            // 
+            // provinceError
+            // 
+            this.provinceError.ContainerControl = this;
+            // 
             // addEmployeeModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2312,6 +2312,12 @@
             this.contentPanel.ResumeLayout(false);
             this.employmentPanel.ResumeLayout(false);
             this.employmentPanel.PerformLayout();
+            this.customPanel3.ResumeLayout(false);
+            this.customPanel3.PerformLayout();
+            this.customPanel2.ResumeLayout(false);
+            this.customPanel2.PerformLayout();
+            this.customPanel1.ResumeLayout(false);
+            this.customPanel1.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.accountPanel.ResumeLayout(false);
@@ -2351,12 +2357,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.barangayError)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.municipalityError)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.provinceError)).EndInit();
-            this.customPanel3.ResumeLayout(false);
-            this.customPanel3.PerformLayout();
-            this.customPanel2.ResumeLayout(false);
-            this.customPanel2.PerformLayout();
-            this.customPanel1.ResumeLayout(false);
-            this.customPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

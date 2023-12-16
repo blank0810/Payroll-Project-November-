@@ -42,7 +42,7 @@ namespace Payroll_Project2.Forms.Employee.Dashboard
 
                 if (applicationNumber >= 0)
                 {
-                    return applicationNumber;
+                    return ++applicationNumber;
                 }
                 else
                 {
@@ -62,7 +62,7 @@ namespace Payroll_Project2.Forms.Employee.Dashboard
 
                 if (applicationNumber >= 0)
                 {
-                    return applicationNumber;
+                    return ++applicationNumber;
                 }
                 else
                 {
@@ -82,7 +82,7 @@ namespace Payroll_Project2.Forms.Employee.Dashboard
 
                 if (applicationNumber >= 0)
                 {
-                    return applicationNumber;
+                    return ++applicationNumber;
                 }
                 else
                 {

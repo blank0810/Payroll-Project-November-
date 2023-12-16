@@ -11,8 +11,8 @@ namespace Payroll_Project2.Forms.Department_Head.Leave_Management.Leave_list_sub
         public string EmployeeName { get; set; }
         public int EmployeeID { get; set; }
         public string EmployeeImage { get; set; }
-        public float VacationLeaveCreditsBalance { get; set; }
-        public float SickLeaveCreditsBalance { get; set; }
+        public decimal VacationLeaveCreditsBalance { get; set; }
+        public decimal SickLeaveCreditsBalance { get; set; }
 
         public leaveListEmployeeDataUC(int userId, leaveListsUC parent)
         {

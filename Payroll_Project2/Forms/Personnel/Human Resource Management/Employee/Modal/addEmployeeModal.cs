@@ -33,6 +33,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
         private static readonly string CustomSchedule = ConfigurationManager.AppSettings.Get("DefaultCustomSchedule");
         private static int _year = DateTime.Now.Year;
         private static int _month = DateTime.Now.Month;
+        private static readonly bool DefaultAllowanceEnforce = true;
         private static readonly generalFunctions generalFunctions = new generalFunctions();
         private static readonly employeeClass employeeClass = new employeeClass();
         private static decimal minimumBenefitValue = 0;
@@ -823,9 +824,39 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
         }
 
+        
+
         #endregion
 
         #region Functions inside serves to communicate with the Employee Class
+
+        private async Task<bool> InsertEmployeeAllowance(int employeeId, int allowanceListId, decimal value, bool status)
+        {
+            try
+            {
+                bool insert = await employeeClass.InsertEmployeeAllowance(employeeId, allowanceListId, value, status);
+                return insert;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<DataTable> GetAllowanceList(string employmentStatus)
+        {
+            try
+            {
+                DataTable allowanceList = await employeeClass.GetAllowanceList(employmentStatus);
+
+                if (allowanceList != null && allowanceList.Rows.Count > 0)
+                {
+                    return allowanceList;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
 
         private async Task<bool> GetRoleCount(string roleName, string departmentName)
         {
@@ -833,13 +864,13 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             {
                 int count = await employeeClass.GetRoleCount(roleName, departmentName);
 
-                if (count > 0)
+                if (count > 0 && count != -1)
                 {
                     return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
@@ -2573,6 +2604,44 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
             }
         }
 
+        // Function will be responsible for inserting employee allowance
+        private async Task<bool> AddEmployeeAllowance(int employeeId, string employmentStatus, bool status)
+        {
+            try
+            {
+                DataTable allowanceList = await GetAllowanceList(employmentStatus);
+
+                if (allowanceList != null)
+                {
+                    foreach (DataRow row in allowanceList.Rows)
+                    {
+                        if (!string.IsNullOrEmpty(row["allowanceListId"]?.ToString()) && 
+                            !string.IsNullOrEmpty(row["allowanceMinimumValue"]?.ToString()) &&
+                            int.TryParse(row["allowanceListId"]?.ToString(), out int allowanceListId) &&
+                            decimal.TryParse(row["allowanceMinimumValue"]?.ToString(), out decimal value))
+                        {
+                            bool insert = await InsertEmployeeAllowance(employeeId, allowanceListId, value, status);
+
+                            if (!insert)
+                            {
+                                ErrorMessages($"An unexpected error occurred while attempting to add the '{row["allowanceName"]}' allowance. " +
+                                    $"Please contact the system administrator for assistance and resolution.", "Allowance Addition Error");
+                            }
+                        }
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    SuccessMessages($"No designated allowance has been allocated for the employment status '{employmentStatus}'. " +
+                        $"The process will proceed as planned.", "No Allowance Allocated");
+                    return true;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         //Function responsible for adding employee's leave credits
         private async Task<bool> AddLeaveCredits(int employeeId, string employmentStatus)
         {
@@ -2701,6 +2770,10 @@ namespace Payroll_Project2.Forms.Personnel.Employee.Employee_Sub_user_Control.Mo
 
                 bool addBenefit = await AddEmployeeBenefit(EmployeeID, status);
                 if (!addBenefit)
+                    return;
+
+                bool addAllowance = await AddEmployeeAllowance(EmployeeID, EmploymentStatus, DefaultAllowanceEnforce);
+                if (!addAllowance)
                     return;
 
                 bool addLeaveCredits = await AddLeaveCredits(EmployeeID, EmploymentStatus);

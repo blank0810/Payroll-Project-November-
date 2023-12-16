@@ -176,7 +176,7 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
 
                 if (applicationNumber >= 0)
                 {
-                    return applicationNumber;
+                    return ++applicationNumber;
                 }
                 else
                 {
@@ -196,7 +196,7 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
 
                 if (applicationNumber >= 0)
                 {
-                    return applicationNumber;
+                    return ++applicationNumber;
                 }
                 else
                 {
@@ -216,7 +216,7 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
 
                 if (applicationNumber >= 0)
                 {
-                    return applicationNumber;
+                    return ++applicationNumber;
                 }
                 else
                 {

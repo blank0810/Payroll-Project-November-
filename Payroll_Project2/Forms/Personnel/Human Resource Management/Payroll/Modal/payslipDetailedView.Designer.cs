@@ -301,7 +301,7 @@
             this.status.AutoSize = true;
             this.status.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.status.ForeColor = System.Drawing.Color.Black;
-            this.status.Location = new System.Drawing.Point(779, 87);
+            this.status.Location = new System.Drawing.Point(764, 87);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(54, 17);
             this.status.TabIndex = 9;
@@ -312,7 +312,7 @@
             this.jobDescription.AutoSize = true;
             this.jobDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.jobDescription.ForeColor = System.Drawing.Color.Black;
-            this.jobDescription.Location = new System.Drawing.Point(779, 67);
+            this.jobDescription.Location = new System.Drawing.Point(764, 67);
             this.jobDescription.Name = "jobDescription";
             this.jobDescription.Size = new System.Drawing.Size(110, 17);
             this.jobDescription.TabIndex = 9;
@@ -323,7 +323,7 @@
             this.employeeName.AutoSize = true;
             this.employeeName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.employeeName.ForeColor = System.Drawing.Color.Black;
-            this.employeeName.Location = new System.Drawing.Point(779, 47);
+            this.employeeName.Location = new System.Drawing.Point(764, 47);
             this.employeeName.Name = "employeeName";
             this.employeeName.Size = new System.Drawing.Size(111, 17);
             this.employeeName.TabIndex = 9;
@@ -334,7 +334,7 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(762, 47);
+            this.label23.Location = new System.Drawing.Point(747, 47);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(11, 17);
             this.label23.TabIndex = 8;
@@ -345,7 +345,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(762, 67);
+            this.label22.Location = new System.Drawing.Point(747, 67);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(11, 17);
             this.label22.TabIndex = 8;
@@ -356,7 +356,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(762, 87);
+            this.label21.Location = new System.Drawing.Point(747, 87);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(11, 17);
             this.label21.TabIndex = 8;
@@ -367,7 +367,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(616, 85);
+            this.label20.Location = new System.Drawing.Point(601, 85);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(127, 17);
             this.label20.TabIndex = 7;
@@ -378,7 +378,7 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(616, 65);
+            this.label19.Location = new System.Drawing.Point(601, 65);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(101, 17);
             this.label19.TabIndex = 7;
@@ -389,7 +389,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(616, 45);
+            this.label9.Location = new System.Drawing.Point(601, 45);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(107, 17);
             this.label9.TabIndex = 7;
@@ -499,7 +499,7 @@
             this.payslipPeriod.AutoSize = true;
             this.payslipPeriod.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.payslipPeriod.ForeColor = System.Drawing.Color.Black;
-            this.payslipPeriod.Location = new System.Drawing.Point(304, 9);
+            this.payslipPeriod.Location = new System.Drawing.Point(301, 9);
             this.payslipPeriod.Name = "payslipPeriod";
             this.payslipPeriod.Size = new System.Drawing.Size(419, 21);
             this.payslipPeriod.TabIndex = 3;
@@ -570,7 +570,7 @@
             this.panel6.Controls.Add(this.panel12);
             this.panel6.Controls.Add(this.panel10);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 165);
+            this.panel6.Location = new System.Drawing.Point(0, 135);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(998, 368);
             this.panel6.TabIndex = 31;
@@ -931,7 +931,7 @@
             this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel18.Location = new System.Drawing.Point(0, 31);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(998, 134);
+            this.panel18.Size = new System.Drawing.Size(998, 104);
             this.panel18.TabIndex = 30;
             // 
             // panel20
@@ -1161,7 +1161,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel19.Location = new System.Drawing.Point(996, 0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(0, 132);
+            this.panel19.Size = new System.Drawing.Size(0, 102);
             this.panel19.TabIndex = 2;
             // 
             // customPanel1

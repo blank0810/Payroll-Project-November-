@@ -20,6 +20,136 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
+        public async Task<DataTable> GetPayrollRequestList(string departmentName)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string query = @"
+                SELECT 
+                    CONCAT(e.employeeFname, ' ', e.employeeLname) AS employeeName,
+                    pf.payrollId,
+                    e.employeePicture,
+                    d.departmentName,
+                    pf.netAmount
+                FROM 
+                    tbl_payrollForm pf
+                    JOIN tbl_employee e ON pf.employeeId = e.employeeId
+                    JOIN tbl_department d ON d.departmentId = e.departmentId
+                WHERE 
+                    d.departmentName = @DepartmentName and (pf.isApproveByMayor is null or pf.isCertifyByOfficeHead is null)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DepartmentName", departmentName);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<bool> CertifyPayroll(bool certify, string name, DateTime certifiedDate, int payrollId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+
+                    string query = @"
+                UPDATE tbl_payrollForm 
+                SET 
+                    isCertifyByOficeHead = @certify,
+                    certifiedByOfficeHeadName = @name,
+                    certifedByOfficeHeadDate = @date
+                WHERE 
+                    payrollId = @id";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@certify", certify);
+                        cmd.Parameters.AddWithValue("@name", name);
+                        cmd.Parameters.AddWithValue("@date", certifiedDate);
+                        cmd.Parameters.AddWithValue("@id", payrollId);
+
+                        int rowsAffected = await cmd.ExecuteNonQueryAsync();
+
+                        return rowsAffected > 0; // Returns true if any rows were affected
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                // Handle SQL exception
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw ex;
+            }
+        }
+
+        public async Task<bool> ApprovePayroll(bool certify, string name, DateTime date, int payrollId, string statusDescription)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+
+                    string query = @"
+                UPDATE tbl_payrollForm
+                SET 
+                    isApproveByMayor = @certify,
+                    approvedByMayorName = @name,
+                    approvedByMayorDate = @date,
+                    statusId = (SELECT statusId FROM tbl_status WHERE statusDescription = @description)
+                WHERE 
+                    payrollId = @id";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@certify", certify);
+                        cmd.Parameters.AddWithValue("@name", name);
+                        cmd.Parameters.AddWithValue("@date", date);
+                        cmd.Parameters.AddWithValue("@id", payrollId);
+                        cmd.Parameters.AddWithValue("@description", statusDescription);
+
+                        int rowsAffected = await cmd.ExecuteNonQueryAsync();
+
+                        return rowsAffected > 0; // Returns true if any rows were affected
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                // Handle SQL exception
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                throw ex;
+            }
+        }
+
         public async Task<bool> CheckIfEmployeeHasLog(DateTime dateLog, int employeeId)
         {
             try

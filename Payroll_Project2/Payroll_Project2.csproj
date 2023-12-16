@@ -1302,11 +1302,23 @@
     <Compile Include="Forms\Personnel\Human Resource Management\Payroll\payrollList.Designer.cs">
       <DependentUpon>payrollList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\deductionsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\deductionsUC.Designer.cs">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\detailsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\detailsUC.Designer.cs">
       <DependentUpon>detailsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\earningsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\earningsUC.Designer.cs">
+      <DependentUpon>earningsUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\employeeList.cs">
       <SubType>UserControl</SubType>
@@ -2033,8 +2045,14 @@
     <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\payrollList.resx">
       <DependentUpon>payrollList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\deductionsUC.resx">
+      <DependentUpon>deductionsUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\detailsUC.resx">
       <DependentUpon>detailsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\earningsUC.resx">
+      <DependentUpon>earningsUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Personnel\Human Resource Management\Payroll\User Controls\employeeList.resx">
       <DependentUpon>employeeList.cs</DependentUpon>

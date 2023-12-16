@@ -159,7 +159,7 @@ namespace Payroll_Project2.Forms.Personnel.Employee
                 {
                     if (int.TryParse(employeeId.ToString(), out int id))
                     {
-                        return id;
+                        return ++id;
                     }
                     else
                     {

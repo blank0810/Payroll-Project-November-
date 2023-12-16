@@ -21,6 +21,37 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         // Double Click to display the methods
         #region Inside is all Get Methods
 
+        // This function retrieves the allowance list employee can avail
+        public async Task<DataTable> GetAllowanceList(string employmentStatus)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "SELECT tbl_allowanceList.allowanceListId, allowanceMinimumValue, allowanceName " +
+                                     "FROM tbl_employeeAllowanceAccess " +
+                                     "JOIN tbl_allowanceList ON tbl_employeeAllowanceAccess.allowanceListId = tbl_allowanceList.allowanceListId " +
+                                     "JOIN tbl_employmentStatus ON tbl_employeeAllowanceAccess.employmentStatusId = tbl_employmentStatus.employmentStatusId " +
+                                     "WHERE employmentStatus = @employmentStatus";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@employmentStatus", employmentStatus);
+
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         // This function is responsible for retrieving the salary amount and step number based on the salary rate value Id
         public async Task<DataTable> GetSalaryRateDetails(int salaryRateValueId)
         {
@@ -269,7 +300,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
 
                         if (result != null && int.TryParse(result.ToString(), out int lastId) && result != DBNull.Value)
                         {
-                            return ++lastId;
+                            return lastId;
                         }
                         else
                         {
@@ -566,7 +597,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                     await conn.OpenAsync();
                     string command = "select count(*) from tbl_employee join tbl_userRole on tbl_employee.roleId = tbl_userRole.roleId " +
                         "join tbl_department on tbl_employee.departmentId = tbl_department.departmentId where roleName = @roleName and " +
-                        "departmentName = @department";
+                        "departmentName = @department and roleName != 'Employee'";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
@@ -1082,6 +1113,33 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
+        }
+
+        // This function inserts employee allowance available or mandated to  them
+        public async Task<bool> InsertEmployeeAllowance(int employeeId, int allowanceListId, decimal value, bool allowanceStatus)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "insert into tbl_employeeAllowance (allowanceListId, employeeId, allowanceValue, isAllowanceEnforced) " +
+                        "values (@allowanceListId, @employeeId, @value, @allowanceStatus)";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@allowanceListId", allowanceListId);
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@value", value);
+                        cmd.Parameters.AddWithValue("@allowanceStatus", allowanceStatus);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
 
         #endregion for add methods

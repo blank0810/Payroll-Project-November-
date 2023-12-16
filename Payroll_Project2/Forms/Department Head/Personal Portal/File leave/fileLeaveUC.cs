@@ -32,7 +32,7 @@ namespace Payroll_Project2.Forms.Department_Head.Personal_Portal.File_leave
         private DateTime EndingDate { get; set; }
         private string LeaveDetails { get; set; }
         private int NumberOfDays { get; set; }
-        private float CreditsUsed { get; set; }
+        private decimal CreditsUsed { get; set; }
 
 
         public fileLeaveUC(int userId, departmentHeadDashboard parent, string department)
@@ -45,7 +45,7 @@ namespace Payroll_Project2.Forms.Department_Head.Personal_Portal.File_leave
         #region Functions responsible for communicating with the general functions class
 
         private async Task<bool> AddleaveRequest(int applicationNumber, int employeeId, DateTime dateFile, string leaveType, string formType,
-            string leaveDetails, int numberOfDays, DateTime leaveStartDate, DateTime leaveEndDate, float creditsUsed, string status)
+            string leaveDetails, int numberOfDays, DateTime leaveStartDate, DateTime leaveEndDate, decimal creditsUsed, string status)
         {
             try
             {
@@ -103,11 +103,11 @@ namespace Payroll_Project2.Forms.Department_Head.Personal_Portal.File_leave
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<float> GetLeaveCredits(int employeeId, string leaveType, int year)
+        private async Task<decimal> GetLeaveCredits(int employeeId, string leaveType, int year)
         {
             try
             {
-                float getLeaveCredits = await generalFunctions.GetLeaveCredits(employeeId, leaveType, year);
+                decimal getLeaveCredits = await generalFunctions.GetLeaveCredits(employeeId, leaveType, year);
 
                 return getLeaveCredits;
             }
@@ -415,11 +415,11 @@ namespace Payroll_Project2.Forms.Department_Head.Personal_Portal.File_leave
             }
         }
 
-        private async Task<bool> IsAllowed(int employeeId, string leaveType, int year, float numberOfCredits)
+        private async Task<bool> IsAllowed(int employeeId, string leaveType, int year, decimal numberOfCredits)
         {
             try
             {
-                float getCredits = await GetLeaveCredits(employeeId, leaveType, year);
+                decimal getCredits = await GetLeaveCredits(employeeId, leaveType, year);
 
                 if (getCredits > 0 && numberOfCredits <= getCredits)
                 {

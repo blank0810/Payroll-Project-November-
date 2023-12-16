@@ -26,6 +26,105 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
+        public async Task<DataTable> GetPayrollDetails(int payrollId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string query = @"
+                SELECT 
+                    CONCAT(e.employeeFname, ' ', e.employeeLname) AS employeeName,
+                    pf.dateCreated,
+                    pf.payrollStartingDate,
+                    pf.payrollEndingDate,
+                    pf.salaryRateDescription,
+                    pf.salaryRateValue,
+                    pf.totalEarnings,
+                    pf.totalDeduction,
+                    pf.netamount,
+                    pf.createdBy,
+                    pf.isCertifyByOficeHead,
+                    pf.certifiedByOfficeHeadName,
+                    pf.certifiedByOfficeHeadDate,
+                    pf.isApproveByMayor,
+                    pf.approvedByMayorName,
+                    pf.approvedByMayorDate,
+                    pf.isCertifiedByTreasurer,
+                    pf.certifiedByTreasurerName,
+                    pf.certifiedByTreasurerDate,
+                    pf.isReleased,
+                    pf.releasedDate,
+                    s.statusDescription
+                FROM 
+                    tbl_payrollForm pf
+                    JOIN tbl_employee e ON e.employeeId = pf.employeeId
+                    JOIN tbl_status s ON s.statusId = pf.statusId
+                WHERE 
+                    pf.payrollId = @PayrollId";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PayrollId", payrollId);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<DataTable> GetPayrollRequestList(string departmentName)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string query = @"
+                SELECT 
+                    CONCAT(e.employeeFname, ' ', e.employeeLname) AS employeeName,
+                    pf.payrollId,
+                    e.employeePicture,
+                    d.departmentName,
+                    pf.netAmount
+                FROM 
+                    tbl_payrollForm pf
+                    JOIN tbl_employee e ON pf.employeeId = e.employeeId
+                    JOIN tbl_department d ON d.departmentId = e.departmentId
+                WHERE 
+                    d.departmentName = @DepartmentName and pf.isApproveByMayor is null";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DepartmentName", departmentName);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<int> GetStepNumber(string stepDescription)
         {
             try
@@ -1041,14 +1140,14 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "SELECT max(leaveId) from tbl_leave";
+                    string command = "SELECT IDENT_CURRENT('tbl_leave')";
                     using (SqlCommand cmd = new SqlCommand(command, conn))
                     {
                         object result = await cmd.ExecuteScalarAsync();
 
                         if (result != DBNull.Value && int.TryParse(result.ToString(), out int id))
                         {
-                            return ++id;
+                            return id;
                         }
                         else
                         {
@@ -1075,14 +1174,14 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "SELECT max(slipId) from tbl_passSlip";
+                    string command = "SELECT IDENT_CURRENT('tbl_passSlip')";
                     using (SqlCommand cmd = new SqlCommand(command, conn))
                     {
                         object result = await cmd.ExecuteScalarAsync();
 
                         if (result != DBNull.Value && int.TryParse(result.ToString(), out int id))
                         {
-                            return ++id;
+                            return id;
                         }
                         else
                         {
@@ -1109,14 +1208,14 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "SELECT max(travelOrderId) from tbl_travelOrder";
+                    string command = "SELECT IDENT_CURRENT('tbl_travelOrder')";
                     using (SqlCommand cmd = new SqlCommand(command, conn))
                     {
                         object result = await cmd.ExecuteScalarAsync();
 
                         if (result != DBNull.Value && int.TryParse(result.ToString(), out int id))
                         {
-                            return ++id;
+                            return id;
                         }
                         else
                         {
@@ -1255,7 +1354,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         // Function responsible for retrieving the leave credits available for this leave type and for the employee
-        public async Task<float> GetLeaveCredits(int employeeId, string leaveType, int year)
+        public async Task<decimal> GetLeaveCredits(int employeeId, string leaveType, int year)
         {
             try
             {
@@ -1273,7 +1372,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
 
                         object result = await cmd.ExecuteScalarAsync();
                         
-                        if(result != DBNull.Value && float.TryParse(result.ToString(), out float credits))
+                        if(result != DBNull.Value && decimal.TryParse(result.ToString(), out decimal credits))
                         {
                             return credits;
                         }
@@ -1585,7 +1684,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     await conn.OpenAsync();
                     string command = "select timeLogId, dateLog, morningIn, morningOut, morningStatus, afternoonIn, afternoonOut, afternoonStatus, " +
                         "totalHoursWorked, specialPrivilegeDescription from tbl_timeLog " +
-                        "join tbl_specialPrivilege on tbl_timeLog.specialPrivilegeId = tbl_specialPrivilege.specialPrivilegeId " +
+                        "left join tbl_specialPrivilege on tbl_timeLog.specialPrivilegeId = tbl_specialPrivilege.specialPrivilegeId " +
                         "where employeeId = @employeeId and dateLog = @date";
                     using (cmd = new SqlCommand(command, conn))
                     {
@@ -2015,7 +2114,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
 
         // This function is responsible in inserting new leave request
         public async Task<bool> AddLeaveRequest(int applicationNumber, int employeeId, DateTime dateFile, string leaveType, string formType, 
-            string leaveDetails, int numberOfDays, DateTime leaveStartDate, DateTime leaveEndDate, float creditsUsed, string status)
+            string leaveDetails, int numberOfDays, DateTime leaveStartDate, DateTime leaveEndDate, decimal creditsUsed, string status)
         {
             try
             {

@@ -1,9 +1,11 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel;
+using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,9 +19,13 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
         private static dtrClass dtrClass = new dtrClass();
         private static generalFunctions generalFunctions = new generalFunctions();
 
-        public int LogID { get; set; }
+        public int Year { get; set; }
         public string Day { get; set; }
         public string Date { get; set; }
+        public int MorningInLogId { get; set; }
+        public int MorningOutLogId { get; set; }
+        public int AfternoonInLogId { get; set; }
+        public int AfternoonOutLogId { get; set; }
         public string MorningIn { get; set; }
         public string MorningOut { get; set; }
         public string MorningStatus { get; set; }
@@ -27,12 +33,10 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
         public string AfternoonOut { get; set; }
         public string AfternoonStatus { get; set; }
         public string SpecialPrivilege { get; set; }
-        public int TotalHours { get; set; }
-
-        private DateTime UpdateMorningIn { get; set; }
-        private DateTime? UpdateMorningOut { get; set; }
-        private DateTime? UpdateAfternoonIn { get; set; }
-        private DateTime? UpdateAfternoonOut { get; set; }
+        public string LateNumberOfMinutes { get; set; }
+        public string UndertimeNumberOfMinutes { get; set; }
+        public string OvertimeNumberOfMinutes { get; set; }
+        public bool IsLogExist { get; set; }
 
         public employeeLogUC(int userId, int employeeId, dtrDetails parent)
         {
@@ -43,6 +47,91 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
         }
 
         #region Functions below responsible for retrieval and forwarding every actions
+
+        private async Task<bool> InsertNewMorningInLog(int employeeId, DateTime dateLog, DateTime morningInTime)
+        {
+            try
+            {
+                bool insert = await dtrClass.InsertNewMorningIn(employeeId, dateLog, morningInTime);
+                return insert;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertNewMorningOutLog(int employeeId, DateTime dateLog, DateTime morningOutTime)
+        {
+            try
+            {
+                bool insert = await dtrClass.InsertNewMorningOut(employeeId, dateLog, morningOutTime);
+                return insert;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertNewAfternoonInLog(int employeeId, DateTime dateLog, DateTime afternoonInTime)
+        {
+            try
+            {
+                bool insert = await dtrClass.InsertNewAfternoonIn(employeeId, dateLog, afternoonInTime);
+                return insert;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertNewAfternoonOutLog(int employeeId, DateTime dateLog, DateTime afternoonOutTime)
+        {
+            try
+            {
+                bool insert = await dtrClass.InsertNewAfternoonOut(employeeId, dateLog, afternoonOutTime);
+                return insert;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> UpdateMorningInLog(int timeLogId, DateTime updateMorningIn)
+        {
+            try
+            {
+                bool update = await dtrClass.UpdateMorningInTimeLog(timeLogId, updateMorningIn);
+                return update;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> UpdateMorningOutLog(int timeLogId, DateTime updateMorningOut)
+        {
+            try
+            {
+                bool update = await dtrClass.UpdateMorningOutTimeLog(timeLogId, updateMorningOut);
+                return update;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> UpdateAfternoonInLog(int timeLogId, DateTime updateAfternoonIn)
+        {
+            try
+            {
+                bool update = await dtrClass.UpdateAfternoonInTimeLog(timeLogId, updateAfternoonIn);
+                return update;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> UpdateAfternoonOutLog(int timeLogId, DateTime updateAfternoonOut)
+        {
+            try
+            {
+                bool update = await dtrClass.UpdateAfternoonOutTimeLog(timeLogId, updateAfternoonOut);
+                return update;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
 
         // Function responsible for adding new System Logs every transaction
         private async Task<bool> AddSystemLog(DateTime date, string description, string caption)
@@ -72,81 +161,6 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
                 }
             }
             catch (SqlException sql) { throw sql;} catch (Exception ex) { throw ex; }
-        }
-
-        // Function responsible for updating a DTR Logs of the employee
-        private async Task<bool> UpdateDTRLog(int timeLogId, DateTime UpdateMorningIn, DateTime? UpdateMorningOut, string UpdateMorningStatus, DateTime? UpdateAfternoonIn, DateTime? UpdateAfternoonOut, string UpdateAfternoonStatus, int TotalHoursWorked)
-        {
-            try
-            {
-                bool updateLog = await dtrClass.UpdateTimeLog(timeLogId, UpdateMorningIn, UpdateMorningOut, UpdateMorningStatus, UpdateAfternoonIn, UpdateAfternoonOut, UpdateAfternoonStatus, TotalHoursWorked);
-
-                return updateLog;
-            }
-            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
-        }
-
-        // Function responsible for Inserting new DTR Log
-        private async Task<bool> InsertNewLog(int EmployeeId, DateTime DateLog, DateTime? MorningIn, DateTime? MorningOut, string MorningStatus, DateTime? AfternoonIn, DateTime? AfternoonOut, string AfternoonStatus, int TotalHoursWorked)
-        {
-            try
-            {
-                bool insertLog = await dtrClass.InsertNewLog(EmployeeId, DateLog, MorningIn, MorningOut, MorningStatus, AfternoonIn, AfternoonOut, AfternoonStatus, TotalHoursWorked);
-                return insertLog;
-            }
-            catch (SqlException sql) { throw sql; } catch(Exception ex) { throw ex; }
-        }
-        
-        // Function Responsible for Retrieving the Morning In time basis
-        private async Task<TimeSpan> GetMorningIn()
-        {
-            try
-            {
-                TimeSpan morningTime = await dtrClass.GetMorningInBasis();
-
-                return morningTime;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // Function responsible for retrieiving the Morning Out Time basis
-        private async Task<TimeSpan> GetMorningOut()
-        {
-            try
-            {
-                TimeSpan morningTime = await dtrClass.GetMorningOutBasis();
-
-                return morningTime;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // Function responsible for retrieving the Afternoon In basis
-        private async Task<TimeSpan> GetAfternoonIn()
-        {
-            try
-            {
-                TimeSpan afternoonTime = await dtrClass.GetAfternoonInBasis();
-
-                return afternoonTime;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // Function responsible for retrieving  the Afternoon Out Basis
-        private async Task<TimeSpan> GetAfternoonOut()
-        {
-            try
-            {
-                TimeSpan afternoonTime = await dtrClass.GetAfternoonOutBasis();
-
-                return afternoonTime;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
         }
 
         private async Task<bool> GetAuthorization(int userId)
@@ -187,74 +201,60 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
         private void changeBtn_Click(object sender, EventArgs e)
         {
             CultureInfo culture = CultureInfo.InvariantCulture;
+            submitBtn.Visible = true;
+            cancelBtn.Visible = true;
+            changeBtn.Visible = false;
+            morningIn.Visible = false;
+            morningOut.Visible = false;
+            afternoonIn.Visible = false;
+            afternoonOut.Visible = false;
 
-            if (DateTime.TryParseExact(Date, "MM/dd/yyyy", culture, DateTimeStyles.None, out DateTime date))
+            if (DateTime.TryParseExact($"{Date} {Year}", "MM/dd yyyy", culture, DateTimeStyles.None, out DateTime date))
             {
-                if (date.DayOfWeek == DayOfWeek.Sunday || date.DayOfWeek == DayOfWeek.Saturday)
+                if (!string.IsNullOrEmpty(morningIn.Text) && DateTime.TryParseExact(morningIn.Text, "hh:mm tt", culture, DateTimeStyles.None, 
+                    out DateTime morningInTime))
                 {
-                    MessageBox.Show("Apologies, but you cannot modify or add new time logs in the Daily Time Record (DTR) on weekends.",
-                        "Weekend", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    morningInUpdate.Value = morningInTime;
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(morningIn.Text) || morningIn.Text == "--:--:--")
-                    {
-                        DateTime morningInTime = DateTime.Today.Add(TimeSpan.Zero);
-                        morningInUpdate.Value = morningInTime;
-                    }
-                    else
-                    {
-                        DateTime morningInTime = DateTime.ParseExact(morningIn.Text, "hh:mm tt", CultureInfo.InvariantCulture);
-                        morningInUpdate.Value = morningInTime;
-                    }
-
-                    if (string.IsNullOrEmpty(morningOut.Text) || morningOut.Text == "--:--:--")
-                    {
-                        DateTime morningOutTime = DateTime.Today.Add(TimeSpan.Zero);
-                        morningOutUpdate.Value = morningOutTime;
-                    }
-                    else
-                    {
-                        DateTime morningOutTime = DateTime.ParseExact(morningOut.Text, "hh:mm tt", CultureInfo.InvariantCulture);
-                        morningOutUpdate.Value = morningOutTime;
-                    }
-
-                    if (string.IsNullOrEmpty(this.afternoonIn.Text) || afternoonIn.Text == "--:--:--")
-                    {
-                        DateTime afternoonIn = DateTime.Today.Add(TimeSpan.Zero);
-                        afternoonInUpdate.Value = afternoonIn;
-                    }
-                    else
-                    {
-                        DateTime afternoonIn = DateTime.ParseExact(this.afternoonIn.Text, "hh:mm tt", CultureInfo.InvariantCulture);
-                        afternoonInUpdate.Value = afternoonIn;
-                    }
-
-                    if (string.IsNullOrEmpty(this.afternoonOut.Text) || afternoonOut.Text == "--:--:--")
-                    {
-                        DateTime afternoonOut = DateTime.Today.Add(TimeSpan.Zero);
-                        afternoonOutUpdate.Value = afternoonOut;
-                    }
-                    else
-                    {
-                        DateTime afternoonOut = DateTime.ParseExact(this.afternoonOut.Text, "hh:mm tt", CultureInfo.InvariantCulture);
-                        afternoonOutUpdate.Value = afternoonOut;
-                    }
-
-                    morningInUpdate.Visible = true;
-                    morningOutUpdate.Visible = true;
-                    afternoonInUpdate.Visible = true;
-                    afternoonOutUpdate.Visible = true;
-                    submitBtn.Visible = true;
-                    cancelBtn.Visible = true;
-
-                    morningIn.Visible = false;
-                    morningOut.Visible = false;
-                    this.afternoonIn.Visible = false;
-                    this.afternoonOut.Visible = false;
-                    changeBtn.Visible = false;
-                    absentBtn.Visible = false;
+                    morningInUpdate.Value = date.Add(TimeSpan.Zero);
                 }
+
+                if (!string.IsNullOrEmpty(morningOut.Text) && DateTime.TryParseExact(morningOut.Text, "hh:mm tt", culture, DateTimeStyles.None, 
+                    out DateTime morningOutTime))
+                {
+                    morningOutUpdate.Value = morningOutTime;
+                }
+                else
+                {
+                    morningOutUpdate.Value = date.Add(TimeSpan.Zero);
+                }
+
+                if (!string.IsNullOrEmpty(afternoonIn.Text) && DateTime.TryParseExact(afternoonIn.Text, "hh:mm tt", culture, DateTimeStyles.None, 
+                    out DateTime afternoonInTime))
+                {
+                    afternoonInUpdate.Value = afternoonInTime;
+                }
+                else
+                {
+                    afternoonInUpdate.Value = date.Add(TimeSpan.Zero);
+                }
+
+                if (!string.IsNullOrEmpty(afternoonOut.Text) && DateTime.TryParseExact(afternoonOut.Text, "hh:mm tt", culture, DateTimeStyles.None, 
+                    out DateTime afternoonOutTime))
+                {
+                    afternoonOutUpdate.Value = afternoonOutTime;
+                }
+                else
+                {
+                    afternoonOutUpdate.Value = date.Add(TimeSpan.Zero);
+                }
+
+                morningInUpdate.Visible = true;
+                morningOutUpdate.Visible = true;
+                afternoonInUpdate.Visible = true;
+                afternoonOutUpdate.Visible = true;
             }
         }
 
@@ -273,345 +273,28 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
             afternoonIn.Visible = true;
             afternoonOut.Visible = true;
             changeBtn.Visible = true;
-            absentBtn.Visible = true;
-
-            if (MorningStatus != "No Records" && AfternoonStatus != "No Records")
-            {
-                morningStatus.Text = MorningStatus;
-                afternoonStatus.Text = AfternoonStatus;
-            }
-            else
-            {
-                morningStatus.Text = "No Records";
-                afternoonStatus.Text = "No Records";
-            }
-        }
-
-        // Event Handler responsible for the Morning status
-        private void morningStatus_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(morningStatus.Text))
-            {
-                MorningStatus = morningStatus.Text;
-            }
-        }
-
-        // Event Handler responsible for afternoon status if the text changes
-        private void afternoonStatus_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(afternoonStatus.Text))
-            {
-                AfternoonStatus = afternoonStatus.Text;
-            }
-        }
-
-        // Event Handler responsible for morning Update Time value
-        private async void morningInUpdate_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                TimeSpan morningOut = await GetMorningOut();
-                TimeSpan morningIn = await GetMorningIn();
-                CultureInfo culture = CultureInfo.InvariantCulture;
-
-                if (DateTime.TryParseExact(Date, "MM/dd/yyyy", culture, DateTimeStyles.None, out DateTime date))
-                {
-                    if (morningIn != TimeSpan.Zero)
-                    {
-                        if (morningInUpdate.Value.TimeOfDay > morningIn && morningInUpdate.Value.TimeOfDay < morningOut)
-                        {
-                            morningStatus.Text = "Late";
-                            UpdateMorningIn = date.Add(morningInUpdate.Value.TimeOfDay);
-                        }
-                        else
-                        {
-                            UpdateMorningIn = date.Add(morningInUpdate.Value.TimeOfDay);
-                            morningStatus.Text = null;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("An error occurred while retrieving the time. The extracted Morning In time is invalid. " +
-                            "Please contact the system administrator to resolve this issue.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("The extracted date is invalid. Please contact the System Administrator immediately.",
-                        "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (SqlException sql)
-            {
-                MessageBox.Show(sql.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        // Event Handler responsible for morning out update time value
-        private async void morningOutUpdate_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                TimeSpan morningOut = await GetMorningOut();
-                TimeSpan morningIn = await GetMorningIn();
-                CultureInfo culture = CultureInfo.InvariantCulture;
-
-                if (DateTime.TryParseExact(Date, "MM/dd/yyyy", culture, DateTimeStyles.None, out DateTime date))
-                {
-                    if (morningOut != TimeSpan.Zero)
-                    {
-                        if (morningInUpdate.Value.TimeOfDay > morningIn && morningInUpdate.Value.TimeOfDay < morningOut)
-                        {
-                            morningStatus.Text = "Late";
-                            UpdateMorningIn = date.Add(morningInUpdate.Value.TimeOfDay);
-                        }
-                        else if (morningOutUpdate.Value.TimeOfDay < morningOut)
-                        {
-                            morningStatus.Text = "Undertime";
-                            UpdateMorningOut = date.Add(morningOutUpdate.Value.TimeOfDay);
-                        }
-                        else if (morningInUpdate.Value.TimeOfDay <= morningIn && (morningOutUpdate.Value.TimeOfDay >= morningOut && morningOutUpdate.Value.TimeOfDay < morningOut.Add(new TimeSpan(0, 30, 0))))
-                        {
-                            morningStatus.Text = "On Time";
-                            UpdateMorningOut = date.Add(morningOutUpdate.Value.TimeOfDay);
-                        }
-                        else if (morningOutUpdate.Value.TimeOfDay == TimeSpan.Zero)
-                        {
-                            UpdateMorningOut = null;
-                            morningStatus.Text = null;
-                        }
-                        else
-                        {
-                            UpdateMorningOut = date.Add(morningOutUpdate.Value.TimeOfDay);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("An error occurred while retrieving the time. The extracted Morning Out time is invalid. " +
-                            "Please contact the system administrator to resolve this issue.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("The extracted date is invalid. Please contact the System Administrator immediately.",
-                        "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (SqlException sql)
-            {
-                MessageBox.Show(sql.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        // Event Handler responsiblle for afternoon in update time value
-        private async void afternoonInUpdate_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                TimeSpan afternoonIn = await GetAfternoonIn();
-                TimeSpan afternoonOut = await GetAfternoonOut();
-                CultureInfo culture = CultureInfo.InvariantCulture;
-
-                if (DateTime.TryParseExact(Date, "MM/dd/yyyy", culture, DateTimeStyles.None, out DateTime date))
-                {
-                    if (afternoonIn != TimeSpan.Zero)
-                    {
-                        if (afternoonInUpdate.Value.TimeOfDay > afternoonIn && afternoonInUpdate.Value.TimeOfDay < afternoonOut)
-                        {
-                            afternoonStatus.Text = "Late";
-                            UpdateAfternoonIn = date.Add(afternoonInUpdate.Value.TimeOfDay);
-                        }
-                        else if ((afternoonInUpdate.Value.TimeOfDay <= afternoonIn && afternoonInUpdate.Value.TimeOfDay >= afternoonIn.Subtract(new TimeSpan(0, 30, 0))) && (afternoonOutUpdate.Value.TimeOfDay >= afternoonOut && afternoonOutUpdate.Value.TimeOfDay <= afternoonOut.Add(new TimeSpan(1, 0, 0))))
-                        {
-                            afternoonStatus.Text = "On Time";
-                            UpdateAfternoonOut = date.Add(afternoonOutUpdate.Value.TimeOfDay);
-                            UpdateAfternoonIn = date.Add(afternoonInUpdate.Value.TimeOfDay);
-                        }
-                        else if (afternoonInUpdate.Value.TimeOfDay == TimeSpan.Zero)
-                        {
-                            UpdateAfternoonIn = null;
-                            afternoonStatus.Text = null;
-                        }
-                        else
-                        {
-                            UpdateAfternoonIn = date.Add(afternoonInUpdate.Value.TimeOfDay);
-                            afternoonStatus.Text = null;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("An error occurred due to an invalid time supplied for the afternoon In. Kindly reach out to the system " +
-                            "administrator for prompt resolution.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("The extracted date is invalid. Please contact the System Administrator immediately.",
-                        "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (SqlException sql)
-            {
-                MessageBox.Show(sql.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        // Event handler responsible for afternoon out time value
-        private async void afternoonOutUpdate_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                TimeSpan afternoonOut = await GetAfternoonOut();
-                TimeSpan afternoonIn = await GetAfternoonIn();
-                CultureInfo culture = CultureInfo.InvariantCulture;
-
-                if (DateTime.TryParseExact(Date, "MM/dd/yyyy", culture, DateTimeStyles.None, out DateTime date))
-                {
-                    if ((afternoonInUpdate.Value.TimeOfDay <= afternoonIn && afternoonInUpdate.Value.TimeOfDay >= afternoonIn.Subtract(new TimeSpan(0, 30, 0))) && (afternoonOutUpdate.Value.TimeOfDay >= afternoonOut && afternoonOutUpdate.Value.TimeOfDay <= afternoonOut.Add(new TimeSpan(1, 0, 0))))
-                    {
-                        afternoonStatus.Text = "On Time";
-                        UpdateAfternoonOut = date.Add(afternoonOutUpdate.Value.TimeOfDay);
-                    }
-                    else if (afternoonOutUpdate.Value.TimeOfDay >= afternoonOut.Add(new TimeSpan(1, 0, 0)))
-                    {
-                        afternoonStatus.Text = "Overtime";
-                        UpdateAfternoonOut = date.Add(afternoonOutUpdate.Value.TimeOfDay);
-                    }
-                    else if (afternoonOutUpdate.Value.TimeOfDay < afternoonOut)
-                    {
-                        afternoonStatus.Text = "Undertime";
-                        UpdateAfternoonOut = date.Add(afternoonOutUpdate.Value.TimeOfDay);
-                    }
-                    else if (afternoonOutUpdate.Value.TimeOfDay == TimeSpan.Zero)
-                    {
-                        UpdateAfternoonOut = null;
-                        afternoonStatus.Text = null;
-                    }                   
-                    else
-                    {
-                        UpdateAfternoonOut = date.Add(afternoonOutUpdate.Value.TimeOfDay);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("The extracted date is invalid. Please contact the System Administrator immediately.",
-                        "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (SqlException sql)
-            {
-                MessageBox.Show(sql.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        // Event handler responsible if the total hours text change
-        private void total_TextChanged(object sender, EventArgs e)
-        {
-            if (int.TryParse(this.specialPrivilege.Text, out int total))
-            {
-                TotalHours = total;
-            }
         }
 
         #endregion
 
         #region Custom function on every actions/transactions
 
-        // Custom Function responsible for validating user input
-        private async Task<bool> IsValidated()
-        {
-            try
-            {
-                TimeSpan morningOut = await GetMorningOut();
-                TimeSpan morningIn = await GetMorningIn();
-                TimeSpan afternoonIn = await GetAfternoonIn();
-                TimeSpan afternoonOut = await GetAfternoonOut();
-
-                if (morningInUpdate.Value.TimeOfDay >= morningOut)
-                {
-                    ErrorMessages("Please input a proper Time In values for the Morning In", "Proper Time In Input");
-                    return false;
-                }
-                else if (morningOutUpdate.Value.TimeOfDay > morningOut.Add(new TimeSpan(0, 30, 0)))
-                {
-                    ErrorMessages("Please input a valid Time Out Input in the Morning", "Morning Out Input Invalid");
-                    return false;
-                }
-                else if (afternoonInUpdate.Value.TimeOfDay >= afternoonOut || 
-                    afternoonInUpdate.Value.TimeOfDay < afternoonIn.Subtract(new TimeSpan(0,30,0)))
-                {
-                    ErrorMessages("Please input a proper Time In values for the Afternoon In", "Proper Time In Input");
-                    return false;
-                }
-                else if (afternoonOutUpdate.Value.TimeOfDay < afternoonInUpdate.Value.TimeOfDay)
-                {
-                    ErrorMessages("Please input a valid Time Out Input in the Afternoon.", "Afternoon Out Input Invalid");
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // Custom Function for computing the Total Hours of Employee Work load
-        private void ComputeTotalHours()
-        {
-            if(morningInUpdate.Value.TimeOfDay != TimeSpan.Zero && morningOutUpdate.Value.TimeOfDay != TimeSpan.Zero && 
-                afternoonInUpdate.Value.TimeOfDay != TimeSpan.Zero && afternoonOutUpdate.Value.TimeOfDay != TimeSpan.Zero)
-            {
-                double timeDiff = ((morningOutUpdate.Value.TimeOfDay - morningInUpdate.Value.TimeOfDay).TotalHours 
-                    + (afternoonOutUpdate.Value.TimeOfDay - afternoonInUpdate.Value.TimeOfDay).TotalHours);
-                int time = (int)Math.Floor(timeDiff);
-                specialPrivilege.Text = time.ToString();
-            }
-            else if (morningInUpdate.Value.TimeOfDay != TimeSpan.Zero && morningOutUpdate.Value.TimeOfDay != TimeSpan.Zero && 
-                afternoonInUpdate.Value.TimeOfDay == TimeSpan.Zero && afternoonOutUpdate.Value.TimeOfDay == TimeSpan.Zero)
-            {
-                double timeDiff = ((morningOutUpdate.Value.TimeOfDay - morningInUpdate.Value.TimeOfDay).TotalHours
-                    + (afternoonOutUpdate.Value.TimeOfDay - afternoonInUpdate.Value.TimeOfDay).TotalHours);
-                int time = (int)Math.Floor(timeDiff);
-                specialPrivilege.Text = time.ToString();
-            }
-            else if (morningInUpdate.Value.TimeOfDay == TimeSpan.Zero && morningOutUpdate.Value.TimeOfDay == TimeSpan.Zero &&
-                afternoonInUpdate.Value.TimeOfDay != TimeSpan.Zero && afternoonOutUpdate.Value.TimeOfDay != TimeSpan.Zero)
-            {
-                double timeDiff = ((morningOutUpdate.Value.TimeOfDay - morningInUpdate.Value.TimeOfDay).TotalHours
-                    + (afternoonOutUpdate.Value.TimeOfDay - afternoonInUpdate.Value.TimeOfDay).TotalHours);
-                int time = (int)Math.Floor(timeDiff);
-                specialPrivilege.Text = time.ToString();
-            }
-        }
-
         // Custom Functions that binds the value from a variable to controls in User Interface
         private void DataBinding()
         {
-            day.DataBindings.Add("Text", this, "Day");
             dateLog.DataBindings.Add("Text", this, "Date");
             morningIn.DataBindings.Add("Text", this, "MorningIn");
             morningOut.DataBindings.Add("Text", this, "MorningOut");
             afternoonIn.DataBindings.Add("Text", this, "AfternoonIn");
             afternoonOut.DataBindings.Add("Text", this, "AfternoonOut");
             specialPrivilege.DataBindings.Add("Text", this, "SpecialPrivilege");
-            total.DataBindings.Add("Text", this, "TotalHours");
+            lateCountNumberOfMinutes.DataBindings.Add("Text", this, "LateNumberOfMinutes");
+            undertimeCountNumberOfMinutes.DataBindings.Add("Text", this, "UndertimeNumberofMinutes");
+            overtimeCountNumberOfMinutes.DataBindings.Add("Text", this, "OvertimeNumberOfMinutes");
+
+            Binding dayBinding = new Binding("Text", this, "Day");
+            dayBinding.Format += new ConvertEventHandler(Day_Format);
+            day.DataBindings.Add(dayBinding);
 
             Binding morningStatusBinding = new Binding("Text", this, "MorningStatus");
             morningStatusBinding.Format += new ConvertEventHandler(MorningStatus_Format);
@@ -620,36 +303,45 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
             Binding afternoonStatusBinding = new Binding("Text", this, "AfternoonStatus");
             afternoonStatusBinding.Format += new ConvertEventHandler(AfternoonStatus_Format);
             afternoonStatus.DataBindings.Add(afternoonStatusBinding);
+        }
 
-            day.Location = new Point((dayPanel.Width - day.Width) / 2, (dayPanel.Height - day.Height) / 2);
-            dateLog.Location = new Point((datePanel.Width - dateLog.Width)/2, (datePanel.Height - dateLog.Height) / 2);
-            morningIn.Location = new Point((morningInPanel.Width - morningIn.Width) / 2, (morningInPanel.Height - morningIn.Height) / 2);
-            morningOut.Location = new Point((morningOutPanel.Width - morningOut.Width) / 2, (morningOutPanel.Height - morningOut.Height) / 2);
-            morningStatus.Location = new Point((morningStatusPanel.Width - morningStatus.Width) / 2, (morningStatusPanel.Height - morningStatus.Height) / 2);
-            afternoonIn.Location = new Point((afternoonInPanel.Width - afternoonIn.Width) / 2, (afternoonInPanel.Height - afternoonIn.Height) / 2);
-            afternoonOut.Location = new Point((afternoonOutPanel.Width - afternoonOut.Width) / 2, (afternoonOutPanel.Height - afternoonOut.Height) / 2);
-            afternoonStatus.Location = new Point((afternoonStatusPanel.Width - afternoonStatus.Width) / 2, (afternoonStatusPanel.Height - afternoonStatus.Height) / 2);
-            specialPrivilege.Location = new Point((totalPanel.Width - specialPrivilege.Width) / 2, (totalPanel.Height - specialPrivilege.Height) / 2);
-            total.Location = new Point((panel1.Width - total.Width) / 2, (panel1.Height - total.Height) / 2);
+        private void Day_Format(object sender, ConvertEventArgs e)
+        {
+            if (e.Value.ToString() == "SAT" || e.Value.ToString() == "SUN")
+            {
+                day.ForeColor = Color.Red;
+                changeBtn.Visible = false;
+                submitBtn.Visible = false;
+                cancelBtn.Visible = false;
+            }
+            else
+            {
+                day.ForeColor = Color.Black;
+                changeBtn.Visible = true;
+            }
         }
 
         private void MorningStatus_Format(object sender, ConvertEventArgs e)
         {
-            if (e.Value.ToString() == "Saturday" || e.Value.ToString() == "Sunday")
+           if (e.Value.ToString() == "Saturday" || e.Value.ToString() == "Sunday")
             {
                 morningStatus.ForeColor = Color.DarkOrange;
+                
             }
             else if (e.Value.ToString() == "No Records" || e.Value.ToString() == "No Records")
             {
                 morningStatus.ForeColor = Color.DimGray;
+                
             }
             else if (e.Value.ToString() == "Late" || e.Value.ToString() == "Absent")
             {
                 morningStatus.ForeColor = Color.Red;
+                
             }
             else if (e.Value.ToString() == "On Leave" || e.Value.ToString() == "Pass Slip" || e.Value.ToString() == "Travel Order")
             {
                 morningStatus.ForeColor = Color.DarkCyan;
+                
             }
             else
             {
@@ -702,46 +394,132 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
         }
 
         // Custom function responsible for adding new DTR Log
-        private async Task<bool> AddNewLog (string stringDate)
+        private async Task<bool> AddNewLog()
         {
             try
             {
-                if (DateTime.TryParseExact(stringDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
-                    out DateTime date))
-                {
-                    if (LogID <= 0)
-                    {
-                        bool insertLog = await InsertNewLog(_employeeId, date, UpdateMorningIn, UpdateMorningOut, 
-                            MorningStatus, UpdateAfternoonIn, UpdateAfternoonOut, AfternoonStatus, TotalHours);
+                bool morningInChanges;
+                bool morningOutChanges;
+                bool afternoonInChanges;
+                bool afternoonOutChanges;
 
-                        if (insertLog)
+                if (DateTime.TryParseExact($"{Date} {Year}", "MM/dd yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+                {
+                    if (IsLogExist)
+                    {
+                        if (MorningInLogId > 0)
                         {
-                            return true;
+                            morningInChanges = await UpdateMorningInLog(MorningInLogId, morningInUpdate.Value);
+                        }
+                        else if (morningInUpdate.Value.TimeOfDay != TimeSpan.Zero)
+                        {
+                            morningInChanges = await InsertNewMorningInLog(_employeeId, date, morningInUpdate.Value);
                         }
                         else
                         {
-                            ErrorMessages("There is an error in adding the new DTR Log into Employee DTR", "Error DTR Logs");
-                            return false;
+                            morningInChanges = true;
+                        }
+
+                        if (MorningOutLogId > 0)
+                        {
+                            morningOutChanges = await UpdateMorningOutLog(MorningOutLogId, morningOutUpdate.Value);
+                        }
+                        else if (morningOutUpdate.Value.TimeOfDay != TimeSpan.Zero)
+                        {
+                            morningOutChanges = await InsertNewMorningOutLog(_employeeId, date, morningOutUpdate.Value);
+                        }
+                        else
+                        {
+                            morningOutChanges = true;
+                        }
+
+                        if (AfternoonInLogId > 0)
+                        {
+                            afternoonInChanges = await UpdateAfternoonInLog(AfternoonInLogId, afternoonInUpdate.Value);
+                        }
+                        else if (afternoonInUpdate.Value.TimeOfDay != TimeSpan.Zero)
+                        {
+                            afternoonInChanges = await InsertNewAfternoonInLog(_employeeId, date, afternoonInUpdate.Value);
+                        }
+                        else
+                        {
+                            afternoonInChanges = true;
+                        }
+
+                        if (AfternoonOutLogId > 0)
+                        {
+                            afternoonOutChanges = await UpdateAfternoonOutLog(AfternoonOutLogId, afternoonOutUpdate.Value);
+                        }
+                        else if (afternoonOutUpdate.Value.TimeOfDay != TimeSpan.Zero)
+                        {
+                            afternoonOutChanges = await InsertNewAfternoonOutLog(_employeeId, date, afternoonOutUpdate.Value);
+                        }
+                        else
+                        {
+                            afternoonOutChanges = true;
                         }
                     }
                     else
                     {
-                        bool updateLog = await UpdateDTRLog(LogID, UpdateMorningIn, UpdateMorningOut, MorningStatus, UpdateAfternoonIn, 
-                            UpdateAfternoonOut, AfternoonStatus, TotalHours);
-
-                        if (updateLog)
+                        if (morningInUpdate.Value.TimeOfDay != TimeSpan.Zero)
                         {
-                            return true;
+                            morningInChanges = await InsertNewMorningInLog(_employeeId, date, morningInUpdate.Value);
                         }
                         else
                         {
-                            ErrorMessages($"Error in updating the Log Id {LogID}", "Error Update Log");
-                            return false;
+                            morningInChanges = true;
+                        }
+
+                        if (morningOutUpdate.Value.TimeOfDay != TimeSpan.Zero)
+                        {
+                            morningOutChanges = await InsertNewMorningOutLog(_employeeId, date, morningOutUpdate.Value);
+                        }
+                        else
+                        {
+                            morningOutChanges = true;
+                        }
+
+                        if (afternoonInUpdate.Value.TimeOfDay != TimeSpan.Zero)
+                        {
+                            afternoonInChanges = await InsertNewAfternoonInLog(_employeeId, date, afternoonInUpdate.Value);
+                        }
+                        else
+                        {
+                            afternoonInChanges = true;
+                        }
+
+                        if (afternoonOutUpdate.Value.TimeOfDay != TimeSpan.Zero)
+                        {
+                            afternoonOutChanges = await InsertNewAfternoonOutLog(_employeeId, date, afternoonOutUpdate.Value);
+                        }
+                        else
+                        {
+                            afternoonOutChanges = true;
                         }
                     }
                 }
-                ErrorMessages($"Error in converting {Date}", "Date Error");
-                return false;
+                else
+                {
+                    ErrorMessages($"There is an error converting the Date", "Date Conversion Error");
+                    return false;
+                }
+
+                if (morningInUpdate.Value.TimeOfDay == TimeSpan.Zero && morningOutUpdate.Value.TimeOfDay == TimeSpan.Zero &&
+                    afternoonInUpdate.Value.TimeOfDay == TimeSpan.Zero && afternoonOutUpdate.Value.TimeOfDay == TimeSpan.Zero)
+                {
+                    ErrorMessages("There is no changes reflected in the DTR please input a proper time value!", "Invalid Input");
+                    return false;
+                }
+                else if (morningInChanges && morningOutChanges && afternoonInChanges && afternoonOutChanges)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages($"One of the Logs failed to update or insert into the DTR. Please contact system administrator for " +
+                        $"resolution", "Failure to Update or Insert new Logs");
+                    return false;
+                }
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
@@ -787,17 +565,11 @@ namespace Payroll_Project2.Forms.Personnel.DTR.Modal.Modal_User_Control
         {
             try
             {
-                ComputeTotalHours();
-
-                bool isValidated = await IsValidated();
-                if (!isValidated)
-                    return;
-
                 bool isAuthorized = await IsAuthorized(_userId);
                 if (!isAuthorized)
                     return;
 
-                bool addLog = await AddNewLog(Date);
+                bool addLog = await AddNewLog();
                 if (!addLog)
                     return;
 

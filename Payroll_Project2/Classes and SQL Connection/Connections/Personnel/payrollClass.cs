@@ -24,14 +24,6 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
-        public async Task<int> GetNumberOfDays(string schedule)
-        {
-            try
-            {
-
-            }
-            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
-        }
 
         public async Task<int> GetPayrollId()
         {

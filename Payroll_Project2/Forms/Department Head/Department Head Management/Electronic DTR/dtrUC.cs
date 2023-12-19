@@ -113,9 +113,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         {
             try
             {
-                int count = await generalFunctions.GetleaveCount(employeeId, status);
-
-                return count;
+                //int count = await generalFunctions.GetleaveCount(employeeId, status);
+                //return count;
+                return 0;
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
@@ -126,9 +126,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         {
             try
             {
-                int count = await generalFunctions.GetTravelOrderCount(employeeId, status);
-
-                return count;
+                //int count = await generalFunctions.GetTravelOrderCount(employeeId, status);
+                //return count;
+                return 0;
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
@@ -139,9 +139,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         {
             try
             {
-                int count = await generalFunctions.GetPassSlipCount(employeeId, status);
-
-                return count;
+                //int count = await generalFunctions.GetPassSlipCount(employeeId, status);
+                //return count;
+                return 0;
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
@@ -152,9 +152,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         {
             try
             {
-                int count = await generalFunctions.GetLateCount(employeeId);
-
-                return count;
+                //int count = await generalFunctions.GetLateCount(employeeId);
+                //return count;
+                return 0;
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
@@ -165,9 +165,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         {
             try
             {
-                int count = await generalFunctions.GetUndertimeCount(employeeId);
-
-                return count;
+                //int count = await generalFunctions.GetUndertimeCount(employeeId);
+                //return count;
+                return 0;
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
@@ -178,9 +178,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         {
             try
             {
-                int count = await generalFunctions.GetOvertimeCount(employeeId);
-
-                return count;
+                //int count = await generalFunctions.GetOvertimeCount(employeeId);
+                //return count;
+                return 0;
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
@@ -191,9 +191,9 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         {
             try
             {
-                int count = await generalFunctions.GetAbsentCount(employeeId);
-
-                return count;
+                //int count = await generalFunctions.GetAbsentCount(employeeId);
+                //return count;
+                return 0;
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }

@@ -36,20 +36,11 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR.DTR_Sub_User_Con
 
         private void DataBinding()
         {
-            day.DataBindings.Add("Text", this, "Day");
-            dateLog.DataBindings.Add("Text", this, "Date");
-            morningStatus.DataBindings.Add("Text", this, "MorningStatus");
-            afternoonStatus.DataBindings.Add("Text", this, "AfternoonStatus");
+
         }
 
         private void dtrDataUC_Load(object sender, EventArgs e)
         {
-            morningInUpdate.Visible = false;
-            morningOutUpdate.Visible = false;
-            afternoonInUpdate.Visible = false;
-            afternoonOutUpdate.Visible = false;
-            submitBtn.Visible = true;
-            cancelBtn.Visible = true;
             DataBinding();
         }
     }

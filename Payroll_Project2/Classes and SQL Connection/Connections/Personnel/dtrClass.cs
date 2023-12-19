@@ -133,302 +133,108 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
             catch (Exception ex) { throw ex; }
         }
 
-        //This function will be responsible for retrieving the count of an employee's number of work days
-        // But based on a specific Date
-        public async Task<int> GetSpecificWorkDaysCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'On Time' or afternoonStatus = " +
-                        "'On Time') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of Leave
-        //Based on specific date
-        public async Task<int> GetSpecificleaveCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Leave' or afternoonStatus = " +
-                        "'Leave') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of Travel Order
-        public async Task<int> GetSpecificTravelOrderCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Travel Order' or afternoonStatus = " +
-                        "'Travel Order') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of Pass Slip
-        public async Task<int> GetSpecificPassSlipCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Pass Slip' or afternoonStatus = " +
-                        "'Pass Slip') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of late
-        public async Task<int> GetSpecificLateCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Late' or afternoonStatus = " +
-                        "'Late') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of undertime
-        public async Task<int> GetSpecificUndertimeCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Undertime' or afternoonStatus = " +
-                        "'Undertime') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of overtime
-        public async Task<int> GetSpecificOvertimeCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Overtime' or afternoonStatus = " +
-                        "'Overtime') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of absent
-        public async Task<int> GetSpecificAbsentCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as late from tbl_timeLog where (morningStatus = 'Absent' or afternoonStatus = " +
-                        "'Absent') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
         #endregion
 
         #region All Add methods
 
         // This function would be responsible for inserting new log in employee DTR
-        public async Task<bool> InsertNewLog(int EmployeeId, DateTime DateLog, DateTime? MorningIn, DateTime? MorningOut, string MorningStatus, DateTime? AfternoonIn, DateTime? AfternoonOut, string AfternoonStatus, int TotalHoursWorked)
+        public async Task<bool> InsertNewMorningIn(int EmployeeId, DateTime DateLog, DateTime morningIn)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "insert into tbl_timeLog (employeeId, dateLog, morningIn, morningOut, morningStatus, afternoonIn, afternoonOut, afternoonStatus, totalHoursWorked) " +
-                        "values (@employeeId, @dateLog, @morningIn, @morningOut, @morningStatus, @afternoonIn, @afternoonOut, @afternoonStatus, @totalHoursWorked)";
+                    string command = "insert into tbl_timeLog (employeeId, dateLog, timeLog, timePeriodId, logTypeId) " +
+                        "values (@employeeId, @dateLog, @morningIn, 1, 1)";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", EmployeeId);
                         cmd.Parameters.AddWithValue("@dateLog", DateLog);
-                        cmd.Parameters.AddWithValue("@morningIn", MorningIn ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@morningOut", MorningOut ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@morningStatus", MorningStatus ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@afternoonIn", AfternoonIn ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@afternoonOut", AfternoonOut ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@afternoonStatus", AfternoonStatus ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@totalHoursWorked", TotalHoursWorked);
+                        cmd.Parameters.AddWithValue("@morningIn", morningIn);
 
-                        object result = await cmd.ExecuteNonQueryAsync();
+                        int result = await cmd.ExecuteNonQueryAsync();
 
-                        return (int)result > 0;
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> InsertNewMorningOut(int EmployeeId, DateTime DateLog, DateTime morningOut)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "insert into tbl_timeLog (employeeId, dateLog, timeLog, timePeriodId, logTypeId) " +
+                        "values (@employeeId, @dateLog, @morningOut, 1, 2)";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@employeeId", EmployeeId);
+                        cmd.Parameters.AddWithValue("@dateLog", DateLog);
+                        cmd.Parameters.AddWithValue("@morningOut", morningOut);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> InsertNewAfternoonIn(int EmployeeId, DateTime DateLog, DateTime afternoonIn)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "insert into tbl_timeLog (employeeId, dateLog, timeLog, timePeriodId, logTypeId) " +
+                        "values (@employeeId, @dateLog, @afternoonIn, 2, 1)";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@employeeId", EmployeeId);
+                        cmd.Parameters.AddWithValue("@dateLog", DateLog);
+                        cmd.Parameters.AddWithValue("@afternoonIn", afternoonIn);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> InsertNewAfternoonOut(int EmployeeId, DateTime DateLog, DateTime afternoonOut)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "insert into tbl_timeLog (employeeId, dateLog, timeLog, timePeriodId, logTypeId) " +
+                        "values (@employeeId, @dateLog, @afternoonOut, 2, 2)";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@employeeId", EmployeeId);
+                        cmd.Parameters.AddWithValue("@dateLog", DateLog);
+                        cmd.Parameters.AddWithValue("@afternoonOut", afternoonOut);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
                     }
                 }
             }
@@ -439,35 +245,99 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
         #endregion
 
         //This function is responsible for updating the employee specific time log
-        public async Task<bool> UpdateTimeLog(int timeLogId, DateTime UpdateMorningIn, DateTime? UpdateMorningOut, string UpdateMorningStatus, DateTime? UpdateAfternoonIn, DateTime? UpdateAfternoonOut, string UpdateAfternoonStatus, int TotalHours)
+        public async Task<bool> UpdateMorningInTimeLog(int timeLogId, DateTime UpdateMorningIn)
         {
             try
             {
                 using(SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "update tbl_timeLog set morningIn = @UpdateMorningIn, morningOut = @UpdateMorningOut, " +
-                        "morningStatus = @UpdateMorningStatus, afternoonIn = @UpdateAfternoonIn, afternoonOut = @UpdateAfternoonOut, " +
-                        "afternoonStatus = @UpdateAfternoonStatus, totalHoursWorked = @total where timeLogId = @timeLogId";
+                    string command = "update tbl_timeLog set timeLog = @updateMorningIn where timeLogId = @timeLogId";
                     
                     using(cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@timeLogId", timeLogId);
                         cmd.Parameters.AddWithValue("@UpdateMorningIn", UpdateMorningIn);
-                        cmd.Parameters.AddWithValue("@UpdateMorningOut", UpdateMorningOut);
-                        cmd.Parameters.AddWithValue("@UpdateMorningStatus", UpdateMorningStatus);
-                        cmd.Parameters.AddWithValue("@UpdateAfternoonIn", UpdateAfternoonIn);
-                        cmd.Parameters.AddWithValue("@UpdateAfternoonOut", UpdateAfternoonOut);
-                        cmd.Parameters.AddWithValue("@UpdateAfternoonStatus", UpdateAfternoonStatus);
-                        cmd.Parameters.AddWithValue("@total", TotalHours);
 
-                        object result = await cmd.ExecuteNonQueryAsync();
+                        int result = await cmd.ExecuteNonQueryAsync();
 
-                        return (int)result > 0;
+                        return result > 0;
                     }
                 }
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> UpdateMorningOutTimeLog(int timeLogId, DateTime UpdateMorningOut)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "update tbl_timeLog set timeLog = @updateMorningOut where timeLogId = @timeLogId";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@timeLogId", timeLogId);
+                        cmd.Parameters.AddWithValue("@UpdateMorningOut", UpdateMorningOut);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> UpdateAfternoonInTimeLog(int timeLogId, DateTime UpdateAfternoonIn)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "update tbl_timeLog set timeLog = @updateAfternoonIn where timeLogId = @timeLogId";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@timeLogId", timeLogId);
+                        cmd.Parameters.AddWithValue("@UpdateAfternoonIn", UpdateAfternoonIn);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> UpdateAfternoonOutTimeLog(int timeLogId, DateTime UpdateAfternoonOut)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "update tbl_timeLog set timeLog = @updateAfternoonOut where timeLogId = @timeLogId";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@timeLogId", timeLogId);
+                        cmd.Parameters.AddWithValue("@UpdateAfternoonOut", UpdateAfternoonOut);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
         }
     }
 }

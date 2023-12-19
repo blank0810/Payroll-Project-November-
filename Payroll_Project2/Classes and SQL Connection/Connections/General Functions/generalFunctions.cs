@@ -1682,11 +1682,37 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select timeLogId, dateLog, morningIn, morningOut, morningStatus, afternoonIn, afternoonOut, afternoonStatus, " +
-                        "totalHoursWorked, specialPrivilegeDescription from tbl_timeLog " +
-                        "left join tbl_specialPrivilege on tbl_timeLog.specialPrivilegeId = tbl_specialPrivilege.specialPrivilegeId " +
-                        "where employeeId = @employeeId and dateLog = @date";
-                    using (cmd = new SqlCommand(command, conn))
+                    string command = @"
+                SELECT
+                    dateLog,
+                    employeeId,
+                    specialPrivilegeDescription,
+                    SUM(lr.numberOfMinutes) as lateMinutes,
+                    SUM(ur.numberOfMinutes) as undertimeMinutes,
+                    SUM(otr.numberOfMinutes) as overtimeMinutes,
+                    MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 1 THEN timeLog END) AS MorningIn,
+                    MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 2 THEN timeLog END) AS MorningOut,
+                    MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 1 THEN timeLog END) AS AfternoonIn,
+                    MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 2 THEN timeLog END) AS AfternoonOut,
+                    MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 1 THEN tbl_timeLog.timelogId END) AS MorningInLogId,
+                    MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 2 THEN tbl_timeLog.timelogId END) AS MorningOutLogId,
+                    MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 1 THEN tbl_timeLog.timelogId END) AS AfternoonInLogId,
+                    MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 2 THEN tbl_timeLog.timelogId END) AS AfternoonOutLogId
+                FROM
+                    tbl_timeLog
+                LEFT JOIN tbl_specialPrivilege ON tbl_specialPrivilege.specialPrivilegeId = tbl_timeLog.specialPrivilegeId
+                LEFT JOIN tbl_lateRecord lr on lr.timeLogId = tbl_timeLog.timeLogId
+                LEFT JOIN tbl_overtimeRecord otr on otr.timeLogId = tbl_timeLog.timeLogId
+                LEFT JOIN tbl_undertimeRecord ur on ur.timeLogId = tbl_timeLog.timeLogId
+                WHERE
+                    employeeId = @employeeId
+                    AND dateLog = @date
+                GROUP BY
+                    dateLog,
+                    employeeId,
+                    specialPrivilegeDescription;";
+
+                    using (SqlCommand cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
                         cmd.Parameters.AddWithValue("@date", date);
@@ -1694,7 +1720,6 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                         using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                         {
                             DataTable dt = new DataTable();
-                            conn.Close();
                             sda.Fill(dt);
                             return dt;
                         }
@@ -1711,30 +1736,93 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
             }
         }
 
-        //This function will be responsible for retrieving the count of an employee's number of absent
-        public async Task<int> GetAbsentCount(int employeeId)
+        // Function responsible for retrieving the time status
+        public async Task<string> GetTimeLogStatus(int timeLogId)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Absent' or afternoonStatus = " +
-                        "'Absent') and employeeId = @employeeId";
+                    string command = "select timeStatusDescription " +
+                        "from tbl_timeStatus " +
+                        "where timePeriodId = (select timePeriodId from tbl_timeLog where timeLogId = @timeLogID) " +
+                        "and logTypeId = (select logTypeId from tbl_timeLog where timeLogId = @timeLogId) " +
+                        "and cast((select timeLog from tbl_timeLog where timeLogId = @timeLogId) as time) between fromTime and toTime";
+
                     using (cmd = new SqlCommand(command, conn))
                     {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@timeLogId", timeLogId);
 
                         object result = await cmd.ExecuteScalarAsync();
 
-                        if (result == DBNull.Value || result == null)
+                        if (!string.IsNullOrEmpty(result.ToString()) && result != DBNull.Value && result != null)
                         {
-                            return 0;
+                            return $"{result}";
                         }
                         else
                         {
-                            return (int)result;
+                            return null;
                         }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        //This function will be responsible for retrieving the count of an employee's number of absent
+        public async Task<bool> CheckAbsentLogs(int employeeId, DateTime targetDate)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = @"
+                IF EXISTS (
+                    SELECT 1
+                    FROM tbl_timeLog
+                    WHERE dateLog = @targetDate
+                    AND employeeId = @employeeId
+                    AND timePeriodId = 1 -- AM
+                    AND logTypeId = 1 -- In
+                )
+                AND EXISTS (
+                    SELECT 1
+                    FROM tbl_timeLog
+                    WHERE dateLog = @targetDate
+                    AND employeeId = @employeeId
+                    AND timePeriodId = 1 -- AM
+                    AND logTypeId = 2 -- Out
+                )
+                AND EXISTS (
+                    SELECT 1
+                    FROM tbl_timeLog
+                    WHERE dateLog = @targetDate
+                    AND employeeId = @employeeId
+                    AND timePeriodId = 2 -- PM
+                    AND logTypeId = 1 -- In
+                )
+                AND EXISTS (
+                    SELECT 1
+                    FROM tbl_timeLog
+                    WHERE dateLog = @targetDate
+                    AND employeeId = @employeeId
+                    AND timePeriodId = 2 -- PM
+                    AND logTypeId = 2 -- Out
+                )
+                    SELECT 1
+                ELSE
+                    SELECT 0";
+
+                    using (SqlCommand cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@targetDate", targetDate);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        return Convert.ToInt32(result) == 1;
                     }
                 }
             }
@@ -1743,28 +1831,31 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         //This function will be responsible for retrieving the count of an employee's number of overtime
-        public async Task<int> GetOvertimeCount(int employeeId)
+        public async Task<int> GetOvertimeCount(int employeeId, int month, DateTime date)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Overtime' or afternoonStatus = " +
-                        "'Overtime') and employeeId = @employeeId";
+                    string command = "select sum(numberOfMinutes) from tbl_overtimeRecord " +
+                        "join tbl_timeLog on tbl_overtimeRecord.timeLogId = tbl_timeLog.timeLogId " +
+                        "where month(dateLog) = @month and dateLog < @date and employeeId = @employeeId";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@date", date);
 
                         object result = await cmd.ExecuteScalarAsync();
 
-                        if (result == DBNull.Value || result == null)
+                        if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int count))
                         {
-                            return 0;
+                            return count;
                         }
                         else
                         {
-                            return (int)result;
+                            return 0;
                         }
                     }
                 }
@@ -1774,28 +1865,31 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         //This function will be responsible for retrieving the count of an employee's number of undertime
-        public async Task<int> GetUndertimeCount(int employeeId)
+        public async Task<int> GetUndertimeCount(int employeeId, int month, DateTime date)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Undertime' or afternoonStatus = " +
-                        "'Undertime') and employeeId = @employeeId";
+                    string command = "select sum(numberOfMinutes) from tbl_undertimeRecord " +
+                        "join tbl_timeLog on tbl_undertimeRecord.timeLogId = tbl_timeLog.timeLogId " +
+                        "where month(dateLog) = @month and dateLog < @date and employeeId = @employeeId";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@date", date);
 
                         object result = await cmd.ExecuteScalarAsync();
 
-                        if (result == DBNull.Value || result == null)
+                        if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int count))
                         {
-                            return 0;
+                            return count;
                         }
                         else
                         {
-                            return (int)result;
+                            return 0;
                         }
                     }
                 }
@@ -1805,28 +1899,31 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         //This function will be responsible for retrieving the count of an employee's number of late
-        public async Task<int> GetLateCount(int employeeId)
+        public async Task<int> GetLateCount(int employeeId, int month, DateTime date)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Late' or afternoonStatus = " +
-                        "'Late') and employeeId = @employeeId";
+                    string command = "select sum(numberOfMinutes) from tbl_lateRecord " +
+                        "join tbl_timeLog on tbl_lateRecord.timeLogId = tbl_timeLog.timeLogId " +
+                        "where month(dateLog) = @month and dateLog < @date and employeeId = @employeeId";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@date", date);
 
                         object result = await cmd.ExecuteScalarAsync();
 
-                        if (result == DBNull.Value || result == null)
+                        if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int count))
                         {
-                            return 0;
+                            return count;
                         }
                         else
                         {
-                            return (int)result;
+                            return 0;
                         }
                     }
                 }
@@ -1836,29 +1933,31 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         //This function will be responsible for retrieving the count of an employee's number of Leave
-        public async Task<int> GetleaveCount(int employeeId, string status)
+        public async Task<int> GetLeaveCount(int employeeId, int month, DateTime date)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = @status or afternoonStatus = " +
-                        "@status) and employeeId = @employeeId";
+                    string command = "select count(*) from tbl_specialPrivilege " +
+                        "join tbl_timeLog on tbl_timeLog.specialPrivilegeId = tbl_specialPrivilege.specialPrivilegeId " +
+                        "where month(dateLog) = @month and dateLog < @date and employeeId = @employeeId and applicationNumber is not null";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@status", status);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@date", date);
 
                         object result = await cmd.ExecuteScalarAsync();
 
-                        if (result == DBNull.Value || result == null)
+                        if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int count))
                         {
-                            return 0;
+                            return count;
                         }
                         else
                         {
-                            return (int)result;
+                            return 0;
                         }
                     }
                 }
@@ -1868,29 +1967,31 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         //This function will be responsible for retrieving the count of an employee's number of Travel Order
-        public async Task<int> GetTravelOrderCount(int employeeId, string status)
+        public async Task<int> GetTravelOrderCount(int employeeId, int month, DateTime date)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = @status or afternoonStatus = " +
-                        "@status) and employeeId = @employeeId";
+                    string command = "select count(*) from tbl_specialPrivilege " +
+                        "join tbl_timeLog on tbl_timeLog.specialPrivilegeId = tbl_specialPrivilege.specialPrivilegeId " +
+                        "where month(dateLog) = @month and dateLog < @date and employeeId = @employeeId and orderControlNumber is not null";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@status", status);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@date", date);
 
                         object result = await cmd.ExecuteScalarAsync();
 
-                        if (result == DBNull.Value || result == null)
+                        if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int count))
                         {
-                            return 0;
+                            return count;
                         }
                         else
                         {
-                            return (int)result;
+                            return 0;
                         }
                     }
                 }
@@ -1900,29 +2001,31 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
         }
 
         //This function will be responsible for retrieving the count of an employee's number of Pass Slip
-        public async Task<int> GetPassSlipCount(int employeeId, string status)
+        public async Task<int> GetPassSlipCount(int employeeId, int month, DateTime date)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = @status or afternoonStatus = " +
-                        "@status) and employeeId = @employeeId";
+                    string command = "select count(*) from tbl_specialPrivilege " +
+                        "join tbl_timeLog on tbl_timeLog.specialPrivilegeId = tbl_specialPrivilege.specialPrivilegeId " +
+                        "where month(dateLog) = @month and dateLog < @date and employeeId = @employeeId and slipControlNumber is not null";
                     using (cmd = new SqlCommand(command, conn))
                     {
                         cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@status", status);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@date", date);
 
                         object result = await cmd.ExecuteScalarAsync();
 
-                        if (result == DBNull.Value || result == null)
+                        if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int count))
                         {
-                            return 0;
+                            return count;
                         }
                         else
                         {
-                            return (int)result;
+                            return 0;
                         }
                     }
                 }
@@ -1947,13 +2050,13 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
 
                         object result = await cmd.ExecuteScalarAsync();
 
-                        if (result == DBNull.Value || result == null)
+                        if (result != DBNull.Value && result != null && int.TryParse(result.ToString(), out int count))
                         {
-                            return 0;
+                            return count;
                         }
                         else
                         {
-                            return (int)result;
+                            return 0;
                         }
                     }
                 }

@@ -28,354 +28,239 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dayPanel = new System.Windows.Forms.Panel();
+            this.specialPrivilege = new System.Windows.Forms.LinkLabel();
             this.day = new System.Windows.Forms.Label();
-            this.datePanel = new System.Windows.Forms.Panel();
-            this.dateLog = new System.Windows.Forms.Label();
-            this.morningInPanel = new System.Windows.Forms.Panel();
-            this.morningIn = new System.Windows.Forms.Label();
-            this.morningInUpdate = new System.Windows.Forms.DateTimePicker();
-            this.morningOutPanel = new System.Windows.Forms.Panel();
-            this.morningOutUpdate = new System.Windows.Forms.DateTimePicker();
-            this.morningOut = new System.Windows.Forms.Label();
-            this.afternoonInPanel = new System.Windows.Forms.Panel();
-            this.afternoonIn = new System.Windows.Forms.Label();
-            this.afternoonInUpdate = new System.Windows.Forms.DateTimePicker();
-            this.afternoonOutPanel = new System.Windows.Forms.Panel();
-            this.afternoonOutUpdate = new System.Windows.Forms.DateTimePicker();
+            this.undertimeCountNumberOfMinutes = new System.Windows.Forms.Label();
+            this.overtimeCountNumberOfMinutes = new System.Windows.Forms.Label();
+            this.lateCountNumberOfMinutes = new System.Windows.Forms.Label();
             this.afternoonOut = new System.Windows.Forms.Label();
-            this.afternoonStatusPanel = new System.Windows.Forms.Panel();
+            this.afternoonIn = new System.Windows.Forms.Label();
             this.afternoonStatus = new System.Windows.Forms.Label();
-            this.totalPanel = new System.Windows.Forms.Panel();
-            this.specialPrivilege = new System.Windows.Forms.Label();
-            this.morningStatusPanel = new System.Windows.Forms.Panel();
             this.morningStatus = new System.Windows.Forms.Label();
+            this.morningOut = new System.Windows.Forms.Label();
+            this.morningIn = new System.Windows.Forms.Label();
+            this.dateLog = new System.Windows.Forms.Label();
+            this.morningInUpdate = new System.Windows.Forms.DateTimePicker();
+            this.morningOutUpdate = new System.Windows.Forms.DateTimePicker();
+            this.afternoonInUpdate = new System.Windows.Forms.DateTimePicker();
+            this.afternoonOutUpdate = new System.Windows.Forms.DateTimePicker();
             this.cancelBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.absentBtn = new Payroll_Project2.Custom.buttonDesign();
             this.submitBtn = new Payroll_Project2.Custom.buttonDesign();
             this.changeBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.total = new System.Windows.Forms.Label();
-            this.dayPanel.SuspendLayout();
-            this.datePanel.SuspendLayout();
-            this.morningInPanel.SuspendLayout();
-            this.morningOutPanel.SuspendLayout();
-            this.afternoonInPanel.SuspendLayout();
-            this.afternoonOutPanel.SuspendLayout();
-            this.afternoonStatusPanel.SuspendLayout();
-            this.totalPanel.SuspendLayout();
-            this.morningStatusPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dayPanel
-            // 
-            this.dayPanel.Controls.Add(this.day);
-            this.dayPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dayPanel.Location = new System.Drawing.Point(0, 0);
-            this.dayPanel.Name = "dayPanel";
-            this.dayPanel.Size = new System.Drawing.Size(42, 35);
-            this.dayPanel.TabIndex = 1;
-            // 
-            // day
-            // 
-            this.day.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.day.AutoSize = true;
-            this.day.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.day.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.day.Location = new System.Drawing.Point(5, 10);
-            this.day.Name = "day";
-            this.day.Size = new System.Drawing.Size(31, 15);
-            this.day.TabIndex = 1;
-            this.day.Text = "SUN";
-            // 
-            // datePanel
-            // 
-            this.datePanel.Controls.Add(this.dateLog);
-            this.datePanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.datePanel.Location = new System.Drawing.Point(42, 0);
-            this.datePanel.Name = "datePanel";
-            this.datePanel.Size = new System.Drawing.Size(83, 35);
-            this.datePanel.TabIndex = 2;
-            // 
-            // dateLog
-            // 
-            this.dateLog.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateLog.AutoSize = true;
-            this.dateLog.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.dateLog.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dateLog.Location = new System.Drawing.Point(14, 10);
-            this.dateLog.Name = "dateLog";
-            this.dateLog.Size = new System.Drawing.Size(53, 15);
-            this.dateLog.TabIndex = 2;
-            this.dateLog.Text = "--:--:----";
-            // 
-            // morningInPanel
-            // 
-            this.morningInPanel.Controls.Add(this.morningIn);
-            this.morningInPanel.Controls.Add(this.morningInUpdate);
-            this.morningInPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.morningInPanel.Location = new System.Drawing.Point(125, 0);
-            this.morningInPanel.Name = "morningInPanel";
-            this.morningInPanel.Size = new System.Drawing.Size(113, 35);
-            this.morningInPanel.TabIndex = 3;
-            // 
-            // morningIn
-            // 
-            this.morningIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.morningIn.AutoSize = true;
-            this.morningIn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.morningIn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.morningIn.Location = new System.Drawing.Point(30, 10);
-            this.morningIn.Name = "morningIn";
-            this.morningIn.Size = new System.Drawing.Size(53, 15);
-            this.morningIn.TabIndex = 3;
-            this.morningIn.Text = "--:--:----";
-            // 
-            // morningInUpdate
-            // 
-            this.morningInUpdate.Checked = false;
-            this.morningInUpdate.CustomFormat = "h:mm tt";
-            this.morningInUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.morningInUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.morningInUpdate.Location = new System.Drawing.Point(8, 6);
-            this.morningInUpdate.Name = "morningInUpdate";
-            this.morningInUpdate.ShowUpDown = true;
-            this.morningInUpdate.Size = new System.Drawing.Size(86, 23);
-            this.morningInUpdate.TabIndex = 4;
-            this.morningInUpdate.ValueChanged += new System.EventHandler(this.morningInUpdate_ValueChanged);
-            // 
-            // morningOutPanel
-            // 
-            this.morningOutPanel.Controls.Add(this.morningOutUpdate);
-            this.morningOutPanel.Controls.Add(this.morningOut);
-            this.morningOutPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.morningOutPanel.Location = new System.Drawing.Point(238, 0);
-            this.morningOutPanel.Name = "morningOutPanel";
-            this.morningOutPanel.Size = new System.Drawing.Size(113, 35);
-            this.morningOutPanel.TabIndex = 4;
-            // 
-            // morningOutUpdate
-            // 
-            this.morningOutUpdate.Checked = false;
-            this.morningOutUpdate.CustomFormat = "h:mm tt";
-            this.morningOutUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.morningOutUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.morningOutUpdate.Location = new System.Drawing.Point(13, 6);
-            this.morningOutUpdate.Name = "morningOutUpdate";
-            this.morningOutUpdate.ShowUpDown = true;
-            this.morningOutUpdate.Size = new System.Drawing.Size(86, 23);
-            this.morningOutUpdate.TabIndex = 5;
-            this.morningOutUpdate.ValueChanged += new System.EventHandler(this.morningOutUpdate_ValueChanged);
-            // 
-            // morningOut
-            // 
-            this.morningOut.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.morningOut.AutoSize = true;
-            this.morningOut.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.morningOut.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.morningOut.Location = new System.Drawing.Point(30, 10);
-            this.morningOut.Name = "morningOut";
-            this.morningOut.Size = new System.Drawing.Size(53, 15);
-            this.morningOut.TabIndex = 4;
-            this.morningOut.Text = "--:--:----";
-            // 
-            // afternoonInPanel
-            // 
-            this.afternoonInPanel.Controls.Add(this.afternoonIn);
-            this.afternoonInPanel.Controls.Add(this.afternoonInUpdate);
-            this.afternoonInPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.afternoonInPanel.Location = new System.Drawing.Point(457, 0);
-            this.afternoonInPanel.Name = "afternoonInPanel";
-            this.afternoonInPanel.Size = new System.Drawing.Size(106, 35);
-            this.afternoonInPanel.TabIndex = 6;
-            // 
-            // afternoonIn
-            // 
-            this.afternoonIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.afternoonIn.AutoSize = true;
-            this.afternoonIn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.afternoonIn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.afternoonIn.Location = new System.Drawing.Point(27, 10);
-            this.afternoonIn.Name = "afternoonIn";
-            this.afternoonIn.Size = new System.Drawing.Size(53, 15);
-            this.afternoonIn.TabIndex = 5;
-            this.afternoonIn.Text = "--:--:----";
-            // 
-            // afternoonInUpdate
-            // 
-            this.afternoonInUpdate.Checked = false;
-            this.afternoonInUpdate.CustomFormat = "h:mm tt";
-            this.afternoonInUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.afternoonInUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.afternoonInUpdate.Location = new System.Drawing.Point(10, 6);
-            this.afternoonInUpdate.Name = "afternoonInUpdate";
-            this.afternoonInUpdate.ShowUpDown = true;
-            this.afternoonInUpdate.Size = new System.Drawing.Size(86, 23);
-            this.afternoonInUpdate.TabIndex = 6;
-            this.afternoonInUpdate.ValueChanged += new System.EventHandler(this.afternoonInUpdate_ValueChanged);
-            // 
-            // afternoonOutPanel
-            // 
-            this.afternoonOutPanel.Controls.Add(this.afternoonOutUpdate);
-            this.afternoonOutPanel.Controls.Add(this.afternoonOut);
-            this.afternoonOutPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.afternoonOutPanel.Location = new System.Drawing.Point(563, 0);
-            this.afternoonOutPanel.Name = "afternoonOutPanel";
-            this.afternoonOutPanel.Size = new System.Drawing.Size(106, 35);
-            this.afternoonOutPanel.TabIndex = 7;
-            // 
-            // afternoonOutUpdate
-            // 
-            this.afternoonOutUpdate.Checked = false;
-            this.afternoonOutUpdate.CustomFormat = "h:mm tt";
-            this.afternoonOutUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.afternoonOutUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.afternoonOutUpdate.Location = new System.Drawing.Point(10, 6);
-            this.afternoonOutUpdate.Name = "afternoonOutUpdate";
-            this.afternoonOutUpdate.ShowUpDown = true;
-            this.afternoonOutUpdate.Size = new System.Drawing.Size(86, 23);
-            this.afternoonOutUpdate.TabIndex = 7;
-            this.afternoonOutUpdate.ValueChanged += new System.EventHandler(this.afternoonOutUpdate_ValueChanged);
-            // 
-            // afternoonOut
-            // 
-            this.afternoonOut.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.afternoonOut.AutoSize = true;
-            this.afternoonOut.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.afternoonOut.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.afternoonOut.Location = new System.Drawing.Point(27, 10);
-            this.afternoonOut.Name = "afternoonOut";
-            this.afternoonOut.Size = new System.Drawing.Size(53, 15);
-            this.afternoonOut.TabIndex = 6;
-            this.afternoonOut.Text = "--:--:----";
-            // 
-            // afternoonStatusPanel
-            // 
-            this.afternoonStatusPanel.Controls.Add(this.afternoonStatus);
-            this.afternoonStatusPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.afternoonStatusPanel.Location = new System.Drawing.Point(669, 0);
-            this.afternoonStatusPanel.Name = "afternoonStatusPanel";
-            this.afternoonStatusPanel.Size = new System.Drawing.Size(106, 35);
-            this.afternoonStatusPanel.TabIndex = 9;
-            // 
-            // afternoonStatus
-            // 
-            this.afternoonStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.afternoonStatus.AutoSize = true;
-            this.afternoonStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.afternoonStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.afternoonStatus.Location = new System.Drawing.Point(0, 10);
-            this.afternoonStatus.Name = "afternoonStatus";
-            this.afternoonStatus.Size = new System.Drawing.Size(105, 15);
-            this.afternoonStatus.TabIndex = 6;
-            this.afternoonStatus.Text = "{Afternoon Status}";
-            this.afternoonStatus.TextChanged += new System.EventHandler(this.afternoonStatus_TextChanged);
-            // 
-            // totalPanel
-            // 
-            this.totalPanel.Controls.Add(this.specialPrivilege);
-            this.totalPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.totalPanel.Location = new System.Drawing.Point(775, 0);
-            this.totalPanel.Name = "totalPanel";
-            this.totalPanel.Size = new System.Drawing.Size(135, 35);
-            this.totalPanel.TabIndex = 10;
             // 
             // specialPrivilege
             // 
-            this.specialPrivilege.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.specialPrivilege.AutoSize = true;
-            this.specialPrivilege.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.specialPrivilege.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.specialPrivilege.Location = new System.Drawing.Point(15, 10);
+            this.specialPrivilege.Font = new System.Drawing.Font("Calibri", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.specialPrivilege.Location = new System.Drawing.Point(894, 16);
             this.specialPrivilege.Name = "specialPrivilege";
-            this.specialPrivilege.Size = new System.Drawing.Size(93, 15);
-            this.specialPrivilege.TabIndex = 7;
-            this.specialPrivilege.Text = "Special Privilege";
-            this.specialPrivilege.TextChanged += new System.EventHandler(this.total_TextChanged);
+            this.specialPrivilege.Size = new System.Drawing.Size(64, 18);
+            this.specialPrivilege.TabIndex = 16;
+            this.specialPrivilege.TabStop = true;
+            this.specialPrivilege.Text = "On Leave";
             // 
-            // morningStatusPanel
+            // day
             // 
-            this.morningStatusPanel.Controls.Add(this.morningStatus);
-            this.morningStatusPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.morningStatusPanel.Location = new System.Drawing.Point(351, 0);
-            this.morningStatusPanel.Name = "morningStatusPanel";
-            this.morningStatusPanel.Size = new System.Drawing.Size(106, 35);
-            this.morningStatusPanel.TabIndex = 5;
+            this.day.AutoSize = true;
+            this.day.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.day.ForeColor = System.Drawing.Color.DimGray;
+            this.day.Location = new System.Drawing.Point(4, 28);
+            this.day.Name = "day";
+            this.day.Size = new System.Drawing.Size(38, 17);
+            this.day.TabIndex = 15;
+            this.day.Text = "MON";
+            // 
+            // undertimeCountNumberOfMinutes
+            // 
+            this.undertimeCountNumberOfMinutes.AutoSize = true;
+            this.undertimeCountNumberOfMinutes.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.undertimeCountNumberOfMinutes.Location = new System.Drawing.Point(798, 16);
+            this.undertimeCountNumberOfMinutes.Name = "undertimeCountNumberOfMinutes";
+            this.undertimeCountNumberOfMinutes.Size = new System.Drawing.Size(40, 18);
+            this.undertimeCountNumberOfMinutes.TabIndex = 5;
+            this.undertimeCountNumberOfMinutes.Text = "00:00";
+            // 
+            // overtimeCountNumberOfMinutes
+            // 
+            this.overtimeCountNumberOfMinutes.AutoSize = true;
+            this.overtimeCountNumberOfMinutes.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.overtimeCountNumberOfMinutes.Location = new System.Drawing.Point(729, 16);
+            this.overtimeCountNumberOfMinutes.Name = "overtimeCountNumberOfMinutes";
+            this.overtimeCountNumberOfMinutes.Size = new System.Drawing.Size(40, 18);
+            this.overtimeCountNumberOfMinutes.TabIndex = 6;
+            this.overtimeCountNumberOfMinutes.Text = "00:00";
+            // 
+            // lateCountNumberOfMinutes
+            // 
+            this.lateCountNumberOfMinutes.AutoSize = true;
+            this.lateCountNumberOfMinutes.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lateCountNumberOfMinutes.Location = new System.Drawing.Point(661, 16);
+            this.lateCountNumberOfMinutes.Name = "lateCountNumberOfMinutes";
+            this.lateCountNumberOfMinutes.Size = new System.Drawing.Size(40, 18);
+            this.lateCountNumberOfMinutes.TabIndex = 7;
+            this.lateCountNumberOfMinutes.Text = "00:00";
+            // 
+            // afternoonOut
+            // 
+            this.afternoonOut.AutoSize = true;
+            this.afternoonOut.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.afternoonOut.Location = new System.Drawing.Point(477, 16);
+            this.afternoonOut.Name = "afternoonOut";
+            this.afternoonOut.Size = new System.Drawing.Size(64, 18);
+            this.afternoonOut.TabIndex = 8;
+            this.afternoonOut.Text = "00:00 PM";
+            // 
+            // afternoonIn
+            // 
+            this.afternoonIn.AutoSize = true;
+            this.afternoonIn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.afternoonIn.Location = new System.Drawing.Point(389, 16);
+            this.afternoonIn.Name = "afternoonIn";
+            this.afternoonIn.Size = new System.Drawing.Size(64, 18);
+            this.afternoonIn.TabIndex = 9;
+            this.afternoonIn.Text = "00:00 PM";
+            // 
+            // afternoonStatus
+            // 
+            this.afternoonStatus.AutoSize = true;
+            this.afternoonStatus.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.afternoonStatus.Location = new System.Drawing.Point(573, 16);
+            this.afternoonStatus.Name = "afternoonStatus";
+            this.afternoonStatus.Size = new System.Drawing.Size(60, 18);
+            this.afternoonStatus.TabIndex = 10;
+            this.afternoonStatus.Text = "On Time";
             // 
             // morningStatus
             // 
-            this.morningStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.morningStatus.AutoSize = true;
-            this.morningStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.morningStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.morningStatus.Location = new System.Drawing.Point(4, 10);
+            this.morningStatus.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.morningStatus.Location = new System.Drawing.Point(304, 16);
             this.morningStatus.Name = "morningStatus";
-            this.morningStatus.Size = new System.Drawing.Size(97, 15);
-            this.morningStatus.TabIndex = 5;
-            this.morningStatus.Text = "{Morning Status}";
-            this.morningStatus.TextChanged += new System.EventHandler(this.morningStatus_TextChanged);
+            this.morningStatus.Size = new System.Drawing.Size(60, 18);
+            this.morningStatus.TabIndex = 11;
+            this.morningStatus.Text = "On Time";
+            // 
+            // morningOut
+            // 
+            this.morningOut.AutoSize = true;
+            this.morningOut.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.morningOut.Location = new System.Drawing.Point(198, 16);
+            this.morningOut.Name = "morningOut";
+            this.morningOut.Size = new System.Drawing.Size(65, 18);
+            this.morningOut.TabIndex = 12;
+            this.morningOut.Text = "00:00 AM";
+            // 
+            // morningIn
+            // 
+            this.morningIn.AutoSize = true;
+            this.morningIn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.morningIn.Location = new System.Drawing.Point(102, 16);
+            this.morningIn.Name = "morningIn";
+            this.morningIn.Size = new System.Drawing.Size(65, 18);
+            this.morningIn.TabIndex = 13;
+            this.morningIn.Text = "00:00 AM";
+            // 
+            // dateLog
+            // 
+            this.dateLog.AutoSize = true;
+            this.dateLog.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLog.Location = new System.Drawing.Point(4, 5);
+            this.dateLog.Name = "dateLog";
+            this.dateLog.Size = new System.Drawing.Size(76, 18);
+            this.dateLog.TabIndex = 14;
+            this.dateLog.Text = "Dec 1, 2023";
+            // 
+            // morningInUpdate
+            // 
+            this.morningInUpdate.CustomFormat = "hh:mm tt";
+            this.morningInUpdate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.morningInUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.morningInUpdate.Location = new System.Drawing.Point(99, 14);
+            this.morningInUpdate.Name = "morningInUpdate";
+            this.morningInUpdate.ShowUpDown = true;
+            this.morningInUpdate.Size = new System.Drawing.Size(85, 26);
+            this.morningInUpdate.TabIndex = 20;
+            this.morningInUpdate.Visible = false;
+            // 
+            // morningOutUpdate
+            // 
+            this.morningOutUpdate.CustomFormat = "hh:mm tt";
+            this.morningOutUpdate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.morningOutUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.morningOutUpdate.Location = new System.Drawing.Point(201, 14);
+            this.morningOutUpdate.Name = "morningOutUpdate";
+            this.morningOutUpdate.ShowUpDown = true;
+            this.morningOutUpdate.Size = new System.Drawing.Size(85, 26);
+            this.morningOutUpdate.TabIndex = 21;
+            this.morningOutUpdate.Visible = false;
+            // 
+            // afternoonInUpdate
+            // 
+            this.afternoonInUpdate.CustomFormat = "hh:mm tt";
+            this.afternoonInUpdate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.afternoonInUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.afternoonInUpdate.Location = new System.Drawing.Point(386, 14);
+            this.afternoonInUpdate.Name = "afternoonInUpdate";
+            this.afternoonInUpdate.ShowUpDown = true;
+            this.afternoonInUpdate.Size = new System.Drawing.Size(85, 26);
+            this.afternoonInUpdate.TabIndex = 21;
+            this.afternoonInUpdate.Visible = false;
+            // 
+            // afternoonOutUpdate
+            // 
+            this.afternoonOutUpdate.CustomFormat = "hh:mm tt";
+            this.afternoonOutUpdate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.afternoonOutUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.afternoonOutUpdate.Location = new System.Drawing.Point(478, 14);
+            this.afternoonOutUpdate.Name = "afternoonOutUpdate";
+            this.afternoonOutUpdate.ShowUpDown = true;
+            this.afternoonOutUpdate.Size = new System.Drawing.Size(85, 26);
+            this.afternoonOutUpdate.TabIndex = 21;
+            this.afternoonOutUpdate.Visible = false;
             // 
             // cancelBtn
             // 
             this.cancelBtn.AutoSize = true;
-            this.cancelBtn.BackColor = System.Drawing.Color.Red;
-            this.cancelBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.cancelBtn.BackColor = System.Drawing.Color.Maroon;
+            this.cancelBtn.BackgroundColor = System.Drawing.Color.Maroon;
             this.cancelBtn.BorderColor = System.Drawing.Color.Green;
-            this.cancelBtn.BorderRadius = 5;
+            this.cancelBtn.BorderRadius = 3;
             this.cancelBtn.BorderSize = 0;
             this.cancelBtn.FlatAppearance.BorderSize = 0;
             this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.cancelBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
             this.cancelBtn.ForeColor = System.Drawing.Color.White;
-            this.cancelBtn.Location = new System.Drawing.Point(1109, 5);
+            this.cancelBtn.Location = new System.Drawing.Point(1103, 9);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(56, 25);
-            this.cancelBtn.TabIndex = 14;
+            this.cancelBtn.Size = new System.Drawing.Size(79, 28);
+            this.cancelBtn.TabIndex = 19;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.TextColor = System.Drawing.Color.White;
             this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Visible = false;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
-            // 
-            // absentBtn
-            // 
-            this.absentBtn.AutoSize = true;
-            this.absentBtn.BackColor = System.Drawing.Color.Red;
-            this.absentBtn.BackgroundColor = System.Drawing.Color.Red;
-            this.absentBtn.BorderColor = System.Drawing.Color.Green;
-            this.absentBtn.BorderRadius = 5;
-            this.absentBtn.BorderSize = 0;
-            this.absentBtn.FlatAppearance.BorderSize = 0;
-            this.absentBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.absentBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.absentBtn.ForeColor = System.Drawing.Color.White;
-            this.absentBtn.Location = new System.Drawing.Point(1109, 4);
-            this.absentBtn.Name = "absentBtn";
-            this.absentBtn.Size = new System.Drawing.Size(56, 25);
-            this.absentBtn.TabIndex = 12;
-            this.absentBtn.Text = "Absent";
-            this.absentBtn.TextColor = System.Drawing.Color.White;
-            this.absentBtn.UseVisualStyleBackColor = false;
             // 
             // submitBtn
             // 
             this.submitBtn.AutoSize = true;
-            this.submitBtn.BackColor = System.Drawing.Color.Green;
-            this.submitBtn.BackgroundColor = System.Drawing.Color.Green;
+            this.submitBtn.BackColor = System.Drawing.Color.ForestGreen;
+            this.submitBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
             this.submitBtn.BorderColor = System.Drawing.Color.Green;
-            this.submitBtn.BorderRadius = 5;
+            this.submitBtn.BorderRadius = 3;
             this.submitBtn.BorderSize = 0;
             this.submitBtn.FlatAppearance.BorderSize = 0;
             this.submitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.submitBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.submitBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
             this.submitBtn.ForeColor = System.Drawing.Color.White;
-            this.submitBtn.Location = new System.Drawing.Point(1050, 5);
+            this.submitBtn.Location = new System.Drawing.Point(1018, 10);
             this.submitBtn.Name = "submitBtn";
-            this.submitBtn.Size = new System.Drawing.Size(57, 25);
-            this.submitBtn.TabIndex = 13;
+            this.submitBtn.Size = new System.Drawing.Size(79, 28);
+            this.submitBtn.TabIndex = 18;
             this.submitBtn.Text = "Submit";
             this.submitBtn.TextColor = System.Drawing.Color.White;
             this.submitBtn.UseVisualStyleBackColor = false;
+            this.submitBtn.Visible = false;
             this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // changeBtn
@@ -384,84 +269,48 @@
             this.changeBtn.BackColor = System.Drawing.Color.DodgerBlue;
             this.changeBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
             this.changeBtn.BorderColor = System.Drawing.Color.Green;
-            this.changeBtn.BorderRadius = 5;
+            this.changeBtn.BorderRadius = 3;
             this.changeBtn.BorderSize = 0;
             this.changeBtn.FlatAppearance.BorderSize = 0;
             this.changeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.changeBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.changeBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
             this.changeBtn.ForeColor = System.Drawing.Color.White;
-            this.changeBtn.Location = new System.Drawing.Point(1050, 5);
+            this.changeBtn.Location = new System.Drawing.Point(1018, 10);
             this.changeBtn.Name = "changeBtn";
-            this.changeBtn.Size = new System.Drawing.Size(56, 25);
-            this.changeBtn.TabIndex = 11;
-            this.changeBtn.Text = "Modify";
+            this.changeBtn.Size = new System.Drawing.Size(79, 28);
+            this.changeBtn.TabIndex = 17;
+            this.changeBtn.Text = "Update";
             this.changeBtn.TextColor = System.Drawing.Color.White;
             this.changeBtn.UseVisualStyleBackColor = false;
             this.changeBtn.Click += new System.EventHandler(this.changeBtn_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.total);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(910, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(135, 35);
-            this.panel1.TabIndex = 15;
-            // 
-            // total
-            // 
-            this.total.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.total.AutoSize = true;
-            this.total.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.total.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.total.Location = new System.Drawing.Point(15, 10);
-            this.total.Name = "total";
-            this.total.Size = new System.Drawing.Size(103, 15);
-            this.total.TabIndex = 7;
-            this.total.Text = "Total Work Hours ";
             // 
             // employeeLogUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.specialPrivilege);
+            this.Controls.Add(this.day);
+            this.Controls.Add(this.undertimeCountNumberOfMinutes);
+            this.Controls.Add(this.overtimeCountNumberOfMinutes);
+            this.Controls.Add(this.lateCountNumberOfMinutes);
+            this.Controls.Add(this.afternoonOut);
+            this.Controls.Add(this.afternoonIn);
+            this.Controls.Add(this.afternoonStatus);
+            this.Controls.Add(this.morningStatus);
+            this.Controls.Add(this.morningOut);
+            this.Controls.Add(this.dateLog);
             this.Controls.Add(this.cancelBtn);
-            this.Controls.Add(this.absentBtn);
-            this.Controls.Add(this.totalPanel);
-            this.Controls.Add(this.afternoonStatusPanel);
-            this.Controls.Add(this.afternoonOutPanel);
-            this.Controls.Add(this.afternoonInPanel);
-            this.Controls.Add(this.morningStatusPanel);
-            this.Controls.Add(this.morningOutPanel);
-            this.Controls.Add(this.morningInPanel);
-            this.Controls.Add(this.datePanel);
-            this.Controls.Add(this.dayPanel);
+            this.Controls.Add(this.morningIn);
             this.Controls.Add(this.submitBtn);
+            this.Controls.Add(this.morningOutUpdate);
+            this.Controls.Add(this.morningInUpdate);
+            this.Controls.Add(this.afternoonInUpdate);
+            this.Controls.Add(this.afternoonOutUpdate);
             this.Controls.Add(this.changeBtn);
             this.Name = "employeeLogUC";
-            this.Size = new System.Drawing.Size(1169, 35);
+            this.Size = new System.Drawing.Size(1196, 49);
             this.Load += new System.EventHandler(this.employeeDTRUC_Load);
-            this.dayPanel.ResumeLayout(false);
-            this.dayPanel.PerformLayout();
-            this.datePanel.ResumeLayout(false);
-            this.datePanel.PerformLayout();
-            this.morningInPanel.ResumeLayout(false);
-            this.morningInPanel.PerformLayout();
-            this.morningOutPanel.ResumeLayout(false);
-            this.morningOutPanel.PerformLayout();
-            this.afternoonInPanel.ResumeLayout(false);
-            this.afternoonInPanel.PerformLayout();
-            this.afternoonOutPanel.ResumeLayout(false);
-            this.afternoonOutPanel.PerformLayout();
-            this.afternoonStatusPanel.ResumeLayout(false);
-            this.afternoonStatusPanel.PerformLayout();
-            this.totalPanel.ResumeLayout(false);
-            this.totalPanel.PerformLayout();
-            this.morningStatusPanel.ResumeLayout(false);
-            this.morningStatusPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -469,33 +318,24 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel dayPanel;
+        private System.Windows.Forms.LinkLabel specialPrivilege;
         private System.Windows.Forms.Label day;
-        private System.Windows.Forms.Panel datePanel;
-        private System.Windows.Forms.Label dateLog;
-        private System.Windows.Forms.Panel morningInPanel;
-        private System.Windows.Forms.Label morningIn;
-        private System.Windows.Forms.Panel morningOutPanel;
-        private System.Windows.Forms.Label morningOut;
-        private System.Windows.Forms.Panel afternoonInPanel;
-        private System.Windows.Forms.Label afternoonIn;
-        private System.Windows.Forms.Panel afternoonOutPanel;
+        private System.Windows.Forms.Label undertimeCountNumberOfMinutes;
+        private System.Windows.Forms.Label overtimeCountNumberOfMinutes;
+        private System.Windows.Forms.Label lateCountNumberOfMinutes;
         private System.Windows.Forms.Label afternoonOut;
-        private System.Windows.Forms.Panel afternoonStatusPanel;
+        private System.Windows.Forms.Label afternoonIn;
         private System.Windows.Forms.Label afternoonStatus;
-        private System.Windows.Forms.Panel totalPanel;
-        private System.Windows.Forms.Label specialPrivilege;
+        private System.Windows.Forms.Label morningStatus;
+        private System.Windows.Forms.Label morningOut;
+        private System.Windows.Forms.Label morningIn;
+        private System.Windows.Forms.Label dateLog;
         private Custom.buttonDesign changeBtn;
+        private Custom.buttonDesign submitBtn;
+        private Custom.buttonDesign cancelBtn;
         private System.Windows.Forms.DateTimePicker morningInUpdate;
         private System.Windows.Forms.DateTimePicker morningOutUpdate;
         private System.Windows.Forms.DateTimePicker afternoonInUpdate;
         private System.Windows.Forms.DateTimePicker afternoonOutUpdate;
-        private Custom.buttonDesign absentBtn;
-        private Custom.buttonDesign submitBtn;
-        private Custom.buttonDesign cancelBtn;
-        private System.Windows.Forms.Panel morningStatusPanel;
-        private System.Windows.Forms.Label morningStatus;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label total;
     }
 }

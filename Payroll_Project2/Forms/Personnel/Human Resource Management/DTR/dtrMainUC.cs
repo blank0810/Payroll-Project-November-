@@ -158,110 +158,6 @@ namespace Payroll_Project2.Forms.Personnel.DTR
             catch (Exception ex) { throw ex; }
         }
 
-        // This function is responsible for retrieving the count of the employee's On Time
-        private async Task<int> GetOnTimeCount(int employeeId)
-        {
-            try
-            {
-                int count = await generalFunctions.GetWorkDaysCount(employeeId);
-
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Leave
-        private async Task<int> GetLeaveCount(int employeeId, string status)
-        {
-            try
-            {
-                int count = await generalFunctions.GetleaveCount(employeeId, status);
-
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Travel Order
-        private async Task<int> GetTravelOrderCount(int employeeId,string status)
-        {
-            try
-            {
-                int count = await generalFunctions.GetTravelOrderCount(employeeId, status);
-
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Pass Slip
-        private async Task<int> GetPassSlipCount(int employeeId, string status)
-        {
-            try
-            {
-                int count = await generalFunctions.GetPassSlipCount(employeeId, status);
-
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Late
-        private async Task<int> GetLateCount(int employeeId)
-        {
-            try
-            {
-                int count = await generalFunctions.GetLateCount(employeeId);
-
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Undertime
-        private async Task<int> GetUndertimeCount(int employeeId)
-        {
-            try
-            {
-                int count = await generalFunctions.GetUndertimeCount(employeeId);
-
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Overtime
-        private async Task<int> GetOvertimeCount(int employeeId)
-        {
-            try
-            {
-                int count = await generalFunctions.GetOvertimeCount(employeeId);
-
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Absent
-        private async Task<int> GetAbsentCount(int employeeId)
-        {
-            try
-            {
-                int count = await generalFunctions.GetAbsentCount(employeeId);
-
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
         #endregion
 
         #region Custom functions responsible for displaying data into the UI
@@ -363,16 +259,8 @@ namespace Payroll_Project2.Forms.Personnel.DTR
                         employee[i].EmployeeName = $"{row["employeeName"]}";
                         employee[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                         employee[i].Departmentname = $"{row["departmentName"]}";
-                        employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
-                        employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
-                        employee[i].DaysWorkedCount = await GetOnTimeCount((int)row["employeeId"]);
-                        employee[i].LeaveCount = await GetLeaveCount((int)row["employeeId"], LeaveStatus);
-                        employee[i].TravelOrderCount = await GetTravelOrderCount((int)row["employeeId"], TravelStatus);
-                        employee[i].PassSlipCount = await GetPassSlipCount((int)row["employeeId"], SlipStatus);
-                        employee[i].LateCount = await GetLateCount((int)row["employeeId"]);
-                        employee[i].UndertimeCount = await GetUndertimeCount((int)row["employeeId"]);
-                        employee[i].OvertimeCount = await GetOvertimeCount((int)row["employeeId"]);
-                        employee[i].AbsentCount = await GetAbsentCount((int)row["employeeId"]);
+                        employee[i].MorningShift = $"{row["morningShiftTime"]}";
+                        employee[i].AfternoonShift = $"{row["afternoonShiftTime"]}";
 
                         dtrContent.Controls.Add(employee[i]);
                     }
@@ -412,16 +300,8 @@ namespace Payroll_Project2.Forms.Personnel.DTR
                         employee[i].EmployeeName = $"{row["employeeFname"]} {row["employeeLname"]}";
                         employee[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                         employee[i].Departmentname = $"{row["departmentName"]}";
-                        employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
-                        employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
-                        employee[i].DaysWorkedCount = await GetOnTimeCount((int)row["employeeId"]);
-                        employee[i].LeaveCount = await GetLeaveCount((int)row["employeeId"], LeaveStatus);
-                        employee[i].TravelOrderCount = await GetTravelOrderCount((int)row["employeeId"], TravelStatus);
-                        employee[i].PassSlipCount = await GetPassSlipCount((int)row["employeeId"], SlipStatus);
-                        employee[i].LateCount = await GetLateCount((int)row["employeeId"]);
-                        employee[i].UndertimeCount = await GetUndertimeCount((int)row["employeeId"]);
-                        employee[i].OvertimeCount = await GetOvertimeCount((int)row["employeeId"]);
-                        employee[i].AbsentCount = await GetAbsentCount((int)row["employeeId"]);
+                        employee[i].MorningShift = $"{row["morningShiftTime"]}";
+                        employee[i].AfternoonShift = $"{row["afternoonShiftTime"]}";
 
                         dtrContent.Controls.Add(employee[i]);
                     }
@@ -475,16 +355,8 @@ namespace Payroll_Project2.Forms.Personnel.DTR
                                 employee[i].EmployeeName = $"{row["employeeFname"]} {row["employeeLname"]}";
                                 employee[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                                 employee[i].Departmentname = $"{row["departmentName"]}";
-                                employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
-                                employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
-                                employee[i].DaysWorkedCount = await GetOnTimeCount((int)row["employeeId"]);
-                                employee[i].LeaveCount = await GetLeaveCount((int)row["employeeId"], LeaveStatus);
-                                employee[i].TravelOrderCount = await GetTravelOrderCount((int)row["employeeId"], TravelStatus);
-                                employee[i].PassSlipCount = await GetPassSlipCount((int)row["employeeId"], SlipStatus);
-                                employee[i].LateCount = await GetLateCount((int)row["employeeId"]);
-                                employee[i].UndertimeCount = await GetUndertimeCount((int)row["employeeId"]);
-                                employee[i].OvertimeCount = await GetOvertimeCount((int)row["employeeId"]);
-                                employee[i].AbsentCount = await GetAbsentCount((int)row["employeeId"]);
+                                employee[i].MorningShift = $"{row["morningShiftTime"]}";
+                                employee[i].AfternoonShift = $"{row["afternoonShiftTime"]}";
 
                                 dtrContent.Controls.Add(employee[i]);
                             }

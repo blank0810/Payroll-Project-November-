@@ -168,7 +168,9 @@ namespace Payroll_Project2.Forms.Personnel.Payroll
                 }
                 else
                 {
-                    SuccessMessages("There were no records found in the database. Please try again later", "No Records");
+                    SuccessMessages("No employees qualified for payroll processing. Kindly remind employees to submit their accurate time " +
+                        "records. If you believe this is an error, please contact the system administrator for further assistance.", 
+                        "No Payroll Records");
                 }
             }
             catch (SqlException sql)

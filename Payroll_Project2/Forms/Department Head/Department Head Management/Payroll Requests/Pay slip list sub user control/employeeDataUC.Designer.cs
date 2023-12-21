@@ -40,7 +40,7 @@
             // 
             // viewBtn
             // 
-            this.viewBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.viewBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.viewBtn.AutoSize = true;
             this.viewBtn.BackColor = System.Drawing.Color.ForestGreen;
@@ -52,7 +52,7 @@
             this.viewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.viewBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.viewBtn.ForeColor = System.Drawing.Color.White;
-            this.viewBtn.Location = new System.Drawing.Point(1288, 10);
+            this.viewBtn.Location = new System.Drawing.Point(1300, 10);
             this.viewBtn.Name = "viewBtn";
             this.viewBtn.Size = new System.Drawing.Size(107, 29);
             this.viewBtn.TabIndex = 14;
@@ -78,7 +78,7 @@
             this.totalDeductions.AutoSize = true;
             this.totalDeductions.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.totalDeductions.ForeColor = System.Drawing.Color.Black;
-            this.totalDeductions.Location = new System.Drawing.Point(890, 14);
+            this.totalDeductions.Location = new System.Drawing.Point(903, 14);
             this.totalDeductions.Name = "totalDeductions";
             this.totalDeductions.Size = new System.Drawing.Size(135, 19);
             this.totalDeductions.TabIndex = 8;
@@ -90,7 +90,7 @@
             this.totalEarnings.AutoSize = true;
             this.totalEarnings.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.totalEarnings.ForeColor = System.Drawing.Color.Black;
-            this.totalEarnings.Location = new System.Drawing.Point(715, 14);
+            this.totalEarnings.Location = new System.Drawing.Point(727, 14);
             this.totalEarnings.Name = "totalEarnings";
             this.totalEarnings.Size = new System.Drawing.Size(117, 19);
             this.totalEarnings.TabIndex = 9;
@@ -102,7 +102,7 @@
             this.payrollFormId.AutoSize = true;
             this.payrollFormId.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.payrollFormId.ForeColor = System.Drawing.Color.Black;
-            this.payrollFormId.Location = new System.Drawing.Point(360, 14);
+            this.payrollFormId.Location = new System.Drawing.Point(377, 14);
             this.payrollFormId.Name = "payrollFormId";
             this.payrollFormId.Size = new System.Drawing.Size(87, 19);
             this.payrollFormId.TabIndex = 10;
@@ -114,7 +114,7 @@
             this.dateCreated.AutoSize = true;
             this.dateCreated.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.dateCreated.ForeColor = System.Drawing.Color.Black;
-            this.dateCreated.Location = new System.Drawing.Point(515, 14);
+            this.dateCreated.Location = new System.Drawing.Point(529, 14);
             this.dateCreated.Name = "dateCreated";
             this.dateCreated.Size = new System.Drawing.Size(110, 19);
             this.dateCreated.TabIndex = 11;
@@ -138,7 +138,7 @@
             this.totalSalary.AutoSize = true;
             this.totalSalary.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.totalSalary.ForeColor = System.Drawing.Color.Black;
-            this.totalSalary.Location = new System.Drawing.Point(1087, 14);
+            this.totalSalary.Location = new System.Drawing.Point(1097, 14);
             this.totalSalary.Name = "totalSalary";
             this.totalSalary.Size = new System.Drawing.Size(101, 19);
             this.totalSalary.TabIndex = 8;
@@ -159,7 +159,8 @@
             this.Controls.Add(this.dateCreated);
             this.Controls.Add(this.employeeName);
             this.Name = "employeeDataUC";
-            this.Size = new System.Drawing.Size(1399, 48);
+            this.Size = new System.Drawing.Size(1411, 48);
+            this.Load += new System.EventHandler(this.employeeDataUC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -250,20 +250,38 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                 {
                     await conn.OpenAsync();
 
-                    string commandText = "SELECT tbl_employee.employeeid, " +
-                        "CONCAT(employeeFname, ' ', employeeLname) AS employeeName, " +
-                        "employeePicture, departmentName " +
-                        "FROM tbl_timeLog " +
-                        "JOIN tbl_employee ON tbl_timeLog.employeeId = tbl_employee.employeeId " +
-                        "JOIN tbl_department ON tbl_department.departmentId = tbl_employee.departmentId " +
-                        "WHERE dateLog >= @fromDate AND dateLog <= @toDate " +
-                        "GROUP BY tbl_employee.employeeid, employeeFname, employeeLname, " +
-                        "employeePicture, departmentName";
+                    string commandText = @"
+                SELECT 
+                    tbl_employee.employeeid,
+                    CONCAT(employeeFname, ' ', employeeLname) AS employeeName,
+                    employeePicture,
+                    departmentName
+                FROM 
+                    tbl_timeLog
+                JOIN 
+                    tbl_employee ON tbl_timeLog.employeeId = tbl_employee.employeeId
+                JOIN 
+                    tbl_department ON tbl_department.departmentId = tbl_employee.departmentId
+                WHERE 
+                    dateLog >= @fromDate AND dateLog <= @toDate
+                    AND tbl_employee.employeeId NOT IN (
+                        SELECT employeeId 
+                        FROM tbl_payrollForm 
+                        WHERE 
+                            statusId = 2 
+                            AND payrollStartingDate = @fromDateParam
+                            AND payrollEndingDate = @toDateParam
+                    )
+                GROUP BY 
+                    tbl_employee.employeeid, employeeFname, employeeLname,
+                    employeePicture, departmentName";
 
                     using (SqlCommand cmd = new SqlCommand(commandText, conn))
                     {
                         cmd.Parameters.AddWithValue("@fromDate", fromDate);
                         cmd.Parameters.AddWithValue("@toDate", toDate);
+                        cmd.Parameters.AddWithValue("@fromDateParam", fromDate);
+                        cmd.Parameters.AddWithValue("@toDateParam", toDate);
 
                         using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                         {
@@ -292,22 +310,43 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                 {
                     await conn.OpenAsync();
 
-                    string commandText = "SELECT tbl_employee.employeeid, " +
-                        "CONCAT(employeeFname, ' ', employeeLname) AS employeeName, " +
-                        "employeePicture, departmentName " +
-                        "FROM tbl_timeLog " +
-                        "JOIN tbl_employee ON tbl_timeLog.employeeId = tbl_employee.employeeId " +
-                        "JOIN tbl_department ON tbl_department.departmentId = tbl_employee.departmentId " +
-                        "JOIN tbl_appointmentForm ON tbl_employee.employeeId = tbl_appointmentForm.employeeId " +
-                        "JOIN tbl_employmentStatus on tbl_appointmentForm.employmentStatusId = tbl_employmentStatus.employmentStatusId " +
-                        "WHERE dateLog >= @fromDate AND dateLog <= @toDate and employmentStatus = @employmentStatus " +
-                        "GROUP BY tbl_employee.employeeid, employeeFname, employeeLname, " +
-                        "employeePicture, departmentName";
+                    string commandText = @"
+                SELECT 
+                    tbl_employee.employeeid,
+                    CONCAT(employeeFname, ' ', employeeLname) AS employeeName,
+                    employeePicture,
+                    departmentName
+                FROM 
+                    tbl_timeLog
+                JOIN 
+                    tbl_employee ON tbl_timeLog.employeeId = tbl_employee.employeeId
+                JOIN 
+                    tbl_department ON tbl_department.departmentId = tbl_employee.departmentId
+				JOIN
+					tbl_appointmentForm on tbl_appointmentForm.employeeid = tbl_employee.employeeId
+				JOIN
+					tbl_employmentStatus on tbl_appointmentForm.employmentStatusId = tbl_employmentStatus.employmentStatusId
+                WHERE 
+                    dateLog >= @fromDate AND dateLog <= @toDate
+                    AND employmentStatus = @employmentStatus
+                    AND tbl_employee.employeeId NOT IN (
+                        SELECT employeeId 
+                        FROM tbl_payrollForm 
+                        WHERE 
+                            statusId = 2 
+                            AND payrollStartingDate = @fromDateParam
+                            AND payrollEndingDate = @toDateParam
+                    )
+                GROUP BY 
+                    tbl_employee.employeeid, employeeFname, employeeLname,
+                    employeePicture, departmentName";
 
                     using (SqlCommand cmd = new SqlCommand(commandText, conn))
                     {
                         cmd.Parameters.AddWithValue("@fromDate", fromDate);
                         cmd.Parameters.AddWithValue("@toDate", toDate);
+                        cmd.Parameters.AddWithValue("@fromDateParam", fromDate);
+                        cmd.Parameters.AddWithValue("@toDateParam", toDate);
                         cmd.Parameters.AddWithValue("@employmentStatus", employmentStatus);
 
                         using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -413,7 +452,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
 
         public async Task<bool> InsertNewPayrollForm(int employeeId, DateTime dateCreated, DateTime startingDate, DateTime endingDate, 
             string salaryRateDescription, decimal amount, decimal totalEarnings, decimal totalDeduction, string createdBy, string status, 
-            string payslipType, decimal netPay)
+            string payslipType, decimal netPay, int payrollFormId)
         {
             try
             {
@@ -423,10 +462,10 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
 
                     string command = "insert into tbl_payrollForm (employeeId, dateCreated, payrollStartingDate, payrollEndingDate, " +
                         "salaryRateDescription, salaryRateValue, totalEarnings, totalDeduction, createdBy, statusId, payslipType, " +
-                        "netAmount) " +
+                        "netAmount, payrollFormId) " +
                         "values (@employeeId, @dateCreated, @startingDate, @endingDate, @salaryRateDescription, @amount, @earnings, " +
-                        "@deduction, @createdBy, (select statusId from tbl_status where statusDecription = @status), @payslipType, " +
-                        "@netAmount)";
+                        "@deduction, @createdBy, (select statusId from tbl_status where statusDescription = @status), @payslipType, " +
+                        "@netAmount, @payrollFormId)";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
@@ -441,7 +480,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                         cmd.Parameters.AddWithValue("@createdBy", createdBy);
                         cmd.Parameters.AddWithValue("@status", status);
                         cmd.Parameters.AddWithValue("@payslipType", payslipType);
-                        cmd.Parameters.AddWithValue("@netAmout", netPay);
+                        cmd.Parameters.AddWithValue("@netAmount", netPay);
+                        cmd.Parameters.AddWithValue("@payrollFormId", payrollFormId);
 
                         int result = await cmd.ExecuteNonQueryAsync();
 
@@ -461,7 +501,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                     await conn.OpenAsync();
 
                     string command = "insert into tbl_earningsList (payrollId, earningsDescription, earningsAmount) " +
-                        "values (@payrollId, @earningsDescription, @amount)";
+                        "values ((select payrollId from tbl_payrollForm where payrollFormId = @payrollId), @earningsDescription, @amount)";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
@@ -487,7 +527,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                     await conn.OpenAsync();
 
                     string command = "insert into tbl_deductionDetails (payrollId, deductionDescription, deductionAmount, detailsId) " +
-                        "values (@payrollId, @description, @amount, @detailsId)";
+                        "values ((select payrollId from tbl_payrollForm where payrollFormId = @payrollId), @description, @amount, @detailsId)";
 
                     using (cmd = new SqlCommand(command, conn))
                     {

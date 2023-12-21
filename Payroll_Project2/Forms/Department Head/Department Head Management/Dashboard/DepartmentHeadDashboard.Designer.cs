@@ -1587,9 +1587,9 @@
             this.slipRequestCount.Location = new System.Drawing.Point(379, 18);
             this.slipRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
             this.slipRequestCount.Name = "slipRequestCount";
-            this.slipRequestCount.Size = new System.Drawing.Size(25, 21);
+            this.slipRequestCount.Size = new System.Drawing.Size(19, 21);
             this.slipRequestCount.TabIndex = 5;
-            this.slipRequestCount.Text = "10";
+            this.slipRequestCount.Text = "0";
             this.slipRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label25
@@ -1660,9 +1660,9 @@
             this.travelRequestCount.Location = new System.Drawing.Point(379, 18);
             this.travelRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
             this.travelRequestCount.Name = "travelRequestCount";
-            this.travelRequestCount.Size = new System.Drawing.Size(25, 21);
+            this.travelRequestCount.Size = new System.Drawing.Size(19, 21);
             this.travelRequestCount.TabIndex = 5;
-            this.travelRequestCount.Text = "10";
+            this.travelRequestCount.Text = "0";
             this.travelRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label22
@@ -1733,9 +1733,9 @@
             this.leaveRequestCount.Location = new System.Drawing.Point(379, 17);
             this.leaveRequestCount.MaximumSize = new System.Drawing.Size(177, 0);
             this.leaveRequestCount.Name = "leaveRequestCount";
-            this.leaveRequestCount.Size = new System.Drawing.Size(25, 21);
+            this.leaveRequestCount.Size = new System.Drawing.Size(19, 21);
             this.leaveRequestCount.TabIndex = 5;
-            this.leaveRequestCount.Text = "10";
+            this.leaveRequestCount.Text = "0";
             this.leaveRequestCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label13

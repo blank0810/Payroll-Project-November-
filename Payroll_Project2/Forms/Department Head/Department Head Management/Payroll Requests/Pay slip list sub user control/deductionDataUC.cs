@@ -9,7 +9,6 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Pay_slip_list_
         private static paySlipRequestDetailedView _parent;
 
         public string DeductionDescription { get; set; }
-        public string DeductionNumber { get; set; }
         public string DeductionAmount { get; set; }
 
         public deductionDataUC(int userId, paySlipRequestDetailedView parent)
@@ -17,6 +16,17 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Pay_slip_list_
             InitializeComponent();
             _userId = userId;
             _parent = parent;
+        }
+
+        private void DataBinding()
+        {
+            deductionsDescription.DataBindings.Add("Text", this, "DeductionDescription");
+            deductionAmount.DataBindings.Add("Text", this, "DeductionAmount");
+        }
+
+        private void deductionDataUC_Load(object sender, System.EventArgs e)
+        {
+            DataBinding();
         }
     }
 }

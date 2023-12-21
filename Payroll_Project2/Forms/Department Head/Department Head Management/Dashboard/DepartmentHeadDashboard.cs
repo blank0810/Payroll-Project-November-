@@ -1160,7 +1160,7 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
 
         private void payrollBtn_Click(object sender, EventArgs e)
         {
-            payslipUC payslip = new payslipUC(_userId, this);
+            payslipUC payslip = new payslipUC(_userId, this, _department);
             titleLabel.Text = payrollBtn.Text;
             leaveSubPanel.Visible = false;
             travelSubPanel.Visible = false;

@@ -138,12 +138,12 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
 
         private async Task<bool> InsertNewPayroll(int employeeId, DateTime dateCreated, DateTime startingDate, DateTime endingDate,
             string salaryRateDescription, decimal amount, decimal totalEarnings, decimal totalDeduction, string createdBy, string status,
-            string payslipType, decimal netPay)
+            string payslipType, decimal netPay, int payrollFormId)
         {
             try
             {
                 bool insert = await payrollClass.InsertNewPayrollForm(employeeId, dateCreated, startingDate, endingDate, salaryRateDescription, 
-                    amount, totalEarnings, totalDeduction, createdBy, status, payslipType, netPay);
+                    amount, totalEarnings, totalDeduction, createdBy, status, payslipType, netPay, payrollFormId);
                 return insert;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
@@ -735,7 +735,6 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
             foreach (var item in earningsList)
             {
                 amount += item.Item2;
-                MessageBox.Show($"{item.Item1} {item.Item2}");
             }
 
             return amount;
@@ -745,9 +744,12 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
         {
             decimal amount = 0;
 
-            foreach (var item in deductionList)
+            if (deductionList.Count > 0)
             {
-                amount += item.Item3;
+                foreach (var item in deductionList)
+                {
+                    amount += item.Item3;
+                }
             }
 
             return amount;
@@ -841,7 +843,7 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
 
         private void SuccessMessages(string message, string caption)
         {
-            MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ClearBindings()
@@ -950,12 +952,12 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
 
         private async Task<bool> AddNewPayrollForm(int employeeId, DateTime dateCreated, DateTime startingDate, DateTime endingDate,
             string salaryRateDescription, decimal amount, decimal totalEarnings, decimal totalDeduction, string createdBy, string status,
-            string payslipType, decimal netPay)
+            string payslipType, decimal netPay, int payrollFormId)
         {
             try
             {
                 bool insert = await InsertNewPayroll(employeeId, dateCreated, startingDate, endingDate, salaryRateDescription, amount,
-                    totalEarnings, totalDeduction, createdBy, status, payslipType, netPay);
+                    totalEarnings, totalDeduction, createdBy, status, payslipType, netPay, payrollFormId);
 
                 if (insert)
                 {
@@ -1081,7 +1083,7 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
                     return;
 
                 bool addPayroll = await AddNewPayrollForm(EmployeeID, DateTime.Today, FromDate, ToDate, SalaryDescription, SalaryValue,
-                    TotalEarningsValue, TotalDeductionsValue, name, PayrollDefaultStatus, SalarySchedule, NetPayValue);
+                    TotalEarningsValue, TotalDeductionsValue, name, PayrollDefaultStatus, SalarySchedule, NetPayValue, PayrollId);
                 if (!addPayroll)
                     return;
 
@@ -1100,6 +1102,10 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
                 bool systemLog = await AddSystemLog(DateTime.Today, name, _userId, EmployeeID, EmployeeName);
                 if(!systemLog)
                     return;
+
+                SuccessMessages($"The payroll form with the transaction number {PayrollId} is on the process and is pending for " +
+                    $"proper review and approval.", "Payroll Form Generation Done");
+                this.Close();
             }
             catch (SqlException sql)
             {

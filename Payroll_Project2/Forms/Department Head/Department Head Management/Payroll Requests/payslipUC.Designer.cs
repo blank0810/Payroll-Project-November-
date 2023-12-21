@@ -39,6 +39,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.payrollRequestPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             this.SuspendLayout();
@@ -100,7 +100,7 @@
             // 
             // searchBtn
             // 
-            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBtn.BackColor = System.Drawing.Color.ForestGreen;
             this.searchBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
@@ -121,7 +121,7 @@
             // 
             // searchEmployee
             // 
-            this.searchEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.searchEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchEmployee.BackColor = System.Drawing.Color.White;
             this.searchEmployee.BorderColor = System.Drawing.Color.Gray;
@@ -191,6 +191,18 @@
             this.label5.Text = "Actions";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.DimGray;
+            this.label6.Location = new System.Drawing.Point(1097, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 19);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Total Salary";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -222,9 +234,9 @@
             this.label7.ForeColor = System.Drawing.Color.DimGray;
             this.label7.Location = new System.Drawing.Point(377, 11);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 19);
+            this.label7.Size = new System.Drawing.Size(105, 19);
             this.label7.TabIndex = 4;
-            this.label7.Text = "Payroll ID";
+            this.label7.Text = "Transaction ID";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -270,18 +282,6 @@
             this.payrollRequestPanel.Name = "payrollRequestPanel";
             this.payrollRequestPanel.Size = new System.Drawing.Size(1411, 689);
             this.payrollRequestPanel.TabIndex = 10;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.DimGray;
-            this.label6.Location = new System.Drawing.Point(1097, 11);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 19);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Total Salary";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // payslipUC
             // 

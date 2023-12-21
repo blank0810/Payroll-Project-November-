@@ -26,6 +26,115 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
+        public async Task<bool> CertifyThePassSlip(int payrollFormId, string name, DateTime certifyDate, bool certifyStatus)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "update tbl_payrollForm set isCertifyByOfficeHead = @certifyStatus, certifiedByOfficeHeadName = @name, " +
+                        "certifiedByOfficeHeadDate = @certifyDate " +
+                        "where payrollFormId = @payrollFormId";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@certifyStatus", certifyStatus);
+                        cmd.Parameters.AddWithValue("@name", name);
+                        cmd.Parameters.AddWithValue("@certifyDate", certifyDate);
+                        cmd.Parameters.AddWithValue("@payrollFormId", payrollFormId);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<DataTable> GetEarningsList(int payrollFormId)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select earningsDescription, earningsAmount " +
+                        "from tbl_earningsList " +
+                        "where payrollId = (select payrollId from tbl_payrollForm where payrollFormId = @payrollFormId)";
+
+                    using(cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@payrollFormId", payrollFormId);
+
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<DataTable> GetDeductionsList(int payrollFormId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select deductionDescription, deductionAmount " +
+                        "from tbl_deductionDetails " +
+                        "where payrollId = (select payrollId from tbl_payrollForm where payrollFormId = @payrollFormId)";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@payrollFormId", payrollFormId);
+
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<bool> AddCreationPayrollTransactionLog(DateTime logDate, string description, int payrollId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+
+                    string command = "insert into tbl_payrollTransactionLog (logDate, payrollId, logDescription) " +
+                        "values (@logDate, @payrollId, @description)";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@logDate", logDate);
+                        cmd.Parameters.AddWithValue("@payrollId", payrollId); ;
+                        cmd.Parameters.AddWithValue("@description", description);
+
+                        int result = await cmd.ExecuteNonQueryAsync();
+
+                        return result > 0;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         public async Task<DataTable> GetPayrollDetails(int payrollId)
         {
             try
@@ -35,7 +144,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     await conn.OpenAsync();
                     string query = @"
                 SELECT 
-                    CONCAT(e.employeeFname, ' ', e.employeeLname) AS employeeName,
+                    CONCAT(e.employeeFname, ' ', e.employeeLname) AS EmployeeName,
                     pf.dateCreated,
                     pf.payrollStartingDate,
                     pf.payrollEndingDate,
@@ -56,13 +165,15 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     pf.certifiedByTreasurerDate,
                     pf.isReleased,
                     pf.releasedDate,
-                    s.statusDescription
+                    pf.payrollFormId,
+                    pf.payrollStartingDate,
+                    pf.payrollEndingDate
                 FROM 
                     tbl_payrollForm pf
                     JOIN tbl_employee e ON e.employeeId = pf.employeeId
                     JOIN tbl_status s ON s.statusId = pf.statusId
                 WHERE 
-                    pf.payrollId = @PayrollId";
+                    pf.payrollFormId = @PayrollId";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -91,16 +202,18 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     string query = @"
                 SELECT 
                     CONCAT(e.employeeFname, ' ', e.employeeLname) AS employeeName,
-                    pf.payrollId,
-                    e.employeePicture,
-                    d.departmentName,
-                    pf.netAmount
+                    pf.payrollFormId,
+                    pf.netAmount,
+	                pf.totalDeduction,
+	                pf.totalEarnings,
+	                pf.dateCreated,
+	                e.employeeId
                 FROM 
                     tbl_payrollForm pf
                     JOIN tbl_employee e ON pf.employeeId = e.employeeId
                     JOIN tbl_department d ON d.departmentId = e.departmentId
                 WHERE 
-                    d.departmentName = @DepartmentName and pf.isApproveByMayor is null";
+                    d.departmentName = @DepartmentName and pf.isApproveByMayor is null and pf.isCertifyByOficeHead is null";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {

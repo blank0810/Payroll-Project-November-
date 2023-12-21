@@ -94,7 +94,7 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.User_Controls
                         payslip.CompanyAddress = address;
                         payslip.NameOfCompany = companyName;
                         payslip.PayrollPeriod = $"{fromDate:MMM dd, yyyy} - {toDate:MMM dd, yyyy}";
-                        payslip.PayrollId = payrollId;
+                        payslip.PayrollId = ++payrollId;
 
                         if (!string.IsNullOrEmpty(row["salaryRateDescription"]?.ToString()))
                         {

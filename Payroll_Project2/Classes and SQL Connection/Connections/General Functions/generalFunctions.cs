@@ -154,7 +154,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     pf.totalDeduction,
                     pf.netamount,
                     pf.createdBy,
-                    pf.isCertifyByOficeHead,
+                    pf.isCertifyByOfficeHead,
                     pf.certifiedByOfficeHeadName,
                     pf.certifiedByOfficeHeadDate,
                     pf.isApproveByMayor,
@@ -213,7 +213,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     JOIN tbl_employee e ON pf.employeeId = e.employeeId
                     JOIN tbl_department d ON d.departmentId = e.departmentId
                 WHERE 
-                    d.departmentName = @DepartmentName and pf.isApproveByMayor is null and pf.isCertifyByOficeHead is null";
+                    d.departmentName = @DepartmentName and pf.isApproveByMayor is null and pf.isCertifyByOfficeHead is null";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {

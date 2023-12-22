@@ -336,7 +336,7 @@ where payrollId = @id
 
 update tbl_payrollForm
 set isApproveByMayor = 1, approvedByMayorName = '', approvedByMayorDate = '', statusId = (select statusId from tbl_status where statusDescription = @description)
-where payrollId = @id
+where payrollFormId = @id
 
 
 alter table tbl_deductionDetails

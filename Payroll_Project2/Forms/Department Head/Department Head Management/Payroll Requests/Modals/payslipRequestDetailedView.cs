@@ -17,6 +17,7 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
         private static int _userId;
         private static employeeDataUC _parent;
         private static readonly generalFunctions generalFunctions = new generalFunctions();
+        private static readonly bool CertifyStatus = true;
 
         public int PayrollId { get; set; }
         public int EmployeeID { get; set; }
@@ -40,6 +41,16 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
         }
 
         #region Get and Insert Functions
+
+        private async Task<bool> CertifyPayslip(int payrollFormId, string name, DateTime certifyDate, bool certifyStatus)
+        {
+            try
+            {
+                bool certify = await generalFunctions.CertifyThePassSlip(payrollFormId, name, certifyDate, certifyStatus);
+                return certify;
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
 
         private async Task<DataTable> GetEarningsList(int payrollId)
         {
@@ -289,23 +300,46 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
             await DataBinding(PayrollId, _userId);
         }
 
-        private void discardBtn_Click(object sender, EventArgs e)
+        private void paySlipRequestDetailedView_KeyDown(object sender, KeyEventArgs e)
         {
-            this.Close();
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
 
         #endregion
 
         #region Encapsulated Functions
 
+        private async Task<bool> SubmitCertification(int payrollFormId, string name, DateTime certifyDate, bool certifyStatus)
+        {
+            try
+            {
+                bool submit = await CertifyPayslip(payrollFormId, name, certifyDate, certifyStatus);
+
+                if (submit)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages($"There is an error encountered certifying the Payslip with the transaction ID: {payrollFormId}. " +
+                        $"Please contact the system admin for prompt resolution.", "Payslip Certification Error");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+        }
+
         private async Task<bool> AddSystemLog(DateTime logDate, string name, int userId, int employeeId, string employeeName)
         {
             try
             {
-                string description = $"Creation of Payroll for ({employeeName} ID: {employeeId}) " +
-                    $"|| Created by: ({name} ID: {userId}) " +
+                string description = $"Payroll Certification for: ({employeeName} ID: {employeeId}) " +
+                    $"|| Certified by: ({name} ID: {userId}) " +
                     $"|| Date and Time: {logDate:MMMM dd, yyyy} - {logDate:t}";
-                string caption = $"Payroll Creation";
+                string caption = $"Payroll Certification";
                 bool insert = await InsertSystemLog(logDate, description, caption);
 
                 if (insert)
@@ -315,7 +349,7 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
                 else
                 {
                     ErrorMessages("There is an error encoutered during the addition into the System Logs. As the Payroll is already " +
-                        "created and forwarded please await further approval and notice!", "System Log Insertion Error");
+                        "certified and forwarded please await further approval and notice!", "System Log Insertion Error");
                     return false;
                 }
             }
@@ -328,9 +362,9 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
         {
             try
             {
-                string description = $"Payroll Creation for Employee {employeeName} ID: {employeeId}" +
-                    $"|| Created By: {name} ID: {userId} " +
-                    $"|| PayrollID: {payrollId}";
+                string description = $"Payroll Certification for Employee {employeeName} ID: {employeeId}" +
+                    $"|| Certified By: {name} ID: {userId} " +
+                    $"|| Payroll Transaction Number: {payrollId}";
                 bool insert = await InsertPayrollTransactionLog(logDate, description, payrollId);
 
                 if (insert)
@@ -340,7 +374,7 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
                 else
                 {
                     ErrorMessages("There is an error encoutered during the addition into the Transaction Logs. As the Payroll is already " +
-                        "created and forwarded please await further approval and notice!", "Transaction Log Insertion Error");
+                        "certified and forwarded please await further approval and notice!", "Transaction Log Insertion Error");
                     return false;
                 }
             }
@@ -354,10 +388,21 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
         {
             try
             {
+                bool certify = await SubmitCertification(PayrollId, DepartmentHeadName, DateTime.Today, CertifyStatus);
+                if (!certify)
+                    return;
 
+                bool payrollTransactionLog = await AddTransactionLog(DateTime.Today, _userId, PayrollId, EmployeeName, DepartmentHeadName);
+                if (!payrollTransactionLog)
+                    return;
+
+                bool systemLog = await AddSystemLog(DateTime.Today, DepartmentHeadName, _userId, EmployeeID, EmployeeName);
+                if (!systemLog)
+                    return;
 
                 SuccessMessages($"The payroll form with the transaction number {PayrollId} is on the process and is pending for " +
                     $"proper review and approval.", "Payroll Form Generation Done");
+                this.Close();
             }
             catch (SqlException sql)
             {

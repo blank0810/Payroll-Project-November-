@@ -851,6 +851,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Payslip Generation";
             this.Load += new System.EventHandler(this.payslip_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.paySlipRequestDetailedView_KeyDown);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

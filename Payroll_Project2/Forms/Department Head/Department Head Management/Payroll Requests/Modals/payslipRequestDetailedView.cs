@@ -33,11 +33,10 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
         public string TotalDeductions { get; set; }
         public string NetPay { get; set; }
 
-        public paySlipRequestDetailedView(int userId, employeeDataUC parent)
+        public paySlipRequestDetailedView(int userId)
         {
             InitializeComponent();
             _userId = userId;
-            _parent = parent;
         }
 
         #region Get and Insert Functions
@@ -357,7 +356,7 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task<bool> AddTransactionLog(DateTime logDate, int userId, int payrollId, string employeeName,
+        private async Task<bool> AddTransactionLog(DateTime logDate, int userId, int payrollId, string employeeName, int employeeId,
             string name)
         {
             try
@@ -392,7 +391,7 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
                 if (!certify)
                     return;
 
-                bool payrollTransactionLog = await AddTransactionLog(DateTime.Today, _userId, PayrollId, EmployeeName, DepartmentHeadName);
+                bool payrollTransactionLog = await AddTransactionLog(DateTime.Today, _userId, PayrollId, EmployeeName, EmployeeID, DepartmentHeadName);
                 if (!payrollTransactionLog)
                     return;
 

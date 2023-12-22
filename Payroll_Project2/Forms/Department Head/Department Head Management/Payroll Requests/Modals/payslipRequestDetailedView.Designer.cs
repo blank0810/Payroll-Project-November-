@@ -439,11 +439,11 @@
             // submitBtn
             // 
             this.submitBtn.AutoSize = true;
-            this.submitBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.submitBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.submitBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.submitBtn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.submitBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.submitBtn.BorderColor = System.Drawing.Color.DodgerBlue;
             this.submitBtn.BorderRadius = 5;
-            this.submitBtn.BorderSize = 0;
+            this.submitBtn.BorderSize = 1;
             this.submitBtn.FlatAppearance.BorderSize = 0;
             this.submitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submitBtn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);

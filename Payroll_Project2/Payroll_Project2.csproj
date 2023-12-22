@@ -300,6 +300,18 @@
     <Compile Include="Forms\Department Head\Department Head Management\Dashboard\DepartmentHeadDashboard.Designer.cs">
       <DependentUpon>DepartmentHeadDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Modals\payrollCertifyModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Modals\payrollCertifyModal.Designer.cs">
+      <DependentUpon>payrollCertifyModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\employeeCertificationUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\employeeCertificationUC.Designer.cs">
+      <DependentUpon>employeeCertificationUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Department Head\Personal Portal\Department Head Profile\Department Head Profile sub user control\benefitInformationUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1687,6 +1699,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Department Head\Department Head Management\Pass Slip\slipListUC.resx">
       <DependentUpon>slipListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Payroll Requests\Modals\payrollCertifyModal.resx">
+      <DependentUpon>payrollCertifyModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\employeeCertificationUC.resx">
+      <DependentUpon>employeeCertificationUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Department Head\Department Head Management\Payroll Requests\Pay slip list sub user control\employeeDataUC.resx">
       <DependentUpon>employeeDataUC.cs</DependentUpon>

@@ -1,5 +1,6 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
 using Payroll_Project2.Forms.Department_Head.Dashboard;
+using Payroll_Project2.Forms.Department_Head.Department_Head_Management.Payroll_Requests.Modals;
 using Payroll_Project2.Forms.Department_Head.Payroll_Requests.Pay_slip_list_sub_user_control;
 using System;
 using System.Data;
@@ -144,6 +145,13 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests
 
         private async void payslipUC_Load(object sender, EventArgs e)
         {
+            await DisplayPaySlip(_department, _userId);
+        }
+
+        private async void certifyBtn_Click(object sender, EventArgs e)
+        {
+            payrollCertifyModal payrollCertifyModal = new payrollCertifyModal(_userId, _department, this);
+            payrollCertifyModal.ShowDialog();
             await DisplayPaySlip(_department, _userId);
         }
     }

@@ -33,8 +33,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.searchBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.searchEmployee = new Payroll_Project2.Custom.customTextBox2();
             this.titleLabel = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -47,6 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.payrollRequestPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.certifyBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             this.SuspendLayout();
@@ -89,58 +88,13 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchBtn);
-            this.panel5.Controls.Add(this.searchEmployee);
+            this.panel5.Controls.Add(this.certifyBtn);
             this.panel5.Controls.Add(this.titleLabel);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(10, 10);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1411, 39);
             this.panel5.TabIndex = 6;
-            // 
-            // searchBtn
-            // 
-            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.searchBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.searchBtn.BorderColor = System.Drawing.Color.Navy;
-            this.searchBtn.BorderRadius = 10;
-            this.searchBtn.BorderSize = 0;
-            this.searchBtn.FlatAppearance.BorderSize = 0;
-            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.searchBtn.ForeColor = System.Drawing.Color.White;
-            this.searchBtn.Location = new System.Drawing.Point(1332, 4);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(73, 30);
-            this.searchBtn.TabIndex = 1;
-            this.searchBtn.Text = "Search";
-            this.searchBtn.TextColor = System.Drawing.Color.White;
-            this.searchBtn.UseVisualStyleBackColor = false;
-            // 
-            // searchEmployee
-            // 
-            this.searchEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchEmployee.BackColor = System.Drawing.Color.White;
-            this.searchEmployee.BorderColor = System.Drawing.Color.Gray;
-            this.searchEmployee.BorderFocusColor = System.Drawing.Color.Black;
-            this.searchEmployee.BorderRadius = 10;
-            this.searchEmployee.BorderSize = 1;
-            this.searchEmployee.Font = new System.Drawing.Font("Segoe UI Semibold", 8.75F, System.Drawing.FontStyle.Bold);
-            this.searchEmployee.ForeColor = System.Drawing.Color.Black;
-            this.searchEmployee.Location = new System.Drawing.Point(1083, 4);
-            this.searchEmployee.Multiline = false;
-            this.searchEmployee.Name = "searchEmployee";
-            this.searchEmployee.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.searchEmployee.PasswordChar = false;
-            this.searchEmployee.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.searchEmployee.PlaceholderText = "Search employee name or id";
-            this.searchEmployee.Size = new System.Drawing.Size(248, 30);
-            this.searchEmployee.TabIndex = 0;
-            this.searchEmployee.Texts = "";
-            this.searchEmployee.UnderlinedStyle = false;
             // 
             // titleLabel
             // 
@@ -283,6 +237,29 @@
             this.payrollRequestPanel.Size = new System.Drawing.Size(1411, 689);
             this.payrollRequestPanel.TabIndex = 10;
             // 
+            // certifyBtn
+            // 
+            this.certifyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.certifyBtn.AutoSize = true;
+            this.certifyBtn.BackColor = System.Drawing.Color.ForestGreen;
+            this.certifyBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
+            this.certifyBtn.BorderColor = System.Drawing.Color.Navy;
+            this.certifyBtn.BorderRadius = 5;
+            this.certifyBtn.BorderSize = 0;
+            this.certifyBtn.FlatAppearance.BorderSize = 0;
+            this.certifyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.certifyBtn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.certifyBtn.ForeColor = System.Drawing.Color.White;
+            this.certifyBtn.Location = new System.Drawing.Point(1304, 4);
+            this.certifyBtn.Name = "certifyBtn";
+            this.certifyBtn.Size = new System.Drawing.Size(101, 29);
+            this.certifyBtn.TabIndex = 1;
+            this.certifyBtn.Text = "Certify All";
+            this.certifyBtn.TextColor = System.Drawing.Color.White;
+            this.certifyBtn.UseVisualStyleBackColor = false;
+            this.certifyBtn.Click += new System.EventHandler(this.certifyBtn_Click);
+            // 
             // payslipUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,8 +292,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel5;
-        private Custom.buttonDesign searchBtn;
-        private Custom.customTextBox2 searchEmployee;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
@@ -329,5 +304,6 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.FlowLayoutPanel payrollRequestPanel;
         private System.Windows.Forms.Label label6;
+        private Custom.buttonDesign certifyBtn;
     }
 }

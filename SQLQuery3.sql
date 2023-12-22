@@ -307,7 +307,7 @@ select * from tbl_systemLogs
 select * from tbl_leave
 
 select concat(employeeFname, ' ', employeeLname) as employeeName, employmentStatus, pf.dateCreated, payrollStartingDate, payrollEndingDate, salaryRateDescription, salaryRateValue, totalEarnings, 
-totalDeduction, netamount, createdBy, isCertifyByOficeHead, certifiedByOfficeHeadName, certifiedByOfficeHeadDate, isApproveByMayor, approvedByMayorName, approvedByMayorDate, isCertifiedByTreasurer, 
+totalDeduction, netamount, createdBy, isCertifyByOfficeHead, certifiedByOfficeHeadName, certifiedByOfficeHeadDate, isApproveByMayor, approvedByMayorName, approvedByMayorDate, isCertifiedByTreasurer, 
 certifiedByTreasurerName, certifiedByTreasurerDate, isReleased, releasedDate, statusDescription from tbl_payrollForm pf
 join tbl_employee e on e.employeeId = pf.employeeId
 join tbl_status s on s.statusId = pf.statusId
@@ -316,11 +316,13 @@ join tbl_employmentStatus es on es.employmentStatusId = af.employmentStatusId
 where pf.payrollId = 4
 
 select * from tbl_payrollForm
+select * from tbl_earningsList
+select * from tbl_deductionDetails
+
 delete from tbl_payrollForm
 delete from tbl_earningsList
 delete from tbl_deductionDetails
-select * from tbl_earningsList
-select * from tbl_deductionDetails
+
 
 alter table tbl_deductionDetails
 drop column timeLogId
@@ -328,11 +330,39 @@ drop column timeLogId
 select concat(employeeFname, ' ', employeeLname) as employeeName, payrollId, employeePicture, departmentName, netAmount from tbl_payrollForm pf
 join tbl_employee e on pf.employeeId = e.employeeId
 join tbl_department d on d.departmentId = e.departmentId
-where departmentName = 'Human Resource Office'
+where departmentName = 'Commison on Audit' 
+
+SELECT 
+    CONCAT(e.employeeFname, ' ', e.employeeLname) AS employeeName,
+    pf.payrollFormId,
+    pf.netAmount,
+    pf.totalDeduction,
+    pf.totalEarnings,
+    pf.dateCreated,
+    e.employeeId,
+	e.employeeJobDesc
+FROM 
+    tbl_payrollForm pf
+    JOIN tbl_employee e ON pf.employeeId = e.employeeId
+    JOIN tbl_department d ON d.departmentId = e.departmentId
+WHERE 
+    d.departmentName = 'Commison on Audit' and pf.isApproveByMayor is null and pf.isCertifyByOfficeHead is null
+
+SELECT 
+    SUM(totalDeduction) as totalDeduction,
+	SUM(totalEarnings) as totalEarnings,
+	SUM(netAmount) as totalNetAmount,
+	COUNT(*) as requestCount
+FROM 
+    tbl_payrollForm pf
+    JOIN tbl_employee e ON pf.employeeId = e.employeeId
+    JOIN tbl_department d ON d.departmentId = e.departmentId
+WHERE 
+    d.departmentName = 'Commison on Audit' and pf.isApproveByMayor is null and pf.isCertifyByOfficeHead is null
 
 update tbl_payrollForm 
-set isCertifyByOfficeHead = @certify, certifiedByOfficeHeadName = @name, certifiedByOfficeHeadDate = @date
-where payrollId = @id
+set isCertifyByOfficeHead = null, certifiedByOfficeHeadName = null, certifiedByOfficeHeadDate = null
+where payrollId = 5
 
 update tbl_payrollForm
 set isApproveByMayor = 1, approvedByMayorName = '', approvedByMayorDate = '', statusId = (select statusId from tbl_status where statusDescription = @description)

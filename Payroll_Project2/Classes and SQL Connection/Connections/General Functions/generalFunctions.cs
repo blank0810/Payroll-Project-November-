@@ -206,8 +206,10 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     pf.netAmount,
 	                pf.totalDeduction,
 	                pf.totalEarnings,
+                    pf.salaryRateValue,
 	                pf.dateCreated,
-	                e.employeeId
+	                e.employeeId,
+                    e.employeeJobDesc
                 FROM 
                     tbl_payrollForm pf
                     JOIN tbl_employee e ON pf.employeeId = e.employeeId
@@ -237,6 +239,46 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 throw ex;
             }
         }
+
+        public async Task<DataTable> GetPayrollRequestSummary(string departmentName)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = @"
+                SELECT 
+                    SUM(totalDeduction) as totalDeductions,
+                    SUM(totalEarnings) as totalEarnings,
+                    SUM(netAmount) as totalNetAmount,
+                    COUNT(*) as requestCount
+                FROM 
+                    tbl_payrollForm pf
+                    JOIN tbl_employee e ON pf.employeeId = e.employeeId
+                    JOIN tbl_department d ON d.departmentId = e.departmentId
+                WHERE 
+                    d.departmentName = @DepartmentName
+                    AND pf.isApproveByMayor is null
+                    AND pf.isCertifyByOfficeHead is null";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DepartmentName", departmentName);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
 
         public async Task<int> GetStepNumber(string stepDescription)
         {

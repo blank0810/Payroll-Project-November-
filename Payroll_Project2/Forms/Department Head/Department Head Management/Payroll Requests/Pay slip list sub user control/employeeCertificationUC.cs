@@ -1,37 +1,44 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
+using Payroll_Project2.Forms.Department_Head.Department_Head_Management.Payroll_Requests.Modals;
 using Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals;
+using Payroll_Project2.Forms.Personnel.Payroll;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
-namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Pay_slip_list_sub_user_control
+namespace Payroll_Project2.Forms.Department_Head.Department_Head_Management.Payroll_Requests.Pay_slip_list_sub_user_control
 {
-    public partial class employeeDataUC : UserControl
+    public partial class employeeCertificationUC : UserControl
     {
         private static int _userId;
-        private static payslipUC _parent;
+        private static payrollCertifyModal _parent;
         private static string _department;
-        private static readonly generalFunctions generalFunctions = new generalFunctions(); 
+        private static readonly generalFunctions generalFunctions = new generalFunctions();
+        private static readonly bool CertifyStatus = true;
 
-        public string EmployeeName { get; set; }
+        public int PayrollFormId { get; set; }
         public int EmployeeID { get; set; }
-        public int PayrollID { get; set; }
-        public string DateCreated { get; set; }
-        public string TotalEarnings { get; set; }
-        public string TotalDeductions { get; set; }
-        public string TotalSalary { get; set; }
+        public string EmployeeName { get; set; }
+        public string JobDescription { get; set; }
+        public string BasicSalary { get; set; }
+        public string Earnings { get; set; }
+        public string Deductions { get; set; }
+        public string NetAmount { get; set; }
 
-        public employeeDataUC(int userId, payslipUC parent, string department)
+        public employeeCertificationUC(int userId, payrollCertifyModal parent, string department)
         {
             InitializeComponent();
             _userId = userId;
             _parent = parent;
             _department = department;
         }
-
         private async Task<DataTable> GetPayrollDetails(int payrollId)
         {
             try
@@ -47,7 +54,8 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Pay_slip_list_
                     return null;
                 }
             }
-            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
         }
 
         private async Task<string> GetEmployeeName(int userId)
@@ -69,6 +77,17 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Pay_slip_list_
             catch (Exception ex) { throw ex; }
         }
 
+        private void DataBinding()
+        {
+            employeeId.DataBindings.Add("Text", this, "EmployeeID");
+            employeeName.DataBindings.Add("Text", this, "EmployeeName");
+            jobDescription.DataBindings.Add("Text", this, "JobDescription");
+            basicSalary.DataBindings.Add("Text", this, "BasicSalary");
+            earnings.DataBindings.Add("Text", this, "Earnings");
+            deductions.DataBindings.Add("Text", this, "Deductions");
+            netAmount.DataBindings.Add("Text", this, "NetAmount");
+        }
+
         private async Task DisplayPayrollDetails(int userId, int payrollId, string department, int employeeId, string employeeName,
             string totalDeductions, string totalEarnings, string netPay)
         {
@@ -88,12 +107,12 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Pay_slip_list_
                     payslip.NameOfCompany = $"Local Government Unit of Initao";
                     payslip.TotalDeductions = totalDeductions;
                     payslip.TotalEarnings = totalEarnings;
-                    payslip.NetPay = netPay; 
+                    payslip.NetPay = netPay;
                     payslip.PayrollId = payrollId;
 
                     foreach (DataRow row in details.Rows)
                     {
-                        if (!string.IsNullOrEmpty(row["payrollStartingDate"].ToString()) && !string.IsNullOrEmpty(row["payrollEndingDate"].ToString()) 
+                        if (!string.IsNullOrEmpty(row["payrollStartingDate"].ToString()) && !string.IsNullOrEmpty(row["payrollEndingDate"].ToString())
                             && DateTime.TryParse(row["payrollStartingDate"].ToString(), out DateTime startingDate) &&
                             DateTime.TryParse(row["payrollEndingDate"].ToString(), out DateTime endingDate))
                         {
@@ -104,7 +123,7 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Pay_slip_list_
                             payslip.PayrollPeriod = "----------";
                         }
 
-                        if (!string.IsNullOrEmpty(row["salaryRateValue"].ToString()) && decimal.TryParse(row["salaryRateValue"].ToString(), 
+                        if (!string.IsNullOrEmpty(row["salaryRateValue"].ToString()) && decimal.TryParse(row["salaryRateValue"].ToString(),
                             out decimal salaryRateValue))
                         {
                             payslip.SalaryAmount = $"{salaryRateValue:C2}";
@@ -137,26 +156,15 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Pay_slip_list_
             }
         }
 
-        private void DataBinding()
+        private void employeeCertificationUC_Load(object sender, EventArgs e)
         {
-            employeeName.DataBindings.Add("Text", this, "EmployeeName");
-            employeeId.DataBindings.Add("Text", this, "EmployeeID");
-            payrollFormId.DataBindings.Add("Text", this, "PayrollID");
-            dateCreated.DataBindings.Add("Text", this, "DateCreated");
-            totalEarnings.DataBindings.Add("Text", this, "TotalEarnings");
-            totalDeductions.DataBindings.Add("Text", this, "TotalDeductions");
-            totalSalary.DataBindings.Add("Text", this, "TotalSalary");
+            DataBinding();
         }
 
         private async void viewBtn_Click(object sender, EventArgs e)
         {
-            await DisplayPayrollDetails(_userId, PayrollID, _department, EmployeeID, EmployeeName, TotalDeductions, TotalEarnings, TotalSalary);
+            await DisplayPayrollDetails(_userId, PayrollFormId, _department, EmployeeID, EmployeeName, Deductions, Earnings, NetAmount);
             await _parent.DisplayPaySlip(_department, _userId);
-        }
-
-        private void employeeDataUC_Load(object sender, EventArgs e)
-        {
-            DataBinding();
         }
     }
 }

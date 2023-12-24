@@ -960,3 +960,19 @@ GROUP BY
 	lr.numberOfMinutes,
 	ur.numberOfMinutes,
 	otr.numberOfMinutes;
+
+select roleName from tbl_employmentStatusAccess 
+join tbl_department on tbl_employmentStatusAccess.departmentId = tbl_department.departmentId 
+join tbl_userRole on tbl_employmentStatusAccess.roleId = tbl_userRole.roleId 
+where roleName != 'Employee' and tbl_department.departmentId = 3
+
+select * from tbl_department
+select * from tbl_userRole
+select * from tbl_employmentStatusAccess
+select * from tbl_employmentStatusAccess where roleId != 5 and departmentId = 1
+
+insert into tbl_employmentStatusAccess (employmentStatusId, roleId, departmentId)
+values (1, 2, 3)
+
+delete from tbl_employmentStatusAccess
+where roleId = 1

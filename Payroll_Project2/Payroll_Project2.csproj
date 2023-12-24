@@ -254,6 +254,7 @@
     <Compile Include="Classes and SQL Connection\Connections\General Functions\generalFunctions.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Mayor Functions\formRequestClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Mayor Functions\mayorDashboard.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\Mayor Functions\payslipRequestClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\calendarClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\dtrClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\employeeClass.cs" />
@@ -930,6 +931,12 @@
     <Compile Include="Forms\Mayor\Pass Slip Requests\passSlipRequestsUC.Designer.cs">
       <DependentUpon>passSlipRequestsUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Modals\payrollApprovalModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Modals\payrollApprovalModal.Designer.cs">
+      <DependentUpon>payrollApprovalModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Mayor\Pay Slip Requests\Modals\payslipDetailedView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -947,6 +954,12 @@
     </Compile>
     <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\earningsUC.Designer.cs">
       <DependentUpon>earningsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\employeeAppprovalUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\employeeAppprovalUC.Designer.cs">
+      <DependentUpon>employeeAppprovalUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\payslipRequestDataUC.cs">
       <SubType>UserControl</SubType>
@@ -1877,6 +1890,9 @@
     <EmbeddedResource Include="Forms\Mayor\Pass Slip Requests\passSlipRequestsUC.resx">
       <DependentUpon>passSlipRequestsUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\Modals\payrollApprovalModal.resx">
+      <DependentUpon>payrollApprovalModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\Modals\payslipDetailedView.resx">
       <DependentUpon>payslipDetailedView.cs</DependentUpon>
     </EmbeddedResource>
@@ -1885,6 +1901,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\earningsUC.resx">
       <DependentUpon>earningsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\employeeAppprovalUC.resx">
+      <DependentUpon>employeeAppprovalUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mayor\Pay Slip Requests\Pay Slip Requests sub user control\payslipRequestDataUC.resx">
       <DependentUpon>payslipRequestDataUC.cs</DependentUpon>
@@ -2143,6 +2162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Personnel\Personal Portal\Pass Slip Logs\slipLogsUC.resx">
       <DependentUpon>slipLogsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Payslip Logs\Modal\personalPayslipDetailedView.resx">
+      <DependentUpon>personalPayslipDetailedView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Personnel\Personal Portal\Travel Order Logs\Modals\personalTravelOrderDetails.resx">
       <DependentUpon>personalTravelOrderDetails.cs</DependentUpon>

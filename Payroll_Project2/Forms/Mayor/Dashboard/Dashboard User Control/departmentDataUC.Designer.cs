@@ -28,44 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.departmentName = new System.Windows.Forms.Label();
-            this.departmentLogo = new Payroll_Project2.Custom.customPictureBox();
             this.regularCount = new System.Windows.Forms.Label();
             this.joCount = new System.Windows.Forms.Label();
             this.totalEmployeeCount = new System.Windows.Forms.Label();
             this.detailsBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.departmentName = new System.Windows.Forms.Label();
+            this.departmentLogo = new Payroll_Project2.Custom.customPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.departmentLogo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // departmentName
-            // 
-            this.departmentName.AutoSize = true;
-            this.departmentName.BackColor = System.Drawing.Color.White;
-            this.departmentName.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
-            this.departmentName.ForeColor = System.Drawing.Color.Black;
-            this.departmentName.Location = new System.Drawing.Point(49, 5);
-            this.departmentName.MaximumSize = new System.Drawing.Size(250, 0);
-            this.departmentName.Name = "departmentName";
-            this.departmentName.Size = new System.Drawing.Size(228, 36);
-            this.departmentName.TabIndex = 3;
-            this.departmentName.Text = "Department of Human Settlements and Urban Development";
-            // 
-            // departmentLogo
-            // 
-            this.departmentLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.departmentLogo.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            this.departmentLogo.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.departmentLogo.BorderColor2 = System.Drawing.Color.GreenYellow;
-            this.departmentLogo.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            this.departmentLogo.BorderSize = 1;
-            this.departmentLogo.GradientAngle = 50F;
-            this.departmentLogo.Image = global::Payroll_Project2.Properties.Resources.Screenshot_112;
-            this.departmentLogo.Location = new System.Drawing.Point(4, 1);
-            this.departmentLogo.Name = "departmentLogo";
-            this.departmentLogo.Size = new System.Drawing.Size(40, 40);
-            this.departmentLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.departmentLogo.TabIndex = 4;
-            this.departmentLogo.TabStop = false;
             // 
             // regularCount
             // 
@@ -127,6 +97,36 @@
             this.detailsBtn.UseVisualStyleBackColor = false;
             this.detailsBtn.Click += new System.EventHandler(this.detailsBtn_Click);
             // 
+            // departmentName
+            // 
+            this.departmentName.AutoSize = true;
+            this.departmentName.BackColor = System.Drawing.Color.White;
+            this.departmentName.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.departmentName.ForeColor = System.Drawing.Color.Black;
+            this.departmentName.Location = new System.Drawing.Point(49, 5);
+            this.departmentName.MaximumSize = new System.Drawing.Size(250, 0);
+            this.departmentName.Name = "departmentName";
+            this.departmentName.Size = new System.Drawing.Size(228, 36);
+            this.departmentName.TabIndex = 3;
+            this.departmentName.Text = "Department of Human Settlements and Urban Development";
+            // 
+            // departmentLogo
+            // 
+            this.departmentLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.departmentLogo.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            this.departmentLogo.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.departmentLogo.BorderColor2 = System.Drawing.Color.GreenYellow;
+            this.departmentLogo.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.departmentLogo.BorderSize = 1;
+            this.departmentLogo.GradientAngle = 50F;
+            this.departmentLogo.Image = global::Payroll_Project2.Properties.Resources.Screenshot_112;
+            this.departmentLogo.Location = new System.Drawing.Point(4, 1);
+            this.departmentLogo.Name = "departmentLogo";
+            this.departmentLogo.Size = new System.Drawing.Size(40, 40);
+            this.departmentLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.departmentLogo.TabIndex = 4;
+            this.departmentLogo.TabStop = false;
+            // 
             // departmentDataUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,12 +148,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label departmentName;
-        private Custom.customPictureBox departmentLogo;
         private System.Windows.Forms.Label regularCount;
         private System.Windows.Forms.Label joCount;
         private System.Windows.Forms.Label totalEmployeeCount;
         private Custom.buttonDesign detailsBtn;
+        private System.Windows.Forms.Label departmentName;
+        private Custom.customPictureBox departmentLogo;
     }
 }

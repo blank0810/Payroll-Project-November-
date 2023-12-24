@@ -34,7 +34,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.transactionNumber = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,7 +56,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.departmentName = new System.Windows.Forms.Label();
+            this.salaryRateDescription = new System.Windows.Forms.Label();
             this.employeeId = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.payslipPeriod = new System.Windows.Forms.Label();
@@ -123,8 +122,8 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.closeBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -142,6 +141,7 @@
             this.panel23.SuspendLayout();
             this.panel24.SuspendLayout();
             this.panel25.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
@@ -205,16 +205,6 @@
             this.transactionNumber.Size = new System.Drawing.Size(64, 17);
             this.transactionNumber.TabIndex = 9;
             this.transactionNumber.Text = "10001111";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
-            this.pictureBox1.Location = new System.Drawing.Point(2, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(86, 78);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
@@ -298,7 +288,7 @@
             this.panel7.Controls.Add(this.label17);
             this.panel7.Controls.Add(this.label15);
             this.panel7.Controls.Add(this.label14);
-            this.panel7.Controls.Add(this.departmentName);
+            this.panel7.Controls.Add(this.salaryRateDescription);
             this.panel7.Controls.Add(this.employeeId);
             this.panel7.Controls.Add(this.label5);
             this.panel7.Controls.Add(this.payslipPeriod);
@@ -413,7 +403,7 @@
             this.salaryRate.AutoSize = true;
             this.salaryRate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.salaryRate.ForeColor = System.Drawing.Color.Black;
-            this.salaryRate.Location = new System.Drawing.Point(304, 85);
+            this.salaryRate.Location = new System.Drawing.Point(233, 85);
             this.salaryRate.Name = "salaryRate";
             this.salaryRate.Size = new System.Drawing.Size(29, 17);
             this.salaryRate.TabIndex = 5;
@@ -437,16 +427,16 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(39, 65);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 17);
+            this.label7.Size = new System.Drawing.Size(148, 17);
             this.label7.TabIndex = 4;
-            this.label7.Text = "Department";
+            this.label7.Text = "Salary Rate Description";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(287, 85);
+            this.label17.Location = new System.Drawing.Point(216, 85);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(11, 17);
             this.label17.TabIndex = 4;
@@ -457,7 +447,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(287, 65);
+            this.label15.Location = new System.Drawing.Point(216, 65);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(11, 17);
             this.label15.TabIndex = 4;
@@ -468,29 +458,29 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(287, 45);
+            this.label14.Location = new System.Drawing.Point(216, 45);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(11, 17);
             this.label14.TabIndex = 4;
             this.label14.Text = ":";
             // 
-            // departmentName
+            // salaryRateDescription
             // 
-            this.departmentName.AutoSize = true;
-            this.departmentName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.departmentName.ForeColor = System.Drawing.Color.Black;
-            this.departmentName.Location = new System.Drawing.Point(304, 65);
-            this.departmentName.Name = "departmentName";
-            this.departmentName.Size = new System.Drawing.Size(150, 17);
-            this.departmentName.TabIndex = 4;
-            this.departmentName.Text = "Human Resource Office";
+            this.salaryRateDescription.AutoSize = true;
+            this.salaryRateDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.salaryRateDescription.ForeColor = System.Drawing.Color.Black;
+            this.salaryRateDescription.Location = new System.Drawing.Point(233, 65);
+            this.salaryRateDescription.Name = "salaryRateDescription";
+            this.salaryRateDescription.Size = new System.Drawing.Size(103, 17);
+            this.salaryRateDescription.TabIndex = 4;
+            this.salaryRateDescription.Text = "Salary Grade 33";
             // 
             // employeeId
             // 
             this.employeeId.AutoSize = true;
             this.employeeId.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.employeeId.ForeColor = System.Drawing.Color.Black;
-            this.employeeId.Location = new System.Drawing.Point(304, 45);
+            this.employeeId.Location = new System.Drawing.Point(233, 45);
             this.employeeId.Name = "employeeId";
             this.employeeId.Size = new System.Drawing.Size(34, 17);
             this.employeeId.TabIndex = 4;
@@ -1223,6 +1213,16 @@
             this.closeBtn.UseVisualStyleBackColor = false;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(2, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(86, 78);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
             // personalPayslipDetailedView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1253,7 +1253,6 @@
             this.Load += new System.EventHandler(this.personalPayslipDetailedView_Load);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -1282,6 +1281,7 @@
             this.panel24.PerformLayout();
             this.panel25.ResumeLayout(false);
             this.panel25.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1317,7 +1317,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label departmentName;
+        private System.Windows.Forms.Label salaryRateDescription;
         private System.Windows.Forms.Label employeeId;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label payslipPeriod;

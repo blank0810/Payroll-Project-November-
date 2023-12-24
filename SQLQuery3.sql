@@ -327,6 +327,14 @@ delete from tbl_deductionDetails
 alter table tbl_deductionDetails
 drop column timeLogId
 
+select departmentName, count(*) as requestCount from tbl_payrollForm pf
+join tbl_employee e on pf.employeeId = e.employeeId
+join tbl_department d on e.departmentId = d.departmentId
+where (pf.isCertifyByOfficeHead is null and pf.isApproveByMayor is null) or (pf.isCertifyByOfficeHead is null and pf.isApproveByMayor is null and departmentName = 'Commison On Audit')
+group by departmentName
+
+
+
 select concat(employeeFname, ' ', employeeLname) as employeeName, payrollId, employeePicture, departmentName, netAmount from tbl_payrollForm pf
 join tbl_employee e on pf.employeeId = e.employeeId
 join tbl_department d on d.departmentId = e.departmentId

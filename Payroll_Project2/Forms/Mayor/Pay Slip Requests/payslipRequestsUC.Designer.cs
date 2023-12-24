@@ -33,18 +33,15 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.searchBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.searchEmployee = new Payroll_Project2.Custom.customTextBox2();
+            this.label1 = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.payrollRequestPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             this.SuspendLayout();
@@ -87,8 +84,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.searchBtn);
-            this.panel5.Controls.Add(this.searchEmployee);
+            this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.titleLabel);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(10, 10);
@@ -96,49 +92,18 @@
             this.panel5.Size = new System.Drawing.Size(1411, 39);
             this.panel5.TabIndex = 9;
             // 
-            // searchBtn
+            // label1
             // 
-            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.searchBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.searchBtn.BorderColor = System.Drawing.Color.Navy;
-            this.searchBtn.BorderRadius = 10;
-            this.searchBtn.BorderSize = 0;
-            this.searchBtn.FlatAppearance.BorderSize = 0;
-            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.searchBtn.ForeColor = System.Drawing.Color.White;
-            this.searchBtn.Location = new System.Drawing.Point(406, 4);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(73, 30);
-            this.searchBtn.TabIndex = 1;
-            this.searchBtn.Text = "Search";
-            this.searchBtn.TextColor = System.Drawing.Color.White;
-            this.searchBtn.UseVisualStyleBackColor = false;
-            // 
-            // searchEmployee
-            // 
-            this.searchEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchEmployee.BackColor = System.Drawing.Color.White;
-            this.searchEmployee.BorderColor = System.Drawing.Color.Gray;
-            this.searchEmployee.BorderFocusColor = System.Drawing.Color.Black;
-            this.searchEmployee.BorderRadius = 10;
-            this.searchEmployee.BorderSize = 1;
-            this.searchEmployee.Font = new System.Drawing.Font("Segoe UI Semibold", 8.75F, System.Drawing.FontStyle.Bold);
-            this.searchEmployee.ForeColor = System.Drawing.Color.Black;
-            this.searchEmployee.Location = new System.Drawing.Point(157, 4);
-            this.searchEmployee.Multiline = false;
-            this.searchEmployee.Name = "searchEmployee";
-            this.searchEmployee.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.searchEmployee.PasswordChar = false;
-            this.searchEmployee.PlaceholderColor = System.Drawing.Color.DimGray;
-            this.searchEmployee.PlaceholderText = "Search employee name or id";
-            this.searchEmployee.Size = new System.Drawing.Size(248, 30);
-            this.searchEmployee.TabIndex = 0;
-            this.searchEmployee.Texts = "";
-            this.searchEmployee.UnderlinedStyle = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(161, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(569, 19);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "(Only departments with pending payslip requests are eligible for payslip generati" +
+    "on.)";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // titleLabel
             // 
@@ -155,64 +120,50 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.Control;
-            this.panel7.Controls.Add(this.label5);
-            this.panel7.Controls.Add(this.label6);
             this.panel7.Controls.Add(this.label2);
-            this.panel7.Controls.Add(this.label7);
-            this.panel7.Controls.Add(this.label1);
+            this.panel7.Controls.Add(this.label9);
+            this.panel7.Controls.Add(this.label8);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(10, 54);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1411, 39);
             this.panel7.TabIndex = 11;
             // 
-            // label5
+            // label2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(1154, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 19);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Actions";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.Location = new System.Drawing.Point(818, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 19);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Actions";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label6
+            // label9
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.DimGray;
-            this.label6.Location = new System.Drawing.Point(988, 11);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 19);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Total Salary";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.DimGray;
+            this.label9.Location = new System.Drawing.Point(584, 10);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(139, 19);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Number of request";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label7
+            // label8
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.DimGray;
-            this.label7.Location = new System.Drawing.Point(377, 11);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 19);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Payroll ID";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.DimGray;
-            this.label1.Location = new System.Drawing.Point(6, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 19);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Employee name";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.DimGray;
+            this.label8.Location = new System.Drawing.Point(6, 10);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(134, 19);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Department name";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel6
             // 
@@ -235,25 +186,13 @@
             // payrollRequestPanel
             // 
             this.payrollRequestPanel.AutoScroll = true;
-            this.payrollRequestPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.payrollRequestPanel.BackColor = System.Drawing.Color.White;
             this.payrollRequestPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.payrollRequestPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.payrollRequestPanel.Location = new System.Drawing.Point(10, 98);
             this.payrollRequestPanel.Name = "payrollRequestPanel";
             this.payrollRequestPanel.Size = new System.Drawing.Size(1411, 689);
             this.payrollRequestPanel.TabIndex = 13;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(550, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 19);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Department";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // payslipRequestsUC
             // 
@@ -271,6 +210,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "payslipRequestsUC";
             this.Size = new System.Drawing.Size(1431, 797);
+            this.Load += new System.EventHandler(this.payslipRequestsUC_Load);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -286,17 +226,14 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel5;
-        private Custom.buttonDesign searchBtn;
-        private Custom.customTextBox2 searchEmployee;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.FlowLayoutPanel payrollRequestPanel;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label1;
     }
 }

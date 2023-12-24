@@ -168,6 +168,7 @@
             this.payslipBtn.Text = "Pay Slip Requests";
             this.payslipBtn.TextColor = System.Drawing.Color.White;
             this.payslipBtn.UseVisualStyleBackColor = false;
+            this.payslipBtn.Click += new System.EventHandler(this.payslipBtn_Click);
             // 
             // panel21
             // 

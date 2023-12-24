@@ -21,7 +21,6 @@ namespace Payroll_Project2.Forms.Department_Head.Department_Head_Management.Payr
         private static payrollCertifyModal _parent;
         private static string _department;
         private static readonly generalFunctions generalFunctions = new generalFunctions();
-        private static readonly bool CertifyStatus = true;
 
         public int PayrollFormId { get; set; }
         public int EmployeeID { get; set; }

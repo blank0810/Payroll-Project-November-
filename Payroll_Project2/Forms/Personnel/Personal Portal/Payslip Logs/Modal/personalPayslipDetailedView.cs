@@ -12,7 +12,7 @@ namespace Payroll_Project2.Forms.Personnel.Personal_Portal.Payslip_Logs.Modal
         public int TransactionNumber { get; set; }
         public string PayslipPeriod { get; set; }
         public int EmployeeID { get; set; }
-        public string DepartmentName { get; set; }
+        public string SalaryRateDescription { get; set; }
         public decimal SalaryRate { get; set; }
         public string EmployeeName { get; set; }
         public string JobDescription { get; set; }

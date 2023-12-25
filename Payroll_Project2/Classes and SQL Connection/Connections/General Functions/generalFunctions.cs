@@ -167,10 +167,12 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     pf.releasedDate,
                     pf.payrollFormId,
                     pf.payrollStartingDate,
-                    pf.payrollEndingDate
+                    pf.payrollEndingDate, 
+                    d.departmentName
                 FROM 
                     tbl_payrollForm pf
-                    JOIN tbl_employee e ON e.employeeId = pf.employeeId
+                    JOIN tbl_employee e ON e.employeeId = pf.employeeId 
+                    JOIN tbl_department d ON e.departmentId = d.departmentId 
                     JOIN tbl_status s ON s.statusId = pf.statusId
                 WHERE 
                     pf.payrollFormId = @PayrollId";

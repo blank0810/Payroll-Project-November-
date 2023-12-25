@@ -1,10 +1,13 @@
-﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Functions;
+﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
+using Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Functions;
+using Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals;
 using Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Modals;
 using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +22,7 @@ namespace Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Pay_Slip_Requests_sub_u
         private static string _department;
         private static payrollApprovalModal _parent;
         private static readonly payslipRequestClass payslipRequestClass = new payslipRequestClass();
+        private static readonly generalFunctions generalFunctions = new generalFunctions();
 
         public int PayrollFormId { get; set; }
         public int EmployeeID { get; set; }
@@ -35,6 +39,118 @@ namespace Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Pay_Slip_Requests_sub_u
             _userId = userId;
             _department = department;
             _parent = parent;
+        }
+        private async Task<DataTable> GetPayrollDetails(int payrollId)
+        {
+            try
+            {
+                DataTable details = await generalFunctions.GetPayrollDetails(payrollId);
+
+                if (details != null && details.Rows.Count > 0)
+                {
+                    return details;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+        private async Task<string> GetEmployeeName(int userId)
+        {
+            try
+            {
+                string name = await generalFunctions.GetEmployeeName(userId);
+
+                if (name != null)
+                {
+                    return name;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task DisplayPayrollDetails(int userId, int payrollId, int employeeId, string employeeName, string totalDeductions, 
+            string totalEarnings, string netPay, string mayorDepartment)
+        {
+            try
+            {
+                DataTable details = await GetPayrollDetails(payrollId);
+                string name = await GetEmployeeName(userId);
+                payslipDetailedView payslip = new payslipDetailedView(userId, mayorDepartment, this);
+
+                if (details != null && name != null)
+                {
+                    payslip.EmployeeID = employeeId;
+                    payslip.EmployeeName = employeeName;
+                    payslip.MayorName = name;
+                    payslip.CompanyAddress = $"Jampason, Initao, Misamis Oriental 9022";
+                    payslip.NameOfCompany = $"Local Government Unit of Initao";
+                    payslip.TotalDeductions = totalDeductions;
+                    payslip.TotalEarnings = totalEarnings;
+                    payslip.NetPay = netPay;
+                    payslip.PayrollId = payrollId;
+
+                    foreach (DataRow row in details.Rows)
+                    {
+                        if (!string.IsNullOrEmpty(row["payrollStartingDate"].ToString()) && !string.IsNullOrEmpty(row["payrollEndingDate"].ToString())
+                            && DateTime.TryParse(row["payrollStartingDate"].ToString(), out DateTime startingDate) &&
+                            DateTime.TryParse(row["payrollEndingDate"].ToString(), out DateTime endingDate))
+                        {
+                            payslip.PayrollPeriod = $"{startingDate:MMM dd, yyyy} - {endingDate:MMM dd, yyyy}";
+                        }
+                        else
+                        {
+                            payslip.PayrollPeriod = "----------";
+                        }
+
+                        if (!string.IsNullOrEmpty(row["salaryRateValue"].ToString()) && decimal.TryParse(row["salaryRateValue"].ToString(),
+                            out decimal salaryRateValue))
+                        {
+                            payslip.SalaryAmount = $"{salaryRateValue:C2}";
+                        }
+                        else
+                        {
+                            payslip.SalaryAmount = $"{0:C2}";
+                        }
+
+                        if (!string.IsNullOrEmpty(row["salaryRateDescription"]?.ToString()))
+                        {
+                            payslip.SalaryDescription = $"{row["salaryRateDescription"]}";
+                        }
+                        else
+                        {
+                            payslip.SalaryDescription = "---------";
+                        }
+
+                        if (!string.IsNullOrEmpty(row["departmentName"]?.ToString()))
+                        {
+                            payslip.DepartmentName = $"{row["departmentName"]}";
+                        }
+                        else
+                        {
+                            payslip.DepartmentName = "----------";
+                        }
+
+                        payslip.ShowDialog();
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                MessageBox.Show(sql.Message, "SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void DataBinding()
@@ -55,7 +171,8 @@ namespace Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Pay_Slip_Requests_sub_u
 
         private async void viewBtn_Click(object sender, EventArgs e)
         {
-
+            await DisplayPayrollDetails(_userId, PayrollFormId, EmployeeID, EmployeeName, Deductions, Earnings, NetAmount, _department);
+            await _parent.DisplayEmployeeLists(_department, _userId);
         }
     }
 }

@@ -29,51 +29,32 @@
         private void InitializeComponent()
         {
             this.deductionAmount = new System.Windows.Forms.Label();
-            this.deductionNumber = new System.Windows.Forms.Label();
-            this.deductionDescription = new System.Windows.Forms.Label();
+            this.deductionsDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // deductionAmount
             // 
-            this.deductionAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.deductionAmount.AutoSize = true;
-            this.deductionAmount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.deductionAmount.ForeColor = System.Drawing.Color.Black;
-            this.deductionAmount.Location = new System.Drawing.Point(514, 8);
+            this.deductionAmount.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.deductionAmount.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.deductionAmount.Location = new System.Drawing.Point(414, 10);
             this.deductionAmount.Name = "deductionAmount";
-            this.deductionAmount.Size = new System.Drawing.Size(113, 19);
-            this.deductionAmount.TabIndex = 11;
-            this.deductionAmount.Text = "{Total amount}";
+            this.deductionAmount.Size = new System.Drawing.Size(68, 18);
+            this.deductionAmount.TabIndex = 13;
+            this.deductionAmount.Text = "{Amount}";
             this.deductionAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // deductionNumber
+            // deductionsDescription
             // 
-            this.deductionNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.deductionNumber.AutoSize = true;
-            this.deductionNumber.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.deductionNumber.ForeColor = System.Drawing.Color.Black;
-            this.deductionNumber.Location = new System.Drawing.Point(297, 8);
-            this.deductionNumber.Name = "deductionNumber";
-            this.deductionNumber.Size = new System.Drawing.Size(136, 19);
-            this.deductionNumber.TabIndex = 12;
-            this.deductionNumber.Text = "{No. of deduction}";
-            this.deductionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // deductionDescription
-            // 
-            this.deductionDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.deductionDescription.AutoSize = true;
-            this.deductionDescription.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.deductionDescription.ForeColor = System.Drawing.Color.Black;
-            this.deductionDescription.Location = new System.Drawing.Point(5, 8);
-            this.deductionDescription.Name = "deductionDescription";
-            this.deductionDescription.Size = new System.Drawing.Size(159, 19);
-            this.deductionDescription.TabIndex = 13;
-            this.deductionDescription.Text = "Deduction description";
-            this.deductionDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deductionsDescription.AutoSize = true;
+            this.deductionsDescription.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
+            this.deductionsDescription.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.deductionsDescription.Location = new System.Drawing.Point(20, 10);
+            this.deductionsDescription.Name = "deductionsDescription";
+            this.deductionsDescription.Size = new System.Drawing.Size(145, 18);
+            this.deductionsDescription.TabIndex = 14;
+            this.deductionsDescription.Text = "Deduction description";
+            this.deductionsDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // deductionsUC
             // 
@@ -81,10 +62,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.deductionAmount);
-            this.Controls.Add(this.deductionNumber);
-            this.Controls.Add(this.deductionDescription);
+            this.Controls.Add(this.deductionsDescription);
             this.Name = "deductionsUC";
-            this.Size = new System.Drawing.Size(651, 35);
+            this.Size = new System.Drawing.Size(511, 38);
+            this.Load += new System.EventHandler(this.deductionsUC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,7 +74,6 @@
         #endregion
 
         private System.Windows.Forms.Label deductionAmount;
-        private System.Windows.Forms.Label deductionNumber;
-        private System.Windows.Forms.Label deductionDescription;
+        private System.Windows.Forms.Label deductionsDescription;
     }
 }

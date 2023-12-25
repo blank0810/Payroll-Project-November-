@@ -976,3 +976,5 @@ values (1, 2, 3)
 
 delete from tbl_employmentStatusAccess
 where roleId = 1
+
+select top 1 companyName from tbl_companyDetails

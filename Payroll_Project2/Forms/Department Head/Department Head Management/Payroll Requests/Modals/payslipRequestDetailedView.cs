@@ -399,7 +399,7 @@ namespace Payroll_Project2.Forms.Department_Head.Payroll_Requests.Modals
                 if (!systemLog)
                     return;
 
-                SuccessMessages($"The payroll form with the transaction number {PayrollId} is on the process and is pending for " +
+                SuccessMessages($"The payroll form with the transaction number {PayrollId} is already certified and is pending for " +
                     $"proper review and approval.", "Payroll Form Generation Done");
                 this.Close();
             }

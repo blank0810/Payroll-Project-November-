@@ -4,6 +4,7 @@ using Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Pay_Slip_Requests_sub_user_
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -20,8 +21,10 @@ namespace Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Modals
         private static int _userId;
         private static string _department;
         private static payslipRequestDataUC _parent;
+        private static generalFunctions generalFunctions = new generalFunctions();  
         private static readonly payslipRequestClass payslipRequestClass = new payslipRequestClass();
         private static readonly bool ApprovalStatus = true;
+        private static readonly string ApproveStatus = ConfigurationManager.AppSettings.Get("PayslipApproveStatus");
 
         public string TotalEarnings { get; set; }
         public string TotalDeductions { get; set; }
@@ -38,6 +41,50 @@ namespace Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Modals
             _userId = userId;
             _parent = parent;
             _department = department;
+        }
+
+        private async Task<bool> ApprovePayslip(bool approveStatus, string name, DateTime date, int payrollId, string statusDescription)
+        {
+            try
+            {
+                bool approvePayroll = await payslipRequestClass.ApprovePayroll(approveStatus, name, date, payrollId, statusDescription);
+                return approvePayroll;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> ApproveAndCertify(bool approveStatus, string name, DateTime date, int payrollFormId, string statusDescription)
+        {
+            try
+            {
+                bool approve = await payslipRequestClass.ApproveAndCertifyPayroll(approveStatus, name, date, payrollFormId, statusDescription);
+                return approve;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertSystemLog(DateTime logDate, string description, string caption)
+        {
+            try
+            {
+                bool systemLog = await generalFunctions.AddSystemLogs(logDate, description, caption);
+                return systemLog;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> InsertPayrollTransactionLog(DateTime logDate, string description, int payrollId)
+        {
+            try
+            {
+                bool insert = await generalFunctions.AddCreationPayrollTransactionLog(logDate, description, payrollId);
+                return insert;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
         }
 
         private async Task<DataTable> GetSummary(string departmentName)
@@ -130,12 +177,14 @@ namespace Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Modals
             }
         }
 
-        private async Task DisplayEmployeeLists(string departmentName, string mayorDepartment, int userId)
+        public async Task DisplayEmployeeLists(string mayorDepartment, int userId)
         {
             try
             {
                 employeeListPanel.Controls.Clear();
-                DataTable employeeList = await GetRequestList(departmentName, mayorDepartment);
+                await ParsedPayslipSummary(DepartmentName);
+                DataBinding();
+                DataTable employeeList = await GetRequestList(DepartmentName, mayorDepartment);
 
                 if (employeeList != null)
                 {
@@ -240,6 +289,15 @@ namespace Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Modals
 
         private void DataBinding()
         {
+            totalEarnings.DataBindings.Clear();
+            totalDeductions.DataBindings.Clear();
+            totalNetAmount.DataBindings.Clear();
+            mayorName.DataBindings.Clear();
+            companyName.DataBindings.Clear();
+            companyAddress.DataBindings.Clear();
+            companyLogo.DataBindings.Clear();
+            approvalCheck.Checked = false;
+
             totalEarnings.DataBindings.Add("Text", this, "TotalEarnings");
             totalDeductions.DataBindings.Add("Text", this, "TotalDeductions");
             totalNetAmount.DataBindings.Add("Text", this, "TotalNetAmount");
@@ -273,9 +331,7 @@ namespace Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Modals
 
         private async void payrollApprovalModal_Load(object sender, EventArgs e)
         {
-            await ParsedPayslipSummary(DepartmentName);
-            DataBinding();
-            await DisplayEmployeeLists(DepartmentName, _department, _userId);
+            await DisplayEmployeeLists(_department, _userId);
         }
 
         private void payrollApprovalModal_KeyDown(object sender, KeyEventArgs e)
@@ -283,6 +339,168 @@ namespace Payroll_Project2.Forms.Mayor.Pay_Slip_Requests.Modals
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+        }
+
+        private bool IsValid()
+        {
+            if(approvalCheck.Checked)
+            {
+                return true;
+            }
+            else
+            {
+                ErrorMessages("To proceed, please ensure that the approval checkbox is selected.", "Approval Check");
+                return false;
+            }
+        }
+
+        private async Task<bool> SubmitApproval(int payrollFormId, string name, DateTime date, bool status, 
+            string employeeDepartment, string mayorDepartment, string statusDescription)
+        {
+            try
+            {
+                if (mayorDepartment == employeeDepartment)
+                {
+                    bool approve = await ApproveAndCertify(status, name, date, payrollFormId, statusDescription);
+
+                    if (approve)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        ErrorMessages($"There is an error encountered approving the Payslip with the transaction ID: {payrollFormId}. " +
+                        $"Please contact the system admin for prompt resolution.", "Payslip Certification Error");
+                        return false;
+                    }
+                }
+                else
+                {
+                    bool approve = await ApprovePayslip(status, name, date, payrollFormId, statusDescription);
+                    if (approve)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        ErrorMessages($"There is an error encountered approving the Payslip with the transaction ID: {payrollFormId}. " +
+                        $"Please contact the system admin for prompt resolution.", "Payslip Certification Error");
+                        return false;
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> AddSystemLog(DateTime logDate, string name, int userId, int employeeId, string employeeName)
+        {
+            try
+            {
+                string description = $"Payroll Approval for release: ({employeeName} ID: {employeeId}) " +
+                    $"|| Approved by: ({name} ID: {userId}) " +
+                    $"|| Date and Time: {logDate:MMMM dd, yyyy} - {logDate:t}";
+                string caption = $"Payroll Approval";
+                bool insert = await InsertSystemLog(logDate, description, caption);
+
+                if (insert)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages("There is an error encoutered during the addition into the System Logs. As the Payroll is already " +
+                        "approved and forwarded for releasing please await further notice!", "System Log Insertion Error");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async Task<bool> AddTransactionLog(DateTime logDate, int userId, int payrollId, string employeeName, int employeeId, 
+            string name)
+        {
+            try
+            {
+                string description = $"Payroll Approval for Release: {employeeName} ID: {employeeId}" +
+                    $"|| Approved By: {name} ID: {userId} " +
+                    $"|| Payroll Transaction Number: {payrollId}";
+                bool insert = await InsertPayrollTransactionLog(logDate, description, payrollId);
+
+                if (insert)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessages("There is an error encoutered during the addition into the Transaction Logs. As the Payroll is already " +
+                        "approved and forwarded for releasing please await further notice!", "Transaction Log Insertion Error");
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private async void submitBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable list = await GetRequestList(DepartmentName, _department);
+
+                if(list != null)
+                {
+                    DialogResult result = MessageBox.Show(
+                        "As the MUNICIPAL MAYOR, you are hereby ENDORSING and APPROVING the disbursement of payment for the employee(s) listed in this payroll form. " +
+                        "Do you wish to proceed?",
+                        "Confirmation: Mayor's Endorsement and Approval",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach(DataRow row in list.Rows)
+                        {
+                            if (!string.IsNullOrEmpty(row["payrollFormId"]?.ToString()) && int.TryParse(row["payrollFormId"]?.ToString(),
+                                out int payrollFormId) && !string.IsNullOrEmpty(row["employeeName"]?.ToString()) &&
+                                !string.IsNullOrEmpty(row["employeeId"]?.ToString()) && int.TryParse(row["employeeId"]?.ToString(),
+                                out int employeeId))
+                            {
+                                if (!IsValid())
+                                    return;
+
+                                bool approval = await SubmitApproval(payrollFormId, MayorName, DateTime.Today, ApprovalStatus, DepartmentName,
+                                    _department, ApproveStatus);
+                                if (!approval)
+                                    return;
+
+                                bool transactionLog = await AddTransactionLog(DateTime.Today, _userId, payrollFormId, $"{row["employeeName"]}",
+                                    employeeId, MayorName);
+                                if (!transactionLog) 
+                                    return;
+
+                                bool systemLog = await AddSystemLog(DateTime.Today, MayorName, _userId, employeeId, $"{row["employeeName"]}");
+                                if(!systemLog)
+                                    return;
+                            }
+                        }
+
+                        SuccessMessages($"The endorsement and approval process for {list.Rows.Count} payroll requests has been successfully " +
+                            $"completed. The disbursement of payment is now authorized.",
+                            "Endorsement and Approval Confirmation");
+                        await DisplayEmployeeLists(_department, _userId);
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                ErrorMessages(sql.Message, "SQL Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessages(ex.Message, "Exception Error");
             }
         }
     }

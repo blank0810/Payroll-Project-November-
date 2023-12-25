@@ -154,7 +154,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
             }
         }
 
-        public async Task<bool> CertifyPayroll(bool certify, string name, DateTime certifiedDate, int payrollId)
+        public async Task<bool> ApprovePayroll(bool certify, string name, DateTime date, int payrollId, string statusDescription)
         {
             try
             {
@@ -163,20 +163,22 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                     await conn.OpenAsync();
 
                     string query = @"
-                UPDATE tbl_payrollForm 
+                UPDATE tbl_payrollForm
                 SET 
-                    isCertifyByOficeHead = @certify,
-                    certifiedByOfficeHeadName = @name,
-                    certifedByOfficeHeadDate = @date
+                    isApproveByMayor = @certify,
+                    approvedByMayorName = @name,
+                    approvedByMayorDate = @date,
+                    statusId = (SELECT statusId FROM tbl_status WHERE statusDescription = @description)
                 WHERE 
-                    payrollId = @id";
+                    payrollFormId = @id";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@certify", certify);
                         cmd.Parameters.AddWithValue("@name", name);
-                        cmd.Parameters.AddWithValue("@date", certifiedDate);
+                        cmd.Parameters.AddWithValue("@date", date);
                         cmd.Parameters.AddWithValue("@id", payrollId);
+                        cmd.Parameters.AddWithValue("@description", statusDescription);
 
                         int rowsAffected = await cmd.ExecuteNonQueryAsync();
 
@@ -196,7 +198,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
             }
         }
 
-        public async Task<bool> ApprovePayroll(bool certify, string name, DateTime date, int payrollId, string statusDescription)
+        public async Task<bool> ApproveAndCertifyPayroll(bool approve, string name, DateTime date, int payrollId, string statusDescription)
         {
             try
             {
@@ -207,16 +209,19 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Mayor_Function
                     string query = @"
                 UPDATE tbl_payrollForm
                 SET 
-                    isApproveByMayor = @certify,
+                    isCertifyByOfficeHead = @approve,
+                    certifiedByOfficeHeadName = @name,
+                    certifiedByOfficeHeadDate = @date,
+                    isApproveByMayor = @approve,
                     approvedByMayorName = @name,
                     approvedByMayorDate = @date,
                     statusId = (SELECT statusId FROM tbl_status WHERE statusDescription = @description)
                 WHERE 
-                    payrollId = @id";
+                    payrollFormId = @id";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@certify", certify);
+                        cmd.Parameters.AddWithValue("@approve", approve);
                         cmd.Parameters.AddWithValue("@name", name);
                         cmd.Parameters.AddWithValue("@date", date);
                         cmd.Parameters.AddWithValue("@id", payrollId);

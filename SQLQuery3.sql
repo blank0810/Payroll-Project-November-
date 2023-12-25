@@ -333,7 +333,10 @@ join tbl_department d on e.departmentId = d.departmentId
 where (pf.isCertifyByOfficeHead is null and pf.isApproveByMayor is null) or (pf.isCertifyByOfficeHead is null and pf.isApproveByMayor is null and departmentName = 'Commison On Audit')
 group by departmentName
 
-
+select * from tbl_status
+update tbl_status
+set statusDescription = 'Officially Approved to Release'
+where statusId = 4
 
 select concat(employeeFname, ' ', employeeLname) as employeeName, payrollId, employeePicture, departmentName, netAmount from tbl_payrollForm pf
 join tbl_employee e on pf.employeeId = e.employeeId
@@ -370,6 +373,10 @@ WHERE
 
 update tbl_payrollForm 
 set isCertifyByOfficeHead = null, certifiedByOfficeHeadName = null, certifiedByOfficeHeadDate = null
+where payrollId = 5
+
+update tbl_payrollForm 
+set isApproveByMayor = null, approvedByMayorName = null, approvedByMayorDate = null
 where payrollId = 5
 
 update tbl_payrollForm

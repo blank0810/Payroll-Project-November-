@@ -39,9 +39,9 @@
             this.companyLogo = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.submitBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.approvalCheck = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
             this.mayorName = new System.Windows.Forms.Label();
             this.panel31 = new System.Windows.Forms.Panel();
@@ -64,7 +64,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.employeeListPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.departmentHeadCheck = new System.Windows.Forms.CheckBox();
+            this.submitBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyLogo)).BeginInit();
             this.panel7.SuspendLayout();
@@ -189,27 +189,6 @@
             this.panel7.Size = new System.Drawing.Size(1113, 37);
             this.panel7.TabIndex = 5;
             // 
-            // submitBtn
-            // 
-            this.submitBtn.AutoSize = true;
-            this.submitBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.submitBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.submitBtn.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.submitBtn.BorderRadius = 5;
-            this.submitBtn.BorderSize = 1;
-            this.submitBtn.FlatAppearance.BorderSize = 0;
-            this.submitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.submitBtn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.submitBtn.ForeColor = System.Drawing.Color.White;
-            this.submitBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.submitBtn.Location = new System.Drawing.Point(954, 3);
-            this.submitBtn.Name = "submitBtn";
-            this.submitBtn.Size = new System.Drawing.Size(154, 29);
-            this.submitBtn.TabIndex = 9;
-            this.submitBtn.Text = "Submit Approval";
-            this.submitBtn.TextColor = System.Drawing.Color.White;
-            this.submitBtn.UseVisualStyleBackColor = false;
-            // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.Gainsboro;
@@ -221,7 +200,8 @@
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.departmentHeadCheck);
+            this.panel9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel9.Controls.Add(this.approvalCheck);
             this.panel9.Controls.Add(this.label18);
             this.panel9.Controls.Add(this.mayorName);
             this.panel9.Controls.Add(this.panel31);
@@ -230,6 +210,19 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1113, 113);
             this.panel9.TabIndex = 7;
+            // 
+            // approvalCheck
+            // 
+            this.approvalCheck.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.approvalCheck.AutoSize = true;
+            this.approvalCheck.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.approvalCheck.ForeColor = System.Drawing.Color.DimGray;
+            this.approvalCheck.Location = new System.Drawing.Point(472, 90);
+            this.approvalCheck.Name = "approvalCheck";
+            this.approvalCheck.Size = new System.Drawing.Size(184, 19);
+            this.approvalCheck.TabIndex = 52;
+            this.approvalCheck.Text = "Check to confirm the approval";
+            this.approvalCheck.UseVisualStyleBackColor = true;
             // 
             // label18
             // 
@@ -260,7 +253,6 @@
             // panel31
             // 
             this.panel31.BackColor = System.Drawing.Color.White;
-            this.panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel31.Controls.Add(this.label12);
             this.panel31.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel31.Location = new System.Drawing.Point(0, 0);
@@ -274,13 +266,13 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold);
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(40, 7);
+            this.label12.Location = new System.Drawing.Point(34, 8);
             this.label12.MaximumSize = new System.Drawing.Size(1110, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(1033, 20);
+            this.label12.Size = new System.Drawing.Size(1045, 20);
             this.label12.TabIndex = 7;
             this.label12.Text = "As the MUNICIPAL MAYOR, I hereby ENDORSE and APPROVE the disbursement of payment " +
-    "for the employee listed on this slip.";
+    "for the employee/s listed on this slip.";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel10
@@ -508,18 +500,27 @@
             this.employeeListPanel.Size = new System.Drawing.Size(1113, 405);
             this.employeeListPanel.TabIndex = 14;
             // 
-            // departmentHeadCheck
+            // submitBtn
             // 
-            this.departmentHeadCheck.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.departmentHeadCheck.AutoSize = true;
-            this.departmentHeadCheck.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.departmentHeadCheck.ForeColor = System.Drawing.Color.DimGray;
-            this.departmentHeadCheck.Location = new System.Drawing.Point(472, 90);
-            this.departmentHeadCheck.Name = "departmentHeadCheck";
-            this.departmentHeadCheck.Size = new System.Drawing.Size(184, 19);
-            this.departmentHeadCheck.TabIndex = 52;
-            this.departmentHeadCheck.Text = "Check to confirm the approval";
-            this.departmentHeadCheck.UseVisualStyleBackColor = true;
+            this.submitBtn.AutoSize = true;
+            this.submitBtn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.submitBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.submitBtn.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.submitBtn.BorderRadius = 5;
+            this.submitBtn.BorderSize = 1;
+            this.submitBtn.FlatAppearance.BorderSize = 0;
+            this.submitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submitBtn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.submitBtn.ForeColor = System.Drawing.Color.White;
+            this.submitBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.submitBtn.Location = new System.Drawing.Point(954, 3);
+            this.submitBtn.Name = "submitBtn";
+            this.submitBtn.Size = new System.Drawing.Size(154, 29);
+            this.submitBtn.TabIndex = 9;
+            this.submitBtn.Text = "Submit Approval";
+            this.submitBtn.TextColor = System.Drawing.Color.White;
+            this.submitBtn.UseVisualStyleBackColor = false;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // payrollApprovalModal
             // 
@@ -605,6 +606,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label mayorName;
-        private System.Windows.Forms.CheckBox departmentHeadCheck;
+        private System.Windows.Forms.CheckBox approvalCheck;
     }
 }

@@ -34,6 +34,17 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.User_Controls
             InitializeComponent();
         }
 
+        private async Task<int> GetNumberOfAbsent(int employeeId, DateTime fromDate, DateTime toDate)
+        {
+            try
+            {
+                int count = await payrollClass.GetEmployeeLogCount(employeeId, fromDate, toDate);
+                return count;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         private async Task<int> GetPayrollId()
         {
             try
@@ -79,8 +90,10 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.User_Controls
                 DataTable details = await GetEmployeeDetails(employeeId);
                 payslip payslip = new payslip(userId, this);
                 int payrollId = await GetPayrollId();
+                int numberOfLogs = await GetNumberOfAbsent(employeeId, fromDate, toDate);
+                int numberOfDays = CalculateNumberOfDays(fromDate, toDate);
 
-                if(details != null && payrollId > 0)
+                if(details != null && payrollId > 0 && numberOfLogs > 0 && numberOfDays > 0)
                 {
                     foreach (DataRow row in details.Rows)
                     {
@@ -90,7 +103,7 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.User_Controls
                         payslip.SalarySchedule = schedule;
                         payslip.FromDate = fromDate;
                         payslip.ToDate = toDate;
-                        payslip.NumberOfDays = (toDate - fromDate).Days;
+                        payslip.NumberOfDays = numberOfDays;
                         payslip.CompanyAddress = address;
                         payslip.NameOfCompany = companyName;
                         payslip.PayrollPeriod = $"{fromDate:MMM dd, yyyy} - {toDate:MMM dd, yyyy}";
@@ -142,6 +155,22 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.User_Controls
             empid.DataBindings.Add("Text", this, "EmployeeId");
             empPicture.DataBindings.Add("ImageLocation", this, "EmployeePicture");
             departmentLabel.DataBindings.Add("Text", this, "Department");
+        }
+
+        private int CalculateNumberOfDays(DateTime fromDate, DateTime toDate)
+        {
+            int businessDays = 0;
+            TimeSpan timeDifference = toDate - fromDate;
+
+            for (int i = 0; i <= timeDifference.Days; i++)
+            {
+                DateTime currentDate = fromDate.AddDays(i);
+                if (currentDate.DayOfWeek != DayOfWeek.Saturday && currentDate.DayOfWeek != DayOfWeek.Sunday)
+                {
+                    businessDays++;
+                }
+            }
+            return businessDays;
         }
 
         private void ErrorMessages(string message, string caption)

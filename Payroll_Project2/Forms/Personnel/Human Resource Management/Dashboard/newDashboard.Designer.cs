@@ -1189,6 +1189,7 @@
             this.signoutBtn.Text = "Sign out";
             this.signoutBtn.TextColor = System.Drawing.Color.White;
             this.signoutBtn.UseVisualStyleBackColor = false;
+            this.signoutBtn.Click += new System.EventHandler(this.signoutBtn_Click);
             // 
             // sideBottom
             // 
@@ -1678,7 +1679,7 @@
             this.numbersPanel.ColumnCount = 3;
             this.numbersPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.0146F));
             this.numbersPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.9854F));
-            this.numbersPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 464F));
+            this.numbersPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 466F));
             this.numbersPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.numbersPanel.Location = new System.Drawing.Point(0, 0);
             this.numbersPanel.Name = "numbersPanel";

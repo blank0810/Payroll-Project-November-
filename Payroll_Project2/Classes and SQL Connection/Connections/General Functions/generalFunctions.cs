@@ -1867,7 +1867,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 GROUP BY
                     dateLog,
                     employeeId,
-                    specialPrivilegeDescription;";
+                    specialPrivilegeDescription";
 
                     using (SqlCommand cmd = new SqlCommand(command, conn))
                     {

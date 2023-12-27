@@ -265,7 +265,7 @@ namespace Payroll_Project2.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Government_PNG_File {
             get {
-                object obj = ResourceManager.GetObject("Government-PNG-File", resourceCulture);
+                object obj = ResourceManager.GetObject("Government_PNG_File", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

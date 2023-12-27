@@ -2358,6 +2358,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Image\Department Logo\hr icon.png" />
+    <None Include="Resources\Government-PNG-File.jpg" />
     <None Include="Resources\clock_icon_512x512_dvqqyo4f.png" />
     <None Include="Resources\leave-request-2.png" />
     <None Include="Resources\istockphoto-1363356134-612x612.jpg" />

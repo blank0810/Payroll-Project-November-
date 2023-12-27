@@ -14,6 +14,7 @@ using NCalc;
 using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
 using Payroll_Project2.Forms.Personnel.Dashboard;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
 {
@@ -49,6 +50,7 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public string SalaryAmount { get; set; }
+        public int NumberOfLogs { get; set; }
         public int NumberOfDays { get; set; }
         public string SalarySchedule { get; set; }
         public string EmploymentStatus { get; set; }
@@ -574,7 +576,8 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
             catch (Exception ex) { throw ex; }
         }
 
-        private async Task DeductBenefits(int employeeId, List<(int, string, decimal)> deductionList, string salaryValue, DateTime fromDate, DateTime toDate, int numberOfDays, string employmentStatus)
+        private async Task DeductBenefits(int employeeId, List<(int, string, decimal)> deductionList, string salaryValue, 
+            DateTime fromDate, DateTime toDate, int numberOfDays, string employmentStatus, int numberOfLogs)
         {
             try
             {
@@ -586,7 +589,7 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
                 // Job order-specific deduction logic only if employment status is not regular
                 if (employmentStatus != "Regular")
                 {
-                    CalculateJobOrderDeduction(deductionList, salaryValue, fromDate, toDate, numberOfDays);
+                    CalculateJobOrderDeduction(deductionList, salaryValue, fromDate, toDate, numberOfDays, numberOfLogs);
                 }
             }
             catch (Exception ex)
@@ -636,17 +639,19 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
             }
         }
 
-        private void CalculateJobOrderDeduction(List<(int, string, decimal)> deductionList, string salaryValue, DateTime fromDate, DateTime toDate, int numberOfDays)
+        private void CalculateJobOrderDeduction(List<(int, string, decimal)> deductionList, string salaryValue, DateTime fromDate,
+            DateTime toDate, int numberOfDays, int numberOfLogs)
         {
-            // Job order-specific deduction logic
-            int requiredDays = CalculateNumberOfDays(fromDate, toDate);
-
-            if ((requiredDays - numberOfDays) > 0 && decimal.TryParse(salaryValue, NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal employeeSalary))
+            if ((numberOfDays - numberOfLogs) > 0 && decimal.TryParse(salaryValue, NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal employeeSalary))
             {
-                string description = $"Absent for {(requiredDays - numberOfDays)} days";
-                decimal amount = employeeSalary * (requiredDays - numberOfDays);
+                string description = $"Absent for {(numberOfDays - numberOfLogs)} days";
+                decimal amount = employeeSalary * (numberOfDays - numberOfLogs);
 
                 deductionList.Add((-1, description, amount));
+            }
+            else
+            {
+                
             }
         }
 
@@ -679,14 +684,6 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
             {
                 ErrorMessages(ex.Message, "Exception Error");
             }
-        }
-
-        private int CalculateNumberOfDays(DateTime fromDate, DateTime toDate)
-        {
-            TimeSpan timeDifference = toDate - fromDate;
-
-            int number = timeDifference.Days;
-            return number;
         }
 
         private async Task<decimal> ComputeAdjustedSalary(string salaryValue, int numberOfDays, string employmentStatus, List<(string, decimal)> earningsList, 
@@ -873,7 +870,8 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.Modal
                 ClearBindings();
                 earningsListPanel.Controls.Clear();
                 deductionsListPanel.Controls.Clear();
-                await DeductBenefits(EmployeeID, DeductionsList, SalaryAmount, FromDate, ToDate, NumberOfDays, EmploymentStatus);
+                await DeductBenefits(EmployeeID, DeductionsList, SalaryAmount, FromDate, ToDate, NumberOfDays, EmploymentStatus, 
+                    NumberOfLogs);
                 await ForwardEmployeeAllowance(EmployeeID, EarningsList);
 
                 DisplayEarnings(EarningsList, _userId);

@@ -58,6 +58,82 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
             }
         }
 
+        public async Task<int> GetEmployeeLogCount(int employeeId, DateTime fromDate, DateTime toDate)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    // Assuming you have a SqlCommand object
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+
+                        // Replace 'YourDatabase.dbo.tbl_timeLog' with the actual schema and table name
+                        command.CommandText = @"
+                    SELECT COUNT(*) AS TotalRowCount
+                    FROM (
+                        SELECT
+                            dateLog,
+                            employeeId,
+                            specialPrivilegeDescription,
+                            SUM(lr.numberOfMinutes) as lateMinutes,
+                            SUM(ur.numberOfMinutes) as undertimeMinutes,
+                            SUM(otr.numberOfMinutes) as overtimeMinutes,
+                            MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 1 THEN timeLog END) AS MorningIn,
+                            MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 2 THEN timeLog END) AS MorningOut,
+                            MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 1 THEN timeLog END) AS AfternoonIn,
+                            MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 2 THEN timeLog END) AS AfternoonOut,
+                            MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 1 THEN tbl_timeLog.timelogId END) AS MorningInLogId,
+                            MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 2 THEN tbl_timeLog.timelogId END) AS MorningOutLogId,
+                            MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 1 THEN tbl_timeLog.timelogId END) AS AfternoonInLogId,
+                            MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 2 THEN tbl_timeLog.timelogId END) AS AfternoonOutLogId
+                        FROM
+                            YourDatabase.dbo.tbl_timeLog tbl_timeLog
+                        LEFT JOIN YourDatabase.dbo.tbl_specialPrivilege ON YourDatabase.dbo.tbl_specialPrivilege.specialPrivilegeId = tbl_timeLog.specialPrivilegeId
+                        LEFT JOIN YourDatabase.dbo.tbl_lateRecord lr ON lr.timeLogId = tbl_timeLog.timeLogId
+                        LEFT JOIN YourDatabase.dbo.tbl_overtimeRecord otr ON otr.timeLogId = tbl_timeLog.timeLogId
+                        LEFT JOIN YourDatabase.dbo.tbl_undertimeRecord ur ON ur.timeLogId = tbl_timeLog.timeLogId
+                        WHERE
+                            employeeId = @EmployeeId
+                            AND dateLog BETWEEN @FromDate AND @ToDate
+                        GROUP BY
+                            dateLog,
+                            employeeId,
+                            specialPrivilegeDescription
+                    ) AS Subquery";
+
+                        // Replace the actual parameter names and types
+                        command.Parameters.AddWithValue("@EmployeeId", employeeId);
+                        command.Parameters.AddWithValue("@FromDate", fromDate);
+                        command.Parameters.AddWithValue("@ToDate", toDate);
+
+                        // ExecuteScalarAsync is used since we are retrieving a single value (count)
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        if (!string.IsNullOrEmpty(result?.ToString()) && int.TryParse(result.ToString(), out int count))
+                        {
+                            return count;
+                        }
+                        else
+                        {
+                            return -1;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                throw sqlEx;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<bool> CheckBenefitExist(int detailsId, int month)
         {
             try

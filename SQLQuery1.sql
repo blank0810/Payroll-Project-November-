@@ -978,3 +978,37 @@ delete from tbl_employmentStatusAccess
 where roleId = 1
 
 select top 1 companyName from tbl_companyDetails
+
+
+SELECT
+    COUNT(*) AS TotalRowCount
+FROM (
+    SELECT
+        dateLog,
+        employeeId,
+        specialPrivilegeDescription,
+        SUM(lr.numberOfMinutes) as lateMinutes,
+        SUM(ur.numberOfMinutes) as undertimeMinutes,
+        SUM(otr.numberOfMinutes) as overtimeMinutes,
+        MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 1 THEN timeLog END) AS MorningIn,
+        MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 2 THEN timeLog END) AS MorningOut,
+        MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 1 THEN timeLog END) AS AfternoonIn,
+        MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 2 THEN timeLog END) AS AfternoonOut,
+        MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 1 THEN tbl_timeLog.timelogId END) AS MorningInLogId,
+        MAX(CASE WHEN timePeriodId = 1 AND logTypeId = 2 THEN tbl_timeLog.timelogId END) AS MorningOutLogId,
+        MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 1 THEN tbl_timeLog.timelogId END) AS AfternoonInLogId,
+        MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 2 THEN tbl_timeLog.timelogId END) AS AfternoonOutLogId
+    FROM
+        tbl_timeLog
+    LEFT JOIN tbl_specialPrivilege ON tbl_specialPrivilege.specialPrivilegeId = tbl_timeLog.specialPrivilegeId
+    LEFT JOIN tbl_lateRecord lr ON lr.timeLogId = tbl_timeLog.timeLogId
+    LEFT JOIN tbl_overtimeRecord otr ON otr.timeLogId = tbl_timeLog.timeLogId
+    LEFT JOIN tbl_undertimeRecord ur ON ur.timeLogId = tbl_timeLog.timeLogId
+    WHERE
+        employeeId = 4
+        AND dateLog BETWEEN '2023-11-01' AND '2023-11-30'
+    GROUP BY
+        dateLog,
+        employeeId,
+        specialPrivilegeDescription
+) AS Subquery;

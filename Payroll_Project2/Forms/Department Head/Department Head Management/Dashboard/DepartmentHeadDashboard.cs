@@ -1369,5 +1369,13 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
         }
 
         #endregion
+
+        private void signoutBtn_Click(object sender, EventArgs e)
+        {
+            this.ShowInTaskbar = false;
+            this.Hide();
+            loginForm loginForm = new loginForm();
+            loginForm.ShowDialog();
+        }
     }
 }

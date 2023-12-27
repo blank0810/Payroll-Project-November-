@@ -321,6 +321,7 @@
             this.signoutBtn.Text = "Sign out";
             this.signoutBtn.TextColor = System.Drawing.Color.White;
             this.signoutBtn.UseVisualStyleBackColor = false;
+            this.signoutBtn.Click += new System.EventHandler(this.signoutBtn_Click);
             // 
             // sideBottom
             // 

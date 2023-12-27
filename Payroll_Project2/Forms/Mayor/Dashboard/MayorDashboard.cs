@@ -389,5 +389,13 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard
         {
             await DisplayPayslipRequest(_userId);
         }
+
+        private void signoutBtn_Click(object sender, EventArgs e)
+        {
+            this.ShowInTaskbar = false;
+            this.Hide();
+            loginForm loginForm = new loginForm();
+            loginForm.ShowDialog();
+        }
     }
 }

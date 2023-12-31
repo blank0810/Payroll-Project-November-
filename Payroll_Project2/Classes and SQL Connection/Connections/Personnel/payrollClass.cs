@@ -65,14 +65,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     await connection.OpenAsync();
-
-                    // Assuming you have a SqlCommand object
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-
-                        // Replace 'YourDatabase.dbo.tbl_timeLog' with the actual schema and table name
-                        command.CommandText = @"
+                    string command = @"
                     SELECT COUNT(*) AS TotalRowCount
                     FROM (
                         SELECT
@@ -91,11 +84,11 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                             MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 1 THEN tbl_timeLog.timelogId END) AS AfternoonInLogId,
                             MAX(CASE WHEN timePeriodId = 2 AND logTypeId = 2 THEN tbl_timeLog.timelogId END) AS AfternoonOutLogId
                         FROM
-                            YourDatabase.dbo.tbl_timeLog tbl_timeLog
-                        LEFT JOIN YourDatabase.dbo.tbl_specialPrivilege ON YourDatabase.dbo.tbl_specialPrivilege.specialPrivilegeId = tbl_timeLog.specialPrivilegeId
-                        LEFT JOIN YourDatabase.dbo.tbl_lateRecord lr ON lr.timeLogId = tbl_timeLog.timeLogId
-                        LEFT JOIN YourDatabase.dbo.tbl_overtimeRecord otr ON otr.timeLogId = tbl_timeLog.timeLogId
-                        LEFT JOIN YourDatabase.dbo.tbl_undertimeRecord ur ON ur.timeLogId = tbl_timeLog.timeLogId
+                            tbl_timeLog tbl_timeLog
+                        LEFT JOIN tbl_specialPrivilege ON tbl_specialPrivilege.specialPrivilegeId = tbl_timeLog.specialPrivilegeId
+                        LEFT JOIN tbl_lateRecord lr ON lr.timeLogId = tbl_timeLog.timeLogId
+                        LEFT JOIN tbl_overtimeRecord otr ON otr.timeLogId = tbl_timeLog.timeLogId
+                        LEFT JOIN tbl_undertimeRecord ur ON ur.timeLogId = tbl_timeLog.timeLogId
                         WHERE
                             employeeId = @EmployeeId
                             AND dateLog BETWEEN @FromDate AND @ToDate
@@ -105,10 +98,13 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Personnel
                             specialPrivilegeDescription
                     ) AS Subquery";
 
+                    // Assuming you have a SqlCommand object
+                    using (cmd = new SqlCommand(command, connection))
+                    {
                         // Replace the actual parameter names and types
-                        command.Parameters.AddWithValue("@EmployeeId", employeeId);
-                        command.Parameters.AddWithValue("@FromDate", fromDate);
-                        command.Parameters.AddWithValue("@ToDate", toDate);
+                        cmd.Parameters.AddWithValue("@EmployeeId", employeeId);
+                        cmd.Parameters.AddWithValue("@FromDate", fromDate);
+                        cmd.Parameters.AddWithValue("@ToDate", toDate);
 
                         // ExecuteScalarAsync is used since we are retrieving a single value (count)
                         object result = await cmd.ExecuteScalarAsync();

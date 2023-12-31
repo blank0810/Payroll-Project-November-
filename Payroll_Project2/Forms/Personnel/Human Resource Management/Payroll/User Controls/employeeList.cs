@@ -146,7 +146,14 @@ namespace Payroll_Project2.Forms.Personnel.Payroll.User_Controls
                         "Employee Details Retrieval Error");
                 }
             }
-            catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
+            catch (SqlException sql) 
+            {
+                ErrorMessages(sql.Message, "SQL Error"); 
+            } 
+            catch (Exception ex) 
+            {
+                ErrorMessages(ex.Message, "Exception Error");
+            }
         }
 
         private void DataBinding()

@@ -21,17 +21,7 @@ namespace Payroll_Project2.Forms.System_Administrator.Dashboard
 
         private void dashboardBtn_Click(object sender, EventArgs e)
         {
-            contentPanel.Controls.Clear();
-            if (!contentPanel.Controls.Contains(dashboardPanel))
-            {
-                contentPanel.Controls.Add(dashboardPanel);
-                dashboardPanel.Dock = DockStyle.Fill;
-                dashboardPanel.BringToFront();
-            }
-            else
-            {
-                dashboardPanel.BringToFront();
-            }
+
         }
 
         private void departmentBtn_Click(object sender, EventArgs e)

@@ -29,42 +29,9 @@
         private void InitializeComponent()
         {
             this.sidePanel = new System.Windows.Forms.Panel();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.salaryBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.panel19 = new System.Windows.Forms.Panel();
-            this.benefitsBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.managementBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.logSubPanel = new System.Windows.Forms.Panel();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.buttonDesign1 = new Payroll_Project2.Custom.buttonDesign();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.payrollListBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.createPayrollBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.logBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.employeeManagementSubPanel = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.appointmentBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.employeeListBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel8 = new System.Windows.Forms.Panel();
             this.signoutBtn = new Payroll_Project2.Custom.buttonDesign();
             this.sideBottom = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.employeeManagementBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.departmentBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.dashboardBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.logoPanel = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.newUpperSide = new System.Windows.Forms.Panel();
-            this.upperSide = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.aboveContent = new System.Windows.Forms.Panel();
             this.welcomeMessage = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -124,26 +91,17 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.infoLabel = new System.Windows.Forms.Label();
+            this.newUpperSide = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dashboardBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.departmentHeadBtn = new Payroll_Project2.Custom.buttonDesign();
             this.sidePanel.SuspendLayout();
-            this.panel25.SuspendLayout();
-            this.panel19.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.logSubPanel.SuspendLayout();
-            this.panel24.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.employeeManagementSubPanel.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.logoPanel.SuspendLayout();
-            this.newUpperSide.SuspendLayout();
-            this.upperSide.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.aboveContent.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.dashboardPanel.SuspendLayout();
@@ -154,310 +112,26 @@
             this.panel17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lguLogo)).BeginInit();
             this.panel12.SuspendLayout();
+            this.newUpperSide.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // sidePanel
             // 
             this.sidePanel.AutoScroll = true;
             this.sidePanel.BackColor = System.Drawing.Color.SteelBlue;
-            this.sidePanel.Controls.Add(this.panel25);
-            this.sidePanel.Controls.Add(this.panel19);
+            this.sidePanel.Controls.Add(this.panel5);
             this.sidePanel.Controls.Add(this.panel1);
-            this.sidePanel.Controls.Add(this.logSubPanel);
-            this.sidePanel.Controls.Add(this.panel9);
-            this.sidePanel.Controls.Add(this.employeeManagementSubPanel);
+            this.sidePanel.Controls.Add(this.newUpperSide);
             this.sidePanel.Controls.Add(this.panel8);
             this.sidePanel.Controls.Add(this.sideBottom);
-            this.sidePanel.Controls.Add(this.panel6);
-            this.sidePanel.Controls.Add(this.panel3);
-            this.sidePanel.Controls.Add(this.panel5);
-            this.sidePanel.Controls.Add(this.logoPanel);
-            this.sidePanel.Controls.Add(this.newUpperSide);
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidePanel.Location = new System.Drawing.Point(0, 0);
             this.sidePanel.Name = "sidePanel";
             this.sidePanel.Size = new System.Drawing.Size(262, 918);
             this.sidePanel.TabIndex = 1;
-            // 
-            // panel25
-            // 
-            this.panel25.Controls.Add(this.salaryBtn);
-            this.panel25.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel25.Location = new System.Drawing.Point(0, 683);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(262, 46);
-            this.panel25.TabIndex = 34;
-            // 
-            // salaryBtn
-            // 
-            this.salaryBtn.AutoSize = true;
-            this.salaryBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.salaryBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.salaryBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.salaryBtn.BorderRadius = 15;
-            this.salaryBtn.BorderSize = 0;
-            this.salaryBtn.FlatAppearance.BorderSize = 0;
-            this.salaryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.salaryBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.salaryBtn.ForeColor = System.Drawing.Color.White;
-            this.salaryBtn.Location = new System.Drawing.Point(40, 4);
-            this.salaryBtn.Name = "salaryBtn";
-            this.salaryBtn.Size = new System.Drawing.Size(183, 38);
-            this.salaryBtn.TabIndex = 1;
-            this.salaryBtn.Text = "Salary Grade Details";
-            this.salaryBtn.TextColor = System.Drawing.Color.White;
-            this.salaryBtn.UseVisualStyleBackColor = false;
-            // 
-            // panel19
-            // 
-            this.panel19.Controls.Add(this.benefitsBtn);
-            this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel19.Location = new System.Drawing.Point(0, 637);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(262, 46);
-            this.panel19.TabIndex = 33;
-            // 
-            // benefitsBtn
-            // 
-            this.benefitsBtn.AutoSize = true;
-            this.benefitsBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.benefitsBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.benefitsBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.benefitsBtn.BorderRadius = 15;
-            this.benefitsBtn.BorderSize = 0;
-            this.benefitsBtn.FlatAppearance.BorderSize = 0;
-            this.benefitsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.benefitsBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.benefitsBtn.ForeColor = System.Drawing.Color.White;
-            this.benefitsBtn.Location = new System.Drawing.Point(3, 4);
-            this.benefitsBtn.Name = "benefitsBtn";
-            this.benefitsBtn.Size = new System.Drawing.Size(256, 38);
-            this.benefitsBtn.TabIndex = 1;
-            this.benefitsBtn.Text = "Mandatory Benefits Management";
-            this.benefitsBtn.TextColor = System.Drawing.Color.White;
-            this.benefitsBtn.UseVisualStyleBackColor = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.managementBtn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 591);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(262, 46);
-            this.panel1.TabIndex = 32;
-            // 
-            // managementBtn
-            // 
-            this.managementBtn.AutoSize = true;
-            this.managementBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.managementBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.managementBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.managementBtn.BorderRadius = 15;
-            this.managementBtn.BorderSize = 0;
-            this.managementBtn.FlatAppearance.BorderSize = 0;
-            this.managementBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.managementBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.managementBtn.ForeColor = System.Drawing.Color.White;
-            this.managementBtn.Location = new System.Drawing.Point(40, 4);
-            this.managementBtn.Name = "managementBtn";
-            this.managementBtn.Size = new System.Drawing.Size(183, 38);
-            this.managementBtn.TabIndex = 1;
-            this.managementBtn.Text = "User Role Management";
-            this.managementBtn.TextColor = System.Drawing.Color.White;
-            this.managementBtn.UseVisualStyleBackColor = false;
-            // 
-            // logSubPanel
-            // 
-            this.logSubPanel.Controls.Add(this.panel24);
-            this.logSubPanel.Controls.Add(this.panel4);
-            this.logSubPanel.Controls.Add(this.panel7);
-            this.logSubPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.logSubPanel.Location = new System.Drawing.Point(0, 453);
-            this.logSubPanel.Name = "logSubPanel";
-            this.logSubPanel.Size = new System.Drawing.Size(262, 138);
-            this.logSubPanel.TabIndex = 31;
-            // 
-            // panel24
-            // 
-            this.panel24.Controls.Add(this.buttonDesign1);
-            this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel24.Location = new System.Drawing.Point(0, 89);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(262, 44);
-            this.panel24.TabIndex = 27;
-            // 
-            // buttonDesign1
-            // 
-            this.buttonDesign1.BackColor = System.Drawing.Color.ForestGreen;
-            this.buttonDesign1.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.buttonDesign1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.buttonDesign1.BorderRadius = 10;
-            this.buttonDesign1.BorderSize = 0;
-            this.buttonDesign1.FlatAppearance.BorderSize = 0;
-            this.buttonDesign1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDesign1.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDesign1.ForeColor = System.Drawing.Color.White;
-            this.buttonDesign1.Location = new System.Drawing.Point(69, 3);
-            this.buttonDesign1.Name = "buttonDesign1";
-            this.buttonDesign1.Size = new System.Drawing.Size(119, 38);
-            this.buttonDesign1.TabIndex = 0;
-            this.buttonDesign1.Text = "System Logs";
-            this.buttonDesign1.TextColor = System.Drawing.Color.White;
-            this.buttonDesign1.UseVisualStyleBackColor = false;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.payrollListBtn);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 45);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(262, 44);
-            this.panel4.TabIndex = 26;
-            // 
-            // payrollListBtn
-            // 
-            this.payrollListBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.payrollListBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.payrollListBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.payrollListBtn.BorderRadius = 10;
-            this.payrollListBtn.BorderSize = 0;
-            this.payrollListBtn.FlatAppearance.BorderSize = 0;
-            this.payrollListBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.payrollListBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.payrollListBtn.ForeColor = System.Drawing.Color.White;
-            this.payrollListBtn.Location = new System.Drawing.Point(69, 3);
-            this.payrollListBtn.Name = "payrollListBtn";
-            this.payrollListBtn.Size = new System.Drawing.Size(119, 38);
-            this.payrollListBtn.TabIndex = 0;
-            this.payrollListBtn.Text = "Form Logs";
-            this.payrollListBtn.TextColor = System.Drawing.Color.White;
-            this.payrollListBtn.UseVisualStyleBackColor = false;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.createPayrollBtn);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(262, 45);
-            this.panel7.TabIndex = 24;
-            // 
-            // createPayrollBtn
-            // 
-            this.createPayrollBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.createPayrollBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.createPayrollBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.createPayrollBtn.BorderRadius = 10;
-            this.createPayrollBtn.BorderSize = 0;
-            this.createPayrollBtn.FlatAppearance.BorderSize = 0;
-            this.createPayrollBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createPayrollBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.createPayrollBtn.ForeColor = System.Drawing.Color.White;
-            this.createPayrollBtn.Location = new System.Drawing.Point(69, 4);
-            this.createPayrollBtn.Name = "createPayrollBtn";
-            this.createPayrollBtn.Size = new System.Drawing.Size(119, 35);
-            this.createPayrollBtn.TabIndex = 0;
-            this.createPayrollBtn.Text = "Employee Logs";
-            this.createPayrollBtn.TextColor = System.Drawing.Color.White;
-            this.createPayrollBtn.UseVisualStyleBackColor = false;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.logBtn);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 407);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(262, 46);
-            this.panel9.TabIndex = 30;
-            // 
-            // logBtn
-            // 
-            this.logBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.logBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.logBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.logBtn.BorderRadius = 15;
-            this.logBtn.BorderSize = 0;
-            this.logBtn.FlatAppearance.BorderSize = 0;
-            this.logBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.logBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logBtn.ForeColor = System.Drawing.Color.White;
-            this.logBtn.Location = new System.Drawing.Point(43, 4);
-            this.logBtn.Name = "logBtn";
-            this.logBtn.Size = new System.Drawing.Size(177, 38);
-            this.logBtn.TabIndex = 1;
-            this.logBtn.Text = "View all Logs";
-            this.logBtn.TextColor = System.Drawing.Color.White;
-            this.logBtn.UseVisualStyleBackColor = false;
-            // 
-            // employeeManagementSubPanel
-            // 
-            this.employeeManagementSubPanel.Controls.Add(this.panel11);
-            this.employeeManagementSubPanel.Controls.Add(this.panel10);
-            this.employeeManagementSubPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.employeeManagementSubPanel.Location = new System.Drawing.Point(0, 314);
-            this.employeeManagementSubPanel.Name = "employeeManagementSubPanel";
-            this.employeeManagementSubPanel.Size = new System.Drawing.Size(262, 93);
-            this.employeeManagementSubPanel.TabIndex = 28;
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.appointmentBtn);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 45);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(262, 45);
-            this.panel11.TabIndex = 27;
-            // 
-            // appointmentBtn
-            // 
-            this.appointmentBtn.AutoSize = true;
-            this.appointmentBtn.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.appointmentBtn.BackgroundColor = System.Drawing.Color.DarkSlateGray;
-            this.appointmentBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.appointmentBtn.BorderRadius = 10;
-            this.appointmentBtn.BorderSize = 0;
-            this.appointmentBtn.FlatAppearance.BorderSize = 0;
-            this.appointmentBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.appointmentBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appointmentBtn.ForeColor = System.Drawing.Color.White;
-            this.appointmentBtn.Location = new System.Drawing.Point(7, 4);
-            this.appointmentBtn.Name = "appointmentBtn";
-            this.appointmentBtn.Size = new System.Drawing.Size(243, 38);
-            this.appointmentBtn.TabIndex = 0;
-            this.appointmentBtn.Text = "Mayor and Vice mayor Appointment";
-            this.appointmentBtn.TextColor = System.Drawing.Color.White;
-            this.appointmentBtn.UseVisualStyleBackColor = false;
-            this.appointmentBtn.Click += new System.EventHandler(this.appointmentBtn_Click);
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.employeeListBtn);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(262, 45);
-            this.panel10.TabIndex = 24;
-            // 
-            // employeeListBtn
-            // 
-            this.employeeListBtn.AutoSize = true;
-            this.employeeListBtn.BackColor = System.Drawing.Color.ForestGreen;
-            this.employeeListBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
-            this.employeeListBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.employeeListBtn.BorderRadius = 10;
-            this.employeeListBtn.BorderSize = 0;
-            this.employeeListBtn.FlatAppearance.BorderSize = 0;
-            this.employeeListBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.employeeListBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.employeeListBtn.ForeColor = System.Drawing.Color.White;
-            this.employeeListBtn.Location = new System.Drawing.Point(62, 4);
-            this.employeeListBtn.Name = "employeeListBtn";
-            this.employeeListBtn.Size = new System.Drawing.Size(133, 35);
-            this.employeeListBtn.TabIndex = 0;
-            this.employeeListBtn.Text = "All Employee List";
-            this.employeeListBtn.TextColor = System.Drawing.Color.White;
-            this.employeeListBtn.UseVisualStyleBackColor = false;
-            this.employeeListBtn.Click += new System.EventHandler(this.employeeListBtn_Click);
             // 
             // panel8
             // 
@@ -495,170 +169,6 @@
             this.sideBottom.Name = "sideBottom";
             this.sideBottom.Size = new System.Drawing.Size(262, 20);
             this.sideBottom.TabIndex = 26;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.employeeManagementBtn);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 268);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(262, 46);
-            this.panel6.TabIndex = 23;
-            // 
-            // employeeManagementBtn
-            // 
-            this.employeeManagementBtn.AutoSize = true;
-            this.employeeManagementBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.employeeManagementBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.employeeManagementBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.employeeManagementBtn.BorderRadius = 15;
-            this.employeeManagementBtn.BorderSize = 0;
-            this.employeeManagementBtn.FlatAppearance.BorderSize = 0;
-            this.employeeManagementBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.employeeManagementBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.employeeManagementBtn.ForeColor = System.Drawing.Color.White;
-            this.employeeManagementBtn.Location = new System.Drawing.Point(39, 5);
-            this.employeeManagementBtn.Name = "employeeManagementBtn";
-            this.employeeManagementBtn.Size = new System.Drawing.Size(184, 38);
-            this.employeeManagementBtn.TabIndex = 0;
-            this.employeeManagementBtn.Text = "Employee Management";
-            this.employeeManagementBtn.TextColor = System.Drawing.Color.White;
-            this.employeeManagementBtn.UseVisualStyleBackColor = false;
-            this.employeeManagementBtn.Click += new System.EventHandler(this.employeeManagementBtn_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.departmentBtn);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 222);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(262, 46);
-            this.panel3.TabIndex = 21;
-            // 
-            // departmentBtn
-            // 
-            this.departmentBtn.AutoSize = true;
-            this.departmentBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.departmentBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.departmentBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.departmentBtn.BorderRadius = 15;
-            this.departmentBtn.BorderSize = 0;
-            this.departmentBtn.FlatAppearance.BorderSize = 0;
-            this.departmentBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.departmentBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.departmentBtn.ForeColor = System.Drawing.Color.White;
-            this.departmentBtn.Location = new System.Drawing.Point(31, 3);
-            this.departmentBtn.Name = "departmentBtn";
-            this.departmentBtn.Size = new System.Drawing.Size(201, 38);
-            this.departmentBtn.TabIndex = 0;
-            this.departmentBtn.Text = "Department Management";
-            this.departmentBtn.TextColor = System.Drawing.Color.White;
-            this.departmentBtn.UseVisualStyleBackColor = false;
-            this.departmentBtn.Click += new System.EventHandler(this.departmentBtn_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.dashboardBtn);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 176);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(262, 46);
-            this.panel5.TabIndex = 15;
-            // 
-            // dashboardBtn
-            // 
-            this.dashboardBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.dashboardBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.dashboardBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.dashboardBtn.BorderRadius = 15;
-            this.dashboardBtn.BorderSize = 0;
-            this.dashboardBtn.FlatAppearance.BorderSize = 0;
-            this.dashboardBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dashboardBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardBtn.ForeColor = System.Drawing.Color.White;
-            this.dashboardBtn.Location = new System.Drawing.Point(43, 2);
-            this.dashboardBtn.Name = "dashboardBtn";
-            this.dashboardBtn.Size = new System.Drawing.Size(177, 39);
-            this.dashboardBtn.TabIndex = 0;
-            this.dashboardBtn.Text = "Company Profile";
-            this.dashboardBtn.TextColor = System.Drawing.Color.White;
-            this.dashboardBtn.UseVisualStyleBackColor = false;
-            this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
-            // 
-            // logoPanel
-            // 
-            this.logoPanel.Controls.Add(this.label3);
-            this.logoPanel.Controls.Add(this.label2);
-            this.logoPanel.Controls.Add(this.label1);
-            this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.logoPanel.Location = new System.Drawing.Point(0, 77);
-            this.logoPanel.Name = "logoPanel";
-            this.logoPanel.Size = new System.Drawing.Size(262, 99);
-            this.logoPanel.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(77, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 21);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Automated";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(65, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 21);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Payroll System";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(80, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "LGU Initao";
-            // 
-            // newUpperSide
-            // 
-            this.newUpperSide.Controls.Add(this.upperSide);
-            this.newUpperSide.Dock = System.Windows.Forms.DockStyle.Top;
-            this.newUpperSide.Location = new System.Drawing.Point(0, 0);
-            this.newUpperSide.Name = "newUpperSide";
-            this.newUpperSide.Size = new System.Drawing.Size(262, 77);
-            this.newUpperSide.TabIndex = 0;
-            // 
-            // upperSide
-            // 
-            this.upperSide.Controls.Add(this.pictureBox1);
-            this.upperSide.Dock = System.Windows.Forms.DockStyle.Top;
-            this.upperSide.Location = new System.Drawing.Point(0, 0);
-            this.upperSide.Name = "upperSide";
-            this.upperSide.Size = new System.Drawing.Size(262, 77);
-            this.upperSide.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
-            this.pictureBox1.Location = new System.Drawing.Point(77, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(72, 73);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // aboveContent
             // 
@@ -1445,6 +955,124 @@
             this.infoLabel.Text = "Primary Information";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // newUpperSide
+            // 
+            this.newUpperSide.Controls.Add(this.label3);
+            this.newUpperSide.Controls.Add(this.pictureBox1);
+            this.newUpperSide.Controls.Add(this.label2);
+            this.newUpperSide.Controls.Add(this.label1);
+            this.newUpperSide.Dock = System.Windows.Forms.DockStyle.Top;
+            this.newUpperSide.Location = new System.Drawing.Point(0, 0);
+            this.newUpperSide.Name = "newUpperSide";
+            this.newUpperSide.Size = new System.Drawing.Size(262, 195);
+            this.newUpperSide.TabIndex = 28;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(131, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(105, 24);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Automated";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(98, 84);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(117, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 24);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Payroll System";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(134, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 24);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "LGU Initao";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dashboardBtn);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 195);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(262, 46);
+            this.panel1.TabIndex = 30;
+            // 
+            // dashboardBtn
+            // 
+            this.dashboardBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dashboardBtn.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.dashboardBtn.BackgroundColor = System.Drawing.Color.DarkSlateGray;
+            this.dashboardBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.dashboardBtn.BorderRadius = 15;
+            this.dashboardBtn.BorderSize = 0;
+            this.dashboardBtn.FlatAppearance.BorderSize = 0;
+            this.dashboardBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dashboardBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardBtn.ForeColor = System.Drawing.Color.White;
+            this.dashboardBtn.Location = new System.Drawing.Point(43, 4);
+            this.dashboardBtn.Name = "dashboardBtn";
+            this.dashboardBtn.Size = new System.Drawing.Size(177, 39);
+            this.dashboardBtn.TabIndex = 0;
+            this.dashboardBtn.Text = "Dashboard";
+            this.dashboardBtn.TextColor = System.Drawing.Color.White;
+            this.dashboardBtn.UseVisualStyleBackColor = false;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.departmentHeadBtn);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 241);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(262, 46);
+            this.panel5.TabIndex = 34;
+            // 
+            // departmentHeadBtn
+            // 
+            this.departmentHeadBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.departmentHeadBtn.AutoSize = true;
+            this.departmentHeadBtn.BackColor = System.Drawing.Color.Transparent;
+            this.departmentHeadBtn.BackgroundColor = System.Drawing.Color.Transparent;
+            this.departmentHeadBtn.BorderColor = System.Drawing.Color.DimGray;
+            this.departmentHeadBtn.BorderRadius = 5;
+            this.departmentHeadBtn.BorderSize = 0;
+            this.departmentHeadBtn.FlatAppearance.BorderSize = 0;
+            this.departmentHeadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.departmentHeadBtn.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold);
+            this.departmentHeadBtn.ForeColor = System.Drawing.Color.White;
+            this.departmentHeadBtn.Location = new System.Drawing.Point(3, 3);
+            this.departmentHeadBtn.Name = "departmentHeadBtn";
+            this.departmentHeadBtn.Size = new System.Drawing.Size(256, 39);
+            this.departmentHeadBtn.TabIndex = 0;
+            this.departmentHeadBtn.Text = "System Administrator Management";
+            this.departmentHeadBtn.TextColor = System.Drawing.Color.White;
+            this.departmentHeadBtn.UseVisualStyleBackColor = false;
+            // 
             // systemAdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1463,33 +1091,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.systemAdminDashboard_Load);
             this.sidePanel.ResumeLayout(false);
-            this.panel25.ResumeLayout(false);
-            this.panel25.PerformLayout();
-            this.panel19.ResumeLayout(false);
-            this.panel19.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.logSubPanel.ResumeLayout(false);
-            this.panel24.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.employeeManagementSubPanel.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
             this.panel8.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.logoPanel.ResumeLayout(false);
-            this.logoPanel.PerformLayout();
-            this.newUpperSide.ResumeLayout(false);
-            this.upperSide.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.aboveContent.ResumeLayout(false);
             this.aboveContent.PerformLayout();
             this.contentPanel.ResumeLayout(false);
@@ -1508,6 +1110,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.lguLogo)).EndInit();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            this.newUpperSide.ResumeLayout(false);
+            this.newUpperSide.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1515,38 +1123,9 @@
         #endregion
 
         private System.Windows.Forms.Panel sidePanel;
-        private System.Windows.Forms.Panel panel19;
-        private Custom.buttonDesign benefitsBtn;
-        private System.Windows.Forms.Panel panel1;
-        private Custom.buttonDesign managementBtn;
-        private System.Windows.Forms.Panel logSubPanel;
-        private System.Windows.Forms.Panel panel4;
-        private Custom.buttonDesign payrollListBtn;
-        private System.Windows.Forms.Panel panel7;
-        private Custom.buttonDesign createPayrollBtn;
-        private System.Windows.Forms.Panel panel9;
-        private Custom.buttonDesign logBtn;
-        private System.Windows.Forms.Panel employeeManagementSubPanel;
-        private System.Windows.Forms.Panel panel11;
-        private Custom.buttonDesign appointmentBtn;
-        private System.Windows.Forms.Panel panel10;
-        private Custom.buttonDesign employeeListBtn;
         private System.Windows.Forms.Panel panel8;
         private Custom.buttonDesign signoutBtn;
         private System.Windows.Forms.Panel sideBottom;
-        private System.Windows.Forms.Panel panel6;
-        private Custom.buttonDesign employeeManagementBtn;
-        private System.Windows.Forms.Panel panel3;
-        private Custom.buttonDesign departmentBtn;
-        private System.Windows.Forms.Panel panel5;
-        private Custom.buttonDesign dashboardBtn;
-        private System.Windows.Forms.Panel logoPanel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel newUpperSide;
-        private System.Windows.Forms.Panel upperSide;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel aboveContent;
         private System.Windows.Forms.Label welcomeMessage;
         private System.Windows.Forms.Label titleLabel;
@@ -1606,9 +1185,14 @@
         private System.Windows.Forms.Label facebookPage;
         private Custom.buttonDesign uploadBtn;
         private Custom.buttonDesign modifyBtn;
-        private System.Windows.Forms.Panel panel24;
-        private Custom.buttonDesign buttonDesign1;
-        private System.Windows.Forms.Panel panel25;
-        private Custom.buttonDesign salaryBtn;
+        private System.Windows.Forms.Panel newUpperSide;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private Custom.buttonDesign dashboardBtn;
+        private System.Windows.Forms.Panel panel5;
+        private Custom.buttonDesign departmentHeadBtn;
     }
 }

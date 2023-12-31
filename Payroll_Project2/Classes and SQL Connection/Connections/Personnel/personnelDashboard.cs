@@ -20,24 +20,6 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Class.Personnel
 
         #region All Get Methods
 
-        // This method retrieves the number of department saved in the database
-        public async Task<int> GetNumberOfDepartment()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                await connection.OpenAsync();
-                string departmentNumber = "select count(*) from tbl_department";
-                using (cmd = new SqlCommand(departmentNumber, connection))
-                {
-                    object result = cmd.ExecuteScalar();
-                    connection.Close();
-
-                    int number = Convert.ToInt16(result);
-                    return number;
-                }
-            }
-        }
-
         // This method will retrieve the number of employee who is still active in the organization
         public async Task<int> GetNumberOfActive()
         {

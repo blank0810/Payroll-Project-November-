@@ -26,6 +26,24 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
+        // This method retrieves the number of department saved in the database
+        public async Task<int> GetNumberOfDepartment()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                string departmentNumber = "select count(*) from tbl_department";
+                using (cmd = new SqlCommand(departmentNumber, connection))
+                {
+                    object result = cmd.ExecuteScalar();
+                    connection.Close();
+
+                    int number = Convert.ToInt16(result);
+                    return number;
+                }
+            }
+        }
+
         public async Task<bool> CertifyThePassSlip(int payrollFormId, string name, DateTime certifyDate, bool certifyStatus)
         {
             try
@@ -280,7 +298,6 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
         }
-
 
         public async Task<int> GetStepNumber(string stepDescription)
         {

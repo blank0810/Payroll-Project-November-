@@ -262,6 +262,7 @@
     <Compile Include="Classes and SQL Connection\Connections\Personnel\payrollClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\personnelDashboard.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\personnelProfile.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\System Administrator\dashboardClass.cs" />
     <Compile Include="Classes and SQL Connection\logInClass.cs" />
     <Compile Include="Classes and SQL Connection\Custom\customColorTable.cs" />
     <Compile Include="Classes and SQL Connection\Custom\customDateTime.cs">

@@ -539,3 +539,44 @@ FROM tbl_timeStatus
 WHERE timePeriodId = (select timePeriodId from tbl_timeLog where timelogId = 66)
   AND logTypeId = (select logTypeId from tbl_timeLog where timelogId = 66)
   AND CAST((select timeLog from tbl_timeLog where timelogId = 66) AS TIME) BETWEEN fromTime AND toTime;
+
+select * from tbl_companyDetails
+
+alter table tbl_companyDetails
+add companyLogo varchar(200) not null default 'initao-logo.jpg'
+
+create table tbl_mayorDetails
+(
+	mayorDetailsId int identity(1,1) not null primary key,
+	employeeId int not null,
+	dateAppointed date not null,
+	termStarted date not null,
+	termEnded date not null,
+	isTermActive bit not null
+	constraint fk_tbl_employeeMayorDetails foreign key (employeeId)
+	references tbl_employee (employeeId)
+	on update cascade
+)
+
+create table tbl_viceMayorDetails
+(
+	viceMayorDetailsId int identity(1,1) not null primary key,
+		employeeId int not null,
+	dateAppointed date not null,
+	termStarted date not null,
+	termEnded date not null,
+	isTermActive bit not null
+	constraint fk_tbl_employeeViceMayorDetails foreign key (employeeId)
+	references tbl_employee (employeeId)
+	on update cascade
+)
+
+select * from tbl_employee
+
+insert into tbl_mayorDetails (employeeId, dateAppointed, termStarted, termEnded, isTermActive)
+values
+	(5, 'May 13, 2022', 'May 13, 2022', 'May 13, 2026', 1)
+
+select concat(employeeFname, ' ', employeeLname) from tbl_employee
+join tbl_mayorDetails on tbl_employee.employeeId = tbl_mayorDetails.employeeId
+where isTermActive = 1

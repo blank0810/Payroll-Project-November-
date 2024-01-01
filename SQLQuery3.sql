@@ -580,3 +580,19 @@ values
 select concat(employeeFname, ' ', employeeLname) from tbl_employee
 join tbl_mayorDetails on tbl_employee.employeeId = tbl_mayorDetails.employeeId
 where isTermActive = 1
+
+select * from tbl_userRole
+select * from tbl_employee
+select * from tbl_educationalAttainment
+select * from tbl_department
+select * from tbl_mayorDetails
+select * from tbl_companyDetails
+
+alter table tbl_companyDetails
+
+insert into tbl_employee (employeePassword, isActive, employeeFname, employeeLname, employeeMname, nationality, barangay, municipality, province, zipCode, 
+employeeBirth, employeeCivilStatus, employeeContactNumber, employeeEmailAddress, educationalAttainmentId, nameOfSchool, course, schoolAddress, 
+departmentId, employeeJobDesc, roleId, employeePicture, employeeSignature, employeeSex)
+values
+	('7',1, 'Richard', 'Santos', 'Meyers', 'Filipino', 'Tubigan', 'Initao', 'Misamis Oriental', '9022', 'August 1 2000', 'Single', '09534678897', 
+	'ryan@gmail.com', 3, 'MSU - Naawan', 'BS Political Science', 'Naawan Misamis Oriental', 1, 'System Administrator', 1, 'RyanSySantosAgsunta.jpg', 'RyadnSySantos.jpg', 'Male')

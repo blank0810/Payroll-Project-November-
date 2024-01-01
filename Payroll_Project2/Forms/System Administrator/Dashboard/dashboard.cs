@@ -1,5 +1,6 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.System_Administrator;
+using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
 using Payroll_Project2.Forms.System_Administrator.Dashboard.Modal;
 using Payroll_Project2.Forms.System_Administrator.Department_Management;
 using Payroll_Project2.Forms.System_Administrator.Employee_Management;
@@ -7,6 +8,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -176,6 +178,15 @@ namespace Payroll_Project2.Forms.System_Administrator.Dashboard
                             NameOfCompany = "Not Available";
                         }
 
+                        if (!string.IsNullOrEmpty(row["companyType"]?.ToString()))
+                        {
+                            CompanyType = $"{row["companyType"]}";
+                        }
+                        else
+                        {
+                            CompanyType = "Not Available";
+                        }
+
                         if (!string.IsNullOrEmpty(row["companyEmail"]?.ToString()))
                         {
                             CompanyEmail = $"{row["companyEmail"]}";
@@ -280,6 +291,55 @@ namespace Payroll_Project2.Forms.System_Administrator.Dashboard
             }
         }
 
+        private void ForwardDetails(string companyName, string companyType, string companyEmail,
+            string facebookName, string facebookLink, string barangay, string municipality, string province,
+            string zipCode, string contactNumber, string companyLogo)
+        {
+            modifyForm modify = new modifyForm(_userId);
+
+            modify.NameOfCompany = companyName;
+            modify.CompanyType = companyType;
+            modify.CompanyEmail = companyEmail;
+            modify.CompanyLogo = companyLogo;
+            modify.CompanyFacebook = facebookName;
+            modify.CompanyFacebookLink = facebookLink;
+            modify.Barangay = barangay;
+            modify.Municipality = municipality;
+            modify.Province = province;
+            modify.ZipCode = zipCode;
+            modify.ContactNumber = contactNumber;
+
+            modify.ShowDialog();
+        }
+
+        // Function responsible for updating the Employee Image
+        private async Task<bool> UploadNewCompanyLogo(string newImage, string oldImage)
+        {
+            try
+            {
+
+                string extension = Path.GetExtension(newImage);
+                string newImageName = NameOfCompany.Replace(" ", "") + extension;
+                string newImageSource = Path.Combine(CompanyLogoPath, newImageName);
+                File.Copy(newImage, newImageSource, true);
+
+                bool updateCompanyLogo = await dashboardClass.UpdateCompanyLogo(newImageName);
+                if (updateCompanyLogo)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void ErrorMessages(string message, string caption)
         {
             MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -324,81 +384,88 @@ namespace Payroll_Project2.Forms.System_Administrator.Dashboard
 
         private async void systemAdminDashboard_Load(object sender, EventArgs e)
         {
-            await ParsedDetails();
+            await ParsedDetails(); 
         }
 
         private void dashboardBtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void departmentBtn_Click(object sender, EventArgs e)
-        {
-            
-            departmentManagementUC departmentManagementUC = new departmentManagementUC();
-
-            if (!contentPanel.Controls.Contains(departmentManagementUC))
+            DataBinding();
+            if (!contentPanel.Controls.Contains(dashboardPanel))
             {
-                contentPanel.Controls.Add(departmentManagementUC);
-                departmentManagementUC.Dock = DockStyle.Fill;
-                departmentManagementUC.BringToFront();
+                contentPanel.Controls.Add(dashboardPanel);
+                dashboardPanel.Dock = DockStyle.Fill;
+                dashboardPanel.BringToFront();
             }
             else
             {
-                departmentManagementUC.BringToFront();
+                dashboardPanel.BringToFront();
             }
-        }
-
-        private void employeeManagementBtn_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void modifyBtn_Click(object sender, EventArgs e)
         {
-            modifyForm modify = new modifyForm();
-            modify.ShowDialog();
+            ForwardDetails(NameOfCompany, CompanyType, CompanyEmail, CompanyFacebook, CompanyFacebookLink, Barangay,
+                Municipality, Province, ZipCode, ContactNumber, CompanyLogo);
+            DataBinding();
         }
 
-        private void employeeListBtn_Click(object sender, EventArgs e)
+        private async void uploadBtn_Click(object sender, EventArgs e)
         {
-            contentPanel.Controls.Clear();
-            
-            employeeListUC employeeListUC = new employeeListUC();
+            try
+            {
+                string newImage;
 
-            if (!contentPanel.Controls.Contains(employeeListUC))
-            {
-                contentPanel.Controls.Add(employeeListUC);
-                employeeListUC.Dock = DockStyle.Fill;
-                employeeListUC.BringToFront();
-            }
-            else
-            {
-                employeeListUC.BringToFront();
-            }
-        }
+                OpenFileDialog employeefile = new OpenFileDialog();
+                employeefile.Filter = "Image Files (*.jpg; *jpeg; *.png;) | *.jpg; *jpeg; *.png;";
+                employeefile.Title = "Select an Image";
 
-        private void appointmentBtn_Click(object sender, EventArgs e)
-        {
-            contentPanel.Controls.Clear();
-            
-            appointmentUC appointmentUC = new appointmentUC();
+                if (employeefile.ShowDialog() == DialogResult.OK)
+                {
+                    newImage = employeefile.FileName;
+                    bool uploadNewEmployeeImage = await UploadNewCompanyLogo(newImage, $"{CompanyLogoPath}{CompanyLogo}");
 
-            if (!contentPanel.Controls.Contains(appointmentUC))
-            {
-                contentPanel.Controls.Add(appointmentUC);
-                appointmentUC.Dock = DockStyle.Fill;
-                appointmentUC.BringToFront();
+                    if (uploadNewEmployeeImage)
+                    {
+                        DataBinding();
+                    }
+                }
             }
-            else
+            catch (SqlException sql)
             {
-                appointmentUC.BringToFront();
+                ErrorMessages(sql.Message, "Sql Error");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessages(ex.Message, "Exception Error");
             }
         }
 
-        private void uploadBtn_Click(object sender, EventArgs e)
+        private void companyEmail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            try
+            {
+                string gmailUrl = $"https://mail.google.com/mail/u/0/?view=cm&fs=1&to={CompanyEmail}";
 
+                System.Diagnostics.Process.Start(gmailUrl);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void companyFacebook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                string fbUrl = $"{CompanyFacebookLink}";
+
+                System.Diagnostics.Process.Start(fbUrl);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
         }
     }
 }

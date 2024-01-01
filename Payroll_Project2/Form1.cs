@@ -3,6 +3,7 @@ using Payroll_Project2.Forms.Department_Head.Dashboard;
 using Payroll_Project2.Forms.Employee.Dashboard;
 using Payroll_Project2.Forms.Mayor.Dashboard;
 using Payroll_Project2.Forms.Personnel.Dashboard;
+using Payroll_Project2.Forms.System_Administrator.Dashboard;
 using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -181,6 +182,12 @@ namespace Payroll_Project2
                     case "department head":
                         departmentHeadDashboard departmentHeadDashboard = new departmentHeadDashboard(userId);
                         departmentHeadDashboard.ShowDialog();
+                        this.Hide();
+                        break;
+                    case "System Administrator":
+                    case "system administrator":
+                        systemAdminDashboard systemAdminDashboard = new systemAdminDashboard(userId);
+                        systemAdminDashboard.ShowDialog();
                         this.Hide();
                         break;
 

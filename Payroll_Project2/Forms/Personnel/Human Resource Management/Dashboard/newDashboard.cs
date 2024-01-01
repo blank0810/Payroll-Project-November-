@@ -105,7 +105,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard
         {
             try
             {
-                int numberOfDepartment = await personnelClass.GetNumberOfDepartment();
+                int numberOfDepartment = await generalFunctions.GetNumberOfDepartment();
                 return numberOfDepartment;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }

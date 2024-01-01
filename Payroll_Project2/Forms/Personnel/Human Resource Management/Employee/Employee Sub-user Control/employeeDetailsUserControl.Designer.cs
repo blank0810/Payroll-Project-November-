@@ -39,11 +39,14 @@
             this.content = new System.Windows.Forms.Panel();
             this.employmentPanel = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
+            this.benefitsContent = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel22 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.addBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel19 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
@@ -157,9 +160,6 @@
             this.panel31 = new System.Windows.Forms.Panel();
             this.label59 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label46 = new System.Windows.Forms.Label();
-            this.panel22 = new System.Windows.Forms.Panel();
-            this.benefitsContent = new System.Windows.Forms.FlowLayoutPanel();
             this.panel5.SuspendLayout();
             this.content.SuspendLayout();
             this.employmentPanel.SuspendLayout();
@@ -300,9 +300,9 @@
             // 
             // content
             // 
-            this.content.Controls.Add(this.employmentPanel);
             this.content.Controls.Add(this.generalPanel);
             this.content.Controls.Add(this.formPanel);
+            this.content.Controls.Add(this.employmentPanel);
             this.content.Dock = System.Windows.Forms.DockStyle.Fill;
             this.content.Location = new System.Drawing.Point(10, 57);
             this.content.Name = "content";
@@ -334,6 +334,25 @@
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(1196, 475);
             this.panel16.TabIndex = 51;
+            // 
+            // benefitsContent
+            // 
+            this.benefitsContent.AutoScroll = true;
+            this.benefitsContent.BackColor = System.Drawing.SystemColors.Control;
+            this.benefitsContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.benefitsContent.Location = new System.Drawing.Point(0, 47);
+            this.benefitsContent.Name = "benefitsContent";
+            this.benefitsContent.Size = new System.Drawing.Size(1196, 394);
+            this.benefitsContent.TabIndex = 55;
+            // 
+            // panel22
+            // 
+            this.panel22.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel22.Location = new System.Drawing.Point(0, 44);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(1196, 3);
+            this.panel22.TabIndex = 54;
             // 
             // panel8
             // 
@@ -409,6 +428,20 @@
             this.label17.TabIndex = 86;
             this.label17.Text = "Status";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label46
+            // 
+            this.label46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label46.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label46.Location = new System.Drawing.Point(233, 12);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(119, 19);
+            this.label46.TabIndex = 86;
+            this.label46.Text = "Rate Descriptions";
+            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
@@ -1906,39 +1939,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1196, 3);
             this.panel6.TabIndex = 9;
-            // 
-            // label46
-            // 
-            this.label46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label46.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label46.Location = new System.Drawing.Point(233, 12);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(119, 19);
-            this.label46.TabIndex = 86;
-            this.label46.Text = "Rate Descriptions";
-            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel22
-            // 
-            this.panel22.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel22.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel22.Location = new System.Drawing.Point(0, 44);
-            this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(1196, 3);
-            this.panel22.TabIndex = 54;
-            // 
-            // benefitsContent
-            // 
-            this.benefitsContent.AutoScroll = true;
-            this.benefitsContent.BackColor = System.Drawing.SystemColors.Control;
-            this.benefitsContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.benefitsContent.Location = new System.Drawing.Point(0, 47);
-            this.benefitsContent.Name = "benefitsContent";
-            this.benefitsContent.Size = new System.Drawing.Size(1196, 394);
-            this.benefitsContent.TabIndex = 55;
             // 
             // employeeDetailsUserControl
             // 

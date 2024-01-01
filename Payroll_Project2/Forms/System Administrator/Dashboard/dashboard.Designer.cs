@@ -30,16 +30,13 @@
         {
             this.sidePanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.departmentHeadBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dashboardBtn = new Payroll_Project2.Custom.buttonDesign();
             this.newUpperSide = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.signoutBtn = new Payroll_Project2.Custom.buttonDesign();
             this.sideBottom = new System.Windows.Forms.Panel();
             this.aboveContent = new System.Windows.Forms.Panel();
             this.welcomeMessage = new System.Windows.Forms.Label();
@@ -49,9 +46,10 @@
             this.panel14 = new System.Windows.Forms.Panel();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.dashboardPanel = new System.Windows.Forms.Panel();
-            this.modifyBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel21 = new System.Windows.Forms.Panel();
             this.panel20 = new System.Windows.Forms.Panel();
+            this.companyFacebook = new System.Windows.Forms.LinkLabel();
+            this.companyEmail = new System.Windows.Forms.LinkLabel();
             this.zipCode = new System.Windows.Forms.Label();
             this.province = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -68,7 +66,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.uploadBtn = new Payroll_Project2.Custom.buttonDesign();
             this.viceMayorName = new System.Windows.Forms.Label();
             this.companyLogo = new System.Windows.Forms.PictureBox();
             this.companyName = new System.Windows.Forms.Label();
@@ -85,8 +82,11 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.infoLabel = new System.Windows.Forms.Label();
-            this.companyEmail = new System.Windows.Forms.LinkLabel();
-            this.companyFacebook = new System.Windows.Forms.LinkLabel();
+            this.modifyBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.uploadBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.departmentHeadBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.dashboardBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.signoutBtn = new Payroll_Project2.Custom.buttonDesign();
             this.sidePanel.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -127,27 +127,6 @@
             this.panel5.Size = new System.Drawing.Size(262, 46);
             this.panel5.TabIndex = 34;
             // 
-            // departmentHeadBtn
-            // 
-            this.departmentHeadBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.departmentHeadBtn.AutoSize = true;
-            this.departmentHeadBtn.BackColor = System.Drawing.Color.Transparent;
-            this.departmentHeadBtn.BackgroundColor = System.Drawing.Color.Transparent;
-            this.departmentHeadBtn.BorderColor = System.Drawing.Color.DimGray;
-            this.departmentHeadBtn.BorderRadius = 5;
-            this.departmentHeadBtn.BorderSize = 0;
-            this.departmentHeadBtn.FlatAppearance.BorderSize = 0;
-            this.departmentHeadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.departmentHeadBtn.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold);
-            this.departmentHeadBtn.ForeColor = System.Drawing.Color.White;
-            this.departmentHeadBtn.Location = new System.Drawing.Point(3, 3);
-            this.departmentHeadBtn.Name = "departmentHeadBtn";
-            this.departmentHeadBtn.Size = new System.Drawing.Size(256, 39);
-            this.departmentHeadBtn.TabIndex = 0;
-            this.departmentHeadBtn.Text = "System Administrator Management";
-            this.departmentHeadBtn.TextColor = System.Drawing.Color.White;
-            this.departmentHeadBtn.UseVisualStyleBackColor = false;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.dashboardBtn);
@@ -156,26 +135,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(262, 46);
             this.panel1.TabIndex = 30;
-            // 
-            // dashboardBtn
-            // 
-            this.dashboardBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dashboardBtn.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.dashboardBtn.BackgroundColor = System.Drawing.Color.DarkSlateGray;
-            this.dashboardBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.dashboardBtn.BorderRadius = 15;
-            this.dashboardBtn.BorderSize = 0;
-            this.dashboardBtn.FlatAppearance.BorderSize = 0;
-            this.dashboardBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dashboardBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardBtn.ForeColor = System.Drawing.Color.White;
-            this.dashboardBtn.Location = new System.Drawing.Point(43, 4);
-            this.dashboardBtn.Name = "dashboardBtn";
-            this.dashboardBtn.Size = new System.Drawing.Size(177, 39);
-            this.dashboardBtn.TabIndex = 0;
-            this.dashboardBtn.Text = "Dashboard";
-            this.dashboardBtn.TextColor = System.Drawing.Color.White;
-            this.dashboardBtn.UseVisualStyleBackColor = false;
             // 
             // newUpperSide
             // 
@@ -245,25 +204,6 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(262, 43);
             this.panel8.TabIndex = 27;
-            // 
-            // signoutBtn
-            // 
-            this.signoutBtn.BackColor = System.Drawing.Color.Crimson;
-            this.signoutBtn.BackgroundColor = System.Drawing.Color.Crimson;
-            this.signoutBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.signoutBtn.BorderRadius = 15;
-            this.signoutBtn.BorderSize = 0;
-            this.signoutBtn.FlatAppearance.BorderSize = 0;
-            this.signoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signoutBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.signoutBtn.ForeColor = System.Drawing.Color.White;
-            this.signoutBtn.Location = new System.Drawing.Point(43, 2);
-            this.signoutBtn.Name = "signoutBtn";
-            this.signoutBtn.Size = new System.Drawing.Size(177, 38);
-            this.signoutBtn.TabIndex = 0;
-            this.signoutBtn.Text = "Sign out";
-            this.signoutBtn.TextColor = System.Drawing.Color.White;
-            this.signoutBtn.UseVisualStyleBackColor = false;
             // 
             // sideBottom
             // 
@@ -359,28 +299,6 @@
             this.dashboardPanel.Size = new System.Drawing.Size(1118, 850);
             this.dashboardPanel.TabIndex = 4;
             // 
-            // modifyBtn
-            // 
-            this.modifyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.modifyBtn.AutoSize = true;
-            this.modifyBtn.BackColor = System.Drawing.Color.White;
-            this.modifyBtn.BackgroundColor = System.Drawing.Color.White;
-            this.modifyBtn.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.modifyBtn.BorderRadius = 10;
-            this.modifyBtn.BorderSize = 1;
-            this.modifyBtn.FlatAppearance.BorderSize = 0;
-            this.modifyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.modifyBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyBtn.ForeColor = System.Drawing.Color.Black;
-            this.modifyBtn.Location = new System.Drawing.Point(7, 819);
-            this.modifyBtn.Name = "modifyBtn";
-            this.modifyBtn.Size = new System.Drawing.Size(136, 27);
-            this.modifyBtn.TabIndex = 58;
-            this.modifyBtn.Text = "Modify Information";
-            this.modifyBtn.TextColor = System.Drawing.Color.Black;
-            this.modifyBtn.UseVisualStyleBackColor = false;
-            this.modifyBtn.Click += new System.EventHandler(this.modifyBtn_Click);
-            // 
             // panel21
             // 
             this.panel21.BackColor = System.Drawing.Color.Gainsboro;
@@ -411,6 +329,34 @@
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(1118, 133);
             this.panel20.TabIndex = 53;
+            // 
+            // companyFacebook
+            // 
+            this.companyFacebook.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.companyFacebook.AutoSize = true;
+            this.companyFacebook.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.companyFacebook.LinkColor = System.Drawing.Color.DodgerBlue;
+            this.companyFacebook.Location = new System.Drawing.Point(446, 41);
+            this.companyFacebook.Name = "companyFacebook";
+            this.companyFacebook.Size = new System.Drawing.Size(142, 19);
+            this.companyFacebook.TabIndex = 80;
+            this.companyFacebook.TabStop = true;
+            this.companyFacebook.Text = "{Company Facebook}";
+            this.companyFacebook.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.companyFacebook_LinkClicked);
+            // 
+            // companyEmail
+            // 
+            this.companyEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.companyEmail.AutoSize = true;
+            this.companyEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.companyEmail.LinkColor = System.Drawing.Color.DodgerBlue;
+            this.companyEmail.Location = new System.Drawing.Point(446, 13);
+            this.companyEmail.Name = "companyEmail";
+            this.companyEmail.Size = new System.Drawing.Size(118, 19);
+            this.companyEmail.TabIndex = 80;
+            this.companyEmail.TabStop = true;
+            this.companyEmail.Text = "{Company Email}";
+            this.companyEmail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.companyEmail_LinkClicked);
             // 
             // zipCode
             // 
@@ -540,7 +486,7 @@
             this.contactNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.contactNumber.ForeColor = System.Drawing.Color.DodgerBlue;
             this.contactNumber.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.contactNumber.Location = new System.Drawing.Point(443, 69);
+            this.contactNumber.Location = new System.Drawing.Point(446, 69);
             this.contactNumber.Name = "contactNumber";
             this.contactNumber.Size = new System.Drawing.Size(120, 19);
             this.contactNumber.TabIndex = 77;
@@ -626,28 +572,6 @@
             this.panel17.Size = new System.Drawing.Size(1118, 139);
             this.panel17.TabIndex = 50;
             // 
-            // uploadBtn
-            // 
-            this.uploadBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.uploadBtn.AutoSize = true;
-            this.uploadBtn.BackColor = System.Drawing.Color.White;
-            this.uploadBtn.BackgroundColor = System.Drawing.Color.White;
-            this.uploadBtn.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.uploadBtn.BorderRadius = 5;
-            this.uploadBtn.BorderSize = 1;
-            this.uploadBtn.FlatAppearance.BorderSize = 0;
-            this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uploadBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uploadBtn.ForeColor = System.Drawing.Color.Black;
-            this.uploadBtn.Location = new System.Drawing.Point(41, 105);
-            this.uploadBtn.Name = "uploadBtn";
-            this.uploadBtn.Size = new System.Drawing.Size(136, 27);
-            this.uploadBtn.TabIndex = 57;
-            this.uploadBtn.Text = "Upload new Logo";
-            this.uploadBtn.TextColor = System.Drawing.Color.Black;
-            this.uploadBtn.UseVisualStyleBackColor = false;
-            this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
-            // 
             // viceMayorName
             // 
             this.viceMayorName.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -665,9 +589,9 @@
             // companyLogo
             // 
             this.companyLogo.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
-            this.companyLogo.Location = new System.Drawing.Point(65, 4);
+            this.companyLogo.Location = new System.Drawing.Point(48, 6);
             this.companyLogo.Name = "companyLogo";
-            this.companyLogo.Size = new System.Drawing.Size(89, 95);
+            this.companyLogo.Size = new System.Drawing.Size(105, 95);
             this.companyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.companyLogo.TabIndex = 1;
             this.companyLogo.TabStop = false;
@@ -851,29 +775,110 @@
             this.infoLabel.Text = "Primary Information";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // companyEmail
+            // modifyBtn
             // 
-            this.companyEmail.AutoSize = true;
-            this.companyEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.companyEmail.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.companyEmail.Location = new System.Drawing.Point(446, 13);
-            this.companyEmail.Name = "companyEmail";
-            this.companyEmail.Size = new System.Drawing.Size(118, 19);
-            this.companyEmail.TabIndex = 80;
-            this.companyEmail.TabStop = true;
-            this.companyEmail.Text = "{Company Email}";
+            this.modifyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.modifyBtn.AutoSize = true;
+            this.modifyBtn.BackColor = System.Drawing.Color.White;
+            this.modifyBtn.BackgroundColor = System.Drawing.Color.White;
+            this.modifyBtn.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.modifyBtn.BorderRadius = 10;
+            this.modifyBtn.BorderSize = 1;
+            this.modifyBtn.FlatAppearance.BorderSize = 0;
+            this.modifyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.modifyBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyBtn.ForeColor = System.Drawing.Color.Black;
+            this.modifyBtn.Location = new System.Drawing.Point(7, 819);
+            this.modifyBtn.Name = "modifyBtn";
+            this.modifyBtn.Size = new System.Drawing.Size(136, 27);
+            this.modifyBtn.TabIndex = 58;
+            this.modifyBtn.Text = "Modify Information";
+            this.modifyBtn.TextColor = System.Drawing.Color.Black;
+            this.modifyBtn.UseVisualStyleBackColor = false;
+            this.modifyBtn.Click += new System.EventHandler(this.modifyBtn_Click);
             // 
-            // companyFacebook
+            // uploadBtn
             // 
-            this.companyFacebook.AutoSize = true;
-            this.companyFacebook.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.companyFacebook.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.companyFacebook.Location = new System.Drawing.Point(446, 41);
-            this.companyFacebook.Name = "companyFacebook";
-            this.companyFacebook.Size = new System.Drawing.Size(142, 19);
-            this.companyFacebook.TabIndex = 80;
-            this.companyFacebook.TabStop = true;
-            this.companyFacebook.Text = "{Company Facebook}";
+            this.uploadBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.uploadBtn.AutoSize = true;
+            this.uploadBtn.BackColor = System.Drawing.Color.SteelBlue;
+            this.uploadBtn.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.uploadBtn.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.uploadBtn.BorderRadius = 5;
+            this.uploadBtn.BorderSize = 0;
+            this.uploadBtn.FlatAppearance.BorderSize = 0;
+            this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uploadBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadBtn.ForeColor = System.Drawing.Color.White;
+            this.uploadBtn.Location = new System.Drawing.Point(32, 105);
+            this.uploadBtn.Name = "uploadBtn";
+            this.uploadBtn.Size = new System.Drawing.Size(136, 27);
+            this.uploadBtn.TabIndex = 57;
+            this.uploadBtn.Text = "Upload new Logo";
+            this.uploadBtn.TextColor = System.Drawing.Color.White;
+            this.uploadBtn.UseVisualStyleBackColor = false;
+            this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
+            // 
+            // departmentHeadBtn
+            // 
+            this.departmentHeadBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.departmentHeadBtn.AutoSize = true;
+            this.departmentHeadBtn.BackColor = System.Drawing.Color.Transparent;
+            this.departmentHeadBtn.BackgroundColor = System.Drawing.Color.Transparent;
+            this.departmentHeadBtn.BorderColor = System.Drawing.Color.DimGray;
+            this.departmentHeadBtn.BorderRadius = 5;
+            this.departmentHeadBtn.BorderSize = 0;
+            this.departmentHeadBtn.FlatAppearance.BorderSize = 0;
+            this.departmentHeadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.departmentHeadBtn.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold);
+            this.departmentHeadBtn.ForeColor = System.Drawing.Color.White;
+            this.departmentHeadBtn.Location = new System.Drawing.Point(3, 3);
+            this.departmentHeadBtn.Name = "departmentHeadBtn";
+            this.departmentHeadBtn.Size = new System.Drawing.Size(256, 39);
+            this.departmentHeadBtn.TabIndex = 0;
+            this.departmentHeadBtn.Text = "System Administrator Management";
+            this.departmentHeadBtn.TextColor = System.Drawing.Color.White;
+            this.departmentHeadBtn.UseVisualStyleBackColor = false;
+            // 
+            // dashboardBtn
+            // 
+            this.dashboardBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dashboardBtn.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.dashboardBtn.BackgroundColor = System.Drawing.Color.DarkSlateGray;
+            this.dashboardBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.dashboardBtn.BorderRadius = 15;
+            this.dashboardBtn.BorderSize = 0;
+            this.dashboardBtn.FlatAppearance.BorderSize = 0;
+            this.dashboardBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dashboardBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardBtn.ForeColor = System.Drawing.Color.White;
+            this.dashboardBtn.Location = new System.Drawing.Point(43, 4);
+            this.dashboardBtn.Name = "dashboardBtn";
+            this.dashboardBtn.Size = new System.Drawing.Size(177, 39);
+            this.dashboardBtn.TabIndex = 0;
+            this.dashboardBtn.Text = "Dashboard";
+            this.dashboardBtn.TextColor = System.Drawing.Color.White;
+            this.dashboardBtn.UseVisualStyleBackColor = false;
+            this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
+            // 
+            // signoutBtn
+            // 
+            this.signoutBtn.BackColor = System.Drawing.Color.Crimson;
+            this.signoutBtn.BackgroundColor = System.Drawing.Color.Crimson;
+            this.signoutBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.signoutBtn.BorderRadius = 15;
+            this.signoutBtn.BorderSize = 0;
+            this.signoutBtn.FlatAppearance.BorderSize = 0;
+            this.signoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signoutBtn.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signoutBtn.ForeColor = System.Drawing.Color.White;
+            this.signoutBtn.Location = new System.Drawing.Point(43, 2);
+            this.signoutBtn.Name = "signoutBtn";
+            this.signoutBtn.Size = new System.Drawing.Size(177, 38);
+            this.signoutBtn.TabIndex = 0;
+            this.signoutBtn.Text = "Sign out";
+            this.signoutBtn.TextColor = System.Drawing.Color.White;
+            this.signoutBtn.UseVisualStyleBackColor = false;
             // 
             // systemAdminDashboard
             // 

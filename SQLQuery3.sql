@@ -600,4 +600,11 @@ values
 select roleName from tbl_employmentStatusAccess 
 join tbl_department on tbl_employmentStatusAccess.departmentId = tbl_department.departmentId 
 join tbl_userRole on tbl_employmentStatusAccess.roleId = tbl_userRole.roleId 
-where roleName != 'Employee' and tbl_department.departmentId = 3
+where roleName != 'Employee' and tbl_department.departmentId = 5
+
+select * from tbl_employmentStatusAccess
+select * from tbl_employmentStatus
+
+insert into tbl_employmentStatusAccess (employmentStatusId, roleId, departmentId)
+values
+	(1, 4, 5)

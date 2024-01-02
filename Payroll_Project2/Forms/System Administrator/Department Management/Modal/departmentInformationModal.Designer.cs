@@ -374,11 +374,13 @@
             this.ClientSize = new System.Drawing.Size(715, 663);
             this.Controls.Add(this.details);
             this.Controls.Add(this.aboveContent);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "departmentInformationModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Department Information";
             this.Load += new System.EventHandler(this.departmentInformationModal_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.departmentInformationModal_KeyPress);
             this.aboveContent.ResumeLayout(false);
             this.aboveContent.PerformLayout();
             this.details.ResumeLayout(false);

@@ -596,3 +596,8 @@ departmentId, employeeJobDesc, roleId, employeePicture, employeeSignature, emplo
 values
 	('7',1, 'Richard', 'Santos', 'Meyers', 'Filipino', 'Tubigan', 'Initao', 'Misamis Oriental', '9022', 'August 1 2000', 'Single', '09534678897', 
 	'ryan@gmail.com', 3, 'MSU - Naawan', 'BS Political Science', 'Naawan Misamis Oriental', 1, 'System Administrator', 1, 'RyanSySantosAgsunta.jpg', 'RyadnSySantos.jpg', 'Male')
+
+select roleName from tbl_employmentStatusAccess 
+join tbl_department on tbl_employmentStatusAccess.departmentId = tbl_department.departmentId 
+join tbl_userRole on tbl_employmentStatusAccess.roleId = tbl_userRole.roleId 
+where roleName != 'Employee' and tbl_department.departmentId = 3

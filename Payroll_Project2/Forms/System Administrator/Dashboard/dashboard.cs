@@ -464,7 +464,24 @@ namespace Payroll_Project2.Forms.System_Administrator.Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                System.Windows.Forms.MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void departmentManagementBtn_Click(object sender, EventArgs e)
+        {
+            titleLabel.Text = departmentManagementBtn.Text;
+            departmentManagementUC departmentManagementUC = new departmentManagementUC(_userId);
+
+            if(!contentPanel.Controls.Contains(departmentManagementUC))
+            {
+                contentPanel.Controls.Add(departmentManagementUC);
+                departmentManagementUC.Dock = DockStyle.Fill;
+                departmentManagementUC.BringToFront();
+            }
+            else
+            {
+                departmentManagementUC.BringToFront();
             }
         }
     }

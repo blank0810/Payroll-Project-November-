@@ -62,7 +62,7 @@ namespace Payroll_Project2.Forms.Mayor.Dashboard.Dashboard_User_Control
         {
             try
             {
-                string role = await mayorDashboard.GetHeadRoleDescription(departmentId, userRole);
+                string role = await generalFunctions.GetHeadRoleDescription(departmentId, userRole);
                 return role;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }

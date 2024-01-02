@@ -26,6 +26,43 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
+        // This function is responsible for retrieving the Head of each respective Department
+        public async Task<string> GetHeadRoleDescription(int departmentId, string userRole)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+
+                    string command = "select roleName from tbl_employmentStatusAccess " +
+                        "join tbl_department on tbl_employmentStatusAccess.departmentId = tbl_department.departmentId " +
+                        "join tbl_userRole on tbl_employmentStatusAccess.roleId = tbl_userRole.roleId " +
+                        "where roleName != @userRole and tbl_department.departmentId = @departmentId";
+
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userRole", userRole);
+                        cmd.Parameters.AddWithValue("@departmentId", departmentId);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        if (!string.IsNullOrEmpty(result?.ToString()))
+                        {
+                            return $"{result}";
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         // This method retrieves the number of department saved in the database
         public async Task<int> GetNumberOfDepartment()
         {
@@ -670,7 +707,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select d.departmentName, d.departmentLogo, d.departmentId, " +
+                    string command = "select d.departmentName, d.departmentLogo, d.departmentId, d.departmentInitial, " +
                         "count(case when es.employmentStatus = 'Regular' then 1 end) as regularCount, " +
                         "count(case when es.employmentStatus = 'Job Order' then 1 end) as jobOrderCount, " +
                         "count(distinct e.employeeId) as totalEmployees " +
@@ -679,7 +716,7 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                         "left join tbl_appointmentForm af on e.employeeId = af.employeeId " +
                         "left join tbl_employmentStatus es on es.employmentStatusId = af.employmentStatusId " +
                         "group by " +
-                        "d.departmentName, d.departmentLogo, d.departmentId";
+                        "d.departmentName, d.departmentLogo, d.departmentId, d.departmentInitial";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
@@ -720,6 +757,10 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                         }
                     }
                 }
+            }
+            catch (SqlException sql)
+            {
+                throw sql;
             }
             catch (Exception ex)
             {

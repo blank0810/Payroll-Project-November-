@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Web.Security;
 using System.Windows.Forms;
 
 namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control
@@ -20,7 +21,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control
         private static readonly generalFunctions generalFunctions = new generalFunctions();
         private static readonly string employeeImagePath = ConfigurationManager.AppSettings.Get("DestinationEmployeeImagePath");
         private static readonly string departmentLogoPath = ConfigurationManager.AppSettings.Get("DestinationDepartmentImagePath");
-        private static string userRoleParameter = "Department Head";
+        private static string userRoleParameter = "Employee";
 
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
@@ -38,6 +39,17 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control
             _parent = parent;
         }
 
+        private async Task<string> GetUserRole(int departmentId, string userRole)
+        {
+            try
+            {
+                string role = await generalFunctions.GetHeadRoleDescription(departmentId, userRole);
+                return role;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
         #region Starts the functions to be use for the functionality of the user interface
 
         private void DepartmentDataBinding()
@@ -53,10 +65,11 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control
             #endregion
         }
 
-        private async Task GetDepartmentDetails(int departmentId, string userRole)
+        private async Task GetDepartmentDetails(int departmentId, string role)
         {
             #region Function for retrieving the details of the department
 
+            string userRole = await GetUserRole(departmentId, role);
             DataTable DepartmentDetails = await generalFunctions.GetDepartmentDetails(departmentId, userRole);
             analyticsButtonModal analytics = new analyticsButtonModal(userId, this);
 

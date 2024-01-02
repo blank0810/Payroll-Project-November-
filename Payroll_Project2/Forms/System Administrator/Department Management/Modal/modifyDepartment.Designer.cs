@@ -347,6 +347,7 @@
             this.cancelBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.cancelBtn.BorderRadius = 10;
             this.cancelBtn.BorderSize = 0;
+            this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelBtn.FlatAppearance.BorderSize = 0;
             this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelBtn.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -358,6 +359,7 @@
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.TextColor = System.Drawing.Color.White;
             this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // panel7
             // 
@@ -395,6 +397,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelBtn;
             this.ClientSize = new System.Drawing.Size(387, 584);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel6);
@@ -405,6 +408,7 @@
             this.Name = "modifyDepartment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modify Department Information";
+            this.Load += new System.EventHandler(this.modifyDepartment_Load);
             this.panel4.ResumeLayout(false);
             this.panel38.ResumeLayout(false);
             this.panel38.PerformLayout();

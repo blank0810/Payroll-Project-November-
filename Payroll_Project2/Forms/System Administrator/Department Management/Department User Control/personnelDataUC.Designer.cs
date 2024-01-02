@@ -39,10 +39,9 @@
             // 
             // dateHired
             // 
-            this.dateHired.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dateHired.AutoSize = true;
             this.dateHired.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateHired.Location = new System.Drawing.Point(637, 10);
+            this.dateHired.Location = new System.Drawing.Point(639, 10);
             this.dateHired.Name = "dateHired";
             this.dateHired.Size = new System.Drawing.Size(75, 17);
             this.dateHired.TabIndex = 11;
@@ -50,10 +49,9 @@
             // 
             // jobDesc
             // 
-            this.jobDesc.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.jobDesc.AutoSize = true;
             this.jobDesc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobDesc.Location = new System.Drawing.Point(431, 10);
+            this.jobDesc.Location = new System.Drawing.Point(433, 10);
             this.jobDesc.Name = "jobDesc";
             this.jobDesc.Size = new System.Drawing.Size(127, 17);
             this.jobDesc.TabIndex = 10;
@@ -61,10 +59,9 @@
             // 
             // empStatus
             // 
-            this.empStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.empStatus.AutoSize = true;
             this.empStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.empStatus.Location = new System.Drawing.Point(243, 10);
+            this.empStatus.Location = new System.Drawing.Point(245, 10);
             this.empStatus.Name = "empStatus";
             this.empStatus.Size = new System.Drawing.Size(55, 17);
             this.empStatus.TabIndex = 9;
@@ -118,7 +115,8 @@
             this.Controls.Add(this.empName);
             this.Controls.Add(this.empPicture);
             this.Name = "personnelDataUC";
-            this.Size = new System.Drawing.Size(715, 40);
+            this.Size = new System.Drawing.Size(724, 40);
+            this.Load += new System.EventHandler(this.personnelDataUC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.empPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

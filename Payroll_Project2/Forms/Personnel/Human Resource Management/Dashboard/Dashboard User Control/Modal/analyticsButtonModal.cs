@@ -58,6 +58,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Moda
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
         }
+
         #endregion
 
         #region Functions under this is used for the functionality of the UI

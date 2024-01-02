@@ -198,6 +198,7 @@
             this.Controls.Add(this.departmentPicture);
             this.Name = "departmentCardUC";
             this.Size = new System.Drawing.Size(317, 211);
+            this.Load += new System.EventHandler(this.departmentCardUC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.departmentPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

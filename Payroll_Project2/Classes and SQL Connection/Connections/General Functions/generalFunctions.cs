@@ -26,6 +26,75 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
+        // This function responsible for checking if the department being added exist or not
+        public async Task<bool> CheckDepartment(string departmentName)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string command = "select count(*) from tbl_department where departmentName = @departmentname";
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@departmentname", departmentName);
+
+                        object result = await cmd.ExecuteScalarAsync();
+
+                        if ((int)result == 0 || result == DBNull.Value)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // This method will add a department into the database
+        public async Task<bool> AddDepartment(string departmentName, string departmentInitial, string departmentLogo)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string command = "Insert into tbl_department (departmentname, departmentInitial, departmentLogo) " +
+                        "values (@departmentname, @departmentinitial, @departmentlogo)";
+                    using (cmd = new SqlCommand(command, conn))
+                    {
+                        await conn.OpenAsync();
+                        cmd.Parameters.AddWithValue("@departmentname", departmentName);
+                        cmd.Parameters.AddWithValue("@departmentinitial", departmentInitial);
+                        cmd.Parameters.AddWithValue("@departmentlogo", departmentLogo);
+
+                        object result = await cmd.ExecuteNonQueryAsync();
+
+                        if (result != null)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         // This function is responsible for retrieving the Head of each respective Department
         public async Task<string> GetHeadRoleDescription(int departmentId, string userRole)
         {

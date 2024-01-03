@@ -293,6 +293,7 @@
             this.submitBtn.Text = "Submit";
             this.submitBtn.TextColor = System.Drawing.Color.White;
             this.submitBtn.UseVisualStyleBackColor = false;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // discardBtn
             // 

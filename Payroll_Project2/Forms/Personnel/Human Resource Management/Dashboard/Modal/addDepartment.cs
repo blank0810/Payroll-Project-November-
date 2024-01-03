@@ -88,7 +88,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Modal
         {
             try
             {
-                bool addingDepartment = await personnel.AddDepartment(departmentName, initials, logo);
+                bool addingDepartment = await generalFunctions.AddDepartment(departmentName, initials, logo);
                 return addingDepartment;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
@@ -110,8 +110,7 @@ namespace Payroll_Project2.Forms.Personnel.Dashboard.Modal
         {
             try
             {
-                personnelDashboard personnel = new personnelDashboard();
-                bool check = await personnel.CheckDepartment(departmentName);
+                bool check = await generalFunctions.CheckDepartment(departmentName);
 
                 return check;
             }

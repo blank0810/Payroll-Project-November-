@@ -141,6 +141,7 @@
             this.departmentImageBox.TabIndex = 42;
             this.departmentImageBox.Texts = "";
             this.departmentImageBox.UnderlinedStyle = false;
+            this.departmentImageBox._TextChanged += new System.EventHandler(this.departmentImageBox__TextChanged);
             // 
             // departmentImageBtn
             // 
@@ -163,6 +164,7 @@
             this.departmentImageBtn.Text = "Upload Employee Image";
             this.departmentImageBtn.TextColor = System.Drawing.Color.White;
             this.departmentImageBtn.UseVisualStyleBackColor = false;
+            this.departmentImageBtn.Click += new System.EventHandler(this.departmentImageBtn_Click);
             // 
             // label25
             // 
@@ -230,6 +232,7 @@
             this.departmentInitials.TabIndex = 16;
             this.departmentInitials.Texts = "";
             this.departmentInitials.UnderlinedStyle = false;
+            this.departmentInitials._TextChanged += new System.EventHandler(this.departmentInitials__TextChanged);
             // 
             // panel19
             // 
@@ -284,6 +287,7 @@
             this.departmentName.TabIndex = 4;
             this.departmentName.Texts = "";
             this.departmentName.UnderlinedStyle = false;
+            this.departmentName._TextChanged += new System.EventHandler(this.departmentName__TextChanged);
             // 
             // panel3
             // 
@@ -337,6 +341,7 @@
             this.submitBtn.Text = "Submit";
             this.submitBtn.TextColor = System.Drawing.Color.White;
             this.submitBtn.UseVisualStyleBackColor = false;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // cancelBtn
             // 

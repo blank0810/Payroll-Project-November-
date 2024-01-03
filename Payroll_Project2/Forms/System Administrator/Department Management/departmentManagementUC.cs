@@ -144,7 +144,7 @@ namespace Payroll_Project2.Forms.System_Administrator.Department_Management
 
         private void addDepartmentBtn_Click(object sender, EventArgs e)
         {
-            addDepartment addDepartment = new addDepartment();
+            addDepartment addDepartment = new addDepartment(_userId);
 
             addDepartment.ShowDialog();
         }

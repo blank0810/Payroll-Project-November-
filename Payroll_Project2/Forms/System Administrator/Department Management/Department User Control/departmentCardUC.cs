@@ -49,27 +49,42 @@ namespace Payroll_Project2.Forms.System_Administrator.Department_Management.Depa
         private async Task GetDepartmentDetails(int departmentId, string role, int userId)
         {
             #region Function for retrieving the details of the department
-
-            string userRole = await GetUserRole(departmentId, role);
-            DataTable DepartmentDetails = await generalFunctions.GetDepartmentDetails(departmentId, userRole);
-            departmentInformationModal analytics = new departmentInformationModal(userId);
-
             try
             {
-                if (DepartmentDetails != null && DepartmentDetails.Rows.Count > 0)
+                string userRole = await GetUserRole(departmentId, role);
+                departmentInformationModal analytics = new departmentInformationModal(userId);
+
+                if(!string.IsNullOrEmpty(userRole))
                 {
-                    foreach (DataRow row in DepartmentDetails.Rows)
+                    DataTable DepartmentDetails = await generalFunctions.GetDepartmentDetails(departmentId, userRole);
+                    if (DepartmentDetails != null && DepartmentDetails.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in DepartmentDetails.Rows)
+                        {
+                            analytics.DepartmentID = departmentId;
+                            analytics.DepartmentName = DepartmentName;
+                            analytics.DepartmentLogo = DepartmentLogo;
+                            analytics.DepartmentHead = row["employeefname"].ToString() + " " + row["employeelname"].ToString();
+                            analytics.SchoolName = row["nameofschool"].ToString();
+                            analytics.DateHired = row["datehired"].ToString();
+                            analytics.ContactNumber = row["employeecontactnumber"].ToString();
+                            analytics.JobDescription = row["employeejobdesc"].ToString();
+                        }
+                        analytics.ShowDialog();
+                    }
+                    else
                     {
                         analytics.DepartmentID = departmentId;
                         analytics.DepartmentName = DepartmentName;
                         analytics.DepartmentLogo = DepartmentLogo;
-                        analytics.DepartmentHead = row["employeefname"].ToString() + " " + row["employeelname"].ToString();
-                        analytics.SchoolName = row["nameofschool"].ToString();
-                        analytics.DateHired = row["datehired"].ToString();
-                        analytics.ContactNumber = row["employeecontactnumber"].ToString();
-                        analytics.JobDescription = row["employeejobdesc"].ToString();
+                        analytics.DepartmentHead = "------";
+                        analytics.SchoolName = "----";
+                        analytics.DateHired = "----";
+                        analytics.ContactNumber = "----";
+                        analytics.JobDescription = "----";
+
+                        analytics.ShowDialog();
                     }
-                    analytics.ShowDialog();
                 }
                 else
                 {

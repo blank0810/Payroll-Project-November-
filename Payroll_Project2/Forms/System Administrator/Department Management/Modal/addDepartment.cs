@@ -103,6 +103,16 @@ namespace Payroll_Project2.Forms.System_Administrator.Department_Management.Moda
             catch (Exception ex) { throw ex; }
         }
 
+        private void ErrorMessages(string message, string caption)
+        {
+            MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void SuccessMessages(string message, string caption)
+        {
+            MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void discardBtn_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -169,10 +179,19 @@ namespace Payroll_Project2.Forms.System_Administrator.Department_Management.Moda
 
         private bool IsValidated()
         {
-            if (string.IsNullOrEmpty(departmentName.Text))
+            if (string.IsNullOrEmpty(departmentName.Texts))
             {
-                MessageBox.Show("Please provide the department name and its corresponding initials.", "Validation Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorMessages($"Please provide the department name!", "Department Name Input");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(abbreviation.Texts))
+            {
+                ErrorMessages($"Please provide the proper initials for the department!", "Department Initials Input");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(departmentImageBox.Texts))
+            {
+                ErrorMessages($"Please choose a department logo!", "Department Logo Input");
                 return false;
             }
             else
@@ -186,8 +205,9 @@ namespace Payroll_Project2.Forms.System_Administrator.Department_Management.Moda
         {
             try
             {
-                File.Copy(departmentImage, Path.Combine(departmentImageDestination, DepartmentName + Path.GetExtension(departmentImage)), true);
-                DepartmentImage = DepartmentName + Path.GetExtension(departmentImage);
+                string newImage = $"{departmentImageDestination}{DepartmentName.Replace(" ", "")}{Path.GetExtension(departmentImage)}";
+                File.Copy(departmentImage, newImage, true);
+                DepartmentImage = Path.GetFileName(newImage);
                 return true;
             }
             catch (Exception ex)
@@ -270,7 +290,7 @@ namespace Payroll_Project2.Forms.System_Administrator.Department_Management.Moda
             try
             {
                 string systemLogDescription = "A new department has been added: " +
-                    "||Personnel Name: " + name +
+                    "||Administrator Name: " + name +
                     "||Department Name: " + DepartmentName +
                     "||Date and Time Added: " + DateTime.Now.ToString("f");
 

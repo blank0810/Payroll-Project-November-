@@ -104,7 +104,6 @@
             // 
             // benefitName
             // 
-            this.benefitName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.benefitName.AutoSize = true;
             this.benefitName.Font = new System.Drawing.Font("Cambria", 13F, System.Drawing.FontStyle.Bold);
             this.benefitName.ForeColor = System.Drawing.Color.Black;
@@ -117,7 +116,6 @@
             // 
             // companyAddress
             // 
-            this.companyAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.companyAddress.AutoSize = true;
             this.companyAddress.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.companyAddress.ForeColor = System.Drawing.Color.DimGray;
@@ -130,7 +128,6 @@
             // 
             // companyName
             // 
-            this.companyName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.companyName.AutoSize = true;
             this.companyName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.companyName.ForeColor = System.Drawing.Color.Black;

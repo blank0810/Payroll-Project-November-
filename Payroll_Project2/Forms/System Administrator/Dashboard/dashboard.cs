@@ -5,6 +5,7 @@ using Payroll_Project2.Forms.System_Administrator.Benefits_and_Deduction_Managem
 using Payroll_Project2.Forms.System_Administrator.Dashboard.Modal;
 using Payroll_Project2.Forms.System_Administrator.Department_Management;
 using Payroll_Project2.Forms.System_Administrator.Employee_Management;
+using Payroll_Project2.Forms.System_Administrator.Log_Management;
 using System;
 using System.Configuration;
 using System.Data;
@@ -500,6 +501,64 @@ namespace Payroll_Project2.Forms.System_Administrator.Dashboard
             else
             {
                 benefitAndDeductionUC.BringToFront();
+            }
+        }
+
+        private void personnelAppointment_Click(object sender, EventArgs e)
+        {
+            titleLabel.Text = personnelAppointment.Text;
+            appointmentListUC appointmentListUC = new appointmentListUC(_userId);
+            appointmentListUC.DefaultRole = "Personnel";
+
+            if(!contentPanel.Controls.Contains(appointmentListUC))
+            {
+                contentPanel.Controls.Add(appointmentListUC);
+                appointmentListUC.Dock = DockStyle.Fill;
+                appointmentListUC.BringToFront();
+            }
+            else
+            {
+                appointmentListUC.BringToFront();
+            }
+        }
+
+        private void buttonDesign1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mayorAppointment_Click(object sender, EventArgs e)
+        {
+            titleLabel.Text = mayorAppointment.Text;
+            appointmentListUC appointmentListUC = new appointmentListUC(_userId);
+            appointmentListUC.DefaultRole = "Mayor";
+
+            if (!contentPanel.Controls.Contains(appointmentListUC))
+            {
+                contentPanel.Controls.Add(appointmentListUC);
+                appointmentListUC.Dock = DockStyle.Fill;
+                appointmentListUC.BringToFront();
+            }
+            else
+            {
+                appointmentListUC.BringToFront();
+            }
+        }
+
+        private void systemLogBtn_Click(object sender, EventArgs e)
+        {
+            titleLabel.Text = systemLogBtn.Text;
+            systemLogManagementUC systemLogManagementUC = new systemLogManagementUC(_userId);
+
+            if(!contentPanel.Controls.Contains(systemLogManagementUC))
+            {
+                contentPanel.Controls.Add(systemLogManagementUC);
+                systemLogManagementUC.Dock = DockStyle.Fill;
+                systemLogManagementUC.BringToFront();
+            }
+            else
+            {
+                systemLogManagementUC.BringToFront();
             }
         }
     }

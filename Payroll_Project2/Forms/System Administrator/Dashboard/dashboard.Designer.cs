@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.sidePanel = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.benefitBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel3 = new System.Windows.Forms.Panel();
             this.departmentManagementBtn = new Payroll_Project2.Custom.buttonDesign();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -37,6 +39,7 @@
             this.dashboardBtn = new Payroll_Project2.Custom.buttonDesign();
             this.newUpperSide = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -73,6 +76,7 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.uploadBtn = new Payroll_Project2.Custom.buttonDesign();
             this.viceMayorName = new System.Windows.Forms.Label();
+            this.companyLogo = new System.Windows.Forms.PictureBox();
             this.companyName = new System.Windows.Forms.Label();
             this.mayorName = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -87,15 +91,19 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.infoLabel = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.benefitBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.companyLogo = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.personnelAppointment = new Payroll_Project2.Custom.buttonDesign();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.mayorAppointment = new Payroll_Project2.Custom.buttonDesign();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.systemLogBtn = new Payroll_Project2.Custom.buttonDesign();
             this.sidePanel.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.newUpperSide.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel8.SuspendLayout();
             this.aboveContent.SuspendLayout();
             this.contentPanel.SuspendLayout();
@@ -103,16 +111,20 @@
             this.panel20.SuspendLayout();
             this.panel18.SuspendLayout();
             this.panel17.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel12.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // sidePanel
             // 
             this.sidePanel.AutoScroll = true;
             this.sidePanel.BackColor = System.Drawing.Color.SteelBlue;
+            this.sidePanel.Controls.Add(this.panel6);
+            this.sidePanel.Controls.Add(this.panel9);
+            this.sidePanel.Controls.Add(this.panel7);
             this.sidePanel.Controls.Add(this.panel4);
             this.sidePanel.Controls.Add(this.panel3);
             this.sidePanel.Controls.Add(this.panel5);
@@ -125,6 +137,37 @@
             this.sidePanel.Name = "sidePanel";
             this.sidePanel.Size = new System.Drawing.Size(262, 918);
             this.sidePanel.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.benefitBtn);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 333);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(262, 46);
+            this.panel4.TabIndex = 36;
+            // 
+            // benefitBtn
+            // 
+            this.benefitBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.benefitBtn.AutoSize = true;
+            this.benefitBtn.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.benefitBtn.BackgroundColor = System.Drawing.Color.DarkSlateGray;
+            this.benefitBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.benefitBtn.BorderRadius = 15;
+            this.benefitBtn.BorderSize = 0;
+            this.benefitBtn.FlatAppearance.BorderSize = 0;
+            this.benefitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.benefitBtn.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.benefitBtn.ForeColor = System.Drawing.Color.White;
+            this.benefitBtn.Location = new System.Drawing.Point(11, 4);
+            this.benefitBtn.Name = "benefitBtn";
+            this.benefitBtn.Size = new System.Drawing.Size(240, 39);
+            this.benefitBtn.TabIndex = 0;
+            this.benefitBtn.Text = "Benefits and Deduction Management";
+            this.benefitBtn.TextColor = System.Drawing.Color.White;
+            this.benefitBtn.UseVisualStyleBackColor = false;
+            this.benefitBtn.Click += new System.EventHandler(this.benefitBtn_Click);
             // 
             // panel3
             // 
@@ -240,6 +283,17 @@
             this.label3.Size = new System.Drawing.Size(105, 24);
             this.label3.TabIndex = 7;
             this.label3.Text = "Automated";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(98, 84);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -719,6 +773,16 @@
             this.viceMayorName.Text = "{Vice-mayor name}";
             this.viceMayorName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // companyLogo
+            // 
+            this.companyLogo.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
+            this.companyLogo.Location = new System.Drawing.Point(48, 6);
+            this.companyLogo.Name = "companyLogo";
+            this.companyLogo.Size = new System.Drawing.Size(105, 95);
+            this.companyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.companyLogo.TabIndex = 1;
+            this.companyLogo.TabStop = false;
+            // 
             // companyName
             // 
             this.companyName.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -898,57 +962,95 @@
             this.infoLabel.Text = "Primary Information";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel4
+            // panel7
             // 
-            this.panel4.Controls.Add(this.benefitBtn);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 333);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(262, 46);
-            this.panel4.TabIndex = 36;
+            this.panel7.Controls.Add(this.personnelAppointment);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 379);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(262, 46);
+            this.panel7.TabIndex = 38;
             // 
-            // benefitBtn
+            // personnelAppointment
             // 
-            this.benefitBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.benefitBtn.AutoSize = true;
-            this.benefitBtn.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.benefitBtn.BackgroundColor = System.Drawing.Color.DarkSlateGray;
-            this.benefitBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.benefitBtn.BorderRadius = 15;
-            this.benefitBtn.BorderSize = 0;
-            this.benefitBtn.FlatAppearance.BorderSize = 0;
-            this.benefitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.benefitBtn.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.benefitBtn.ForeColor = System.Drawing.Color.White;
-            this.benefitBtn.Location = new System.Drawing.Point(11, 4);
-            this.benefitBtn.Name = "benefitBtn";
-            this.benefitBtn.Size = new System.Drawing.Size(240, 39);
-            this.benefitBtn.TabIndex = 0;
-            this.benefitBtn.Text = "Benefits and Deduction Management";
-            this.benefitBtn.TextColor = System.Drawing.Color.White;
-            this.benefitBtn.UseVisualStyleBackColor = false;
-            this.benefitBtn.Click += new System.EventHandler(this.benefitBtn_Click);
+            this.personnelAppointment.AutoSize = true;
+            this.personnelAppointment.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.personnelAppointment.BackgroundColor = System.Drawing.Color.DarkSlateGray;
+            this.personnelAppointment.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.personnelAppointment.BorderRadius = 15;
+            this.personnelAppointment.BorderSize = 0;
+            this.personnelAppointment.FlatAppearance.BorderSize = 0;
+            this.personnelAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.personnelAppointment.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.personnelAppointment.ForeColor = System.Drawing.Color.White;
+            this.personnelAppointment.Location = new System.Drawing.Point(43, 4);
+            this.personnelAppointment.Name = "personnelAppointment";
+            this.personnelAppointment.Size = new System.Drawing.Size(176, 39);
+            this.personnelAppointment.TabIndex = 1;
+            this.personnelAppointment.Text = "Personnel Appointment";
+            this.personnelAppointment.TextColor = System.Drawing.Color.White;
+            this.personnelAppointment.UseVisualStyleBackColor = false;
+            this.personnelAppointment.Click += new System.EventHandler(this.personnelAppointment_Click);
             // 
-            // companyLogo
+            // panel9
             // 
-            this.companyLogo.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
-            this.companyLogo.Location = new System.Drawing.Point(48, 6);
-            this.companyLogo.Name = "companyLogo";
-            this.companyLogo.Size = new System.Drawing.Size(105, 95);
-            this.companyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.companyLogo.TabIndex = 1;
-            this.companyLogo.TabStop = false;
+            this.panel9.Controls.Add(this.mayorAppointment);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 425);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(262, 46);
+            this.panel9.TabIndex = 39;
             // 
-            // pictureBox1
+            // mayorAppointment
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(98, 84);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.mayorAppointment.AutoSize = true;
+            this.mayorAppointment.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.mayorAppointment.BackgroundColor = System.Drawing.Color.DarkSlateGray;
+            this.mayorAppointment.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.mayorAppointment.BorderRadius = 15;
+            this.mayorAppointment.BorderSize = 0;
+            this.mayorAppointment.FlatAppearance.BorderSize = 0;
+            this.mayorAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.mayorAppointment.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.mayorAppointment.ForeColor = System.Drawing.Color.White;
+            this.mayorAppointment.Location = new System.Drawing.Point(43, 4);
+            this.mayorAppointment.Name = "mayorAppointment";
+            this.mayorAppointment.Size = new System.Drawing.Size(176, 39);
+            this.mayorAppointment.TabIndex = 1;
+            this.mayorAppointment.Text = "Mayor Appointment";
+            this.mayorAppointment.TextColor = System.Drawing.Color.White;
+            this.mayorAppointment.UseVisualStyleBackColor = false;
+            this.mayorAppointment.Click += new System.EventHandler(this.mayorAppointment_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.systemLogBtn);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 471);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(262, 46);
+            this.panel6.TabIndex = 40;
+            // 
+            // systemLogBtn
+            // 
+            this.systemLogBtn.AutoSize = true;
+            this.systemLogBtn.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.systemLogBtn.BackgroundColor = System.Drawing.Color.DarkSlateGray;
+            this.systemLogBtn.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.systemLogBtn.BorderRadius = 15;
+            this.systemLogBtn.BorderSize = 0;
+            this.systemLogBtn.FlatAppearance.BorderSize = 0;
+            this.systemLogBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.systemLogBtn.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.systemLogBtn.ForeColor = System.Drawing.Color.White;
+            this.systemLogBtn.Location = new System.Drawing.Point(43, 4);
+            this.systemLogBtn.Name = "systemLogBtn";
+            this.systemLogBtn.Size = new System.Drawing.Size(176, 39);
+            this.systemLogBtn.TabIndex = 1;
+            this.systemLogBtn.Text = "System Logs";
+            this.systemLogBtn.TextColor = System.Drawing.Color.White;
+            this.systemLogBtn.UseVisualStyleBackColor = false;
+            this.systemLogBtn.Click += new System.EventHandler(this.systemLogBtn_Click);
             // 
             // systemAdminDashboard
             // 
@@ -968,6 +1070,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.systemAdminDashboard_Load);
             this.sidePanel.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -975,6 +1079,7 @@
             this.panel1.ResumeLayout(false);
             this.newUpperSide.ResumeLayout(false);
             this.newUpperSide.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel8.ResumeLayout(false);
             this.aboveContent.ResumeLayout(false);
             this.aboveContent.PerformLayout();
@@ -987,12 +1092,15 @@
             this.panel18.PerformLayout();
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyLogo)).EndInit();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.companyLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1062,5 +1170,11 @@
         private Custom.buttonDesign departmentManagementBtn;
         private System.Windows.Forms.Panel panel4;
         private Custom.buttonDesign benefitBtn;
+        private System.Windows.Forms.Panel panel7;
+        private Custom.buttonDesign personnelAppointment;
+        private System.Windows.Forms.Panel panel9;
+        private Custom.buttonDesign mayorAppointment;
+        private System.Windows.Forms.Panel panel6;
+        private Custom.buttonDesign systemLogBtn;
     }
 }

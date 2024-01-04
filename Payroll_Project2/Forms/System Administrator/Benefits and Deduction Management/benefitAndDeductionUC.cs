@@ -1,4 +1,5 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.System_Administrator;
+using Payroll_Project2.Forms.System_Administrator.Benefits_and_Deduction_Management.Modal;
 using Payroll_Project2.Forms.System_Administrator.Benefits_and_Deduction_Management.Sub_user_controls;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,18 @@ namespace Payroll_Project2.Forms.System_Administrator.Benefits_and_Deduction_Man
         {
             InitializeComponent();
             _userId = userId;
+        }
+
+        private async Task<int> GetBenefitId()
+        {
+            try
+            {
+                int id = await benefitManagementClass.GetBenefitId();
+
+                return ++id;
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
         }
 
         private async Task<DataTable> GetBenefitList()
@@ -102,6 +115,15 @@ namespace Payroll_Project2.Forms.System_Administrator.Benefits_and_Deduction_Man
 
         private async void benefitAndDeductionUC_Load(object sender, EventArgs e)
         {
+            await DisplayBenefits(_userId);
+        }
+
+        private async void addBtn_Click(object sender, EventArgs e)
+        {
+            addNewBenefit addBenefit = new addNewBenefit(_userId, this);
+            addBenefit.BenefitId = await GetBenefitId();
+            addBenefit.ShowDialog();
+
             await DisplayBenefits(_userId);
         }
     }

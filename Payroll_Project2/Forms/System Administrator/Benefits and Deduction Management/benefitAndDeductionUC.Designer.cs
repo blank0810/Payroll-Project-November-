@@ -33,6 +33,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.addBtn = new Payroll_Project2.Custom.buttonDesign();
             this.label5 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
@@ -85,6 +86,7 @@
             // panel15
             // 
             this.panel15.BackColor = System.Drawing.SystemColors.Control;
+            this.panel15.Controls.Add(this.addBtn);
             this.panel15.Controls.Add(this.label5);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel15.Location = new System.Drawing.Point(10, 10);
@@ -92,15 +94,37 @@
             this.panel15.Size = new System.Drawing.Size(1240, 39);
             this.panel15.TabIndex = 29;
             // 
+            // addBtn
+            // 
+            this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addBtn.AutoSize = true;
+            this.addBtn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.addBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.addBtn.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.addBtn.BorderRadius = 5;
+            this.addBtn.BorderSize = 0;
+            this.addBtn.FlatAppearance.BorderSize = 0;
+            this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBtn.ForeColor = System.Drawing.Color.White;
+            this.addBtn.Location = new System.Drawing.Point(1112, 5);
+            this.addBtn.Name = "addBtn";
+            this.addBtn.Size = new System.Drawing.Size(123, 28);
+            this.addBtn.TabIndex = 59;
+            this.addBtn.Text = "Add New Benefit";
+            this.addBtn.TextColor = System.Drawing.Color.White;
+            this.addBtn.UseVisualStyleBackColor = false;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(10, 8);
+            this.label5.Location = new System.Drawing.Point(7, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(325, 22);
+            this.label5.Size = new System.Drawing.Size(282, 22);
             this.label5.TabIndex = 1;
-            this.label5.Text = "List of Every Department and Information";
+            this.label5.Text = "List of Every Benefit and Deductions";
             // 
             // panel5
             // 
@@ -227,5 +251,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.FlowLayoutPanel listPanel;
+        private Custom.buttonDesign addBtn;
     }
 }

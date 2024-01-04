@@ -583,10 +583,22 @@ where isTermActive = 1
 
 select * from tbl_userRole
 select * from tbl_employee
+select * from tbl_employeeDataLogChanges
+select * from tbl_payrollTransactionLog
 select * from tbl_educationalAttainment
 select * from tbl_department
 select * from tbl_mayorDetails
 select * from tbl_companyDetails
+select * from tbl_benefits
+select * from tbl_benefitsContributions where benefitsId = 6
+select * from tbl_benefitsFormula
+select * from tbl_witholdingTaxRates
+select * from tbl_employmentStatusAccess
+select * from tbl_benefitsContributions
+SELECT IDENT_CURRENT('tbl_benefits')
+select ident_current('tbl_benefits')
+select * from tbl_mandatedBenefits
+select * from tbl_userRole
 
 alter table tbl_companyDetails
 

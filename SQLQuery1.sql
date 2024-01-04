@@ -499,6 +499,24 @@ WHERE st.trancheNumber = 4 AND sv.yearEffective = 2023 AND sv.isActive = 1
 GROUP BY sr.salaryratedescription, sr.salaryGradeNumber
 ORDER BY sr.salaryGradeNumber;
 
+SELECT
+    sr.salaryratedescription,
+	MAX(CASE WHEN sv.stepId is null then sv.amount end) as customAmount,
+    MAX(CASE WHEN sv.stepId = 1 THEN sv.amount END) AS Step1,
+    MAX(CASE WHEN sv.stepId = 2 THEN sv.amount END) AS Step2,
+    MAX(CASE WHEN sv.stepId = 3 THEN sv.amount END) AS Step3,
+    MAX(CASE WHEN sv.stepId = 4 THEN sv.amount END) AS Step4,
+    MAX(CASE WHEN sv.stepId = 5 THEN sv.amount END) AS Step5,
+    MAX(CASE WHEN sv.stepId = 6 THEN sv.amount END) AS Step6,
+    MAX(CASE WHEN sv.stepId = 7 THEN sv.amount END) AS Step7,
+    MAX(CASE WHEN sv.stepId = 8 THEN sv.amount END) AS Step8
+FROM tbl_salaryRate sr
+LEFT JOIN tbl_salaryRateValue sv ON sr.salaryRateId = sv.salaryRateId
+LEFT JOIN tbl_salaryRateTranche st ON sv.trancheId = st.trancheId
+WHERE (st.trancheNumber = 4 OR st.trancheNumber IS NULL) AND sv.isActive = 1
+GROUP BY sr.salaryratedescription, sr.salaryGradeNumber
+ORDER BY sr.salaryGradeNumber;
+
 select * from tbl_salaryRateTranche
 select * from tbl_salaryRateValue
 
@@ -672,9 +690,11 @@ FROM tbl_salaryRateValue sv
 JOIN tbl_salaryRate sr ON sv.salaryRateId = sr.salaryRateId
 JOIN tbl_salaryRateTranche st ON sv.trancheId = st.trancheId
 WHERE st.trancheNumber = 4 AND sv.yearEffective = 2023 AND sv.isActive = 1
-GROUP BY sr.salaryratedescription, sr.salaryGradeNumber, sv.salaryRateValueId
+GROUP BY sr.salaryratedescription, sr.salaryGradeNumber
 ORDER BY sr.salaryGradeNumber;
 
+SELECT * from tbl_salaryRate
+SELECT * from tbl_salaryRateValue
 select * from tbl_appointmentForm
 select * from tbl_employmentStatus
 select * from tbl_payrollSched

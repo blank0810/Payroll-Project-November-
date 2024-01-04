@@ -265,6 +265,8 @@
     <Compile Include="Classes and SQL Connection\Connections\System Administrator\benefitManagementClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\System Administrator\dashboardClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\System Administrator\departmentManagementClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\System Administrator\employeeClass.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\System Administrator\logsClass.cs" />
     <Compile Include="Classes and SQL Connection\logInClass.cs" />
     <Compile Include="Classes and SQL Connection\Custom\customColorTable.cs" />
     <Compile Include="Classes and SQL Connection\Custom\customDateTime.cs">
@@ -1564,6 +1566,12 @@
     <Compile Include="Forms\System Administrator\Benefits and Deduction Management\benefitAndDeductionUC.Designer.cs">
       <DependentUpon>benefitAndDeductionUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Modal\addNewBenefit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Modal\addNewBenefit.Designer.cs">
+      <DependentUpon>addNewBenefit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Modal\benefitRateModal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1642,59 +1650,41 @@
     <Compile Include="Forms\System Administrator\Department Management\Modal\modifyDepartment.Designer.cs">
       <DependentUpon>modifyDepartment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\appointmentUC.cs">
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management Sub user control\mandateDeductionsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\appointmentUC.Designer.cs">
-      <DependentUpon>appointmentUC.cs</DependentUpon>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management Sub user control\mandateDeductionsUC.Designer.cs">
+      <DependentUpon>mandateDeductionsUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management Modal\employeeSignatureModal.cs">
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management Sub user control\personnelDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Employee Management Sub user control\personnelDataUC.Designer.cs">
+      <DependentUpon>personnelDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Employee Management\Modal\appointmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management Modal\employeeSignatureModal.Designer.cs">
-      <DependentUpon>employeeSignatureModal.cs</DependentUpon>
+    <Compile Include="Forms\System Administrator\Employee Management\Modal\appointmentForm.Designer.cs">
+      <DependentUpon>appointmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\benefitsDetailsUC.cs">
+    <Compile Include="Forms\System Administrator\Employee Management\appointmentListUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\benefitsDetailsUC.Designer.cs">
-      <DependentUpon>benefitsDetailsUC.cs</DependentUpon>
+    <Compile Include="Forms\System Administrator\Employee Management\appointmentListUC.Designer.cs">
+      <DependentUpon>appointmentListUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDataUC.cs">
+    <Compile Include="Forms\System Administrator\System Log Management\Sub UC\systemLogDataUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDataUC.Designer.cs">
-      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    <Compile Include="Forms\System Administrator\System Log Management\Sub UC\systemLogDataUC.Designer.cs">
+      <DependentUpon>systemLogDataUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDetailsUserControl.cs">
+    <Compile Include="Forms\System Administrator\System Log Management\systemLogManagementUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDetailsUserControl.Designer.cs">
-      <DependentUpon>employeeDetailsUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\leaveUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\leaveUC.Designer.cs">
-      <DependentUpon>leaveUC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\passSlipUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\passSlipUC.Designer.cs">
-      <DependentUpon>passSlipUC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\travelOrderUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\Employee Management User Controls\travelOrderUC.Designer.cs">
-      <DependentUpon>travelOrderUC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\employeeListUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\System Administrator\Employee Management\employeeListUC.Designer.cs">
-      <DependentUpon>employeeListUC.cs</DependentUpon>
+    <Compile Include="Forms\System Administrator\System Log Management\systemLogManagementUC.Designer.cs">
+      <DependentUpon>systemLogManagementUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2211,6 +2201,9 @@
     <EmbeddedResource Include="Forms\System Administrator\Benefits and Deduction Management\benefitAndDeductionUC.resx">
       <DependentUpon>benefitAndDeductionUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Benefits and Deduction Management\Modal\addNewBenefit.resx">
+      <DependentUpon>addNewBenefit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\System Administrator\Benefits and Deduction Management\Modal\benefitRateModal.resx">
       <DependentUpon>benefitRateModal.cs</DependentUpon>
     </EmbeddedResource>
@@ -2250,32 +2243,23 @@
     <EmbeddedResource Include="Forms\System Administrator\Department Management\Modal\modifyDepartment.resx">
       <DependentUpon>modifyDepartment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\System Administrator\Employee Management\appointmentUC.resx">
-      <DependentUpon>appointmentUC.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management Sub user control\mandateDeductionsUC.resx">
+      <DependentUpon>mandateDeductionsUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management Modal\employeeSignatureModal.resx">
-      <DependentUpon>employeeSignatureModal.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management Sub user control\personnelDataUC.resx">
+      <DependentUpon>personnelDataUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\benefitsDetailsUC.resx">
-      <DependentUpon>benefitsDetailsUC.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Modal\appointmentForm.resx">
+      <DependentUpon>appointmentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDataUC.resx">
-      <DependentUpon>employeeDataUC.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\System Administrator\Employee Management\appointmentListUC.resx">
+      <DependentUpon>appointmentListUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\employeeDetailsUserControl.resx">
-      <DependentUpon>employeeDetailsUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\System Administrator\System Log Management\Sub UC\systemLogDataUC.resx">
+      <DependentUpon>systemLogDataUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\leaveUC.resx">
-      <DependentUpon>leaveUC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\passSlipUC.resx">
-      <DependentUpon>passSlipUC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\System Administrator\Employee Management\Employee Management User Controls\travelOrderUC.resx">
-      <DependentUpon>travelOrderUC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\System Administrator\Employee Management\employeeListUC.resx">
-      <DependentUpon>employeeListUC.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\System Administrator\System Log Management\systemLogManagementUC.resx">
+      <DependentUpon>systemLogManagementUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

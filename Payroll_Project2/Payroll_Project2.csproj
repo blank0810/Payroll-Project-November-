@@ -262,6 +262,7 @@
     <Compile Include="Classes and SQL Connection\Connections\Personnel\payrollClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\personnelDashboard.cs" />
     <Compile Include="Classes and SQL Connection\Connections\Personnel\personnelProfile.cs" />
+    <Compile Include="Classes and SQL Connection\Connections\System Administrator\benefitManagementClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\System Administrator\dashboardClass.cs" />
     <Compile Include="Classes and SQL Connection\Connections\System Administrator\departmentManagementClass.cs" />
     <Compile Include="Classes and SQL Connection\logInClass.cs" />
@@ -1557,6 +1558,42 @@
     <Compile Include="Forms\Personnel\Personal Portal\Travel Order Logs\travelOrderLogUC.Designer.cs">
       <DependentUpon>travelOrderLogUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\benefitAndDeductionUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\benefitAndDeductionUC.Designer.cs">
+      <DependentUpon>benefitAndDeductionUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Modal\benefitRateModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Modal\benefitRateModal.Designer.cs">
+      <DependentUpon>benefitRateModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Modal\witholdingTaxRateModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Modal\witholdingTaxRateModal.Designer.cs">
+      <DependentUpon>witholdingTaxRateModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Sub user controls\benefitDataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Sub user controls\benefitDataUC.Designer.cs">
+      <DependentUpon>benefitDataUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Sub user controls\benefitSubUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Sub user controls\benefitSubUC.Designer.cs">
+      <DependentUpon>benefitSubUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Sub user controls\witholdingTaxUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\System Administrator\Benefits and Deduction Management\Sub user controls\witholdingTaxUC.Designer.cs">
+      <DependentUpon>witholdingTaxUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\System Administrator\Dashboard\dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2170,6 +2207,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Personnel\Personal Portal\Travel Order Logs\Modals\personalTravelOrderDetails.resx">
       <DependentUpon>personalTravelOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Benefits and Deduction Management\benefitAndDeductionUC.resx">
+      <DependentUpon>benefitAndDeductionUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Benefits and Deduction Management\Modal\benefitRateModal.resx">
+      <DependentUpon>benefitRateModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Benefits and Deduction Management\Modal\witholdingTaxRateModal.resx">
+      <DependentUpon>witholdingTaxRateModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Benefits and Deduction Management\Sub user controls\benefitDataUC.resx">
+      <DependentUpon>benefitDataUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Benefits and Deduction Management\Sub user controls\benefitSubUC.resx">
+      <DependentUpon>benefitSubUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\System Administrator\Benefits and Deduction Management\Sub user controls\witholdingTaxUC.resx">
+      <DependentUpon>witholdingTaxUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\System Administrator\Dashboard\dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>

@@ -1,6 +1,7 @@
 ﻿using Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functions;
 using Payroll_Project2.Classes_and_SQL_Connection.Connections.System_Administrator;
 using Payroll_Project2.Forms.Personnel.Dashboard.Dashboard_User_Control.Modal.User_Controls;
+using Payroll_Project2.Forms.System_Administrator.Benefits_and_Deduction_Management;
 using Payroll_Project2.Forms.System_Administrator.Dashboard.Modal;
 using Payroll_Project2.Forms.System_Administrator.Department_Management;
 using Payroll_Project2.Forms.System_Administrator.Employee_Management;
@@ -482,6 +483,23 @@ namespace Payroll_Project2.Forms.System_Administrator.Dashboard
             else
             {
                 departmentManagementUC.BringToFront();
+            }
+        }
+
+        private void benefitBtn_Click(object sender, EventArgs e)
+        {
+            titleLabel.Text = benefitBtn.Text;
+            benefitAndDeductionUC benefitAndDeductionUC = new benefitAndDeductionUC(_userId);
+
+            if (!contentPanel.Controls.Contains(benefitAndDeductionUC))
+            {
+                contentPanel.Controls.Add(benefitAndDeductionUC);
+                benefitAndDeductionUC.Dock = DockStyle.Fill;
+                benefitAndDeductionUC.BringToFront();
+            }
+            else
+            {
+                benefitAndDeductionUC.BringToFront();
             }
         }
     }

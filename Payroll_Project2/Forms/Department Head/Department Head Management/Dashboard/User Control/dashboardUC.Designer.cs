@@ -30,13 +30,7 @@
         {
             this.empName = new System.Windows.Forms.Label();
             this.jobDescription = new System.Windows.Forms.Label();
-            this.morningIn = new System.Windows.Forms.Label();
-            this.morningOut = new System.Windows.Forms.Label();
-            this.morningStatus = new System.Windows.Forms.Label();
             this.empPicture = new Payroll_Project2.Custom.customPictureBox();
-            this.afternoonIn = new System.Windows.Forms.Label();
-            this.afternoonOut = new System.Windows.Forms.Label();
-            this.afternoonStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.empPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,42 +57,6 @@
             this.jobDescription.TabIndex = 5;
             this.jobDescription.Text = "Front End Developer";
             // 
-            // morningIn
-            // 
-            this.morningIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.morningIn.AutoSize = true;
-            this.morningIn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.morningIn.ForeColor = System.Drawing.Color.Black;
-            this.morningIn.Location = new System.Drawing.Point(265, 16);
-            this.morningIn.Name = "morningIn";
-            this.morningIn.Size = new System.Drawing.Size(53, 15);
-            this.morningIn.TabIndex = 5;
-            this.morningIn.Text = "8:00 AM";
-            // 
-            // morningOut
-            // 
-            this.morningOut.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.morningOut.AutoSize = true;
-            this.morningOut.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.morningOut.ForeColor = System.Drawing.Color.Black;
-            this.morningOut.Location = new System.Drawing.Point(373, 16);
-            this.morningOut.Name = "morningOut";
-            this.morningOut.Size = new System.Drawing.Size(57, 15);
-            this.morningOut.TabIndex = 5;
-            this.morningOut.Text = "12:00 PM";
-            // 
-            // morningStatus
-            // 
-            this.morningStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.morningStatus.AutoSize = true;
-            this.morningStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.morningStatus.ForeColor = System.Drawing.Color.Black;
-            this.morningStatus.Location = new System.Drawing.Point(485, 16);
-            this.morningStatus.Name = "morningStatus";
-            this.morningStatus.Size = new System.Drawing.Size(53, 15);
-            this.morningStatus.TabIndex = 5;
-            this.morningStatus.Text = "On Time";
-            // 
             // empPicture
             // 
             this.empPicture.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -116,53 +74,11 @@
             this.empPicture.TabIndex = 4;
             this.empPicture.TabStop = false;
             // 
-            // afternoonIn
-            // 
-            this.afternoonIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.afternoonIn.AutoSize = true;
-            this.afternoonIn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.afternoonIn.ForeColor = System.Drawing.Color.Black;
-            this.afternoonIn.Location = new System.Drawing.Point(618, 16);
-            this.afternoonIn.Name = "afternoonIn";
-            this.afternoonIn.Size = new System.Drawing.Size(50, 15);
-            this.afternoonIn.TabIndex = 5;
-            this.afternoonIn.Text = "1:00 PM";
-            // 
-            // afternoonOut
-            // 
-            this.afternoonOut.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.afternoonOut.AutoSize = true;
-            this.afternoonOut.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.afternoonOut.ForeColor = System.Drawing.Color.Black;
-            this.afternoonOut.Location = new System.Drawing.Point(732, 16);
-            this.afternoonOut.Name = "afternoonOut";
-            this.afternoonOut.Size = new System.Drawing.Size(52, 15);
-            this.afternoonOut.TabIndex = 5;
-            this.afternoonOut.Text = "5:00 PM";
-            // 
-            // afternoonStatus
-            // 
-            this.afternoonStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.afternoonStatus.AutoSize = true;
-            this.afternoonStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.afternoonStatus.ForeColor = System.Drawing.Color.Black;
-            this.afternoonStatus.Location = new System.Drawing.Point(854, 16);
-            this.afternoonStatus.Name = "afternoonStatus";
-            this.afternoonStatus.Size = new System.Drawing.Size(53, 15);
-            this.afternoonStatus.TabIndex = 5;
-            this.afternoonStatus.Text = "On Time";
-            // 
             // dashboardUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.afternoonStatus);
-            this.Controls.Add(this.afternoonOut);
-            this.Controls.Add(this.morningStatus);
-            this.Controls.Add(this.afternoonIn);
-            this.Controls.Add(this.morningOut);
-            this.Controls.Add(this.morningIn);
             this.Controls.Add(this.jobDescription);
             this.Controls.Add(this.empPicture);
             this.Controls.Add(this.empName);
@@ -180,11 +96,5 @@
         private Custom.customPictureBox empPicture;
         private System.Windows.Forms.Label empName;
         private System.Windows.Forms.Label jobDescription;
-        private System.Windows.Forms.Label morningIn;
-        private System.Windows.Forms.Label morningOut;
-        private System.Windows.Forms.Label morningStatus;
-        private System.Windows.Forms.Label afternoonIn;
-        private System.Windows.Forms.Label afternoonOut;
-        private System.Windows.Forms.Label afternoonStatus;
     }
 }

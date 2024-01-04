@@ -99,8 +99,6 @@
             // 
             // searchBtn
             // 
-            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBtn.BackColor = System.Drawing.Color.ForestGreen;
             this.searchBtn.BackgroundColor = System.Drawing.Color.ForestGreen;
             this.searchBtn.BorderColor = System.Drawing.Color.Navy;
@@ -120,8 +118,6 @@
             // 
             // searchEmployee
             // 
-            this.searchEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.searchEmployee.BackColor = System.Drawing.Color.White;
             this.searchEmployee.BorderColor = System.Drawing.Color.Gray;
             this.searchEmployee.BorderFocusColor = System.Drawing.Color.Black;

@@ -780,6 +780,12 @@
     <Compile Include="Forms\Employee\Dashboard\employeeDashboard.Designer.cs">
       <DependentUpon>employeeDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Modals\employeeSignatureModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\Dashboard\Modals\employeeSignatureModal.Designer.cs">
+      <DependentUpon>employeeSignatureModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Employee\Dashboard\Modals\payslipDetailedView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1700,6 +1706,9 @@
     <EmbeddedResource Include="Forms\Department Head\Department Head Management\Dashboard\DepartmentHeadDashboard.resx">
       <DependentUpon>DepartmentHeadDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Department Head\Department Head Management\Dashboard\User Control\dashboardUC.resx">
+      <DependentUpon>dashboardUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Department Head\Department Head Management\Electronic DTR\DTR Sub User Control\dtrDataUC.resx">
       <DependentUpon>dtrDataUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -1882,6 +1891,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Department Head\Personal Portal\Travel Order Logs\travelOrderLogUC.resx">
       <DependentUpon>travelOrderLogUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee\Dashboard\Dashboard User Control\benefitInformationUC.resx">
+      <DependentUpon>benefitInformationUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Employee\Dashboard\employeeDashboard.resx">
       <DependentUpon>employeeDashboard.cs</DependentUpon>
@@ -2194,6 +2206,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Personnel\Personal Portal\Payslip Logs\Modal\personalPayslipDetailedView.resx">
       <DependentUpon>personalPayslipDetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipDeductionsUC.resx">
+      <DependentUpon>payslipDeductionsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipEarningsUC.resx">
+      <DependentUpon>payslipEarningsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Personnel\Personal Portal\Payslip Logs\Payslip logs sub user control\payslipLogDataUC.resx">
+      <DependentUpon>payslipLogDataUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Personnel\Personal Portal\Travel Order Logs\Modals\personalTravelOrderDetails.resx">
       <DependentUpon>personalTravelOrderDetails.cs</DependentUpon>

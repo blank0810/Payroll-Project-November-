@@ -38,7 +38,7 @@
             // 
             // viewBtn
             // 
-            this.viewBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.viewBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.viewBtn.AutoSize = true;
             this.viewBtn.BackColor = System.Drawing.Color.ForestGreen;
@@ -132,6 +132,7 @@
             this.Controls.Add(this.dateCreated);
             this.Name = "payslipLogDataUC";
             this.Size = new System.Drawing.Size(1365, 39);
+            this.Load += new System.EventHandler(this.payslipLogDataUC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

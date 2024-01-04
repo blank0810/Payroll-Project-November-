@@ -43,7 +43,6 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.returnBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.label21 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -51,6 +50,8 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
@@ -132,7 +133,6 @@
             this.generalJobDescription = new System.Windows.Forms.Label();
             this.generalEmployeeName = new System.Windows.Forms.Label();
             this.employeePicture = new System.Windows.Forms.PictureBox();
-            this.label30 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.profileContentPanel.SuspendLayout();
             this.completeInfoPanel.SuspendLayout();
@@ -327,21 +327,6 @@
             this.returnBtn.Visible = false;
             this.returnBtn.Click += new System.EventHandler(this.returnBtn_Click);
             // 
-            // label21
-            // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label21.ForeColor = System.Drawing.Color.DimGray;
-            this.label21.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label21.Location = new System.Drawing.Point(824, 10);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(56, 19);
-            this.label21.TabIndex = 87;
-            this.label21.Text = "Actions";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label46
             // 
             this.label46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -449,6 +434,37 @@
             this.label26.Text = "Total Value";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label26.Visible = false;
+            // 
+            // label30
+            // 
+            this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label30.ForeColor = System.Drawing.Color.DimGray;
+            this.label30.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label30.Location = new System.Drawing.Point(639, 10);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(56, 19);
+            this.label30.TabIndex = 87;
+            this.label30.Text = "Actions";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label30.Visible = false;
+            // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label21.ForeColor = System.Drawing.Color.DimGray;
+            this.label21.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label21.Location = new System.Drawing.Point(824, 10);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(56, 19);
+            this.label21.TabIndex = 87;
+            this.label21.Text = "Actions";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel14
             // 
@@ -1493,22 +1509,6 @@
             this.employeePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.employeePicture.TabIndex = 0;
             this.employeePicture.TabStop = false;
-            // 
-            // label30
-            // 
-            this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label30.ForeColor = System.Drawing.Color.DimGray;
-            this.label30.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label30.Location = new System.Drawing.Point(639, 10);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(56, 19);
-            this.label30.TabIndex = 87;
-            this.label30.Text = "Actions";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label30.Visible = false;
             // 
             // personalProfileUC
             // 

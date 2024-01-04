@@ -28,12 +28,6 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard.User_Control
             empName.DataBindings.Add("Text", this, "EmployeeName");
             empPicture.DataBindings.Add("ImageLocation", this, "EmployeeImage");
             jobDescription.DataBindings.Add("Text", this, "JobDescription");
-            morningIn.DataBindings.Add("Text", this, "MorningIn");
-            morningOut.DataBindings.Add("Text", this, "MorningOut");
-            morningStatus.DataBindings.Add("Text", this, "MorningStatus");
-            afternoonIn.DataBindings.Add("Text", this, "AfternoonIn");
-            afternoonOut.DataBindings.Add("Text", this, "AfternoonOut");
-            afternoonStatus.DataBindings.Add("Text", this, "AfternoonStatus");
         }
 
         private void dashboardUC_Load(object sender, EventArgs e)

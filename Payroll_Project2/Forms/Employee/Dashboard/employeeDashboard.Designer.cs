@@ -78,18 +78,7 @@
             this.completeInfoPanel = new System.Windows.Forms.Panel();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.employmentPanel = new System.Windows.Forms.Panel();
-            this.benefitListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.returnBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -177,6 +166,19 @@
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.benefitListPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.returnBtn = new Payroll_Project2.Custom.buttonDesign();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
             this.sidePanel.SuspendLayout();
             this.personalPayslipPanel.SuspendLayout();
             this.personalSlipSubPanel.SuspendLayout();
@@ -205,7 +207,6 @@
             this.completeInfoPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.employmentPanel.SuspendLayout();
-            this.panel15.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
             this.generalPanel.SuspendLayout();
@@ -215,6 +216,7 @@
             this.generalInfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeePicture)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -876,8 +878,8 @@
             // employmentPanel
             // 
             this.employmentPanel.Controls.Add(this.benefitListPanel);
-            this.employmentPanel.Controls.Add(this.panel16);
             this.employmentPanel.Controls.Add(this.panel15);
+            this.employmentPanel.Controls.Add(this.panel16);
             this.employmentPanel.Controls.Add(this.panel14);
             this.employmentPanel.Controls.Add(this.panel13);
             this.employmentPanel.Controls.Add(this.panel11);
@@ -888,182 +890,14 @@
             this.employmentPanel.Size = new System.Drawing.Size(989, 690);
             this.employmentPanel.TabIndex = 2;
             // 
-            // benefitListPanel
-            // 
-            this.benefitListPanel.AutoScroll = true;
-            this.benefitListPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.benefitListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.benefitListPanel.Location = new System.Drawing.Point(0, 416);
-            this.benefitListPanel.Name = "benefitListPanel";
-            this.benefitListPanel.Size = new System.Drawing.Size(989, 274);
-            this.benefitListPanel.TabIndex = 15;
-            // 
             // panel16
             // 
             this.panel16.BackColor = System.Drawing.Color.Gainsboro;
             this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel16.Location = new System.Drawing.Point(0, 413);
+            this.panel16.Location = new System.Drawing.Point(0, 374);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(989, 3);
             this.panel16.TabIndex = 14;
-            // 
-            // panel15
-            // 
-            this.panel15.BackColor = System.Drawing.Color.White;
-            this.panel15.Controls.Add(this.returnBtn);
-            this.panel15.Controls.Add(this.label21);
-            this.panel15.Controls.Add(this.label46);
-            this.panel15.Controls.Add(this.label47);
-            this.panel15.Controls.Add(this.label48);
-            this.panel15.Controls.Add(this.label22);
-            this.panel15.Controls.Add(this.label24);
-            this.panel15.Controls.Add(this.label26);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel15.Location = new System.Drawing.Point(0, 374);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(989, 39);
-            this.panel15.TabIndex = 13;
-            // 
-            // returnBtn
-            // 
-            this.returnBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.returnBtn.AutoSize = true;
-            this.returnBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.returnBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.returnBtn.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.returnBtn.BorderRadius = 5;
-            this.returnBtn.BorderSize = 0;
-            this.returnBtn.FlatAppearance.BorderSize = 0;
-            this.returnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.returnBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.returnBtn.ForeColor = System.Drawing.Color.White;
-            this.returnBtn.Location = new System.Drawing.Point(924, 5);
-            this.returnBtn.Name = "returnBtn";
-            this.returnBtn.Size = new System.Drawing.Size(60, 29);
-            this.returnBtn.TabIndex = 94;
-            this.returnBtn.Text = "Return";
-            this.returnBtn.TextColor = System.Drawing.Color.White;
-            this.returnBtn.UseVisualStyleBackColor = false;
-            this.returnBtn.Visible = false;
-            this.returnBtn.Click += new System.EventHandler(this.returnBtn_Click);
-            // 
-            // label21
-            // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label21.ForeColor = System.Drawing.Color.DimGray;
-            this.label21.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label21.Location = new System.Drawing.Point(600, 10);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(56, 19);
-            this.label21.TabIndex = 87;
-            this.label21.Text = "Actions";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label46
-            // 
-            this.label46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label46.ForeColor = System.Drawing.Color.DimGray;
-            this.label46.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label46.Location = new System.Drawing.Point(431, 10);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(48, 19);
-            this.label46.TabIndex = 88;
-            this.label46.Text = "Status";
-            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label47
-            // 
-            this.label47.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label47.ForeColor = System.Drawing.Color.DimGray;
-            this.label47.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label47.Location = new System.Drawing.Point(218, 10);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(59, 19);
-            this.label47.TabIndex = 89;
-            this.label47.Text = "Amount";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label48
-            // 
-            this.label48.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label48.ForeColor = System.Drawing.Color.DimGray;
-            this.label48.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label48.Location = new System.Drawing.Point(6, 10);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(65, 19);
-            this.label48.TabIndex = 90;
-            this.label48.Text = "Benefit/s";
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label22
-            // 
-            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label22.ForeColor = System.Drawing.Color.DimGray;
-            this.label22.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label22.Location = new System.Drawing.Point(6, 10);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(51, 19);
-            this.label22.TabIndex = 91;
-            this.label22.Text = "Month";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label22.Visible = false;
-            // 
-            // label24
-            // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label24.ForeColor = System.Drawing.Color.DimGray;
-            this.label24.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label24.Location = new System.Drawing.Point(218, 10);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(71, 19);
-            this.label24.TabIndex = 92;
-            this.label24.Text = "Payslip ID";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label24.Visible = false;
-            // 
-            // label26
-            // 
-            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label26.ForeColor = System.Drawing.Color.DimGray;
-            this.label26.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label26.Location = new System.Drawing.Point(431, 10);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(78, 19);
-            this.label26.TabIndex = 93;
-            this.label26.Text = "Total Value";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label26.Visible = false;
-            // 
-            // panel14
-            // 
-            this.panel14.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(0, 371);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(989, 3);
-            this.panel14.TabIndex = 12;
             // 
             // panel13
             // 
@@ -2162,6 +1996,206 @@
             this.panel24.Size = new System.Drawing.Size(10, 793);
             this.panel24.TabIndex = 0;
             // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel14.Location = new System.Drawing.Point(0, 371);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(989, 3);
+            this.panel14.TabIndex = 12;
+            // 
+            // benefitListPanel
+            // 
+            this.benefitListPanel.AutoScroll = true;
+            this.benefitListPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.benefitListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.benefitListPanel.Location = new System.Drawing.Point(0, 416);
+            this.benefitListPanel.Name = "benefitListPanel";
+            this.benefitListPanel.Size = new System.Drawing.Size(989, 274);
+            this.benefitListPanel.TabIndex = 17;
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Controls.Add(this.returnBtn);
+            this.panel15.Controls.Add(this.label46);
+            this.panel15.Controls.Add(this.label47);
+            this.panel15.Controls.Add(this.label21);
+            this.panel15.Controls.Add(this.label48);
+            this.panel15.Controls.Add(this.label22);
+            this.panel15.Controls.Add(this.label24);
+            this.panel15.Controls.Add(this.label26);
+            this.panel15.Controls.Add(this.label33);
+            this.panel15.Controls.Add(this.label42);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(0, 377);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(989, 39);
+            this.panel15.TabIndex = 16;
+            // 
+            // returnBtn
+            // 
+            this.returnBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.returnBtn.AutoSize = true;
+            this.returnBtn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.returnBtn.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.returnBtn.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.returnBtn.BorderRadius = 5;
+            this.returnBtn.BorderSize = 0;
+            this.returnBtn.FlatAppearance.BorderSize = 0;
+            this.returnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.returnBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.returnBtn.ForeColor = System.Drawing.Color.White;
+            this.returnBtn.Location = new System.Drawing.Point(924, 5);
+            this.returnBtn.Name = "returnBtn";
+            this.returnBtn.Size = new System.Drawing.Size(60, 29);
+            this.returnBtn.TabIndex = 94;
+            this.returnBtn.Text = "Return";
+            this.returnBtn.TextColor = System.Drawing.Color.White;
+            this.returnBtn.UseVisualStyleBackColor = false;
+            this.returnBtn.Visible = false;
+            // 
+            // label46
+            // 
+            this.label46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label46.ForeColor = System.Drawing.Color.DimGray;
+            this.label46.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label46.Location = new System.Drawing.Point(655, 10);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(48, 19);
+            this.label46.TabIndex = 88;
+            this.label46.Text = "Status";
+            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label47
+            // 
+            this.label47.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label47.ForeColor = System.Drawing.Color.DimGray;
+            this.label47.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label47.Location = new System.Drawing.Point(523, 10);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(59, 19);
+            this.label47.TabIndex = 89;
+            this.label47.Text = "Amount";
+            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label21.ForeColor = System.Drawing.Color.DimGray;
+            this.label21.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label21.Location = new System.Drawing.Point(170, 10);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(117, 19);
+            this.label21.TabIndex = 90;
+            this.label21.Text = "Rate descriptions";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label48
+            // 
+            this.label48.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label48.ForeColor = System.Drawing.Color.DimGray;
+            this.label48.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label48.Location = new System.Drawing.Point(6, 10);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(65, 19);
+            this.label48.TabIndex = 90;
+            this.label48.Text = "Benefit/s";
+            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label22
+            // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label22.ForeColor = System.Drawing.Color.DimGray;
+            this.label22.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label22.Location = new System.Drawing.Point(6, 10);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(51, 19);
+            this.label22.TabIndex = 91;
+            this.label22.Text = "Month";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label22.Visible = false;
+            // 
+            // label24
+            // 
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label24.ForeColor = System.Drawing.Color.DimGray;
+            this.label24.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label24.Location = new System.Drawing.Point(187, 10);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(71, 19);
+            this.label24.TabIndex = 92;
+            this.label24.Text = "Payslip ID";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label24.Visible = false;
+            // 
+            // label26
+            // 
+            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label26.ForeColor = System.Drawing.Color.DimGray;
+            this.label26.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label26.Location = new System.Drawing.Point(412, 10);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(78, 19);
+            this.label26.TabIndex = 93;
+            this.label26.Text = "Total Value";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label26.Visible = false;
+            // 
+            // label33
+            // 
+            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label33.ForeColor = System.Drawing.Color.DimGray;
+            this.label33.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label33.Location = new System.Drawing.Point(639, 10);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(56, 19);
+            this.label33.TabIndex = 87;
+            this.label33.Text = "Actions";
+            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label33.Visible = false;
+            // 
+            // label42
+            // 
+            this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label42.ForeColor = System.Drawing.Color.DimGray;
+            this.label42.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label42.Location = new System.Drawing.Point(824, 10);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(56, 19);
+            this.label42.TabIndex = 87;
+            this.label42.Text = "Actions";
+            this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // employeeDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2220,8 +2254,6 @@
             this.completeInfoPanel.ResumeLayout(false);
             this.contentPanel.ResumeLayout(false);
             this.employmentPanel.ResumeLayout(false);
-            this.panel15.ResumeLayout(false);
-            this.panel15.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
             this.panel12.ResumeLayout(false);
@@ -2238,6 +2270,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.employeePicture)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2301,18 +2335,7 @@
         private System.Windows.Forms.Panel completeInfoPanel;
         private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.Panel employmentPanel;
-        private System.Windows.Forms.FlowLayoutPanel benefitListPanel;
         private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.Panel panel15;
-        private Custom.buttonDesign returnBtn;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel11;
@@ -2393,5 +2416,18 @@
         private System.Windows.Forms.Label generalJobDescription;
         private System.Windows.Forms.Label generalEmployeeName;
         private System.Windows.Forms.PictureBox employeePicture;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.FlowLayoutPanel benefitListPanel;
+        private System.Windows.Forms.Panel panel15;
+        private Custom.buttonDesign returnBtn;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label42;
     }
 }

@@ -724,6 +724,7 @@
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(245, 44);
             this.panel19.TabIndex = 26;
+            this.panel19.Visible = false;
             // 
             // payrollListBtn
             // 
@@ -1679,7 +1680,7 @@
             this.numbersPanel.ColumnCount = 3;
             this.numbersPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.0146F));
             this.numbersPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.9854F));
-            this.numbersPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 466F));
+            this.numbersPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 468F));
             this.numbersPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.numbersPanel.Location = new System.Drawing.Point(0, 0);
             this.numbersPanel.Name = "numbersPanel";

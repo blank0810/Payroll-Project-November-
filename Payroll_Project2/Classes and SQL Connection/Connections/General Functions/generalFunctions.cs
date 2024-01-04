@@ -269,6 +269,9 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     string query = @"
                 SELECT 
                     CONCAT(e.employeeFname, ' ', e.employeeLname) AS EmployeeName,
+                    e.employeeId,
+                    e.employeeJobDesc,
+                    es.employmentStatus,
                     pf.dateCreated,
                     pf.payrollStartingDate,
                     pf.payrollEndingDate,
@@ -296,6 +299,8 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                 FROM 
                     tbl_payrollForm pf
                     JOIN tbl_employee e ON e.employeeId = pf.employeeId 
+                    JOIN tbl_appointmentForm af on e.employeeId = af.employeeId
+                    JOIN tbl_employmentStatus es on es.employmentStatusId = af.employmentStatusId
                     JOIN tbl_department d ON e.departmentId = d.departmentId 
                     JOIN tbl_status s ON s.statusId = pf.statusId
                 WHERE 
@@ -304,6 +309,47 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.General_Functi
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@PayrollId", payrollId);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public async Task<DataTable> GetPayrollList(int employeeId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    await conn.OpenAsync();
+                    string query = @"
+                SELECT 
+                    CONCAT(e.employeeFname, ' ', e.employeeLname) AS EmployeeName,
+                    pf.dateCreated,
+                    pf.salaryRateValue,
+                    pf.totalEarnings,
+                    pf.totalDeduction,
+                    pf.netamount,
+                    pf.payrollFormId
+                FROM 
+                    tbl_payrollForm pf
+                    JOIN tbl_employee e ON e.employeeId = pf.employeeId 
+                    JOIN tbl_department d ON e.departmentId = d.departmentId 
+                    JOIN tbl_status s ON s.statusId = pf.statusId
+                WHERE 
+                    e.employeeId = @PayrollId";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PayrollId", employeeId);
 
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {

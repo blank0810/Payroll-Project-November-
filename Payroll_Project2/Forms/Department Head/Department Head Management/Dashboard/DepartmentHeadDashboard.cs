@@ -38,9 +38,6 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
         private static dashboardClass dashboardClass = new dashboardClass();
 
         public int EmployeeCount { get; set; }
-        public int PresentCount { get; set; }
-        public int LateCount { get; set; }
-        public int AbsentCount { get; set; }
         public int LeaveRequestCount { get; set; }
         public int TravelRequestCount { get; set; }
         public int SlipRequestCount { get; set; }
@@ -52,25 +49,6 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
         }
 
         #region Getter Functions
-
-        private async Task<DataTable> GetEmployeeTimeLogs(string department, DateTime date)
-        {
-            try
-            {
-                DataTable logs = await dashboardClass.GetEmployeeTimeLogs(department, date);
-                
-                if(logs != null)
-                {
-                    return logs;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
 
         private async Task<string> GetDepartment(int employeeId)
         {
@@ -99,39 +77,6 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
                 return count;
             }
             catch (SqlException sql) { throw sql; } catch (Exception ex) { throw ex; }
-        }
-
-        private async Task<int> GetPresentCount(string department, string present, DateTime date)
-        {
-            try
-            {
-                int count = await dashboardClass.GetNumberOfPresent(department, present, date);
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        private async Task<int> GetLateCount(string department, string late, DateTime date)
-        {
-            try
-            {
-                int count = await dashboardClass.GetNumberOfLate(department, late, date);
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        private async Task<int> GetAbsentCount(string department, DateTime date)
-        {
-            try
-            {
-                int count = await dashboardClass.GetNumberOfAbsent(department, date);
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
         }
 
         private async Task<int> GetLeaveRequestCount(string department)
@@ -280,18 +225,12 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
                     slipRequestCount.DataBindings.Clear();
 
                     EmployeeCount = await GetEmployeeCount(_department);
-                    PresentCount = await GetPresentCount(_department, present, date);
-                    LateCount = await GetLateCount(_department, late, date);
-                    AbsentCount = await GetAbsentCount(_department, date);
                     LeaveRequestCount = await GetLeaveRequestCount(_department);
                     TravelRequestCount = await GetTravelRequestCount(_department);
                     SlipRequestCount = await GetSlipRequestCount(_department);
 
                     // Add new data bindings
                     employeeCount.DataBindings.Add("Text", this, "EmployeeCount");
-                    presentCount.DataBindings.Add("Text", this, "PresentCount");
-                    lateCount.DataBindings.Add("Text", this, "LateCount");
-                    absentCount.DataBindings.Add("Text", this, "AbsentCount");
                     leaveRequestCount.DataBindings.Add("Text", this, "LeaveRequestCount");
                     travelRequestCount.DataBindings.Add("Text", this, "TravelRequestCount");
                     slipRequestCount.DataBindings.Add("Text", this, "SlipRequestCount");
@@ -300,8 +239,6 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
                 {
                     ErrorMessages("There is an error in retrieving the Department Name", "Department Retrieval Error");
                 }
-
-                await DisplayTimeLogs(_department, DateTime.Now);
             }
             catch (SqlException sql)
             {
@@ -310,121 +247,6 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private async Task DisplayTimeLogs(string department, DateTime date)
-        {
-            try
-            {
-                attendanceList.Controls.Clear();
-                DataTable logs = await GetEmployeeTimeLogs(department, date);
-
-                if (logs != null)
-                {
-                    dashboardUC[] dashboardUC = new dashboardUC[logs.Rows.Count];
-
-                    for (int i = 0; i < logs.Rows.Count; i++)
-                    {
-                        dashboardUC[i] = new dashboardUC();
-                        DataRow row = logs.Rows[i];
-
-                        if (!string.IsNullOrEmpty(row["employeeName"].ToString()))
-                        {
-                            dashboardUC[i].EmployeeName = $"{row["employeeName"]}";
-                        }
-                        else
-                        {
-                            dashboardUC[i].EmployeeName = "---------";
-                        }
-
-                        if (!string.IsNullOrEmpty(row["employeePicture"].ToString()))
-                        {
-                            dashboardUC[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
-                        }
-                        else
-                        {
-                            dashboardUC[i].EmployeeImage = defaultEmployeeImage;
-                        }
-
-                        if (!string.IsNullOrEmpty(row["employeeJobDesc"].ToString()))
-                        {
-                            dashboardUC[i].JobDescription = $"{row["employeeJobDesc"]}";
-                        }
-                        else
-                        {
-                            dashboardUC[i].JobDescription = "--------";
-                        }
-
-                        if (!string.IsNullOrEmpty(row["morningIn"].ToString()) && DateTime.TryParse(row["morningIn"].ToString(), 
-                            out DateTime morningIn))
-                        {
-                            dashboardUC[i].MorningIn = $"{morningIn: t}";
-                        }
-                        else
-                        {
-                            dashboardUC[i].MorningIn = "--:--:--";
-                        }
-
-                        if (!string.IsNullOrEmpty(row["morningOut"].ToString()) && DateTime.TryParse(row["morningOut"].ToString(), 
-                            out DateTime morningOut))
-                        {
-                            dashboardUC[i].MorningOut = $"{morningOut: t}";
-                        }
-                        else
-                        {
-                            dashboardUC[i].MorningOut = "--:--:--";
-                        }
-
-                        if (!string.IsNullOrEmpty(row["morningStatus"].ToString()))
-                        {
-                            dashboardUC[i].MorningStatus = $"{row["morningStatus"]}";
-                        }
-                        else
-                        {
-                            dashboardUC[i].MorningStatus = "--------";
-                        }
-
-                        if (!string.IsNullOrEmpty(row["afternoonIn"].ToString()) && DateTime.TryParse(row["afternoonIn"].ToString(), 
-                            out DateTime afternoonIn))
-                        {
-                            dashboardUC[i].AfternoonIn = $"{afternoonIn: t}";
-                        }
-                        else
-                        {
-                            dashboardUC[i].AfternoonIn = "--:--:--";
-                        }
-
-                        if (!string.IsNullOrEmpty(row["afternoonOut"].ToString()) && DateTime.TryParse(row["afternoonOut"].ToString(), 
-                            out DateTime afternoonOut))
-                        {
-                            dashboardUC[i].AfternoonOut = $"{afternoonOut: t}";
-                        }
-                        else
-                        {
-                            dashboardUC[i].AfternoonOut = "--:--:--";
-                        }
-
-                        if (!string.IsNullOrEmpty(row["afternoonStatus"].ToString()))
-                        {
-                            dashboardUC[i].AfternoonStatus = $"{row["afternoonStatus"]}";
-                        }
-                        else
-                        {
-                            dashboardUC[i].AfternoonStatus = "-------";
-                        }
-
-                        attendanceList.Controls.Add(dashboardUC[i]);
-                    }
-                }
-            }
-            catch (SqlException sql)
-            {
-                ErrorMessages(sql.Message, "SQL Error");
-            }
-            catch (Exception ex)
-            {
-                ErrorMessages(ex.Message, "Exception Error");
             }
         }
 
@@ -828,24 +650,6 @@ namespace Payroll_Project2.Forms.Department_Head.Dashboard
                         else
                         {
                             personalDTR.EmployeeName = "---------";
-                        }
-
-                        if (!string.IsNullOrEmpty(row["morningShiftTime"].ToString()))
-                        {
-                            personalDTR.MorningShift = $"Morning: {row["morningShiftTime"]}";
-                        }
-                        else
-                        {
-                            personalDTR.MorningShift = "----------";
-                        }
-
-                        if (!string.IsNullOrEmpty(row["afternoonShiftTime"].ToString()))
-                        {
-                            personalDTR.AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
-                        }
-                        else
-                        {
-                            personalDTR.AfternoonShift = "----------";
                         }
                     }
 

@@ -48,8 +48,36 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         {
             try
             {
-                int totalRecords = await dashboardClass.GetNumberOfEmployee(department);
-                return totalRecords;
+                int totalRecords = await dtrClass.GetNumberOfEmployee(department);
+
+                if (totalRecords > 0)
+                {
+                    return totalRecords;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (SqlException sql) { throw sql; }
+            catch (Exception ex) { throw ex; }
+        }
+
+        // Function that responsible for retrieving the Employment Status
+        private async Task<DataTable> GeEmploymentStatus()
+        {
+            try
+            {
+                DataTable status = await generalFunctions.GetEmploymentStatus();
+
+                if (status != null && status.Rows.Count > 0)
+                {
+                    return status;
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
@@ -75,125 +103,21 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
             catch (Exception ex) { throw ex; }
         }
 
-        // Function Responsible for Retrieving the searched employee
-        private async Task<DataTable> GetSearchEmployee(string search, string department)
+        // Function responsible for retrieving the filtered result
+        private async Task<DataTable> GetFilterResults(string departmentName, string status)
         {
             try
             {
-                DataTable searchEmployeeData = await generalFunctions.GetSearchEmployee(search, department);
+                DataTable result = await generalFunctions.GetFilterResult(departmentName, status);
 
-                if (searchEmployeeData != null && searchEmployeeData.Rows.Count > 0)
+                if (result != null && result.Rows.Count > 0)
                 {
-                    return searchEmployeeData;
+                    return result;
                 }
                 else
                 {
                     return null;
                 }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's On Time
-        private async Task<int> GetOnTimeCount(int employeeId)
-        {
-            try
-            {
-                int count = await generalFunctions.GetWorkDaysCount(employeeId);
-
-                return count;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Leave
-        private async Task<int> GetLeaveCount(int employeeId,string status)
-        {
-            try
-            {
-                //int count = await generalFunctions.GetleaveCount(employeeId, status);
-                //return count;
-                return 0;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Travel Order
-        private async Task<int> GetTravelOrderCount(int employeeId, string status)
-        {
-            try
-            {
-                //int count = await generalFunctions.GetTravelOrderCount(employeeId, status);
-                //return count;
-                return 0;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Pass Slip
-        private async Task<int> GetPassSlipCount(int employeeId, string status)
-        {
-            try
-            {
-                //int count = await generalFunctions.GetPassSlipCount(employeeId, status);
-                //return count;
-                return 0;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Late
-        private async Task<int> GetLateCount(int employeeId)
-        {
-            try
-            {
-                //int count = await generalFunctions.GetLateCount(employeeId);
-                //return count;
-                return 0;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Undertime
-        private async Task<int> GetUndertimeCount(int employeeId)
-        {
-            try
-            {
-                //int count = await generalFunctions.GetUndertimeCount(employeeId);
-                //return count;
-                return 0;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Overtime
-        private async Task<int> GetOvertimeCount(int employeeId)
-        {
-            try
-            {
-                //int count = await generalFunctions.GetOvertimeCount(employeeId);
-                //return count;
-                return 0;
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        // This function is responsible for retrieving the count of the employee's Absent
-        private async Task<int> GetAbsentCount(int employeeId)
-        {
-            try
-            {
-                //int count = await generalFunctions.GetAbsentCount(employeeId);
-                //return count;
-                return 0;
             }
             catch (SqlException sql) { throw sql; }
             catch (Exception ex) { throw ex; }
@@ -233,15 +157,15 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         }
 
         // This custom function is the one who display employee
-        public async Task DisplayEmployeeList()
+        private async Task DisplayEmployeeList(string department)
         {
             try
             {
-                totalRecord = await GetTotalRecords(_department);
+                totalRecord = await GetTotalRecords(department);
                 UpdatePagination();
                 pageLabel.Text = $"Page: {currentPage} of {totalPages}";
                 dtrContent.Controls.Clear();
-                DataTable list = await GetEmployeeList(offset, recordPerPage, _department);
+                DataTable list = await GetEmployeeList(offset, recordPerPage, department);
 
                 if (list != null && list.Rows.Count > 0)
                 {
@@ -256,16 +180,8 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
                         employee[i].EmployeeName = $"{row["employeeFname"]} {row["employeeLname"]}";
                         employee[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
                         employee[i].Departmentname = $"{row["departmentName"]}";
-                        employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
-                        employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
-                        employee[i].DaysWorkedCount = await GetOnTimeCount((int)row["employeeId"]);
-                        employee[i].LeaveCount = await GetLeaveCount((int)row["employeeId"], LeaveStatus);
-                        employee[i].TravelOrderCount = await GetTravelOrderCount((int)row["employeeId"], TravelStatus);
-                        employee[i].PassSlipCount = await GetPassSlipCount((int)row["employeeId"], SlipStatus);
-                        employee[i].LateCount = await GetLateCount((int)row["employeeId"]);
-                        employee[i].UndertimeCount = await GetUndertimeCount((int)row["employeeId"]);
-                        employee[i].OvertimeCount = await GetOvertimeCount((int)row["employeeId"]);
-                        employee[i].AbsentCount = await GetAbsentCount((int)row["employeeId"]);
+                        employee[i].MorningShift = $"{row["morningShiftTime"]}";
+                        employee[i].AfternoonShift = $"{row["afternoonShiftTime"]}";
 
                         dtrContent.Controls.Add(employee[i]);
                     }
@@ -286,71 +202,6 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
             }
         }
 
-        // Function Responsible for Displaying the searched employee
-        private async Task DisplaySearchEmployee(string search, string department)
-        {
-            try
-            {
-                dtrContent.Controls.Clear();
-                DataTable searchEmployeeData = await GetSearchEmployee(search, department);
-                totalRecord = searchEmployeeData.Rows.Count;
-                UpdatePagination();
-                pageLabel.Text = $"Page: {currentPage} of {totalPages}";
-
-                if (string.IsNullOrEmpty(search))
-                {
-                    dtrContent.Focus();
-                    await DisplayEmployeeList();
-                }
-                else
-                {
-                    if (searchEmployeeData != null)
-                    {
-                        if (searchEmployeeData.Rows.Count > 0)
-                        {
-                            dtrSubUC[] employee = new dtrSubUC[searchEmployeeData.Rows.Count];
-
-                            for (int i = 0; i < searchEmployeeData.Rows.Count; i++)
-                            {
-                                employee[i] = new dtrSubUC(_userId, this);
-                                DataRow row = searchEmployeeData.Rows[i];
-
-                                employee[i].EmployeeId = (int)row["employeeId"];
-                                employee[i].EmployeeName = $"{row["employeeFname"]} {row["employeeLname"]}";
-                                employee[i].EmployeeImage = $"{EmployeeImagePath}{row["employeePicture"]}";
-                                employee[i].Departmentname = $"{row["departmentName"]}";
-                                employee[i].MorningShift = $"Morning: {row["morningShiftTime"]}";
-                                employee[i].AfternoonShift = $"Afternoon: {row["afternoonShiftTime"]}";
-                                employee[i].DaysWorkedCount = await GetOnTimeCount((int)row["employeeId"]);
-                                employee[i].LeaveCount = await GetLeaveCount((int)row["employeeId"], LeaveStatus);
-                                employee[i].TravelOrderCount = await GetTravelOrderCount((int)row["employeeId"], TravelStatus);
-                                employee[i].PassSlipCount = await GetPassSlipCount((int)row["employeeId"], SlipStatus);
-                                employee[i].LateCount = await GetLateCount((int)row["employeeId"]);
-                                employee[i].UndertimeCount = await GetUndertimeCount((int)row["employeeId"]);
-                                employee[i].OvertimeCount = await GetOvertimeCount((int)row["employeeId"]);
-                                employee[i].AbsentCount = await GetAbsentCount((int)row["employeeId"]);
-
-                                dtrContent.Controls.Add(employee[i]);
-                            }
-                        }
-                        else
-                        {
-                            if (!messageBoxShow)
-                            {
-                                messageBoxShow = true;
-                                MessageBox.Show(@"There is no records in regarding to " + searchEmployee.Texts + " stored in the database", 
-                                    @"No Return", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                            await DisplayEmployeeList();
-                            dtrContent.Focus();
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { MessageBox.Show(sql.Message, "Sql Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-        }
-
         #endregion
 
         #region Event handlers for the User Interface
@@ -358,7 +209,7 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
         // Event handlers that handles if the User Control is loaded into the application
         private async void dtrUC_Load(object sender, EventArgs e)
         {
-            await DisplayEmployeeList();
+            await DisplayEmployeeList(_department);
         }
 
         private async void recordNumber__TextChanged(object sender, EventArgs e)
@@ -367,13 +218,13 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
             {
                 recordPerPage = number;
                 currentPage = 1;
-                await DisplayEmployeeList();
+                await DisplayEmployeeList(_department);
             }
             else
             {
                 currentPage = 1;
                 recordPerPage = 10;
-                await DisplayEmployeeList();
+                await DisplayEmployeeList(_department);
                 dtrContent.Focus();
             }
         }
@@ -389,7 +240,7 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
             }
 
             previousBtn.Enabled = true;
-            await DisplayEmployeeList();
+            await DisplayEmployeeList(_department);
         }
 
         private async void previousBtn_Click(object sender, EventArgs e)
@@ -403,19 +254,7 @@ namespace Payroll_Project2.Forms.Department_Head.Electronic_DTR
             }
 
             nextBtn.Enabled = true;
-            await DisplayEmployeeList();
-        }
-
-        private async void searchBtn_Click(object sender, EventArgs e)
-        {
-            if(!string.IsNullOrWhiteSpace(searchEmployee.Texts))
-            {
-                await DisplaySearchEmployee(searchEmployee.Texts, _department);
-            }
-            else
-            {
-                await DisplayEmployeeList();
-            }
+            await DisplayEmployeeList(_department);
         }
 
         #endregion

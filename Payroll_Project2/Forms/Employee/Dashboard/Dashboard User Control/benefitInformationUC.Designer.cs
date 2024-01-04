@@ -100,6 +100,7 @@
             this.Controls.Add(this.month);
             this.Name = "benefitInformationUC";
             this.Size = new System.Drawing.Size(690, 39);
+            this.Load += new System.EventHandler(this.benefitInformationUC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

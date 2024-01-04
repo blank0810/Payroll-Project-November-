@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,386 +20,77 @@ namespace Payroll_Project2.Classes_and_SQL_Connection.Connections.Department_Hea
             connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
         }
 
-        //This function is responsible for retrieving the time for the Morning In basis
-        public async Task<TimeSpan> GetMorningInBasis()
+        // This function is responsible for retrieving the all list of employee in the database
+        public async Task<DataTable> GetEmployeeList(int offset, int recordPerPage, string department)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     await conn.OpenAsync();
-                    string command = "select timeDesignation from tbl_timeDesignation where timeDesignationDescription = 'Morning In'";
+                    string command = $"SELECT " +
+                        "tbl_employee.employeeid, employeefname, employeelname, departmentname, " +
+                        "employeejobdesc, employmentstatus, employeepicture, morningShiftTime, afternoonShiftTime " +
+                        "FROM tbl_employee " +
+                        "JOIN tbl_department ON tbl_employee.departmentId = tbl_department.departmentId " +
+                        "JOIN tbl_appointmentform ON tbl_employee.employeeid = tbl_appointmentform.employeeid " +
+                        "JOIN tbl_employmentstatus ON tbl_appointmentform.employmentstatusid = tbl_employmentstatus.employmentstatusid " +
+                        "WHERE departmentname = @department " +
+                        "ORDER BY tbl_employee.employeeId " +
+                        $"OFFSET @offset ROWS FETCH NEXT @recordPerPage ROWS ONLY";
 
                     using (cmd = new SqlCommand(command, conn))
                     {
-                        object result = await cmd.ExecuteScalarAsync();
+                        cmd.Parameters.AddWithValue("@recordPerPage", recordPerPage);
+                        cmd.Parameters.AddWithValue("offset", offset);
+                        cmd.Parameters.AddWithValue("@department", department);
 
-                        if (result != null && result != DBNull.Value && TimeSpan.TryParse(result.ToString(), out TimeSpan time))
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                         {
-                            return time;
-                        }
-                        else
-                        {
-                            return TimeSpan.Zero;
+                            DataTable dt = new DataTable();
+                            conn.Close();
+                            sda.Fill(dt);
+                            return dt;
                         }
                     }
                 }
             }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
+            catch (SqlException sqlEx)
+            {
+                throw sqlEx;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        //This function is responsible for retrieving the time for the Morning Out basis
-        public async Task<TimeSpan> GetMorningOutBasis()
+        // This method retrieves the number of employee saved in the database
+        public async Task<int> GetNumberOfEmployee(string department)
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    await conn.OpenAsync();
-                    string command = "select timeDesignation from tbl_timeDesignation where timeDesignationDescription = 'Morning Out'";
+                    string numOfEmployee = "select count(*) from tbl_employee " +
+                        "join tbl_department on tbl_department.departmentId = tbl_employee.departmentId " +
+                        "where departmentName = @department";
+                    await connection.OpenAsync();
 
-                    using (cmd = new SqlCommand(command, conn))
+                    using (cmd = new SqlCommand(numOfEmployee, connection))
                     {
-                        object result = await cmd.ExecuteScalarAsync();
+                        cmd.Parameters.AddWithValue("@department", department);
 
-                        if (result != null && result != DBNull.Value && TimeSpan.TryParse(result.ToString(), out TimeSpan time))
-                        {
-                            return time;
-                        }
-                        else
-                        {
-                            return TimeSpan.Zero;
-                        }
+                        int employee = (int)cmd.ExecuteScalar();
+                        connection.Close();
+                        return employee;
                     }
                 }
             }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function is responsible for retrieving the time for the Morning Out basis
-        public async Task<TimeSpan> GetAfternoonInBasis()
-        {
-            try
+            catch (Exception ex)
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select timeDesignation from tbl_timeDesignation where timeDesignationDescription = 'Afternoon In'";
-
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result != null && result != DBNull.Value && TimeSpan.TryParse(result.ToString(), out TimeSpan time))
-                        {
-                            return time;
-                        }
-                        else
-                        {
-                            return TimeSpan.Zero;
-                        }
-                    }
-                }
+                throw ex;
             }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function is responsible for retrieving the time for the Morning Out basis
-        public async Task<TimeSpan> GetAfternoonOutBasis()
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select timeDesignation from tbl_timeDesignation where timeDesignationDescription = 'Afternoon Out'";
-
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result != null && result != DBNull.Value && TimeSpan.TryParse(result.ToString(), out TimeSpan time))
-                        {
-                            return time;
-                        }
-                        else
-                        {
-                            return TimeSpan.Zero;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of work days
-        // But based on a specific Date
-        public async Task<int> GetSpecificWorkDaysCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'On Time' or afternoonStatus = " +
-                        "'On Time') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of Leave
-        //Based on specific date
-        public async Task<int> GetSpecificleaveCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Leave' or afternoonStatus = " +
-                        "'Leave') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of Travel Order
-        public async Task<int> GetSpecificTravelOrderCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Travel Order' or afternoonStatus = " +
-                        "'Travel Order') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of Pass Slip
-        public async Task<int> GetSpecificPassSlipCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Pass Slip' or afternoonStatus = " +
-                        "'Pass Slip') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of late
-        public async Task<int> GetSpecificLateCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Late' or afternoonStatus = " +
-                        "'Late') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of undertime
-        public async Task<int> GetSpecificUndertimeCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Undertime' or afternoonStatus = " +
-                        "'Undertime') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of overtime
-        public async Task<int> GetSpecificOvertimeCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as onTime from tbl_timeLog where (morningStatus = 'Overtime' or afternoonStatus = " +
-                        "'Overtime') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
-        }
-
-        //This function will be responsible for retrieving the count of an employee's number of absent
-        public async Task<int> GetSpecificAbsentCount(int employeeId, DateTime fromDate, DateTime toDate)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    string command = "select count(*) as late from tbl_timeLog where (morningStatus = 'Absent' or afternoonStatus = " +
-                        "'Absent') and logDate between @fromDate and @toDate and employeeId = @employeeId";
-                    using (cmd = new SqlCommand(command, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@employeeId", employeeId);
-                        cmd.Parameters.AddWithValue("@fromDate", fromDate);
-                        cmd.Parameters.AddWithValue("@toDate", toDate);
-
-                        object result = await cmd.ExecuteScalarAsync();
-
-                        if (result == DBNull.Value || result == null)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            return (int)result;
-                        }
-                    }
-                }
-            }
-            catch (SqlException sql) { throw sql; }
-            catch (Exception ex) { throw ex; }
         }
     }
 }

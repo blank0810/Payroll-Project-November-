@@ -57,7 +57,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.departmentName = new System.Windows.Forms.Label();
+            this.salaryRateDescription = new System.Windows.Forms.Label();
             this.employeeId = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.payslipPeriod = new System.Windows.Forms.Label();
@@ -298,7 +298,7 @@
             this.panel7.Controls.Add(this.label17);
             this.panel7.Controls.Add(this.label15);
             this.panel7.Controls.Add(this.label14);
-            this.panel7.Controls.Add(this.departmentName);
+            this.panel7.Controls.Add(this.salaryRateDescription);
             this.panel7.Controls.Add(this.employeeId);
             this.panel7.Controls.Add(this.label5);
             this.panel7.Controls.Add(this.payslipPeriod);
@@ -314,7 +314,7 @@
             this.status.AutoSize = true;
             this.status.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.status.ForeColor = System.Drawing.Color.Black;
-            this.status.Location = new System.Drawing.Point(779, 87);
+            this.status.Location = new System.Drawing.Point(767, 87);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(54, 17);
             this.status.TabIndex = 9;
@@ -325,7 +325,7 @@
             this.jobDescription.AutoSize = true;
             this.jobDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.jobDescription.ForeColor = System.Drawing.Color.Black;
-            this.jobDescription.Location = new System.Drawing.Point(779, 67);
+            this.jobDescription.Location = new System.Drawing.Point(767, 67);
             this.jobDescription.Name = "jobDescription";
             this.jobDescription.Size = new System.Drawing.Size(110, 17);
             this.jobDescription.TabIndex = 9;
@@ -336,7 +336,7 @@
             this.employeeName.AutoSize = true;
             this.employeeName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.employeeName.ForeColor = System.Drawing.Color.Black;
-            this.employeeName.Location = new System.Drawing.Point(779, 47);
+            this.employeeName.Location = new System.Drawing.Point(767, 47);
             this.employeeName.Name = "employeeName";
             this.employeeName.Size = new System.Drawing.Size(111, 17);
             this.employeeName.TabIndex = 9;
@@ -347,7 +347,7 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(762, 47);
+            this.label23.Location = new System.Drawing.Point(750, 47);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(11, 17);
             this.label23.TabIndex = 8;
@@ -358,7 +358,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(762, 67);
+            this.label22.Location = new System.Drawing.Point(750, 67);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(11, 17);
             this.label22.TabIndex = 8;
@@ -369,7 +369,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(762, 87);
+            this.label21.Location = new System.Drawing.Point(750, 87);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(11, 17);
             this.label21.TabIndex = 8;
@@ -413,7 +413,7 @@
             this.salaryRate.AutoSize = true;
             this.salaryRate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.salaryRate.ForeColor = System.Drawing.Color.Black;
-            this.salaryRate.Location = new System.Drawing.Point(304, 85);
+            this.salaryRate.Location = new System.Drawing.Point(233, 85);
             this.salaryRate.Name = "salaryRate";
             this.salaryRate.Size = new System.Drawing.Size(29, 17);
             this.salaryRate.TabIndex = 5;
@@ -437,16 +437,16 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(39, 65);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 17);
+            this.label7.Size = new System.Drawing.Size(148, 17);
             this.label7.TabIndex = 4;
-            this.label7.Text = "Department";
+            this.label7.Text = "Salary Rate Description";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(287, 85);
+            this.label17.Location = new System.Drawing.Point(216, 85);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(11, 17);
             this.label17.TabIndex = 4;
@@ -457,7 +457,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(287, 65);
+            this.label15.Location = new System.Drawing.Point(216, 65);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(11, 17);
             this.label15.TabIndex = 4;
@@ -468,29 +468,29 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(287, 45);
+            this.label14.Location = new System.Drawing.Point(216, 45);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(11, 17);
             this.label14.TabIndex = 4;
             this.label14.Text = ":";
             // 
-            // departmentName
+            // salaryRateDescription
             // 
-            this.departmentName.AutoSize = true;
-            this.departmentName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.departmentName.ForeColor = System.Drawing.Color.Black;
-            this.departmentName.Location = new System.Drawing.Point(304, 65);
-            this.departmentName.Name = "departmentName";
-            this.departmentName.Size = new System.Drawing.Size(150, 17);
-            this.departmentName.TabIndex = 4;
-            this.departmentName.Text = "Human Resource Office";
+            this.salaryRateDescription.AutoSize = true;
+            this.salaryRateDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.salaryRateDescription.ForeColor = System.Drawing.Color.Black;
+            this.salaryRateDescription.Location = new System.Drawing.Point(233, 65);
+            this.salaryRateDescription.Name = "salaryRateDescription";
+            this.salaryRateDescription.Size = new System.Drawing.Size(103, 17);
+            this.salaryRateDescription.TabIndex = 4;
+            this.salaryRateDescription.Text = "Salary Grade 33";
             // 
             // employeeId
             // 
             this.employeeId.AutoSize = true;
             this.employeeId.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.employeeId.ForeColor = System.Drawing.Color.Black;
-            this.employeeId.Location = new System.Drawing.Point(304, 45);
+            this.employeeId.Location = new System.Drawing.Point(233, 45);
             this.employeeId.Name = "employeeId";
             this.employeeId.Size = new System.Drawing.Size(34, 17);
             this.employeeId.TabIndex = 4;
@@ -1317,7 +1317,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label departmentName;
+        private System.Windows.Forms.Label salaryRateDescription;
         private System.Windows.Forms.Label employeeId;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label payslipPeriod;

@@ -10,13 +10,23 @@ namespace Payroll_Project2.Forms.Department_Head.Personal_Portal.Payslip_Logs.Pa
 
         public string DeductionDescription { get; set; }
         public int DeductionNumber { get; set; }
-        public decimal DeductionAmount { get; set; }
+        public string DeductionAmount { get; set; }
 
         public payslipDeductionsUC(int userId, personalPayslipDetailedView parent)
         {
             InitializeComponent();
             _userId = userId;
             _parent = parent;
+        }
+        private void DataBinding()
+        {
+            deductionDescription.DataBindings.Add("Text", this, "DeductionDescription");
+            deductionsAmount.DataBindings.Add("Text", this, "DeductionAmount");
+        }
+
+        private void payslipDeductionsUC_Load(object sender, System.EventArgs e)
+        {
+            DataBinding();
         }
     }
 }

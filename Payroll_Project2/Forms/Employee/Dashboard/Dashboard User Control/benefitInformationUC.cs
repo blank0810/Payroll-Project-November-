@@ -18,17 +18,24 @@ namespace Payroll_Project2.Forms.Employee.Dashboard.Dashboard_User_Control
 
         public string Month { get; set; }
         public int PayrollID { get; set; }
-        public int TotalValue { get; set; }
+        public string TotalValue { get; set; }
 
-        public benefitInformationUC()
+        private void DataBinding()
         {
-            InitializeComponent();
+            month.DataBindings.Add("Text", this, "Month");
+            payrollId.DataBindings.Add("Text", this, "PayrollID");
+            totalValue.DataBindings.Add("Text", this, "TotalValue");
         }
 
         private void viewBtn_Click(object sender, EventArgs e)
         {
             payslipDetailedView details = new payslipDetailedView(_userId, this);
             details.ShowDialog();
+        }
+
+        private void benefitInformationUC_Load(object sender, EventArgs e)
+        {
+            DataBinding();
         }
     }
 }

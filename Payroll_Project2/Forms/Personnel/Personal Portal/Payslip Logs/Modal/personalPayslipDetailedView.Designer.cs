@@ -34,6 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.transactionNumber = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -122,8 +123,8 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.closeBtn = new Payroll_Project2.Custom.buttonDesign();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -141,7 +142,6 @@
             this.panel23.SuspendLayout();
             this.panel24.SuspendLayout();
             this.panel25.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
@@ -205,6 +205,16 @@
             this.transactionNumber.Size = new System.Drawing.Size(64, 17);
             this.transactionNumber.TabIndex = 9;
             this.transactionNumber.Text = "10001111";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(2, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(86, 78);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
@@ -304,7 +314,7 @@
             this.status.AutoSize = true;
             this.status.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.status.ForeColor = System.Drawing.Color.Black;
-            this.status.Location = new System.Drawing.Point(779, 87);
+            this.status.Location = new System.Drawing.Point(767, 87);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(54, 17);
             this.status.TabIndex = 9;
@@ -315,7 +325,7 @@
             this.jobDescription.AutoSize = true;
             this.jobDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.jobDescription.ForeColor = System.Drawing.Color.Black;
-            this.jobDescription.Location = new System.Drawing.Point(779, 67);
+            this.jobDescription.Location = new System.Drawing.Point(767, 67);
             this.jobDescription.Name = "jobDescription";
             this.jobDescription.Size = new System.Drawing.Size(110, 17);
             this.jobDescription.TabIndex = 9;
@@ -326,7 +336,7 @@
             this.employeeName.AutoSize = true;
             this.employeeName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.employeeName.ForeColor = System.Drawing.Color.Black;
-            this.employeeName.Location = new System.Drawing.Point(779, 47);
+            this.employeeName.Location = new System.Drawing.Point(767, 47);
             this.employeeName.Name = "employeeName";
             this.employeeName.Size = new System.Drawing.Size(111, 17);
             this.employeeName.TabIndex = 9;
@@ -337,7 +347,7 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(762, 47);
+            this.label23.Location = new System.Drawing.Point(750, 47);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(11, 17);
             this.label23.TabIndex = 8;
@@ -348,7 +358,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(762, 67);
+            this.label22.Location = new System.Drawing.Point(750, 67);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(11, 17);
             this.label22.TabIndex = 8;
@@ -359,7 +369,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(762, 87);
+            this.label21.Location = new System.Drawing.Point(750, 87);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(11, 17);
             this.label21.TabIndex = 8;
@@ -1213,16 +1223,6 @@
             this.closeBtn.UseVisualStyleBackColor = false;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Payroll_Project2.Properties.Resources.initao_logo;
-            this.pictureBox1.Location = new System.Drawing.Point(2, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(86, 78);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
             // personalPayslipDetailedView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1253,6 +1253,7 @@
             this.Load += new System.EventHandler(this.personalPayslipDetailedView_Load);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -1281,7 +1282,6 @@
             this.panel24.PerformLayout();
             this.panel25.ResumeLayout(false);
             this.panel25.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

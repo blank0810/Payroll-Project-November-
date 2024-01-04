@@ -28,21 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.earningsNumber = new System.Windows.Forms.Label();
             this.earningsAmount = new System.Windows.Forms.Label();
             this.earningsDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // earningsNumber
-            // 
-            this.earningsNumber.AutoSize = true;
-            this.earningsNumber.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
-            this.earningsNumber.ForeColor = System.Drawing.Color.Black;
-            this.earningsNumber.Location = new System.Drawing.Point(257, 8);
-            this.earningsNumber.Name = "earningsNumber";
-            this.earningsNumber.Size = new System.Drawing.Size(59, 18);
-            this.earningsNumber.TabIndex = 9;
-            this.earningsNumber.Text = "Number";
             // 
             // earningsAmount
             // 
@@ -72,19 +60,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.earningsNumber);
             this.Controls.Add(this.earningsAmount);
             this.Controls.Add(this.earningsDescription);
             this.Name = "payslipEarningsUC";
             this.Size = new System.Drawing.Size(423, 33);
+            this.Load += new System.EventHandler(this.payslipEarningsUC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label earningsNumber;
         private System.Windows.Forms.Label earningsAmount;
         private System.Windows.Forms.Label earningsDescription;
     }

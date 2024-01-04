@@ -371,13 +371,15 @@ FROM
 WHERE 
     d.departmentName = 'Commison on Audit' and pf.isApproveByMayor is null and pf.isCertifyByOfficeHead is null
 
+select * from tbl_payrollForm
+
 update tbl_payrollForm 
 set isCertifyByOfficeHead = null, certifiedByOfficeHeadName = null, certifiedByOfficeHeadDate = null
-where payrollId = 5
+where payrollId = 4
 
 update tbl_payrollForm 
 set isApproveByMayor = null, approvedByMayorName = null, approvedByMayorDate = null
-where payrollId = 5
+where payrollId = 4
 
 update tbl_payrollForm
 set isApproveByMayor = 1, approvedByMayorName = '', approvedByMayorDate = '', statusId = (select statusId from tbl_status where statusDescription = @description)
@@ -410,6 +412,7 @@ add netAmount decimal(10,2) not null
 select * from tbl_specialPrivilege
 select * from tbl_timeLog
 select * from tbl_listOfWorkingDays
+select * from tbl_status
 
 alter table tbl_deductionDetails
 add personalShare decimal(10, 2) not null
@@ -599,8 +602,18 @@ SELECT IDENT_CURRENT('tbl_benefits')
 select ident_current('tbl_benefits')
 select * from tbl_mandatedBenefits
 select * from tbl_userRole
+select * from tbl_timeLog
+select * from tbl_systemLogs
 
 alter table tbl_companyDetails
+
+SELECT tbl_employee.employeeid, employeefname, employeelname, departmentname, employeejobdesc, employmentstatus, employeepicture, morningShiftTime, afternoonShiftTime 
+FROM tbl_employee 
+JOIN tbl_department ON tbl_employee.departmentId = tbl_department.departmentId 
+JOIN tbl_appointmentform ON tbl_employee.employeeid = tbl_appointmentform.employeeid 
+JOIN tbl_employmentstatus ON tbl_appointmentform.employmentstatusid = tbl_employmentstatus.employmentstatusid 
+JOIN tbl_userRole ON tbl_userRole.roleId = tbl_employee.roleId 
+WHERE roleName = 'Personnel' 
 
 insert into tbl_employee (employeePassword, isActive, employeeFname, employeeLname, employeeMname, nationality, barangay, municipality, province, zipCode, 
 employeeBirth, employeeCivilStatus, employeeContactNumber, employeeEmailAddress, educationalAttainmentId, nameOfSchool, course, schoolAddress, 

@@ -15,10 +15,11 @@ namespace Payroll_Project2.Forms.Employee.Dashboard.Dashboard_User_Control
         private static int _userId;
         private static employeeDashboard _parent;
 
-        public int BenefitID { get; set; }
+        public int DetailsID { get; set; }
         public string BenefitName { get; set; }
-        public decimal BenefitValue { get; set; }
+        public string BenefitValue { get; set; }
         public string BenefitStatus { get; set; }
+        public string RateDescriptions { get; set; }
 
         public benefitDataUC(int userId, employeeDashboard parent)
         {
@@ -27,9 +28,48 @@ namespace Payroll_Project2.Forms.Employee.Dashboard.Dashboard_User_Control
             _parent = parent;
         }
 
-        private void viewBtn_Click(object sender, EventArgs e)
+        private void DataBinding()
         {
-            _parent.ContributionsBehaviour(BenefitID);
+            benefitName.DataBindings.Add("Text", this, "BenefitName");
+            benefitValue.DataBindings.Add("Text", this, "BenefitValue");
+            rateDescriptions.DataBindings.Add("Text", this, "RateDescriptions");
+
+            Binding statusBinding = new Binding("Text", this, "BenefitStatus");
+            statusBinding.Format += new ConvertEventHandler(StatusBinding_Format);
+            benefitsStatus.DataBindings.Add(statusBinding);
+        }
+
+        // Custom function responsible for formatting the benefit status
+        private void StatusBinding_Format(object sender, ConvertEventArgs e)
+        {
+            if (e.Value.ToString() == "Active")
+            {
+                benefitsStatus.ForeColor = Color.ForestGreen;
+                benefitName.ForeColor = Color.Black;
+                rateDescriptions.ForeColor = Color.Black;
+                benefitValue.ForeColor = Color.Black;
+            }
+            else if (e.Value.ToString() == "Inactive")
+            {
+                benefitsStatus.ForeColor = Color.Red;
+                benefitName.ForeColor = Color.DimGray;
+                rateDescriptions.ForeColor = Color.DimGray;
+                benefitValue.ForeColor = Color.DimGray;
+            }
+            else
+            {
+                benefitsStatus.ForeColor = Color.DimGray;
+            }
+        }
+
+        private async void viewBtn_Click(object sender, EventArgs e)
+        {
+            await _parent.ContributionsBehaviour(DetailsID);
+        }
+
+        private void benefitDataUC_Load(object sender, EventArgs e)
+        {
+            DataBinding();
         }
     }
 }

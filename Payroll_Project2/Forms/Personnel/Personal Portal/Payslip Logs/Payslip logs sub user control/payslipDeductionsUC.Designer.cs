@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.deductionsAmount = new System.Windows.Forms.Label();
-            this.deductionNumber = new System.Windows.Forms.Label();
             this.deductionDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -38,22 +37,11 @@
             this.deductionsAmount.AutoSize = true;
             this.deductionsAmount.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
             this.deductionsAmount.ForeColor = System.Drawing.Color.Black;
-            this.deductionsAmount.Location = new System.Drawing.Point(370, 8);
+            this.deductionsAmount.Location = new System.Drawing.Point(365, 8);
             this.deductionsAmount.Name = "deductionsAmount";
             this.deductionsAmount.Size = new System.Drawing.Size(58, 18);
             this.deductionsAmount.TabIndex = 15;
             this.deductionsAmount.Text = "Amount";
-            // 
-            // deductionNumber
-            // 
-            this.deductionNumber.AutoSize = true;
-            this.deductionNumber.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
-            this.deductionNumber.ForeColor = System.Drawing.Color.Black;
-            this.deductionNumber.Location = new System.Drawing.Point(265, 8);
-            this.deductionNumber.Name = "deductionNumber";
-            this.deductionNumber.Size = new System.Drawing.Size(59, 18);
-            this.deductionNumber.TabIndex = 13;
-            this.deductionNumber.Text = "Number";
             // 
             // deductionDescription
             // 
@@ -73,10 +61,10 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.deductionsAmount);
-            this.Controls.Add(this.deductionNumber);
             this.Controls.Add(this.deductionDescription);
             this.Name = "payslipDeductionsUC";
             this.Size = new System.Drawing.Size(431, 33);
+            this.Load += new System.EventHandler(this.payslipDeductionsUC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -85,7 +73,6 @@
         #endregion
 
         private System.Windows.Forms.Label deductionsAmount;
-        private System.Windows.Forms.Label deductionNumber;
         private System.Windows.Forms.Label deductionDescription;
     }
 }
